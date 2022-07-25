@@ -1,7 +1,7 @@
-// This is a recreation of Nicholas N. Pakidko's BionicleFont.info file, remade with new information for use with TiffSplitter-DX
+// This is a recreation of Nicholas N. Pakidko's BionicleFont.info file, remade with new information for use with makefont/TiffSplitter-DX
 // FIRST: your comments can now be more than 256 characters long
 // SECOND: The file is backwards compatible with the original info files because of course it is
-// THIRD: The name became a misnomer - TiffSplitter splits .tgas, not .tifs - this streamlines the process
+// THIRD: TiffSplitter is now compatible with .tifs, .tgas and .pngs, in that order
 // 
 // DIRECTIONS FOR GETTING A FONT READY FOR THE GAME
 //1. Get the font sheet in TGA format. 
@@ -38,7 +38,7 @@
 // This is the number (in pixels) from the bottom of the file to the BASELINE of the font
 // It only appears to be used in the loading bar. Higher number means the loading bar periods are LOWER
 // THIS IS UNAFFECTED BY THE RESCALE FACTOR
-10
+15
 // This is the number (in pixels) for the SIZE OF A SPACE
 112
 // This line is used for the RESCALE FACTOR of the font
@@ -51,15 +51,15 @@
 // Follow the same syntax as old tiffsplitter: Use escape characters for things outside of the ASCII range - start with '\x' and put in 
 // anything (\xFF might still be reserved for a callback function, so please try to avoid using it)
 // This MUST be one single line, with NO spaces between the characters and NO newlines between the characters
-0123456789!?.:;,"()&ABCDEFGHIJKLMNOPQRSTUVWXYZ-/%#<>+abcdefghijklmnopqrstuvwxyz'\xA0\xA1\xA2\xA3\xA4\xA5\xA6\xA7\xA8\xA9\xAA\xAB\xAC\xAD\xAE\xAF\xB0\xB1\xB2\xB3\xB4\xB5\xB6\xB7\xB8\xB9\xBA\xBB\xBC\xBD\xBE\xBF\xC0\xC1\xC2\xC3\xC4\xC5\xC6\xC7\xC8\xC9\xCA\xCB\xCC\xCD\xCE\xCF\xD0\xD1\xD2\xD3\xD4\xD5\xD6\xD7\xD8\xD9\xDA\xDB\xDC\xDD\xDE\xDF\xE0\xE1\xE2
+0123456789!?.:;,"()&ABCDEFGHIJKLMNOPQRSTUVWXYZ-/%#<>+abcdefghijklmnopqrstuvwxyz'\xA0\xA1\xA2\xA3\xA4\xA5\xA6\xA7\xA8\xA9\xAA\xAB\xAC\xAD\xAE\xAF\xB0\xB1\xB2\xB3\xB4\xB5\xB6\xB7\xB8\xB9\xBA\xBB\xBC\xBD\xBE\xBF\xC0\xC1\xC2\xC3\xC4\xC5\xC6\xC7\xC8\xC9\xCA\xCB\xCC\xCD\xCE\xCF\xD0\xD1\xD2\xD3\xD4\xD5\xD6\xD7\xD8\xD9\xDA\xDB\xDC\xDD\xDE\xDF\xE0\xE1\xE2\xE3
 // This line is for the MANUAL KERNING TABLE     
 // It can be entered in two formats
 // The first one is simple, but it CAN NOT handle any number which is not 0-9
 // It is simply zeroes until you get to a new character you need to adjust, where you then write the adjustment offset
 // All the characters are on the line below for ease of selecting
 // This line now also starts with 3 spaces, so it's even easier to select
-// 0123456789!?.:;,"()&ABCDEFGHIJKLMNOPQRSTUVWXYZ-/%#<>+abcdefghijklmnopqrstuvwxyz'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛŨÜÝþßṡàáâāäåæçèéêëìíîïðñòóôõöøùúûũüý¿¡Œœ
-   000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+// 0123456789!?.:;,"()&ABCDEFGHIJKLMNOPQRSTUVWXYZ-/%#<>+abcdefghijklmnopqrstuvwxyz'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛŨÜÝþßṡàáâāäåæçèéêëìíîïðñòóôõöøùúûũüý¿¡Œœ?
+   0000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 // The second format is more complicated, but allows for offsetting by any signed 32-bit int                                    
 // First we have the CODE FOR THE CHARACTER - this can be a hex code (indicated with \x) or a character code (indicated with \c)
 // so "A" can be input as \x41 or as \cA
