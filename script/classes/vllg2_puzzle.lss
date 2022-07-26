@@ -111,7 +111,7 @@ class vllg2_puzzle {
         }
 
         //Set Door Text
-        this.coindoortext1 = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("door"), 1, 0) +  gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("door"), 1, 2), screenx * 0.5, screeny * 0.70, 0, 1.5, 256, 4, 0);
+        this.coindoortext1 = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("door"), 1, 0) + " " + gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("door"), 1, 2), screenx * 0.5, screeny * 0.70, 0, 1.5, 256, 4, 0);
         this.coindoortext2 = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", "14 " + gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("door"), 1, 4), screenx * 0.5, screeny * 0.75, 0, 1.5, 256, 4, 0);
         this.coindoortext1.initfull();
         this.coindoortext2.initfull();
