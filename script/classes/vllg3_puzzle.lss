@@ -99,10 +99,12 @@ class vllg3_puzzle {
             
             //Set Tohunga: Hafu (VL01)
             gccharacter::settohunga(this.hafu, rgba(41, 41, 41, 255), rgba(41, 41, 41, 255), scslosifoundation::stringtoidentifier("mk8a"));
-            gccharacter::setorientation(this.hafu, 144);
-            gccharacter::setinputstate(this.hafu, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.hafu, scslosifoundation::stringtoidentifier("hak3"), -1);
-            
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin5")) == 0) {
+                gccharacter::setorientation(this.hafu, 144);
+                gccharacter::setinputstate(this.hafu, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.hafu, scslosifoundation::stringtoidentifier("hak3"), -1);
+            }
+
             //Set Tohunga: Huki (VL02)
             gccharacter::settohunga(this.huki, rgba(163, 81, 0, 255), rgba(163, 81, 0, 255), scslosifoundation::stringtoidentifier("mk2a"));
             gccharacter::setorientation(this.huki, 144);
@@ -118,8 +120,10 @@ class vllg3_puzzle {
             
             //Set Tohunga: Ahkmou (VL04)
             gccharacter::settohunga(this.ahkmou, rgba(163, 81, 0, 255), rgba(41, 41, 41, 255), scslosifoundation::stringtoidentifier("mk9a"));
-            gccharacter::setinputstate(this.ahkmou, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.ahkmou, scslosifoundation::stringtoidentifier("hak3"), -1);
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin5")) == 0) {
+                gccharacter::setinputstate(this.ahkmou, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.ahkmou, scslosifoundation::stringtoidentifier("hak3"), -1);
+            }
             
             //Set Tohunga: Bour (VL05)
             gccharacter::settohunga(this.bour, rgba(82, 48, 24, 255), rgba(228, 128, 30, 255), scslosifoundation::stringtoidentifier("mk3a"));
@@ -165,9 +169,11 @@ class vllg3_puzzle {
             //Set Tohunga: Podu (VL09)
             gccharacter::settohunga(this.podu, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk7a"));
             gccharacter::setcolors(this.podu, rgba(173, 150, 99, 255), rgba(41, 41, 41, 255), rgba(163, 81, 0, 255));
-            gccharacter::setinputstate(this.podu, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.podu, scslosifoundation::stringtoidentifier("hak3"), -1);
-            
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin5")) == 0) {
+                gccharacter::setinputstate(this.podu, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.podu, scslosifoundation::stringtoidentifier("hak3"), -1);
+            }
+
             //Set Tohunga: Treekeeper (VL10)
             gccharacter::settohunga(this.keeper, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk4a"));
             gccharacter::setcolors(this.keeper, rgba(0, 194, 41, 255), rgba(0, 194, 41, 255), rgba(102, 0, 102, 255));
@@ -419,6 +425,18 @@ class vllg3_puzzle {
                 if (this.diskactive == 0) {
                     gccharacter::addpart(this.kivi, "vl08/sash", 1);
                     this.diskactive = 1;
+                }
+            }
+            //If the Takara hasn't been performed, set dancers to continue dancing post-convo
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin5")) == 0) {
+                if (param1.args[0] == scslosifoundation::stringtoidentifier("vl01")) {
+                    gccharacter::setsplitanimation(this.hafu, scslosifoundation::stringtoidentifier("hak3"), -1);
+                }
+                else if (param1.args[0] == scslosifoundation::stringtoidentifier("vl04")) {
+                    gccharacter::setsplitanimation(this.ahkmou, scslosifoundation::stringtoidentifier("hak3"), -1);
+                }
+                else if (param1.args[0] == scslosifoundation::stringtoidentifier("vl09")) {
+                    gccharacter::setsplitanimation(this.podu, scslosifoundation::stringtoidentifier("hak3"), -1);
                 }
             }
         }

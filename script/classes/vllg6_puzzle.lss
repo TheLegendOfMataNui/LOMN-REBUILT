@@ -93,18 +93,22 @@ class vllg6_puzzle {
             
             //Set Tohunga: Keahi (VL01)
             gccharacter::settohunga(this.keahi, rgba(247, 219, 41, 255), rgba(247, 219, 41, 255), scslosifoundation::stringtoidentifier("mk9a"));
-            gccharacter::setorientation(this.keahi, -108);
-            gccharacter::setinputstate(this.keahi, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.keahi, scslosifoundation::stringtoidentifier("hak6"), -1);
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin2")) == 0) {
+                gccharacter::setorientation(this.keahi, -108);
+                gccharacter::setinputstate(this.keahi, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.keahi, scslosifoundation::stringtoidentifier("hak6"), -1);
+            }
             
             //Set Tohunga: Vohon (VL02)
             gccharacter::settohunga(this.vohon, rgba(247, 219, 41, 255), rgba(247, 219, 41, 255), scslosifoundation::stringtoidentifier("mk2a"));
             
             //Set Tohunga: Nuri (VL03)
             gccharacter::settohunga(this.nuri, rgba(41, 41, 41, 255), rgba(41, 41, 41, 255), scslosifoundation::stringtoidentifier("mkaa"));
-            gccharacter::setorientation(this.nuri, 112);
-            gccharacter::setinputstate(this.nuri, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.nuri, scslosifoundation::stringtoidentifier("hak6"), -1);
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin2")) == 0) {
+                gccharacter::setorientation(this.nuri, 112);
+                gccharacter::setinputstate(this.nuri, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.nuri, scslosifoundation::stringtoidentifier("hak6"), -1);
+            }
             
             //Set Tohunga: Agni (VL04)
             gccharacter::settohunga(this.agni, rgba(173, 0, 0, 255), rgba(173, 0, 0, 255), scslosifoundation::stringtoidentifier("mk4a"));
@@ -123,9 +127,11 @@ class vllg6_puzzle {
             //Set Tohunga: Tiribomba (VL05)
             gccharacter::settohunga(this.tiribomba, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk8a"));
             gccharacter::setcolors(this.tiribomba, rgba(247, 219, 41, 255), rgba(173, 0, 0, 255), rgba(41, 41, 41, 255));
-            gccharacter::setorientation(this.tiribomba, 13);
-            gccharacter::setinputstate(this.tiribomba, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.tiribomba, scslosifoundation::stringtoidentifier("hak6"), -1);
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin2")) == 0) {
+                gccharacter::setorientation(this.tiribomba, 13);
+                gccharacter::setinputstate(this.tiribomba, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.tiribomba, scslosifoundation::stringtoidentifier("hak6"), -1);
+            }
             
             //Set Tohunga: Aodhan (VL06)
             gccharacter::settohunga(this.aodhan, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mkca"));
@@ -342,6 +348,7 @@ class vllg6_puzzle {
             }
         }
         else if (param1.eventid == 41) {
+            debug::print(scslosifoundation::identifiertostring(param1.args[0]));
             if (bettersaver::getbooleanvalue(48)) {
                 //Agni Quest Complete
                 if (this.upgradefruit2_shown == 0) {
@@ -365,6 +372,24 @@ class vllg6_puzzle {
                     this.board.show();
                     this.boardactive = 1;  
                 }
+            }
+            //If the Takara hasn't been performed, set dancers to continue dancing post-convo
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin2")) == 0) {
+                if (param1.args[0] == scslosifoundation::stringtoidentifier("vl01")) {
+                    gccharacter::setsplitanimation(this.keahi, scslosifoundation::stringtoidentifier("hak6"), -1);
+                }
+                else if (param1.args[0] == scslosifoundation::stringtoidentifier("vl03")) {
+                    gccharacter::setsplitanimation(this.nuri, scslosifoundation::stringtoidentifier("hak6"), -1);
+                }
+                else if (param1.args[0] == scslosifoundation::stringtoidentifier("vl05")) {
+                    gccharacter::setsplitanimation(this.tiribomba, scslosifoundation::stringtoidentifier("hak6"), -1);
+                }
+            }
+            //Reset the wall dancers after talking to them
+            if ((param1.args[0] == scslosifoundation::stringtoidentifier("vl13")) || (param1.args[0] == scslosifoundation::stringtoidentifier("vl14")) || (param1.args[0] == scslosifoundation::stringtoidentifier("vl15"))) {
+                gccharacter::setsplitanimation(this.poiri, scslosifoundation::stringtoidentifier("hak6"), -1);
+                gccharacter::setsplitanimation(this.penpuku, scslosifoundation::stringtoidentifier("hak6"), -1);
+                gccharacter::setsplitanimation(this.giegue, scslosifoundation::stringtoidentifier("hak6"), -1);
             }
         }
         return null;

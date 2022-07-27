@@ -143,10 +143,12 @@ class vllg5_puzzle {
             //Set Tohunga: Sanso (VL05)
             gccharacter::settohunga(this.sanso, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk0a"));
             gccharacter::setcolors(this.sanso, rgba(0, 190, 173, 255), rgba(0, 190, 173, 255), rgba( 0, 113, 58, 255));
-            gccharacter::setorientation(this.sanso, -165);
-            gccharacter::setinputstate(this.sanso, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.sanso, scslosifoundation::stringtoidentifier("hak5"), -1);
-            
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin4")) == 0) {
+                gccharacter::setorientation(this.sanso, -165);
+                gccharacter::setinputstate(this.sanso, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.sanso, scslosifoundation::stringtoidentifier("hak5"), -1);
+            }
+
             //Set Tohunga: Susuko (VL06)
             gccharacter::settohunga(this.susuko, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mkca"));
             gccharacter::setcolors(this.susuko, rgba(156, 210, 0, 255), rgba( 0, 113, 58, 255), rgba(0, 190, 173, 255));
@@ -154,10 +156,12 @@ class vllg5_puzzle {
             //Set Tohunga: Tamaru (VL07)
             gccharacter::settohunga(this.tamaru, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk9a"));
             gccharacter::setcolors(this.tamaru, rgba(156, 210, 0, 255), rgba(156, 210, 0, 255), rgba(0, 190, 173, 255));
-            gccharacter::setorientation(this.tamaru, 105);
-            gccharacter::setinputstate(this.tamaru, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.tamaru, scslosifoundation::stringtoidentifier("hak5"), -1);
-            
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin4")) == 0) {
+                gccharacter::setorientation(this.tamaru, 105);
+                gccharacter::setinputstate(this.tamaru, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.tamaru, scslosifoundation::stringtoidentifier("hak5"), -1);
+            }
+
             //Set Tohunga: Kumo (VL08)
             gccharacter::settohunga(this.kumo, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk6a"));
             gccharacter::setcolors(this.kumo, rgba( 0, 113, 58, 255), rgba( 0, 113, 58, 255), rgba( 0, 113, 58, 255));
@@ -181,10 +185,12 @@ class vllg5_puzzle {
             //Set Tohunga: Orkahm (VL10)
             gccharacter::settohunga(this.orkahm, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mkba"));
             gccharacter::setcolors(this.orkahm, rgba( 0, 113, 58, 255), rgba( 0, 113, 58, 255), rgba(107, 107, 107, 255));
-            gccharacter::setorientation(this.orkahm, -91);
-            gccharacter::setinputstate(this.orkahm, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.orkahm, scslosifoundation::stringtoidentifier("hak5"), -1);
-            
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin4")) == 0) {
+                gccharacter::setorientation(this.orkahm, -91);
+                gccharacter::setinputstate(this.orkahm, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.orkahm, scslosifoundation::stringtoidentifier("hak5"), -1);
+            }
+
             //Set Tohunga: Treekeeper (VL11)
             gccharacter::settohunga(this.keeper, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk4a"));
             gccharacter::setcolors(this.keeper, rgba(0, 194, 41, 255), rgba(0, 194, 41, 255), rgba(102, 0, 102, 255));
@@ -441,6 +447,18 @@ class vllg5_puzzle {
                 if (this.diskactive == 0) {
                     gccharacter::addpart(this.kumo, "vl08/sash", 1);
                     this.diskactive = 1;
+                }
+            }
+            //If the Takara hasn't been performed, set dancers to continue dancing post-convo
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin4")) == 0) {
+                if (param1.args[0] == scslosifoundation::stringtoidentifier("vl05")) {
+                    gccharacter::setsplitanimation(this.sanso, scslosifoundation::stringtoidentifier("hak5"), -1);
+                }
+                else if (param1.args[0] == scslosifoundation::stringtoidentifier("vl07")) {
+                    gccharacter::setsplitanimation(this.tamaru, scslosifoundation::stringtoidentifier("hak5"), -1);
+                }
+                else if (param1.args[0] == scslosifoundation::stringtoidentifier("vl10")) {
+                    gccharacter::setsplitanimation(this.orkahm, scslosifoundation::stringtoidentifier("hak5"), -1);
                 }
             }
         }

@@ -223,22 +223,28 @@ class vllg2_puzzle {
 			
             //Set Tohunga: Kotu (VL09)
             gccharacter::settohunga(this.kotu, rgba(16, 81, 173, 255), rgba(16, 81, 173, 255), scslosifoundation::stringtoidentifier("mk9a"));
-            gccharacter::setorientation(this.kotu, 174);
-            gccharacter::setinputstate(this.kotu, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.kotu, scslosifoundation::stringtoidentifier("hak2"), -1);
-            
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin3")) == 0) {
+                gccharacter::setorientation(this.kotu, 174);
+                gccharacter::setinputstate(this.kotu, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.kotu, scslosifoundation::stringtoidentifier("hak2"), -1);
+            }
+
             //Set Tohunga: Hahli (VL10)
             gccharacter::settohunga(this.hahli, rgba(0, 73, 90, 255), rgba(16, 81, 173, 255), scslosifoundation::stringtoidentifier("mk1a"));
-            gccharacter::setorientation(this.hahli, 60);
-            gccharacter::setinputstate(this.hahli, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.hahli, scslosifoundation::stringtoidentifier("hak2"), -1);
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin3")) == 0) {
+                gccharacter::setorientation(this.hahli, 60);
+                gccharacter::setinputstate(this.hahli, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.hahli, scslosifoundation::stringtoidentifier("hak2"), -1);
+            }
             
             //Set Tohunga: Vhisola (VL11)
             gccharacter::settohunga(this.vhisola, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mkaa"));
             gccharacter::setcolors(this.vhisola, rgba(16, 81, 173, 255), rgba(16, 81, 173, 255), rgba(107, 107, 107, 255));
-            gccharacter::setorientation(this.vhisola, 6);
-            gccharacter::setinputstate(this.vhisola, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.vhisola, scslosifoundation::stringtoidentifier("hak2"), -1);
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin3")) == 0) {
+                gccharacter::setorientation(this.vhisola, 6);
+                gccharacter::setinputstate(this.vhisola, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.vhisola, scslosifoundation::stringtoidentifier("hak2"), -1);
+            }
             
             //Set Tohunga: Okoth (VL12)
             gccharacter::settohunga(this.okoth, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk4a"));
@@ -596,6 +602,18 @@ class vllg2_puzzle {
                 if (this.gearactive == 0) {               
                     gccharacter::addpart(this.nixie, "vl01/gear", 1);
                     this.gearactive = 1;        
+                }
+            }
+            //If the Takara hasn't been performed, set dancers to continue dancing post-convo
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin3")) == 0) {
+                if (param1.args[0] == scslosifoundation::stringtoidentifier("vl09")) {
+                    gccharacter::setsplitanimation(this.kotu, scslosifoundation::stringtoidentifier("hak2"), -1);
+                }
+                else if (param1.args[0] == scslosifoundation::stringtoidentifier("vl10")) {
+                    gccharacter::setsplitanimation(this.hahli, scslosifoundation::stringtoidentifier("hak2"), -1);
+                }
+                else if (param1.args[0] == scslosifoundation::stringtoidentifier("vl11")) {
+                    gccharacter::setsplitanimation(this.vhisola, scslosifoundation::stringtoidentifier("hak2"), -1);
                 }
             }
         }

@@ -102,8 +102,10 @@ class vllg1_puzzle {
         if (gcsaver::isconditionset(4194304) == 1) {
             //Set Tohunga: Zemya (VLGR)
             gccharacter::settohunga(this.zemya, rgba(41, 41, 41, 255), rgba(41, 41, 41, 255), scslosifoundation::stringtoidentifier("mk6a"));
-            gccharacter::setinputstate(this.zemya, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.zemya, scslosifoundation::stringtoidentifier("hak1"), -1);
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin3")) == 0) {
+                gccharacter::setinputstate(this.zemya, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.zemya, scslosifoundation::stringtoidentifier("hak1"), -1);
+            }
             
             //Set Tohunga: Taipu (VL01)
             gccharacter::settohunga(this.taipu, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk0a"));
@@ -138,8 +140,10 @@ class vllg1_puzzle {
             
             //Set Tohunga: Nobua (VL04)
             gccharacter::settohunga(this.nobua, rgba(102, 0, 102, 255), rgba(102, 0, 102, 255), scslosifoundation::stringtoidentifier("mk6a"));
-            gccharacter::setinputstate(this.nobua, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.nobua, scslosifoundation::stringtoidentifier("hak1"), -1);
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin3")) == 0) {
+                gccharacter::setinputstate(this.nobua, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.nobua, scslosifoundation::stringtoidentifier("hak1"), -1);
+            }
 
             //Set Tohunga: Midak (VL05)
             gccharacter::settohunga(this.midak, rgba(41, 41, 41, 255), rgba(41, 41, 41, 255), scslosifoundation::stringtoidentifier("mk0a"));
@@ -167,9 +171,11 @@ class vllg1_puzzle {
 
             //Set Tohunga: Akamu (VL09)
             gccharacter::settohunga(this.akamu, rgba(102, 0, 102, 255), rgba(102, 0, 102, 255), scslosifoundation::stringtoidentifier("mk9a"));
-            gccharacter::setorientation(this.akamu, -171);
-            gccharacter::setinputstate(this.akamu, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.akamu, scslosifoundation::stringtoidentifier("hak1"), -1);
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin3")) == 0) {
+                gccharacter::setorientation(this.akamu, -171);
+                gccharacter::setinputstate(this.akamu, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.akamu, scslosifoundation::stringtoidentifier("hak1"), -1);
+            }
 
             //Set Tohunga: Treekeeper (VL10)
             gccharacter::settohunga(this.keeper, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk4a"));
@@ -452,6 +458,18 @@ class vllg1_puzzle {
                     this.upgradefruit3_shown = 1;
                 }
                 gcmodeldirector::show(scslosifoundation::stringtoidentifier("bbug"), 0);
+            }
+            //If the Takara hasn't been performed, set dancers to continue dancing post-convo
+            if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin3")) == 0) {
+                if (param1.args[0] == scslosifoundation::stringtoidentifier("vlgr")) {
+                    gccharacter::setsplitanimation(this.zemya, scslosifoundation::stringtoidentifier("hak1"), -1);
+                }
+                else if (param1.args[0] == scslosifoundation::stringtoidentifier("vl04")) {
+                    gccharacter::setsplitanimation(this.nobua, scslosifoundation::stringtoidentifier("hak1"), -1);
+                }
+                else if (param1.args[0] == scslosifoundation::stringtoidentifier("vl09")) {
+                    gccharacter::setsplitanimation(this.akamu, scslosifoundation::stringtoidentifier("hak1"), -1);
+                }
             }
         }
         else if (param1.eventid == 4) {
