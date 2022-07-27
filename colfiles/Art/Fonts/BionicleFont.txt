@@ -59,7 +59,7 @@
 // All the characters are on the line below for ease of selecting
 // This line now also starts with 3 spaces, so it's even easier to select
 // 0123456789!?.:;,"()&ABCDEFGHIJKLMNOPQRSTUVWXYZ-/%#<>+abcdefghijklmnopqrstuvwxyz'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛŨÜÝþßṡàáâāäåæçèéêëìíîïðñòóôõöøùúûũüý¿¡Œœ?
-   0000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+//   0000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
 // The second format is more complicated, but allows for offsetting by any signed 32-bit int                                    
 // First we have the CODE FOR THE CHARACTER - this can be a hex code (indicated with \x) or a character code (indicated with \c)
 // so "A" can be input as \x41 or as \cA
@@ -70,3 +70,4 @@
 // The following lines are for demonstration, they just show how this works
 // \xA0-100\xA150\cA4\\
 // this would offset character A0 (À) by -100, character A1 (Á) by 50 and A by 4
+\cf1\xE3-1\\
