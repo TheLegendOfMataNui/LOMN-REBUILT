@@ -27,6 +27,7 @@ class lego_area_tura1 : gs_lego_area {
             gccharacter::setorientation(this.whenua, 0);
             gccharacter::setinputstate(this.whenua, scslosifoundation::stringtoidentifier("none"));
             gccharacter::switchanimation(this.whenua, scslosifoundation::stringtoidentifier("wh00"), -1);
+            gccharacter::fadein(this.whenua, 0.0);
             gcmodeldirector::hide(scslosifoundation::stringtoidentifier("wh01"), 0);
         }
         else {
@@ -35,6 +36,7 @@ class lego_area_tura1 : gs_lego_area {
             gccharacter::setorientation(this.whenua2, 0);
             gccharacter::setinputstate(this.whenua2, scslosifoundation::stringtoidentifier("none"));
             gccharacter::switchanimation(this.whenua2, scslosifoundation::stringtoidentifier("wh00"), -1);
+            gccharacter::fadein(this.whenua2, 0.0);
             gcmodeldirector::hide(scslosifoundation::stringtoidentifier("when"), 0);
         }
 

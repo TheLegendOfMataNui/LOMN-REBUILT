@@ -135,7 +135,6 @@ v1.1 (Uncharted Waters):
 • Removed the ability to use masks or pause the game during a cutscene warp ----		(ShadowDraikana)
 • Fixed an issue with player movement sounds overlapping start of cutscenes ----		(ShadowDraikana)
 • Fixed music stop code for cutscene warps, now only stop audio if skipped	----		(ShadowDraikana)
-• Fixed foreign characters to properly display, allowing full localization  ----		(OndrikB)
 • Replaced all fonts with new higher resolution versions					----		(Vahkiti, OndrikB, JrMasterModelBuilder) 
 • Cleaned up redundant files across the game, tidying up a bit  			----		(Vahkiti, ShadowDraikana)
 • Unified the color palette for all characters and character objects  		----		(Vahkiti, ShadowDraikana, sweg)
@@ -148,9 +147,12 @@ v1.1 (Uncharted Waters):
 • Fixed hud not hiding correctly during camera pans/boss intros 			----		(ShadowDraikana)
 • Replaced and optimized respawn handling with new system 					----		(ShadowDraikana)
 • Fixed dancers not using dance animations during conversations 			----		(OndrikB, ShadowDraikana)
+• Fixed dancers not using dance animations after conversations				----		(ShadowDraikana)
+• Dancers will now walk around villages post-Takara 						----		(ShadowDraikana)
+• Moved tokens in Matau's hut 												----		(ShadowDraikana)
+• Replaced the loading bar with a high-res version							----		(OndrikB, Vahkiti)
 
 Per level fixes:
-• TEST:   Enabled cut Shoefitter menu for future use						----		(ShadowDraikana)
 • TEST:   Made the background look nicer									----		(Vahkiti)
 • TEST:   Added a test area for Tahu     									----		(ReeseB)
 • TEST:   Added test map for future flight sections 						----		(Vahkiti)
