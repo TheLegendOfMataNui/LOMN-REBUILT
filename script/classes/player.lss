@@ -42,6 +42,7 @@ class player {
     property triggerboxid;
     property usecheckpoints;
     property spawnedunderwater;
+    property disablerespawn;
     
     method player() {
         return null;
@@ -84,6 +85,7 @@ class player {
         this.draggercontroller = new lego_draggercontroller();        
         this.draggercontroller.initfull();
         this.cinematic_delay = 0;
+        this.disablerespawn = 0;
         return null;
     }
     
@@ -144,6 +146,7 @@ class player {
         this.triggerboxid = null;
         this.usecheckpoints = null;
         this.spawnedunderwater = null;
+        this.disablerespawn = null;
         return null;
     }
     
@@ -579,25 +582,28 @@ class player {
 
             //Screen black event
             else if (param1.eventid == 27) {
-                //If the player is not swimming, reset physics
-                if (this.spawnedunderwater == 0) {
-                    globalclass.player.actor.setupphysics(1.5, 0.8, 1, 0, 0);
-                }
-                //This if/else is for handing off player positioning back to the area's code in the case of a checkpoint system being present.  Otherwise, use the generic setup
-                if (this.usecheckpoints == 1) {
-                    debug::print("Handing off respawn position to area checkpoint handler");
-                }
-                else {
-                    globalclass.player.actor.gotopos(gcsaver::getstart(), gcsaver::getlook());
-                }
-                //Normal respawn code
-                globalclass.player.unkill();
-                globalclass.level.cam.setaimode(11);
-                globalclass.player.actor.idle();
-                //Generic handling for resetting triggerboxes dynamically instead of hard scripting it
-                if (this.triggerboxid != null) {
-                    gccollisionphysicsgroup::toggletriggerboxentered(this.triggerboxid, 0);
-                    this.triggerboxid = null;
+                //First, check whether the respawn system has been disabled
+                if (this.disablerespawn == 0) {
+                    //If the player is not swimming, reset physics
+                    if (this.spawnedunderwater == 0) {
+                        globalclass.player.actor.setupphysics(1.5, 0.8, 1, 0, 0);
+                    }
+                    //This if/else is for handing off player positioning back to the area's code in the case of a checkpoint system being present.  Otherwise, use the generic setup
+                    if (this.usecheckpoints == 1) {
+                        debug::print("Handing off respawn position to area checkpoint handler");
+                    }
+                    else {
+                        globalclass.player.actor.gotopos(gcsaver::getstart(), gcsaver::getlook());
+                    }
+                    //Normal respawn code
+                    globalclass.player.unkill();
+                    globalclass.level.cam.setaimode(11);
+                    globalclass.player.actor.idle();
+                    //Generic handling for resetting triggerboxes dynamically instead of hard scripting it
+                    if (this.triggerboxid != null) {
+                        gccollisionphysicsgroup::toggletriggerboxentered(this.triggerboxid, 0);
+                        this.triggerboxid = null;
+                    }
                 }
             }
 
@@ -649,12 +655,16 @@ class player {
                     this.maskcontrol.toggleactive();
                     globalclass.hud.mask.hide();
                 }
+                //Disable respawn system for cutscenes and conversations
+                this.disablerespawn = 1;
             }
 
             //Cinema Stop event
             else if (param1.eventid == 30) {
                 //Reset the player physics and the delay timer
                 globalclass.player.actor.setupphysics(1.5, 0.8, 1, 0, 0);
+                //Reenable the respawn system
+                this.disablerespawn = 0;
             }
         }
         return null;
