@@ -23,6 +23,7 @@ class isld2_puzzle {
         globalclass.bgmusic.play();
         this.call_ev_safe_time_once = 1;
         this.entered_underwater = 1;
+        globalclass.player.spawnedunderwater = 1;
         this.wirlpool = new lego_moveableobject("wpbm");
         this.wirlpool.initfull();
         this.wirlpool.settweakable();

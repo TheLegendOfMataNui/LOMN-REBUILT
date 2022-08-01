@@ -32,6 +32,7 @@ class ttun2_puzzle {
                     this.enteredbackdoor = 0;
                     debug::print("*******************************1 IN WATER");
                     globalclass.player.actor.setwaterlevel(1000);
+                    globalclass.player.spawnedunderwater = 1;
                 }
                 this.call_ev_safe_time_once = 0;
             }
