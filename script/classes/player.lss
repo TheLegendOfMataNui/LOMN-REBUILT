@@ -43,6 +43,7 @@ class player {
     property usecheckpoints;
     property spawnedunderwater;
     property disablerespawn;
+    property allowidleanim;
     
     method player() {
         return null;
@@ -86,6 +87,7 @@ class player {
         this.draggercontroller.initfull();
         this.cinematic_delay = 0;
         this.disablerespawn = 0;
+        this.allowidleanim = 1;
         return null;
     }
     
@@ -147,6 +149,7 @@ class player {
         this.usecheckpoints = null;
         this.spawnedunderwater = null;
         this.disablerespawn = null;
+        this.allowidleanim = null;
         return null;
     }
     
@@ -447,6 +450,7 @@ class player {
                 this.hittrigger = 0;
                 this.usecheckpoints = null;
                 this.spawnedunderwater = null;
+                this.allowidleanim = 1;
             }  
             else if (param1.eventid == 21) {
                 //Setup the physics again to stop the landing noise when jumping into a trigger
@@ -598,7 +602,10 @@ class player {
                     //Normal respawn code
                     globalclass.player.unkill();
                     globalclass.level.cam.setaimode(11);
-                    globalclass.player.actor.idle();
+                    //Is the idle animation allowed or not?
+                    if (this.allowidleanim == 1) {
+                        globalclass.player.actor.idle();
+                    }
                     //Generic handling for resetting triggerboxes dynamically instead of hard scripting it
                     if (this.triggerboxid != null) {
                         gccollisionphysicsgroup::toggletriggerboxentered(this.triggerboxid, 0);

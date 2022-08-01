@@ -37,6 +37,7 @@ class bullrun1 {
         this.ismounted = 0;
         globalclass.player.maskcontrol.changemask(10);
         globalclass.player.maskcontrol.usemasks(0);
+        globalclass.player.allowidleanim = 0;
         return null;
     }
     
