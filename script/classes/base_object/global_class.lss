@@ -38,6 +38,7 @@ class global_class : base_object {
     property initlevelok;
     property newlevel;
     property unlockdirector;
+    property preloadfonts;
     
     method global_class() {
         return null;
@@ -131,6 +132,18 @@ class global_class : base_object {
         this.shortinit = 0;
         this.initlevelok = 0;
         this.bgmusic = new legomp3player();
+        this.preloadfonts = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "UwU", screenx * 0.05, (screeny * 0.05) + 30, 0, 1.25, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "OwO", screenx * 0.05, (screeny * 0.05) + 60, 0, 1.0, 0, 4, 0, 1),
+            new gs_legotext("Root/Data/Art/Fonts/tech_font_01_hilight", "Merp~", screenx * 0.05, (screeny * 0.05) + 90, 0, 1.0, 0, 4, 0, 1),
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontMat", "L E N N Y", screenx * 0.05, (screeny * 0.05) + 120, 0, 1.25, 0, 4, 0, 1) ];
+        var var2 = 0;
+        while ((this.preloadfonts.__length - 1) >= var2) {
+            this.preloadfonts[var2].initfull();
+            this.preloadfonts[var2].add();
+            this.preloadfonts[var2].show();
+            this.preloadfonts[var2].hide();
+            var2 = var2 + 1;
+        }
         return null;
     }
     
@@ -229,6 +242,16 @@ class global_class : base_object {
         this.player.initfull();
         this.enemy.initfull();
         this.shortinit = 0;
+        if (this.preloadfonts != null) {
+            var var1 = 0;
+            while ((this.preloadfonts.__length - 1) >= var1) {
+                this.preloadfonts[var1].remove();
+                this.preloadfonts[var1].cleanupfull();
+                this.preloadfonts[var1] = null;
+                var1 = var1 + 1;
+            }
+            this.preloadfonts = null;
+        }
         return null;
     }
     
