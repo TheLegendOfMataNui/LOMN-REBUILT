@@ -14,10 +14,10 @@ class rockman {
     }
     
     method initfull() {
-        this.rocks = [ new sprite_projectile("rk01", "lbld", "Root/data/levels/lev3/boss", 45, 3, 100, 0, 1), 
-            new sprite_projectile("rk02", "lbld", "Root/data/levels/lev3/boss", 45, 3, 100, 0, 1), 
-            new sprite_projectile("rk03", "lbld", "Root/data/levels/lev3/boss", 45, 3, 100, 0, 1), 
-            new sprite_projectile("rk04", "lbld", "Root/data/levels/lev3/boss", 45, 3, 100, 0, 1) ];
+        this.rocks = [ new sprite_projectile("rk01", "lbld", "Root/data/levels/lev3/rkmn", 45, 3, 100, 0, 1), 
+            new sprite_projectile("rk02", "lbld", "Root/data/levels/lev3/rkmn", 45, 3, 100, 0, 1), 
+            new sprite_projectile("rk03", "lbld", "Root/data/levels/lev3/rkmn", 45, 3, 100, 0, 1), 
+            new sprite_projectile("rk04", "lbld", "Root/data/levels/lev3/rkmn", 45, 3, 100, 0, 1) ];
         this.rocky = gcrockboss::createrockboss("rkmn", 1937010290);
         gcrockboss::setup(this.rocky, 752.0, 0.5, 0 - 429.51, 0);
         gcmodeldirector::show(1937010290, 0);
@@ -41,6 +41,7 @@ class rockman {
     
     method cleanupfull() {
         var var1;
+        debug::print("starting cleanup for rock boi");
         if (!(this.rocks == null)) {
             var1 = 0;
             while ((this.rocks.__length - 1) >= var1) {
@@ -50,14 +51,20 @@ class rockman {
             }
             this.rocks = null;
         }
+        debug::print("rocks have been cleaned up");
         this.currentrock = null;
+        debug::print("current rock cleanup");
         this.areaid = null;
+        debug::print("areaid cleaned");
         if (!(this.rocky == null)) {
             gcmodeldirector::remove(1937010290, 0);
             this.rocky = null;
         }
+        debug::print("cleaning the stoner himself");
         this.curstate = null;
+        debug::print("state is now NULL");
         this.setgravity = null;
+        debug::print("gravity is now NULL");
         return null;
     }
     
