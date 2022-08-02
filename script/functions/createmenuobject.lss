@@ -1,9 +1,9 @@
 function createmenuobject() {
     var var1;
     var var2;
-    var1 = [ "Shoefitter",
-        6,
-        null,
+    var1 = [ //"Shoefitter",
+        //6,
+        //null,
         "Language Test", 
         20, 
         null, 

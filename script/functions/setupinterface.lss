@@ -14,7 +14,7 @@ function setupinterface() {
     setupareaviewer();
     setupcinviewer();
     setupprintscreen();
-    setupshoefitterscreen();
+    //setupshoefitterscreen();
     setuptestlevelscreen();
     setuplanguagetest();
     return null;
