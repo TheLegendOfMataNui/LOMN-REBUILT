@@ -3,6 +3,7 @@ class vtnl2_puzzle {
     property caveplatforms;
     property randomnumber;
     property passedtrigplane;
+    property discpickup;
     
     method vtnl2_puzzle(param1) {
         this.parent = param1;
@@ -55,6 +56,19 @@ class vtnl2_puzzle {
         gchive::setmaxcreatures(hive1handle, 8);
         gchive::setcreaturetype(hive1handle, scslosifoundation::stringtoidentifier("crb1"));
         gchive::setspawnrate(hive1handle, 5);
+        //Lost throwing disc pickup code            
+        if (gcsaver::finditem(scslosifoundation::stringtoidentifier("dsc2")) == 0) {
+            this.discpickup = new lego_pickup("dsc2", 0, 5, "item", 8, 1);
+            this.discpickup.initfull();
+            this.discpickup.show();
+            this.discpickup.setcondition(16384);
+            this.discpickup.setquest(1);
+        }
+        else {
+            this.discpickup = new lego_moveableobject("dsc2");
+            this.discpickup.initfull();
+            this.discpickup.hide();
+        }
         return null;
     }
     
@@ -70,6 +84,10 @@ class vtnl2_puzzle {
             this.caveplatforms = null;
         }
         this.randomnumber = null;
+        if (this.discpickup != null) {
+            this.discpickup.cleanupfull();
+            this.discpickup = null;
+        }
         return null;
     }
     

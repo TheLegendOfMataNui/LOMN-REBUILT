@@ -112,7 +112,7 @@ class evac2_puzzle {
     }
     
     method loadnextarea() {
-        gcbagroup::setswitchareas(scslosifoundation::stringtoidentifier("isld"), scslosifoundation::stringtoidentifier("str0"), scslosifoundation::stringtoidentifier("lok0"));
+        gcbagroup::setswitchareas(scslosifoundation::stringtoidentifier("ttun"), scslosifoundation::stringtoidentifier("str0"), scslosifoundation::stringtoidentifier("lok0"));
         return null;
     }
     
