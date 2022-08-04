@@ -4,9 +4,9 @@ class hydr_puzzle {
     property isdead;
     property stone;
     property hasstone;
-    //property desctext;
-    //property howtotext;
-    //property showintro;
+    property desctext;
+    property howtotext;
+    property showintro;
     
     method hydr_puzzle(param1) {
         this.parent = param1;
@@ -34,38 +34,38 @@ class hydr_puzzle {
         gcmodeldirector::show(var3, var3);
         this.hydr = gchydraboss::gethydraboss();
         this.isdead = 0;
-        //GcHydraBoss::Idle(3);
+        GcHydraBoss::Idle(3);
         var4 = gcareadirector::gethive(scslosifoundation::stringtoidentifier("hv01"));
         gchive::setcreaturetype(var4, scslosifoundation::stringtoidentifier("crb1"));
         gchive::setspawnrate(var4, 240);
         var5 = gcareadirector::gethive(scslosifoundation::stringtoidentifier("hv02"));
         gchive::setcreaturetype(var5, scslosifoundation::stringtoidentifier("crb1"));
         gchive::setspawnrate(var5, 240);
-        //var3 = gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 0);
-        //this.desctext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", var3, screenx * 0.5, screeny - 130, 0, 1, 256, 0, 0);
-        //this.desctext.initfull();
-        //var4 = (screeny - 100) + 20;
-        //var3 = gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 1);
-        //this.howtotext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", var3, screenx * 0.5, var4, 0, 1, 256, 0, 0);
-        //this.howtotext.initfull();
-        //this.showintro = 0;
-        //this.playintro();
+        var3 = gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 0);
+        this.desctext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", var3, screenx * 0.5, screeny - 130, 0, 1, 256, 0, 0);
+        this.desctext.initfull();
+        var4 = (screeny - 100) + 20;
+        var3 = gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 1);
+        this.howtotext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", var3, screenx * 0.5, var4, 0, 1, 256, 0, 0);
+        this.howtotext.initfull();
+        this.showintro = 0;
+        this.playintro();
         return null;
     }
     
     method playintro() {
-        //this.showintro = 1;
-        //this.parent.level.cam.makespline("Root/Data/Levels/lev2/hydr/hydr_CAM.slb");
-        //this.parent.level.cam.setspline(0, 10.0, 1, 0);
-        //this.parent.level.cam.setaimode(2);
-        //this.parent.level.cam.settargetpos(77, 10, 10);
-        //this.parent.level.cam.scaletocutscene();
-        //this.desctext.add();
-        //this.desctext.show();
-        //this.howtotext.add();
-        //this.howtotext.show();
-        //globalclass.hud.hide();
-        //GcHydraBoss::Idle(10);
+        this.showintro = 1;
+        this.parent.level.cam.makespline("Root/Data/Levels/lev2/hydr/hydr_CAM.slb");
+        this.parent.level.cam.setspline(0, 10.0, 1, 0);
+        this.parent.level.cam.setaimode(2);
+        this.parent.level.cam.settargetpos(77, 10, 10);
+        this.parent.level.cam.scaletocutscene();
+        this.desctext.add();
+        this.desctext.show();
+        this.howtotext.add();
+        this.howtotext.show();
+        globalclass.hud.hide();
+        GcHydraBoss::Idle(10);
         return null;
     }
     
@@ -97,7 +97,7 @@ class hydr_puzzle {
     
     method resetplayer() {
         gchydraboss::reset(this.hydr);
-        //GcHydraBoss::Idle(3);
+        GcHydraBoss::Idle(3);
         return null;
     }
     
@@ -126,12 +126,12 @@ class hydr_puzzle {
             globalclass.setnextlevel("lev3", 1);
         }
         else if (param1.eventid == 6) {
-            //this.parent.level.cam.setaimode(11);
-            //this.parent.level.cam.resetviewport();
-            //globalclass.hud.show();
-            //this.desctext.hide();
-            //this.howtotext.hide();
-            //GcHydraBoss::Idle(3);
+            this.parent.level.cam.setaimode(11);
+            this.parent.level.cam.resetviewport();
+            globalclass.hud.show();
+            this.desctext.hide();
+            this.howtotext.hide();
+            GcHydraBoss::Idle(3);
         }
         return null;
     }
@@ -141,7 +141,6 @@ class hydr_puzzle {
     }
     
     method exit() {
-        this.parent = null;
         return null;
     }
 }
