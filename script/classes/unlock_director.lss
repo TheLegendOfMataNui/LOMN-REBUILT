@@ -4,7 +4,7 @@ class unlock_director {
     property unlocks;
 
     method unlock_director() {
-        this.filename = "Root/data/unlocks";
+        this.filename = "User/data/unlocks";
         this.file = new slosi_objectfileio(this.filename);
         if (this.file.fileexist()) {
             debug::print("Loading unlocks from file...");
