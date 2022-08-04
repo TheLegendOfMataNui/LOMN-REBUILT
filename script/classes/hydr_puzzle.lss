@@ -84,6 +84,17 @@ class hydr_puzzle {
             this.stone.cleanupfull();
             this.stone = null;
         }
+        this.showintro = null;
+        if (this.desctext != null) {
+            this.desctext.remove();
+            this.desctext.cleanupfull();
+            this.desctext = null;
+        }
+        if (this.howtotext != null) {
+            this.howtotext.remove();
+            this.howtotext.cleanupfull();
+            this.howtotext = null;
+        }
         return null;
     }
     
@@ -141,6 +152,7 @@ class hydr_puzzle {
     }
     
     method exit() {
+        this.parent = null;
         return null;
     }
 }
