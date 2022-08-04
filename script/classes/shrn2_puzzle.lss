@@ -1,141 +1,69 @@
 class shrn2_puzzle {
     property parent;
-    property waterfall1;
-    property waterfall2;
-    property waterfall3;
     property doorsclosed;
     property doors;
+    property callev_safe_time_event_once;
     property portalactive;
-    property bossdoortext1;
-    property bossdoortext2;
+    property bossdoortext;
     property bossdoortexttimer;
     property showbossdoor;
-    property inwater;
-    property nokama;
-    property unasa;
-    property amtapi;
-    property apefi;
-    property yala;
     
     method shrn2_puzzle(param1) {
         this.parent = param1;
-        this.doorsclosed = [ 1, 
-            1, 
-            1 ];
         return null;
     }
     
     method initfull() {
         var var1;
-        var portal_trigger;
+        var var2;
+        var var3;
+        var var4;
         gcmodeldirector::setnearestmax(7);
         gcareadirector::setnearestmax(7);
         gcareadirector::setfog(-9143565, 0 - 1000.0, 0 - 2400.0, 0.01);
         gclightdirector::setcavelighting(0);
+        this.doorsclosed = [ 1, 
+            1 ];
+        this.callev_safe_time_event_once = 1;
         globalclass.bgmusic.changefilename("Root/Data/sounds/MusicShrine");
         globalclass.bgmusic.play();
-        this.inwater = 1;
         this.doors = [ new lego_moveableobject("dor1"), 
-            new lego_moveableobject("dor3"), 
-            new lego_moveableobject("dor2"), 
-            new lego_moveableobject("dor4") ];
+            new lego_moveableobject("dor2") ];
         var1 = 0;
         while ((this.doors.__length - 1) >= var1) {
             this.doors[var1].initfull();
+            this.doors[var1].settweakable();
             var1 = var1 + 1;
         }
-        this.waterfall1 = new lego_moveableobject("swf1");
-        this.waterfall1.initfull();
-        this.waterfall2 = new lego_moveableobject("swf2");
-        this.waterfall2.initfull();
-        this.waterfall3 = new lego_moveableobject("swf3");
-        this.waterfall3.initfull();
-
-        //Set Nokama
-        this.nokama = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("noka"), 0);
-        gccharacter::setinputstate(this.nokama, scslosifoundation::stringtoidentifier("none"));
-        gccharacter::switchanimation(this.nokama, scslosifoundation::stringtoidentifier("no00"), -1);
-
-        //Set Tohunga: Unasa
-        this.unasa = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vlgr"), 0);
-        gccharacter::settohunga(this.unasa, rgba(25, 134, 189, 255), rgba(25, 134, 189, 255), scslosifoundation::stringtoidentifier("mkca"));
-		gccharacter::setorientation(this.unasa, 0);
-        gccharacter::setinputstate(this.unasa, scslosifoundation::stringtoidentifier("none"));
-        gccharacter::switchanimation(this.unasa, scslosifoundation::stringtoidentifier("d000"), -1);
-
-        //Set Tohunga: Amtapi
-        this.amtapi = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl01"), 0);
-        gccharacter::settohunga(this.amtapi, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk4a"));
-        gccharacter::setcolors(this.amtapi, rgba(0, 73, 90, 255), rgba(0, 73, 90, 255), rgba(16, 81, 173, 255));
-		gccharacter::setorientation(this.amtapi, 270);
-        gccharacter::setinputstate(this.amtapi, scslosifoundation::stringtoidentifier("none"));
-        gccharacter::switchanimation(this.amtapi, scslosifoundation::stringtoidentifier("d000"), -1);
-
-        //Set Tohunga: Apefi
-        this.apefi = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl02"), 0);
-        gccharacter::settohunga(this.apefi, rgba(0, 73, 90, 255), rgba(16, 81, 173, 255), scslosifoundation::stringtoidentifier("mk0a"));
-		gccharacter::setorientation(this.apefi, 0);
-        gccharacter::setinputstate(this.apefi, scslosifoundation::stringtoidentifier("none"));
-        gccharacter::switchanimation(this.apefi, scslosifoundation::stringtoidentifier("d000"), -1);
-
-        //Set Tohunga: Yala
-        this.yala = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl03"), 0);
-        gccharacter::settohunga(this.yala, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk9a"));
-        gccharacter::setcolors(this.yala, rgba(25, 134, 189, 255), rgba(0, 73, 90, 255), rgba(16, 81, 173, 255));
-		gccharacter::setorientation(this.yala, 90);
-        gccharacter::setinputstate(this.yala, scslosifoundation::stringtoidentifier("none"));
-        gccharacter::switchanimation(this.yala, scslosifoundation::stringtoidentifier("d000"), -1);
-
-        portal_trigger = scslosifoundation::stringtoidentifier("tps9");
+        var2 = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("noka"), 0);
+        gccharacter::setinputstate(var2, scslosifoundation::stringtoidentifier("none"));
+        gccharacter::switchanimation(var2, scslosifoundation::stringtoidentifier("no00"), -1);
+        var3 = scslosifoundation::stringtoidentifier("tps9");
         this.portalactive = gcsaver::portalactive();
         if (this.portalactive == 1) {
-            gccollisionphysicsgroup::setportal(portal_trigger, "root/data/art/portals/gali/village_ripple/g_prtl", 1);
+            gccollisionphysicsgroup::setportal(var3, "root/data/art/portals/gali/village_ripple/g_prtl", 1);
         }
         else {
-            gccollisionphysicsgroup::turnoffnextarea(portal_trigger);
-        }
-        if (bettersaver::getbooleanvalue(75)) {
-            this.waterfall1.hide();
-        }
-        if (bettersaver::getbooleanvalue(76)) {
-            this.waterfall3.hide();
-            this.switchit(0);
-        }
-        if (bettersaver::getbooleanvalue(77)) {
-            this.waterfall2.hide();
-            this.switchit(1);
-        }
-        if (bettersaver::getbooleanvalue(78)) {
-            this.switchit(2);
+            gccollisionphysicsgroup::turnoffnextarea(var3);
         }
         if (bettersaver::getbooleanvalue(66) == 0) {
             this.showbossdoor = 1;
-            this.doors[3].setalpha(0.6);
+            this.doors[1].setalpha(0.8);
         }
         else {
-            this.doors[3].hide();
+            this.doors[1].hide();
         }
-        var1 = 0;
-        while (2 >= var1) {
-            this.movedoorsdown(var1);
-            var1 = var1 + 1;
-        }
-
-        //Set Door Text
-        this.bossdoortext1 = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("door"), 1, 0) +  gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("door"), 1, 1), screenx * 0.5, screeny * 0.70, 0, 1.5, 256, 4, 0);
-        this.bossdoortext2 = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", "60 " + gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("door"), 1, 4), screenx * 0.5, screeny * 0.75, 0, 1.5, 256, 4, 0);
-        this.bossdoortext1.initfull();
-        this.bossdoortext2.initfull();
-        this.bossdoortext1.add();
-        this.bossdoortext2.add();
+        var4 = gcareadirector::getscriptfluffstringuint(scslosifoundation::stringtoidentifier("door"), 1, 0, 8);
+        this.bossdoortext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", var4, screenx * 0.5, screeny * 0.83, 0, 1.5, 256, 4, 0);
+        this.bossdoortext.initfull();
+        this.bossdoortext.add();
         this.bossdoortexttimer = 0.0;
-
         return null;
     }
     
     method cleanupfull() {
         var var1;
-        if (this.doors != null) {
+        if (!(this.doors == null)) {
             var1 = 0;
             while ((this.doors.__length - 1) >= var1) {
                 this.doors[var1].cleanupfull();
@@ -144,114 +72,12 @@ class shrn2_puzzle {
             }
             this.doors = null;
         }
-        if (this.waterfall1 != null) {
-            this.waterfall1.cleanupfull();
-            this.waterfall1 = null;
+        if (!(this.bossdoortext == null)) {
+            this.bossdoortext.remove();
+            this.bossdoortext.cleanupfull();
+            this.bossdoortext = null;
         }
-        if (this.waterfall2 != null) {
-            this.waterfall2.cleanupfull();
-            this.waterfall2 = null;
-        }
-        if (this.waterfall3 != null) {
-            this.waterfall3.cleanupfull();
-            this.waterfall3 = null;
-        }
-        if (this.bossdoortext1 != null) {
-            this.bossdoortext1.remove();
-            this.bossdoortext1.cleanupfull();
-            this.bossdoortext1 = null;
-        }
-        if (this.bossdoortext2 != null) {
-            this.bossdoortext2.remove();
-            this.bossdoortext2.cleanupfull();
-            this.bossdoortext2 = null;
-        }
-        this.inwater = null;
-        this.portalactive = null;
-        this.nokama = null;
-        this.unasa = null;
-        this.amtapi = null;
-        this.apefi = null;
-        this.yala = null;
-        return null;
-    }
-    
-    method onevent(param1) {
-        var portal_trigger;
-        if (param1.eventid == 27) {
-            debug::print(scslosifoundation::identifiertostring(gcsaver::getstart()));
-            this.inwater = 1;
-        }
-        else if (param1.eventid == 1) {
-            if (param1.args[0] == scslosifoundation::stringtoidentifier("cnt1")) {
-                if (param1.args[1] == scslosifoundation::stringtoidentifier("whpl")) {
-                    gcbagroup::setswitchareas(scslosifoundation::stringtoidentifier("hydr"), scslosifoundation::stringtoidentifier("str0"), scslosifoundation::stringtoidentifier("lok0"));
-                }
-            }
-            if (param1.args[1] == scslosifoundation::stringtoidentifier("dor4")) {
-                if (this.showbossdoor == 1) {
-                    if (((((globalclass.player.tokens >= 60) && (globalclass.player.maskcontrol.isselectable(1)) && (globalclass.player.maskcontrol.isselectable(9)) && (globalclass.player.actor.ishookenabled) && (globalclass.player.haselement()))))) {
-                        this.doors[3].fadeout(1.5);
-                        gcstaticsoundsptrarray::playtablesound(1084);
-                        this.showbossdoor = 0;
-                        this.bossdoortext1.hide();
-                        this.bossdoortext2.hide();
-                    }
-                    else {
-                        this.bossdoortext1.show();
-                        this.bossdoortext2.show();
-                        this.bossdoortexttimer = 1.0;
-                    }
-                }
-            }
-        }
-        else if (param1.eventid == 41) {
-            if ((this.portalactive == 0) && (bettersaver::getbooleanvalue(75))) {
-                portal_trigger = scslosifoundation::stringtoidentifier("tps9");
-                gccollisionphysicsgroup::setportal(portal_trigger, "root/data/art/portals/gali/village_ripple/g_prtl", 1);
-                this.portalactive = 1;
-            }
-            if (bettersaver::getbooleanvalue(75)) {
-                //TALKED TO NOKAMA
-                this.waterfall1.hide();
-            }
-        }
-        else if (param1.eventid == 35) {
-            if (param1.args[0] == scslosifoundation::stringtoidentifier("dor4")) {
-                //EXIT: TO BOSS               
-                this.doors[3].hide();
-                bettersaver::setbooleanvalue(66, 1);
-            }
-        }
-        else if (param1.eventid == 44) {
-            if ((this.parent.enterstartid == scslosifoundation::stringtoidentifier("str6")) && (bettersaver::getbooleanvalue(76) == 0)) {
-                //ENTERED FROM: GLY1                
-                this.waterfall3.hide();
-                bettersaver::setbooleanvalue(76, 1);
-            }
-            if ((this.parent.enterstartid == scslosifoundation::stringtoidentifier("str4")) && (bettersaver::getbooleanvalue(77) == 0)) {
-                //ENTERED FROM: GLY2
-                this.waterfall2.hide();
-                bettersaver::setbooleanvalue(77, 1);
-            }
-            if ((this.parent.enterstartid == scslosifoundation::stringtoidentifier("str1")) && (bettersaver::getbooleanvalue(78) == 0)) {
-                //ENTERED FROM: GL3S
-                bettersaver::setbooleanvalue(78, 1);
-            }
-            else if (this.inwater == 1) {
-                if ((gcsaver::getstart() == scslosifoundation::stringtoidentifier("str1")) || (gcsaver::getstart() == scslosifoundation::stringtoidentifier("str7")) || (gcsaver::getstart() == scslosifoundation::stringtoidentifier("str9")) || (globalclass.player.crashbandicootwarped == 2)) {
-                    //SHOULD NOT SPAWN IN WATER
-                    globalclass.player.underwater = 0;
-                    globalclass.player.isswimming();              
-                }
-                else {
-                    //SHOULD SPAWN IN WATER
-                    globalclass.player.underwater = 1;
-                    globalclass.player.isswimming();
-                }            
-            }
-            this.inwater = 0;
-        }
+        this.doorsclosed = null;
         return null;
     }
     
@@ -259,25 +85,72 @@ class shrn2_puzzle {
         if (this.bossdoortexttimer > 0) {
             this.bossdoortexttimer = this.bossdoortexttimer - param1.deltatime;
         }
-        else if (this.bossdoortext1.onscreen == 1) {
-            this.bossdoortext1.hide();
-            this.bossdoortext2.hide();
+        else if (this.bossdoortext.onscreen == 1) {
+            this.bossdoortext.hide();
         }
         return null;
     }
     
-    method switchit(param1) {
-        if (param1 == 0) {
-            this.doorsclosed[param1] = 0;
-            debug::print("OPENING GLY1 DOOR, PARAM1 = "  + __tostring(param1));
+    method onevent(param1) {
+        var var1;
+        var var2;
+        if (param1.eventid == 35) {
+            if (param1.args[0] == scslosifoundation::stringtoidentifier("dor2")) {
+                bettersaver::setbooleanvalue(66, 1);
+                this.doors[1].hide();
+            }
         }
-        else if (param1 == 1) {
-            this.doorsclosed[param1] = 0;
-            debug::print("OPENING GLY2 DOOR, PARAM1 = "  + __tostring(param1));
+        else if (param1.eventid == 41) {
+            if (this.portalactive == 0) {
+                var1 = scslosifoundation::stringtoidentifier("tps9");
+                gccollisionphysicsgroup::setportal(var1, "root/data/art/portals/gali/village_ripple/g_prtl", 1);
+                this.portalactive = 1;
+            }
         }
-        else if (param1 == 2) {
-            this.doorsclosed[param1] = 0;
-            debug::print("OPENING GL3S DOOR, PARAM1 = "  + __tostring(param1));
+        else if (param1.eventid == 44) {
+            if (this.callev_safe_time_event_once) {
+                var2 = 0;
+                while (1 >= var2) {
+                    this.movedoorsdown(var2);
+                    var2 = var2 + 1;
+                }
+                this.callev_safe_time_event_once = 0;
+            }
+        }
+        else if (param1.eventid == 1) {
+            if (param1.args[1] == scslosifoundation::stringtoidentifier("dor2")) {
+                if (this.showbossdoor == 1) {
+                    if (((((globalclass.player.tokens >= 8) && globalclass.player.maskcontrol.isselectable(1)) && globalclass.player.maskcontrol.isselectable(9)) && globalclass.player.actor.ishookenabled) && globalclass.player.haselement()) {
+                        this.doors[1].fadeout(1.5);
+                        gcstaticsoundsptrarray::playtablesound(1084);
+                        this.showbossdoor = 0;
+                        this.bossdoortext.hide();
+                    }
+                    else {
+                        this.bossdoortext.show();
+                        this.bossdoortexttimer = 1.0;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    
+    method input(param1) {
+        if (param1.button == 90) {
+            if (param1.event == 2) {
+                this.cheat(0);
+            }
+        }
+        if (param1.button == 88) {
+            if (param1.event == 2) {
+                this.cheat(1);
+            }
+        }
+        if (param1.button == 67) {
+            if (param1.event == 2) {
+                this.cheat(2);
+            }
         }
         return null;
     }
@@ -292,42 +165,51 @@ class shrn2_puzzle {
                 debug::print(("*****DOOR " + __tostring(var1)) + " GOES DOWN");
                 var2 = this.doors[var1].getx();
                 var3 = this.doors[var1].getz();
-                this.doors[var1].interpolate(var2, 0 - 97.6, var3, 1.0);
+                this.doors[var1].interpolate(var2, 21.0, var3, 1.0);
             }
             else {
                 debug::print(("*****DOOR " + __tostring(var1)) + " GOES UP");
                 var2 = this.doors[var1].getx();
                 var3 = this.doors[var1].getz();
-                this.doors[var1].interpolate(var2, 0 - 65.6, var3, 1.0);
+                this.doors[var1].interpolate(var2, 37.0, var3, 1.0);
             }
         }
         else if (var1 == 1) {
             if (this.doorsclosed[var1]) {
-                debug::print(("*****DOOR " + __tostring(var1)) + " GOES DOWN");
-                var2 = this.doors[var1].getx();
-                var3 = this.doors[var1].getz();
-                this.doors[var1].interpolate(var2, 0 - 7.7, var3, 1.0);
+                
             }
             else {
-                debug::print(("*****DOOR " + __tostring(var1)) + " GOES UP");
-                var2 = this.doors[var1].getx();
-                var3 = this.doors[var1].getz();
-                this.doors[var1].interpolate(var2, 24.3, var3, 1.0);
+                this.doors[1].fadeout(2.0);
+            }
+        }
+        return null;
+    }
+    
+    method cheat(param1) {
+        var var1;
+        var1 = param1;
+        if (var1 == 0) {
+            if (this.doorsclosed[0]) {
+                this.doorsclosed[0] = 0;
+                this.movedoorsdown(var1);
+            }
+            else {
+                this.doorsclosed[0] = 1;
+                this.movedoorsdown(var1);
+            }
+        }
+        else if (var1 == 1) {
+            if (this.doorsclosed[1]) {
+                this.doorsclosed[1] = 0;
+                this.movedoorsdown(var1);
+            }
+            else {
+                this.doorsclosed[1] = 1;
+                this.movedoorsdown(var1);
             }
         }
         else if (var1 == 2) {
-            if (this.doorsclosed[var1]) {
-                debug::print(("*****DOOR " + __tostring(var1)) + " GOES DOWN");
-                var2 = this.doors[var1].getx();
-                var3 = this.doors[var1].getz();
-                this.doors[var1].interpolate(var2, 0 - 24.9, var3, 1.0);
-            }
-            else {
-                debug::print(("*****DOOR " + __tostring(var1)) + " GOES UP");
-                var2 = this.doors[var1].getx();
-                var3 = this.doors[var1].getz();
-                this.doors[var1].interpolate(var2, 0.0, var3, 1.0);
-            }
+            globalclass.player.addtoken(1);
         }
         return null;
     }

@@ -1,9 +1,9 @@
-class lego_area_shrn2 : gs_lego_area {
+class lego_area_strt2 : gs_lego_area {
     property puzzle;
     
-    method lego_area_shrn2(param1) {
-        this.gs_lego_area("shrn", param1, 0, 0);
-        this.puzzle = new shrn2_puzzle(this);
+    method lego_area_strt2(param1) {
+        this.gs_lego_area("strt", param1, 0, 0);
+        this.puzzle = new strt2_puzzle(this);
         this.lego_area_initfull();
         return null;
     }
@@ -14,13 +14,9 @@ class lego_area_shrn2 : gs_lego_area {
         return null;
     }
     
-    method onevent(param1) {
-        this.puzzle.onevent(param1);
-        return null;
-    }
-    
-    method input(param1) {
-        this.puzzle.input(param1);
+    method cleanupfull() {
+        this.lego_area_hide();
+        this.puzzle.cleanupfull();
         return null;
     }
     
@@ -29,9 +25,13 @@ class lego_area_shrn2 : gs_lego_area {
         return null;
     }
     
-    method cleanupfull() {
-        this.lego_area_hide();
-        this.puzzle.cleanupfull();
+    method onevent(param1) {
+        this.puzzle.onevent(param1);
+        return null;
+    }
+    
+    method input(param1) {
+        this.puzzle.input(param1);
         return null;
     }
     

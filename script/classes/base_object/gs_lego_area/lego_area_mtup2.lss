@@ -19,7 +19,7 @@ class lego_area_mtup2 : gs_lego_area {
         this.cinema = gccinemaengine::create();
         gccinemaengine::load(this.cinema, "cin1");
         gccinemaengine::play(this.cinema);
-        gccinemaengine::setnextarea(this.cinema, scslosifoundation::stringtoidentifier("bech"));
+        gccinemaengine::setnextarea(this.cinema, scslosifoundation::stringtoidentifier("strt"));
         globalclass.hud.cutscene_warp = 1;
         return null;
     }

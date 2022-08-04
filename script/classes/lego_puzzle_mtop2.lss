@@ -1,0 +1,141 @@
+class lego_puzzle_mtop2 {
+    property parent;
+    property hookarray;
+    property maskx;
+    property gearpickup;
+    property showpickup;
+    property platform;
+    property hive1handle;
+    property hive2handle;
+    property isded;
+    
+    method lego_puzzle_mtop2(param1) {
+        this.parent = param1;
+        return null;
+    }
+    
+    method initfull() {
+        var var1;
+        var var2;
+        var var3;
+        globalclass.bgmusic.changefilename("Root/Data/sounds/MusicGaliAmbience");
+        globalclass.bgmusic.play();
+        this.showpickup = 1;
+        this.platform = new lego_moveableobject("ptfm");
+        this.platform.initfull();
+        this.platform.settweakable();
+        this.hookarray = [ new lego_moveableobject("hk01"), 
+            new lego_moveableobject("hk02"), 
+            new lego_moveableobject("hk03") ];
+        var1 = 0;
+        while ((this.hookarray.__length - 1) >= var1) {
+            this.hookarray[var1].initfull();
+            this.hookarray[var1].setmytargetingflags(1);
+            this.hookarray[var1].setresponse(1, 1, 1);
+            var1 = var1 + 1;
+        }
+        var2 = gcsaver::findmask(scslosifoundation::stringtoidentifier("mk9a"));
+        if (var2) {
+            this.showpickup = 0;
+        }
+        if (this.showpickup) {
+            this.maskx = new lego_pickup("mk9a", 9, 1, "item", 2, 1);
+            this.maskx.initfull();
+            this.maskx.show();
+            this.moveplatformin();
+        }
+        var3 = gcsaver::finditem(scslosifoundation::stringtoidentifier("gear"));
+        if (var3 == 0) {
+            this.gearpickup = new lego_pickup("gear", 0, 5, "item", 6, 1);
+            this.gearpickup.initfull();
+            this.gearpickup.show();
+            this.gearpickup.setcondition(131072);
+            this.gearpickup.setquest(2);
+        }
+        this.hive1handle = gcareadirector::gethive(scslosifoundation::stringtoidentifier("ghv0"));
+        gchive::setmaxcreatures(this.hive1handle, 8);
+        gchive::setcreaturetype(this.hive1handle, scslosifoundation::stringtoidentifier("crb1"));
+        gchive::setspawnrate(this.hive1handle, 5);
+        this.hive2handle = gcareadirector::gethive(scslosifoundation::stringtoidentifier("ghv1"));
+        gchive::setmaxcreatures(this.hive2handle, 8);
+        gchive::setcreaturetype(this.hive2handle, scslosifoundation::stringtoidentifier("crb1"));
+        gchive::setspawnrate(this.hive2handle, 5);
+        this.isded = 0;
+        return null;
+    }
+    
+    method cleanupfull() {
+        var var1;
+        this.hive1handle = null;
+        this.hive2handle = null;
+        this.platform.cleanupfull();
+        if (!(this.maskx == null)) {
+            this.maskx.cleanupfull();
+            this.maskx = null;
+        }
+        if (!(this.gearpickup == null)) {
+            this.gearpickup.cleanupfull();
+            this.gearpickup = null;
+        }
+        var1 = 0;
+        while ((this.hookarray.__length - 1) >= var1) {
+            this.hookarray[var1].cleanupfull();
+            this.hookarray[var1] = null;
+            var1 = var1 + 1;
+        }
+        this.hookarray = null;
+        this.isded = 0;
+        return null;
+    }
+    
+    method process(param1) {
+        var var1;
+        var1 = globalclass.player.actor.getposy();
+        if ((var1 < 673) && (this.isded == 0)) {
+            globalclass.player.kill();
+            this.isded = 1;
+        }
+        return null;
+    }
+    
+    method onevent(param1) {
+        if (param1.eventid == 51) {
+            if (param1.args[1] == 1) {
+                this.moveplatformout();
+            }
+        }
+        return null;
+    }
+    
+    method input(param1) {
+        if (param1.button == 90) {
+            if (param1.event == 2) {
+                this.cheat();
+            }
+        }
+        return null;
+    }
+    
+    method exit() {
+        this.parent = null;
+        return null;
+    }
+    
+    method cheat() {
+        var var1;
+        var1 = new scriptevent(51, [ 0, 
+            1 ]);
+        var1.send();
+        return null;
+    }
+    
+    method moveplatformout() {
+        this.platform.interpolate(152.5, 790.5, 0 - 287.1, 1.0);
+        return null;
+    }
+    
+    method moveplatformin() {
+        this.platform.setpos(152.5, 790.5, 0 - 296.1);
+        return null;
+    }
+}

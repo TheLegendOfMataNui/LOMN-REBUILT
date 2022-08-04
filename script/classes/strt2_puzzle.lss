@@ -1,0 +1,149 @@
+class strt2_puzzle {
+    property parent;
+    property gatestone;
+    property door;
+    property upgradefruit3;
+    property upgradefruit3_shown;
+    
+    method strt2_puzzle(param1) {
+        this.parent = param1;
+        return null;
+    }
+    
+    method initfull() {
+        var var1;
+        var var2;
+        var var3;
+        var var4;
+        var var5;
+        var var6;
+        gcmodeldirector::setnearestmax(20);
+        gcareadirector::setnearestmax(20);
+        gcareadirector::setfog(-9143565, 0 - 1000.0, 0 - 2400.0, 0.01);
+        gclightdirector::setcavelighting(1);
+        globalclass.bgmusic.changefilename("Root/Data/sounds/MusicGaliAmbience");
+        globalclass.bgmusic.play();
+        this.door = new lego_moveableobject("drs0");
+        this.door.initfull();
+        var5 = gcareadirector::gethive(scslosifoundation::stringtoidentifier("ghv0"));
+        gchive::setmaxcreatures(var5, 8);
+        gchive::setcreaturetype(var5, scslosifoundation::stringtoidentifier("crb1"));
+        gchive::setspawnrate(var5, 5);
+        var6 = gcareadirector::gethive(scslosifoundation::stringtoidentifier("ghv1"));
+        gchive::setmaxcreatures(var6, 8);
+        gchive::setcreaturetype(var6, scslosifoundation::stringtoidentifier("crb1"));
+        gchive::setspawnrate(var6, 5);
+        var4 = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vlgr"), 0);
+        gccharacter::settohunga(var4, rgba(0, 0, 255, 255), rgba(0, 0, 255, 255), scslosifoundation::stringtoidentifier("mkaa"));
+        gccharacter::setinputstate(var4, scslosifoundation::stringtoidentifier("none"));
+        gccharacter::setsplitanimation(var4, scslosifoundation::stringtoidentifier("d003"), -1);
+        gccharacter::setorientation(var4, -56);
+        if (gcsaver::finditem(scslosifoundation::stringtoidentifier("gstn")) == 0) {
+            this.gatestone = new lego_pickup("gstn", 0, 5, "item", 7, 1);
+            this.gatestone.initfull();
+            this.gatestone.show();
+            this.gatestone.setcondition(262144);
+            this.gatestone.setquest(3);
+        }
+        this.upgradefruit3_shown = gcsaver::finditem(scslosifoundation::stringtoidentifier("fru1"));
+        if (this.upgradefruit3_shown == 0) {
+            this.upgradefruit3 = new lego_pickup("fru1", 0, 6, "frut", 1, 1);
+            this.upgradefruit3.initfull();
+        }
+        if (bettersaver::getbooleanvalue(37) == 1) {
+            var4 = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vlgr"), 0);
+            gccharacter::settohunga(var4, rgba(0, 0, 255, 255), rgba(0, 0, 255, 255), scslosifoundation::stringtoidentifier("mkaa"));
+            gccharacter::setinputstate(var4, scslosifoundation::stringtoidentifier("none"));
+            gccharacter::switchanimation(var4, scslosifoundation::stringtoidentifier("d000"), -1);
+            var1 = this.door.getx();
+            var2 = this.door.gety() + 9.0;
+            var3 = this.door.getz();
+            this.door.interpolate(var1, var2, var3, 0.0);
+        }
+        return null;
+    }
+    
+    method cleanupfull() {
+        if (!(this.gatestone == null)) {
+            this.gatestone.cleanupfull();
+            this.gatestone = null;
+        }
+        if (!(this.upgradefruit3 == null)) {
+            this.upgradefruit3.cleanupfull();
+            this.upgradefruit3 = null;
+        }
+        if (!(this.door == null)) {
+            this.door.cleanupfull();
+            this.door = null;
+        }
+        return null;
+    }
+    
+    method process(param1) {
+        return null;
+    }
+    
+    method onevent(param1) {
+        if (param1.eventid == 41) {
+            if (bettersaver::getbooleanvalue(37)) {
+                this.give_fruit3();
+                this.movedoorup();
+            }
+        }
+        else if (param1.eventid == 3) {
+            if (param1.args[0] == scslosifoundation::stringtoidentifier("tb00")) {
+                globalclass.player.kill();
+                gcstaticsoundsptrarray::playtablesound(1048);
+                this.parent.level.cam.setaimode(7);
+                globalclass.player.actor.setinputstate("none");
+            }
+        }
+        return null;
+    }
+    
+    method input(param1) {
+        if (param1.button == 90) {
+            if (param1.event == 2) {
+                this.movedoorup();
+            }
+        }
+        if (param1.button == 88) {
+            if (param1.event == 2) {
+                this.cheat();
+            }
+        }
+        return null;
+    }
+    
+    method cheat() {
+        var var1;
+        var1 = new scriptevent(51, [ 0, 
+            1 ]);
+        var1.send();
+        return null;
+    }
+    
+    method movedoorup() {
+        var var1;
+        var var2;
+        var var3;
+        var1 = this.door.getx();
+        var2 = this.door.gety() + 9.0;
+        var3 = this.door.getz();
+        this.door.interpolate(var1, var2, var3, 1.5);
+        return null;
+    }
+    
+    method exit() {
+        this.parent = null;
+        return null;
+    }
+    
+    method give_fruit3() {
+        if (this.upgradefruit3_shown == 0) {
+            this.upgradefruit3.obj.setpos(48.23598, 1.150006, -34.39081);
+            this.upgradefruit3_shown = 1;
+        }
+        return null;
+    }
+}
