@@ -333,6 +333,9 @@ class vllg2_puzzle {
         this.crystal.initfull();
         this.crystal.settweakable();
         this.orientation = 1;
+        if (bettersaver::getbooleanvalue(95) == 1) {
+            this.opendoortoevac();
+        }
         return null;
     }
     
@@ -776,12 +779,18 @@ class vllg2_puzzle {
         var1 = this.evacdoor.getx();
         var2 = this.evacdoor.gety();
         var3 = this.evacdoor.getz();
-        globalclass.level.cam.setaimode(0);
-        globalclass.level.cam.setpos(0 - 3.6, 96.4, 0 - 110.6);
-        globalclass.level.cam.settargetpos(var1, var2, var3);
-        globalclass.level.cam.shakecamera(2.45, 0.5);
-        globalclass.player.actor.setinputstate("none");
-        this.evacdoor.interpolate(var1, var2 + 9.5, var3, 2.5);
+        if (bettersaver::getbooleanvalue(95) == 0) {
+            globalclass.level.cam.setaimode(0);
+            globalclass.level.cam.setpos(0 - 3.6, 96.4, 0 - 110.6);
+            globalclass.level.cam.settargetpos(var1, var2, var3);
+            globalclass.level.cam.shakecamera(2.45, 0.5);
+            globalclass.player.actor.setinputstate("none");
+            this.evacdoor.interpolate(var1, var2 + 9.5, var3, 2.5);
+            bettersaver::setbooleanvalue(95, 1);
+        }
+        else {
+            this.evacdoor.interpolate(var1, var2 + 9.5, var3, 0);
+        }
         return null;
     }
 
