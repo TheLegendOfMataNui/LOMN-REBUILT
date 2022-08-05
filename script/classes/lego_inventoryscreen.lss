@@ -415,7 +415,7 @@ class lego_inventoryscreen {
         }
 
         //Gali
-        if (gcsaver::findmaska(scslosifoundation::stringtoidentifier("mk9a"), scslosifoundation::stringtoidentifier("bech"))) {
+        if (gcsaver::findmaska(scslosifoundation::stringtoidentifier("mk9a"), scslosifoundation::stringtoidentifier("mtop"))) {
             this.inventoryscreen.__append(this.noblemasks[2]); 
         }
         if (gcsaver::findmaska(scslosifoundation::stringtoidentifier("mask"), scslosifoundation::stringtoidentifier("mwat"))) {
