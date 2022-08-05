@@ -3,7 +3,7 @@ class lego_area_hk012 : gs_lego_area {
     
     method lego_area_hk012(param1) {
         this.gs_lego_area("hk01", param1, 0, 0);
-        this.puzzle = new hk01_puzzle(this);
+        this.puzzle = new hk012_puzzle(this);
         this.lego_area_initfull();
         return null;
     }

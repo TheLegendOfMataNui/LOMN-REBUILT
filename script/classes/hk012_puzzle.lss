@@ -1,10 +1,10 @@
-class hk01_puzzle {
+class hk012_puzzle {
     property parent;
     property hookarray;
     property hive1handle;
     property hive2handle;
     
-    method hk01_puzzle(param1) {
+    method hk012_puzzle(param1) {
         this.parent = param1;
         return null;
     }
