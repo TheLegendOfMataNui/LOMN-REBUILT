@@ -666,12 +666,16 @@ class player {
                 this.disablerespawn = 1;
             }
 
+            //Cinema Play and Conversation Stop event
+            else if (param1.eventid == 33) {
+                //Reenable the respawn system
+                this.disablerespawn = 0;
+            }
+
             //Cinema Stop event
             else if (param1.eventid == 30) {
                 //Reset the player physics and the delay timer
                 globalclass.player.actor.setupphysics(1.5, 0.8, 1, 0, 0);
-                //Reenable the respawn system
-                this.disablerespawn = 0;
             }
         }
         return null;
