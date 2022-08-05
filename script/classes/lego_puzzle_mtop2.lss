@@ -1,9 +1,8 @@
 class lego_puzzle_mtop2 {
     property parent;
     property hookarray;
-    property maskx;
+    property maskoftranslation;
     property gearpickup;
-    property showpickup;
     property platform;
     property hive1handle;
     property hive2handle;
@@ -20,7 +19,6 @@ class lego_puzzle_mtop2 {
         var var3;
         globalclass.bgmusic.changefilename("Root/Data/sounds/MusicGaliAmbience");
         globalclass.bgmusic.play();
-        this.showpickup = 1;
         this.platform = new lego_moveableobject("ptfm");
         this.platform.initfull();
         this.platform.settweakable();
@@ -34,23 +32,25 @@ class lego_puzzle_mtop2 {
             this.hookarray[var1].setresponse(1, 1, 1);
             var1 = var1 + 1;
         }
-        var2 = gcsaver::findmask(scslosifoundation::stringtoidentifier("mk9a"));
-        if (var2) {
-            this.showpickup = 0;
-        }
-        if (this.showpickup) {
-            this.maskx = new lego_pickup("mk9a", 9, 1, "item", 2, 1);
-            this.maskx.initfull();
-            this.maskx.show();
+
+        //Setting up the Kanohi Rau
+        if (gcsaver::findmask(scslosifoundation::stringtoidentifier("mk9a")) == 0) {
+            this.maskoftranslation = new lego_pickup("mk9a", 9, 1, "item", 2, 1);
+            this.maskoftranslation.initfull();
+            this.maskoftranslation.show();
             this.moveplatformin();
         }
-        var3 = gcsaver::finditem(scslosifoundation::stringtoidentifier("gear"));
-        if (var3 == 0) {
+        if (gcsaver::finditem(scslosifoundation::stringtoidentifier("gear")) == 0) {
             this.gearpickup = new lego_pickup("gear", 0, 5, "item", 6, 1);
             this.gearpickup.initfull();
             this.gearpickup.show();
-            this.gearpickup.setcondition(131072);
+            this.gearpickup.setcondition(65536);
             this.gearpickup.setquest(2);
+        }
+        else {
+            this.gearpickup = new lego_moveableobject("gear");
+            this.gearpickup.initfull();
+            this.gearpickup.hide();
         }
         this.hive1handle = gcareadirector::gethive(scslosifoundation::stringtoidentifier("ghv0"));
         gchive::setmaxcreatures(this.hive1handle, 8);
@@ -69,21 +69,23 @@ class lego_puzzle_mtop2 {
         this.hive1handle = null;
         this.hive2handle = null;
         this.platform.cleanupfull();
-        if (!(this.maskx == null)) {
-            this.maskx.cleanupfull();
-            this.maskx = null;
+        if (this.maskoftranslation != null) {
+            this.maskoftranslation.cleanupfull();
+            this.maskoftranslation = null;
         }
-        if (!(this.gearpickup == null)) {
+        if (this.gearpickup != null) {
             this.gearpickup.cleanupfull();
             this.gearpickup = null;
         }
-        var1 = 0;
-        while ((this.hookarray.__length - 1) >= var1) {
-            this.hookarray[var1].cleanupfull();
-            this.hookarray[var1] = null;
-            var1 = var1 + 1;
+        if (this.hookarray != null) {
+            var1 = 0;
+            while ((this.hookarray.__length - 1) >= var1) {
+                this.hookarray[var1].cleanupfull();
+                this.hookarray[var1] = null;
+                var1 = var1 + 1;
+            }
+            this.hookarray = null;
         }
-        this.hookarray = null;
         this.isded = 0;
         return null;
     }

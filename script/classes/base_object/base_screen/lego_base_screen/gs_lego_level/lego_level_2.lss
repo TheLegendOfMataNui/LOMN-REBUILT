@@ -58,7 +58,7 @@ class lego_level_2 : gs_lego_level {
         globalclass.player.addmask("fake", 7);
         globalclass.player.addmask("fake", 8);
         if (globalclass.saverloaded) {
-            if (gcsaver::findmaska(scslosifoundation::stringtoidentifier("mk9a"), scslosifoundation::stringtoidentifier("bech"))) {
+            if (gcsaver::findmaska(scslosifoundation::stringtoidentifier("mk9a"), scslosifoundation::stringtoidentifier("mtop"))) {
                 globalclass.player.addmask("fake", 9);
             }
             if (gcsaver::findmaska(scslosifoundation::stringtoidentifier("mask"), scslosifoundation::stringtoidentifier("mwat"))) {
