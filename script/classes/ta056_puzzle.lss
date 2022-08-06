@@ -24,7 +24,7 @@ class ta056_puzzle {
         this.msurfboards = [ new lego_moveableobject("surk"), 
             new lego_moveableobject("surf") ];
         this.mboulders[0].initfull();
-        this.mboulders[1].init("Root/Data/Levels/lev6/ta05/lev6_ta05_path_1.txt");
+        this.mboulders[1].init("Root/Data/Levels/lev6/lev6_ta05_path_1.txt");
         this.mboulders[1].settweakable();
         //this.mboulders[1].setrollspeed(1);
         this.firesound = new tablecopysound(1110);
