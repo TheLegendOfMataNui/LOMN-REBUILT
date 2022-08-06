@@ -79,7 +79,7 @@ v1.0.2 (Salvation):
 • Fixed an issue in BetterSaver causing the current mask not to be written	----		(Vahkiti)
 
 
-v1.1 (Uncharted Waters):
+v1.1 (Everything But The Koli Field):
 • Updated credits, added Alastair Swinnerton; credits are now an FMV		----		(ReeseB, Vahkiti)
 • Moved lev3-lev5 help Tohunga into villages post-invasion					----		(ShadowDraikana, ReeseB)
 • Added printing glyphs to each level, to be moved later					----		(ReeseB, ShadowDraikana)
@@ -113,7 +113,7 @@ v1.1 (Uncharted Waters):
 • Extra text has been added to token doors if another item is required 		----		(Vahkiti, ReeseB)
 • Renamed most boss areas													----		(Vahkiti)
 • Changed certain mask hotkeys to make more sense							----		(Vahkiti)
-• Upscaled/updated HUD and pickup textures									----		(Vahkiti)
+• Upscaled/updated HUD and pickup textures									----		(Vahkiti, Boxturret)
 • Added new pause graphics based on unused texture, using an unused font	----		(Vahkiti, Swert)
 • Reimplemented passive Rahi; only die when hitting a killbox				----		(Vahkiti)
 • Fixed Tarakava AI and animations											----		(Vahkiti)  

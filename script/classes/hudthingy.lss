@@ -25,49 +25,49 @@ class hudthingy {
         this.movement = 0;
         this.onscreen = 1;
         this.partsarray = [  ];
-        this.headrotate = new ss_basesprite("Root/data/art/hud/turnhead", 14, 20, 0, 80, 84);
+        this.headrotate = new ss_basesprite("Root/data/art/hud/turnhead0024", 10, 20, 0, 74, 84);
         this.partsarray.__append(this.headrotate);
-        this.glowyeyes = [ new ss_basesprite("Root/data/art/hud/greeneyesoff", 14, 20, 0, 80, 84), 
-            new ss_basesprite("Root/data/art/hud/greeneyeson", 12, 22, 0, 73, 85) ];
+        this.glowyeyes = [ new ss_basesprite("Root/data/art/hud/greeneyesoff", 10, 20, 0, 74, 84), 
+            new ss_basesprite("Root/data/art/hud/greeneyeson", 10, 20, 0, 74, 84) ];
         this.partsarray.__append(this.glowyeyes);
-        this.lifebar = [ new ss_basesprite("Root/data/art/hud/16x16frntend__clr", 74, 36, 0, 91, 52) ];
+        this.lifebar = [ new ss_basesprite("Root/data/art/hud/16x16frntend__clr", 72, 36, 0, 88, 52) ];
         var1 = __toint(3);
         var2 = 0;
         while ((var1 - 1) >= var2) {
-            var3 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 90 + (16 * var2), 36, 0, 106 + (16 * var2), 52);
+            var3 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 36, 0, 104 + (16 * var2), 52);
             this.lifebar.__append(var3);
             var2 = var2 + 1;
         }
         var4 = this.lifebar.__length - 1;
-        this.lifebar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.lifebar[var4].x1 + 16, this.lifebar[var4].y1, 0, this.lifebar[var4].x2 + 16, this.lifebar[var4].y2));
+        this.lifebar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.lifebar[var4].x1 + 15, this.lifebar[var4].y1, 0, this.lifebar[var4].x2 + 15, this.lifebar[var4].y2));
         this.partsarray.__append(this.lifebar);
-        this.airbar = [ new ss_basesprite("Root/data/art/hud/16x16frntend__clr", 74, 50, 0, 91, 66) ];
+        this.airbar = [ new ss_basesprite("Root/data/art/hud/16x16frntend__clr", 72, 50, 0, 88, 66) ];
         var1 = __toint(3);
         var2 = 0;
         while ((var1 - 1) >= var2) {
-            var3 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 90 + (16 * var2), 50, 0, 106 + (16 * var2), 66);
+            var3 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 50, 0, 104 + (16 * var2), 66);
             this.airbar.__append(var3);
             var2 = var2 + 1;
         }
         var4 = this.airbar.__length - 1;
-        this.airbar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.airbar[var4].x1 + 16, this.airbar[var4].y1, 0, this.airbar[var4].x2 + 16, this.airbar[var4].y2));
+        this.airbar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.airbar[var4].x1 + 15, this.airbar[var4].y1, 0, this.airbar[var4].x2 + 15, this.airbar[var4].y2));
         this.partsarray.__append(this.airbar);
-        this.energybar = [ new ss_basesprite("Root/data/art/hud/16x16frntend__clr", 74, 64, 0, 91, 80) ];
+        this.energybar = [ new ss_basesprite("Root/data/art/hud/16x16frntend__clr", 72, 64, 0, 88, 80) ];
         var1 = __toint(3);
         var2 = 0;
         while ((var1 - 1) >= var2) {
-            var3 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 90 + (16 * var2), 64, 0, 106 + (16 * var2), 80);
+            var3 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 64, 0, 104 + (16 * var2), 80);
             this.energybar.__append(var3);
             var2 = var2 + 1;
         }
         var4 = this.energybar.__length - 1;
-        this.energybar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.energybar[var4].x1 + 16, this.energybar[var4].y1, 0, this.energybar[var4].x2 + 16, this.energybar[var4].y2));
+        this.energybar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.energybar[var4].x1 + 15, this.energybar[var4].y1, 0, this.energybar[var4].x2 + 15, this.energybar[var4].y2));
         this.partsarray.__append(this.energybar);
         this.redlites = [  ];
         var4 = this.lifebar.__length - 1;
         var2 = 0;
         while ((var4 - 2) >= var2) {
-            this.redlites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", 90 + (16 * var2), 36, 0, 106 + (16 * var2), 52));
+            this.redlites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", 87 + (16 * var2), 36, 0, 104 + (16 * var2), 52));
             var2 = var2 + 1;
         }
         this.partsarray.__append(this.redlites);
@@ -75,7 +75,7 @@ class hudthingy {
         var4 = this.airbar.__length - 1;
         var2 = 0;
         while ((var4 - 2) >= var2) {
-            this.bluelites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", 90 + (16 * var2), 50, 0, 106 + (16 * var2), 66));
+            this.bluelites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", 87 + (16 * var2), 50, 0, 104 + (16 * var2), 66));
             var2 = var2 + 1;
         }
         this.partsarray.__append(this.bluelites);
@@ -83,7 +83,7 @@ class hudthingy {
         var4 = this.energybar.__length - 1;
         var2 = 0;
         while ((var4 - 2) >= var2) {
-            this.greenlites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", 90 + (16 * var2), 64, 0, 106 + (16 * var2), 80));
+            this.greenlites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", 87 + (16 * var2), 64, 0, 104 + (16 * var2), 80));
             var2 = var2 + 1;
         }
         this.partsarray.__append(this.greenlites);
@@ -385,7 +385,7 @@ class hudthingy {
         if (var1 >= this.redlites.__length) {
             while (var1 > this.redlites.__length) {
                 var2 = this.redlites.__length;
-                this.redlites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", 90 + (16 * var2), 36, 0, 106 + (16 * var2), 52));
+                this.redlites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", 86 + (16 * var2), 36, 0, 103 + (16 * var2), 52));
                 this.redlites[var2].initfull();
                 this.redlites[var2].add();
                 this.redlites[var2].enablealphachannel(1);
@@ -449,7 +449,7 @@ class hudthingy {
         if (var1 >= this.greenlites.__length) {
             while (var1 > this.greenlites.__length) {
                 var2 = this.greenlites.__length;
-                this.greenlites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", 90 + (16 * var2), 64, 0, 106 + (16 * var2), 80));
+                this.greenlites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", 86 + (16 * var2), 64, 0, 103 + (16 * var2), 80));
                 this.greenlites[var2].initfull();
                 this.greenlites[var2].add();
                 this.greenlites[var2].enablealphachannel(1);
@@ -513,7 +513,7 @@ class hudthingy {
         if (var1 >= this.bluelites.__length) {
             while (var1 > this.bluelites.__length) {
                 var2 = this.bluelites.__length;
-                this.bluelites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", 90 + (16 * var2), 50, 0, 106 + (16 * var2), 66));
+                this.bluelites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", 86 + (16 * var2), 50, 0, 103 + (16 * var2), 66));
                 this.bluelites[var2].initfull();
                 this.bluelites[var2].add();
                 this.bluelites[var2].enablealphachannel(1);
@@ -688,14 +688,14 @@ class hudthingy {
         this.glowyeyes[0].cleanupfull();
 
         // Create and initialize the new closed eye sprite
-        this.glowyeyes[0] = new ss_basesprite(closed_sprite_filename, 14, 20, 0, 80, 84);
+        this.glowyeyes[0] = new ss_basesprite(closed_sprite_filename, 10, 20, 0, 74, 84);
         this.glowyeyes[0].initfull();
         this.glowyeyes[0].enablealphachannel(true);
         this.glowyeyes[0].add();
         this.glowyeyes[0].hide(); // NOTE: The game usually keeps the closed-eye sprite hidden
 
         // Create and initialize the new open eye sprite
-        this.glowyeyes[1] = new ss_basesprite(open_sprite_filename, 14, 20, 0, 80, 84);
+        this.glowyeyes[1] = new ss_basesprite(open_sprite_filename, 10, 20, 0, 74, 84);
         this.glowyeyes[1].initfull();
         this.glowyeyes[1].enablealphachannel(true);
         this.glowyeyes[1].add();
