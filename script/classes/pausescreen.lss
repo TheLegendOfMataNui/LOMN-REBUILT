@@ -177,6 +177,7 @@ class pausescreen {
                         }
                         else if (this.activeidx == 3) {
                             this.unpause();
+                            globalclass.player.savetosaver();
                             bettersaver::save();
                             globalclass.setbackflag();
                         }
