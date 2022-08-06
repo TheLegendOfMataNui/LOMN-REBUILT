@@ -42,7 +42,7 @@ class shrn6_puzzle {
         }
 
         //Set Door Text
-        this.bossdoortext1 = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("door"), 1, 0) +  gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("door"), 1, 1), screenx * 0.5, screeny * 0.70, 0, 1.5, 256, 4, 0);
+        this.bossdoortext1 = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("door"), 1, 0) + " " + gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("door"), 1, 1), screenx * 0.5, screeny * 0.70, 0, 1.5, 256, 4, 0);
         this.bossdoortext2 = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", "60 " + gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("door"), 1, 4), screenx * 0.5, screeny * 0.75, 0, 1.5, 256, 4, 0);
         this.bossdoortext1.initfull();
         this.bossdoortext2.initfull();

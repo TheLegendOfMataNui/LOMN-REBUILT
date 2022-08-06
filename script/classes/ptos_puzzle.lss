@@ -80,14 +80,6 @@ class ptos_puzzle {
             globalclass.bgmusic.changefilename("Root/Data/sounds/MUSICPart2LegoUNDERGROUND");
             globalclass.bgmusic.play(1);
         }
-        else if (param1.eventid == 27) {
-            globalclass.player.actor.gotostartpos(scslosifoundation::stringtoidentifier("str2"), scslosifoundation::stringtoidentifier("lok2"));
-            globalclass.player.unkill();
-            globalclass.player.actor.switchanimation(scslosifoundation::stringtoidentifier("p000"));
-            globalclass.player.actor.setinputstate("ninp");
-            gccollisionphysicsgroup::toggletriggerboxentered(scslosifoundation::stringtoidentifier("tb00"), 0);
-            this.parent.level.cam.setaimode(11);
-        }
         return null;
     }
     
