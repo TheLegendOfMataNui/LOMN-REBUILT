@@ -187,6 +187,7 @@ Per level fixes:
 • GALI:   Improved MTUP area to look better and hide animation quirks		----		(Vahkiti)
 • GALI:   Fixed Ga-Koro horn pedestals being too short						----		(sweg)
 • GALI:   Fixed horn glyphs in Ga-Koro lacking side faces					----		(sweg)
+• GALI:   Moved energy pickups that were stuck in the ground in GLY3		----		(ReeseB)
 • POHATU: Changed stone rain glyph texture to alternate lev6 version		----		(ReeseB)
 • POHATU: Changed stone rain glyph text to better fit its new functionality ----		(ReeseB)
 • POHATU: Moved RKFL between XROD and SHRN for a smoother difficulty curve	----		(ReeseB)
