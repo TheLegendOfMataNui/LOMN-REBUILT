@@ -36,7 +36,7 @@ class player {
     property warpsound;
     property toadied;
     property spiraleffect;
-    property draggercontroller;
+    //property draggercontroller;
     property cinematic_delay;
     property cinematic_start;
     property triggerboxid;
@@ -83,8 +83,8 @@ class player {
         this.hittrigger = 0;
         this.crashbandicootwarped = 0;      
         this.toadied = 0;
-        this.draggercontroller = new lego_draggercontroller();        
-        this.draggercontroller.initfull();
+        //this.draggercontroller = new lego_draggercontroller();  
+        //this.draggercontroller.initfull();
         this.cinematic_delay = 0;
         this.disablerespawn = 0;
         this.allowidleanim = 1;
@@ -138,10 +138,10 @@ class player {
             this.warpsound = null;
         }
         this.toadied = null;
-        if (this.draggercontroller != null) {
-            this.draggercontroller.cleanupfull();
-            this.draggercontroller = null;
-        }
+        //if (this.draggercontroller != null) {
+        //    this.draggercontroller.cleanupfull();
+        //    this.draggercontroller = null;
+        //}
         this.spiraleffect = null;
         this.cinematic_delay = null;
         this.cinematic_start = null;
@@ -233,7 +233,7 @@ class player {
                                 debug::print("SORRY, YOU CANNOT SHOOT YOUR DRAGGER");
                             }
                         }
-                        this.draggercontroller.setupdragger();
+                        //this.draggercontroller.setupdragger();
                     }
                 }
             }
@@ -254,9 +254,9 @@ class player {
         if ((this.submerged == 1) || (this.drowningonland == 1)) {
             this.drainair(param1);
         }
-        if (this.draggercontroller.active == 1) {
-            this.draggercontroller.process(param1);
-        }
+        //if (this.draggercontroller.active == 1) {
+        //    this.draggercontroller.process(param1);
+        //}
 
         //If a class sets this to true, begin timer and run code for removing the movement sounds at the start of a cutscene
         if (this.cinematic_start == 1) {
