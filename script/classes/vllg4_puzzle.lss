@@ -403,7 +403,7 @@ class vllg4_puzzle {
             debug::print(("***************** RAHI SAVED! TOTAL RAHI FREED: " + __tostring(this.savedrahi)));
         }        
         else if (param1.eventid == 44) {
-            if ((this.deadhives == 4) && (this.savedrahi == 4) && (this.taskcomplete == 0)) {
+            if ((this.deadhives == 4) && (this.taskcomplete == 0)) {
                 gcsaver::setcondition(4194304, 1);
                 gcareadirector::hide(scslosifoundation::stringtoidentifier("dor2"), scslosifoundation::stringtoidentifier("vllg"));
                 gccollisionphysicsgroup::togglepickuponoff(scslosifoundation::stringtoidentifier("ar00"), 1);
