@@ -2,6 +2,7 @@ class ttun2_puzzle {
     property parent;
     property enteredbackdoor;
     property call_ev_safe_time_once;
+    property printglyph;
     
     method ttun2_puzzle(param1) {
         this.parent = param1;
@@ -17,6 +18,15 @@ class ttun2_puzzle {
         globalclass.bgmusic.play();
         this.call_ev_safe_time_once = 1;
         this.enteredbackdoor = 1;
+        if (gcsaver::finditem(scslosifoundation::stringtoidentifier("pgl2")) == 0) {
+            this.printglyph = new lego_pickup("pgl2", 0, 7, "item", 5, 0);
+            this.printglyph.initfull();
+        }
+        else {
+            this.printglyph = new lego_moveableobject("pgl2");
+            this.printglyph.initfull();
+            this.printglyph.hide();
+        }
         return null;
     }
     
@@ -53,6 +63,10 @@ class ttun2_puzzle {
     method cleanupfull() {
         this.call_ev_safe_time_once = null;
         this.enteredbackdoor = null;
+        if (this.printglyph != null) {
+            this.printglyph.cleanupfull();
+            this.printglyph = null;
+        }
         return null;
     }
     

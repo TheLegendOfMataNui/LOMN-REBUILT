@@ -48,7 +48,6 @@ class vllg2_puzzle {
     property gearactive;
     property diskactive;    
     property hutgear;
-	property printglyph;
     
     method vllg2_puzzle(param1) {
         this.parent = param1;
@@ -337,15 +336,6 @@ class vllg2_puzzle {
         if (bettersaver::getbooleanvalue(95) == 1) {
             this.opendoortoevac();
         }
-        if (gcsaver::finditem(scslosifoundation::stringtoidentifier("pgl2")) == 0) {
-            this.printglyph = new lego_pickup("pgl2", 0, 7, "item", 5, 0);
-            this.printglyph.initfull();
-        }
-        else {
-            this.printglyph = new lego_moveableobject("pgl2");
-            this.printglyph.initfull();
-            this.printglyph.hide();
-        }
         return null;
     }
     
@@ -430,10 +420,6 @@ class vllg2_puzzle {
         this.gearactive = null;
         this.diskactive = null;
         this.hutgear = null;
-        if (this.printglyph != null) {
-            this.printglyph.cleanupfull();
-            this.printglyph = null;
-        }
         return null;
     }
     
