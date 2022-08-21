@@ -131,13 +131,13 @@ class lego_area_tura1 : gs_lego_area {
                 gchuddirector::playcinematic("Root/Data/cinematics/LegendFMVGer.bik", 1);
             }
             if (gcareadirector::getlanguage() == 3) {
-                gchuddirector::playcinematic("Root/Data/cinematics/LegendFMVDa.bik", 1);
+                gchuddirector::playcinematic("Root/Data/cinematics/LegendFMVDan.bik", 1);
             }
             if (gcareadirector::getlanguage() == 4) {
-                gchuddirector::playcinematic("Root/Data/cinematics/LegendFMVDu.bik", 1);
+                gchuddirector::playcinematic("Root/Data/cinematics/LegendFMVNl.bik", 1);
             }
             if (gcareadirector::getlanguage() == 5) {
-                gchuddirector::playcinematic("Root/Data/cinematics/LegendFMVIt.bik", 1);
+                gchuddirector::playcinematic("Root/Data/cinematics/LegendFMVIta.bik", 1);
             }
             if (gcareadirector::getlanguage() == 6) {
                 gchuddirector::playcinematic("Root/Data/cinematics/LegendFMVSpa.bik", 1);
