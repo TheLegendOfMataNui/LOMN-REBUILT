@@ -222,3 +222,11 @@ Per level fixes:
 • MAKUTA: Replaced Toa Kaita models with high-poly set accurate versions	----		(Vahkiti, Grampa Walker)
 
 *The Kaita, along with their areas and the rest of lev7, are not quite complete and polished yet, so keep that in mind when playing.
+
+
+v1.1.1 (Something something whoops):
+
+Level 2 - Gali
+• Fixed a doorway in VLLG pointing to the wrong room (Nobody saw anything)	----		(ShadowDraikana)
+• Removed underwater hives in VLLG for now due to poor telegraphing 		----		(ShadowDraikana)
+• Fixed bottom platform in MTOP from not being properly extended			----		(ShadowDraikana)

@@ -280,8 +280,8 @@ class vllg2_puzzle {
             gcareadirector::hide(scslosifoundation::stringtoidentifier("dor2"), scslosifoundation::stringtoidentifier("vllg"));
             gcareadirector::hide(scslosifoundation::stringtoidentifier("ghv0"), scslosifoundation::stringtoidentifier("vllg"));
             gcareadirector::hide(scslosifoundation::stringtoidentifier("ghv1"), scslosifoundation::stringtoidentifier("vllg"));
-            gcareadirector::hide(scslosifoundation::stringtoidentifier("fhv0"), scslosifoundation::stringtoidentifier("vllg"));
-            gcareadirector::hide(scslosifoundation::stringtoidentifier("fhv1"), scslosifoundation::stringtoidentifier("vllg"));
+            //gcareadirector::hide(scslosifoundation::stringtoidentifier("fhv0"), scslosifoundation::stringtoidentifier("vllg"));
+            //gcareadirector::hide(scslosifoundation::stringtoidentifier("fhv1"), scslosifoundation::stringtoidentifier("vllg"));
             globalclass.bgmusic.changefilename("Root/Data/sounds/MusicVillage");
             globalclass.bgmusic.play(1);
         }
@@ -453,7 +453,7 @@ class vllg2_puzzle {
             this.savedrahi = this.savedrahi + 1;
         }        
         else if (param1.eventid == 44) {
-            if ((this.deadhives == 4) && (this.savedrahi == 4) && (this.taskcomplete == 0)) {
+            if ((this.deadhives == 2) && (this.savedrahi == 2) && (this.taskcomplete == 0)) {
                 gcsaver::setcondition(4194304, 1);
                 gcareadirector::hide(scslosifoundation::stringtoidentifier("dor2"), scslosifoundation::stringtoidentifier("vllg"));
                 gccollisionphysicsgroup::togglepickuponoff(scslosifoundation::stringtoidentifier("ar00"), 1);

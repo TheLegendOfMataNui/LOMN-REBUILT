@@ -38,7 +38,7 @@ class lego_puzzle_mtop2 {
             this.maskoftranslation = new lego_pickup("mk9a", 9, 1, "item", 2, 1);
             this.maskoftranslation.initfull();
             this.maskoftranslation.show();
-            this.moveplatformin();
+            //this.moveplatformin();
         }
         if (gcsaver::finditem(scslosifoundation::stringtoidentifier("gear")) == 0) {
             this.gearpickup = new lego_pickup("gear", 0, 5, "item", 6, 1);
