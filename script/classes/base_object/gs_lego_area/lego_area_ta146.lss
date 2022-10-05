@@ -3,8 +3,8 @@ class lego_area_ta146 : gs_lego_area {
     
     method lego_area_ta146(param1) {
         this.gs_lego_area("ta14", param1, 0, 0);
-        this.lego_area_initfull();
         this.puzzle = new ta146_puzzle(this);
+        this.lego_area_initfull();
         return null;
     }
     
@@ -26,8 +26,11 @@ class lego_area_ta146 : gs_lego_area {
     }
     
     method exit() {
-        this.puzzle.exit();
-        this.puzzle = null;
+        this.lego_area_cleanupfull();
+        if (this.puzzle != null) {
+            this.puzzle.exit();
+            this.puzzle = null;
+        }
         return null;
     }
 }
