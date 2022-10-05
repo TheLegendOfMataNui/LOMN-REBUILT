@@ -20,15 +20,15 @@ class ta146_puzzle {
             this.discpickup.setcondition(16384);
             this.discpickup.setquest(1);
         }
+        else {
+            this.discpickup = new lego_moveableobject("dsc6");
+            this.discpickup.initfull();
+            this.discpickup.hide();
+        }
         if (gcsaver::findglyph(scslosifoundation::stringtoidentifier("glyp")) == 0) {
             this.glyph = new lego_pickup("glyp", 16, 2, "item", 3, 2);
             this.glyph.initfull();
             this.glyph.show();
-        }
-        else {
-            this.glyph = new lego_moveableobject("glyp");
-            this.glyph.initfull();
-            this.glyph.hide();
         }
         return null;
     }
