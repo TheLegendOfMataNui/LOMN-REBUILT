@@ -1,63 +1,79 @@
 ﻿BIONICLE The Legend of Mata Nui Rebuilt Patch Notes:
 
-v1.0.0 (The Legend REBUILT):
+v1.0.0 (The Legend REBUILT)
+
+General changes and fixes
 • Implemented custom colours for various Tohunga throughout the game		----		(Vahkiti, ShadowDraikana, Benji)
 • Added reading of location table in cin_char for better Takara rendering	----		(Benji)
 • Reimplemented dancing Tohunga, and added to all villages					----		(Vahkiti, ShadowDraikana, OndrikB)
-• Combined Takara pits with main village meshes								----		(Vahkiti, ShadowDraikana, Benji)
+• Combined Takara pits with main village meshes 							----		(Vahkiti, ShadowDraikana, Benji)
 • Re-enabled the Great Takara for all villages								----		(Vahkiti, ShadowDraikana)
-• Implemented Amana Volo (hp/energy upgrades) as rewards for sidequests		----		(Vahkiti, ShadowDraikana, Benji)
+• Implemented Amana Volo (hp/energy upgrades) as rewards for sidequests 	----		(Vahkiti, ShadowDraikana, Benji)
 • Implemented Vuata Maca Tree/keeper as a form of recharge station			----		(Vahkiti, ShadowDraikana, Grampa Walker)
 • Updated Tohunga/Turaga conversations to reflect reimplemented quests		----		(Vahkiti, ShadowDraikana, OndrikB, ReeseB)
-• Re-enabled the use of Kanohi Masks in boss fights							----		(Vahkiti, ShadowDraikana)
-• Re-enabled altered SFX for Kanohi Mask activation							----		(Hexadecimal Mantis)
+• Re-enabled the use of Kanohi Masks in boss fights 						----		(Vahkiti, ShadowDraikana)
+• Re-enabled altered SFX for Kanohi Mask activation 						----		(Hexadecimal Mantis)
 • Implemented unused SFX for the Kanohi Ruru								----		(ShadowDraikana)
 • Changed default ammo and ammo HUD sprites to those of the alpha powerups	----		(Vahkiti)
+• Removed background music of the test menu due to internal hatred			----		(Vahkiti)
 
-Per-level fixes:
-• TEST:   Removed background music due to internal hatred					----		(Vahkiti)
-• FREN:   Added logo for a proper title screen								----		(Vahkiti)
-• FREN:   Added background ambience											----		(Vahkiti)
-• FREN:   Changed background music to "MusicShrine"							----		(ReeseB)
-• FREN:   Changed Onua's default spawn position								----		(Vahkiti)
-• FREN:   Changed credits music to BIONICLE Age, added Paul Hardcastle		----		(Vahkiti, ShadowDraikana)
-• ONUA:   Reverted voice clips to the alpha versions						----		(Vahkiti)
-• ONUA:   Re-enabled Nobua cutscenes from the alpha							----		(Vahkiti, Hexadecimal Mantis, ShadowDraikana)
-• ONUA:   Replaced BECH with alpha version									----		(Vahkiti, Hexadecimal Mantis)
-• ONUA:   Replaced VLLG with modified early alpha version					----		(Vahkiti)
-• ONUA:   Replaced "Legend" stills in Whenua's conversation with an FMV		----		(Vahkiti, ShadowDraikana)
-• ONUA:   Replaced Onepu in PTV1 with Nobua; updated conversation text		----		(ShadowDraikana)
-• ONUA:   Added and implemented ROLL and unused rolling animations for Onua	----		(ShadowDraikana, Vahkiti, Grampa Walker)
-• GALI:   Reverted intro cinematic to extended alpha version				----		(Vahkiti, Hexadecimal Mantis, Pereki)
-• GALI:   Cleaned up MTUP cinema by loading set pieces into the cin obj slb	----		(ShadowDraikana)
-• GALI:   Implemented the Gate Stone quest in STRT							---- 		(ShadowDraikana)
-• GALI:   Expanded beta Ga-Koro to accommodate new Tohunga requirements		----		(Vahkiti, Grampa Walker, ReeseB)
-• GALI:   Fixed an issue where the sfsh Rahi would stick to the floor		----		(ReeseB)
-• GALI:   Changed music in HK01												---- 		(ReeseB)
-• GALI:   Modifed movelist of pira to allow it to be damaged				---- 		(ShadowDraikana)
-• GALI:   Renovated GLY3 using alpha map and numerous additions				---- 		(ShadowDraikana, Grampa Walker, ReeseB)
-• GALI:   Added miniboss camera pan for the Tarakava in TAKV				---- 		(ShadowDraikana, ReeseB)
-• POHATU: Reverted intro cinematic to extended alpha version				----		(Vahkiti, ShadowDraikana)
-• POHATU: Replaced VLLG with modified alpha version							----		(Vahkiti)
-• POHATU: Changed music in BLCV												----		(ReeseB)
-• POHATU: Replaced Kane-Ra cinematics with extended alpha versions			----		(Vahkiti)
-• POHATU: Changed Kane-Ra running animation to superior alpha version		----		(ReeseB)
-• POHATU: Added miniboss camera pan for the Kane-Ra in BLCV					----		(ReeseB, ShadowDraikana)
-• KOPAKA: Fixed an issue with the Takara causing the camera to clip a wall	----		(OndrikB)
-• KOPAKA: Changed music in SNFL and PATH									----		(ReeseB)
-• LEWA:   Reverted intro cinematic to extended alpha version				----		(Vahkiti, ShadowDraikana)
-• LEWA:   Fixed an issue with the Takara causing the camera to clip Matau	----		(OndrikB)
-• LEWA:   Changed music in LEP1, ROOM, GLY1, and LE04						----		(ReeseB)
-• LEWA:   Replaced LE04's main level model with the alpha version			----		(Vahkiti)
-• LEWA:   Replaced Nui Rama dismount cinematic with extended alpha version	----		(Vahkiti)
-• LEWA:   Removed GLY3 to use for ROLL and for a future new slide section	----		(ShadowDraikana)
-• LEWA:   Added miniboss camera pans for the Tarakava and Nui-Rama 			----		(ShadowDraikana, ReeseB)
-• TAHU:   Changed music in TVIL, TA01, TA02, TA11, TA12, and TA13			----		(ReeseB)
-• TAHU:   Made Vahi orange													----		(Vahkiti)
-• TAHU:   Added the raising of the Ta-Koro bridge, using the Winch Lever	----		(ShadowDraikana, Vahkiti, Benji)
+Front End:
+• Added logo for a proper title screen										----		(Vahkiti)
+• Added background ambience 												----		(Vahkiti)
+• Changed background music to "MusicShrine" 								----		(ReeseB)
+• Changed Onua's default spawn position 									----		(Vahkiti)
+• Changed credits music to BIONICLE Age, added Paul Hardcastle				----		(Vahkiti, ShadowDraikana)
 
+Level 1 - Onua
+• Reverted voice clips to the alpha versions								----		(Vahkiti)
+• Re-enabled Nobua cutscenes from the alpha 								----		(Vahkiti, Hexadecimal Mantis, ShadowDraikana)
+• Replaced BECH with alpha version											----		(Vahkiti, Hexadecimal Mantis)
+• Replaced VLLG with modified early alpha version							----		(Vahkiti)
+• Replaced "Legend" stills in Whenua's conversation with an FMV 			----		(Vahkiti, ShadowDraikana)
+• Replaced Onepu in PTV1 with Nobua; updated conversation text				----		(ShadowDraikana)
+• Added and implemented ROLL and unused rolling animations for Onua 		----		(ShadowDraikana, Vahkiti, Grampa Walker)
 
-v1.0.1 (The Wall):
+Level 2 - Gali
+• Reverted intro cinematic to extended alpha version						----		(Vahkiti, Hexadecimal Mantis, Pereki)
+• Cleaned up MTUP cinema by loading set pieces into the cin obj slb 		----		(ShadowDraikana)
+• Implemented the Gate Stone quest in STRT									---- 		(ShadowDraikana)
+• Expanded beta Ga-Koro to accommodate new Tohunga requirements 			----		(Vahkiti, Grampa Walker, ReeseB)
+• Fixed an issue where the sfsh Rahi would stick to the floor				----		(ReeseB)
+• Changed music in HK01 													---- 		(ReeseB)
+• Modifed movelist of pira to allow it to be damaged						---- 		(ShadowDraikana)
+• Renovated GLY3 using alpha map and numerous additions 					---- 		(ShadowDraikana, Grampa Walker, ReeseB)
+• Added miniboss camera pan for the Tarakava in TAKV						---- 		(ShadowDraikana, ReeseB)
+
+Level 3 - Pohatu
+• Reverted intro cinematic to extended alpha version						----		(Vahkiti, ShadowDraikana)
+• Replaced VLLG with modified alpha version 								----		(Vahkiti)
+• Changed music in BLCV 													----		(ReeseB)
+• Replaced Kane-Ra cinematics with extended alpha versions					----		(Vahkiti)
+• Changed Kane-Ra running animation to superior alpha version				----		(ReeseB)
+• Added miniboss camera pan for the Kane-Ra in BLCV 						----		(ReeseB, ShadowDraikana)
+
+Level 4 - Kopaka
+• Fixed an issue with the Takara causing the camera to clip a wall			----		(OndrikB)
+• Changed music in SNFL and PATH											----		(ReeseB)
+
+Level 5 - Lewa
+• Reverted intro cinematic to extended alpha version						----		(Vahkiti, ShadowDraikana)
+• Fixed an issue with the Takara causing the camera to clip Matau			----		(OndrikB)
+• Changed music in LEP1, ROOM, GLY1, and LE04								----		(ReeseB)
+• Replaced LE04's main level model with the alpha version					----		(Vahkiti)
+• Replaced Nui Rama dismount cinematic with extended alpha version			----		(Vahkiti)
+• Removed GLY3 to use for ROLL and for a future new slide section			----		(ShadowDraikana)
+• Added miniboss camera pans for the Tarakava and Nui-Rama  				----		(ShadowDraikana, ReeseB)
+
+Level 6 - Tahu
+• Changed music in TVIL, TA01, TA02, TA11, TA12, and TA13					----		(ReeseB)
+• Made Vahi orange															----		(Vahkiti)
+• Added the raising of the Ta-Koro bridge, using the Winch Lever			----		(ShadowDraikana, Vahkiti, Benji)
+
+-------------------------------------------------------------------------------------------------------------------------
+v1.0.1 (The Wall)
+
+General changes and fixes
 • Updated credits															----		(ShadowDraikana)
 • Fixed an issue where collecting over 100 tokens would break save files	----		(benji)
 • Added an unlock system for adding overall progress based rewards			----		(benji)
@@ -67,19 +83,29 @@ v1.0.1 (The Wall):
 • Fixed various area cleanup problems										----		(ShadowDraikana)
 • Implemented French language												----		(maxim21, OndrikB)
 
-Per level fixes:
-• FREN:	Added Toa to the title screen based on progress						----		(ShadowDraikana)
-• ONUA: Added a mask tutorial sign in PTV1									----		(ShadowDraikana, ReeseB)
-• GALI: Temporarily restored MTUP cutscene warp								----		(ShadowDraikana)
-• TAHU: Fixed a missing-in-action apostrophe								----		(ReeseB)
+Front End
+• Added Toa to the title screen based on progress							----		(ShadowDraikana)
 
+Level 1 - Onua
+• Added a mask tutorial sign in PTV1										----		(ShadowDraikana, ReeseB)
 
-v1.0.2 (Salvation):
+Level 2 - Gali
+• Temporarily restored MTUP cutscene warp									----		(ShadowDraikana)
+
+Level 6 - Tahu
+• Fixed a missing-in-action apostrophe										----		(ReeseB)
+
+-------------------------------------------------------------------------------------------------------------------------
+v1.0.2 (Salvation)
+
+General changes and fixes
 • Fixed an issue that caused corrupted saves on quitting from Frontend		----		(Vahkiti, ShadowDraikana)
 • Fixed an issue in BetterSaver causing the current mask not to be written	----		(Vahkiti)
 
+-------------------------------------------------------------------------------------------------------------------------
+v1.1 (Everything But The Koli Field)
 
-v1.1 (Everything But The Koli Field):
+General changes and fixes
 • Updated credits, added Alastair Swinnerton; credits are now an FMV		----		(ReeseB, Vahkiti)
 • Moved lev3-lev5 help Tohunga into villages post-invasion					----		(ShadowDraikana, ReeseB)
 • Added printing glyphs to each level, to be moved later					----		(ReeseB, ShadowDraikana)
@@ -152,88 +178,115 @@ v1.1 (Everything But The Koli Field):
 • Moved tokens in Matau's hut 												----		(ShadowDraikana)
 • Replaced the loading bar with a high-res version							----		(OndrikB, Vahkiti)
 
-Per level fixes:
-• TEST:   Made the background look nicer									----		(Vahkiti)
-• TEST:   Added a test area for Tahu     									----		(ReeseB)
-• TEST:   Added test map for future flight sections 						----		(Vahkiti)
-• TEST:   Enabled and overhauled the cut Language Test menu for future use  ----		(ShadowDraikana)
-• FREN:   Fixed and updated clicking textures for cursor on title screen	----		(Vahkiti)
-• FREN:   Added new Extras menu; includes Glossary, Print, Theater			----		(Vahkiti)
-• FREN:   Added images to the Glossary where they were missing				----		(Vahkiti, ReeseB)
-• FREN:   Fixed grammar and punctuation of certain Glossary entries			----		(ReeseB)
-• FREN:   Toa Kaita now appear in the area once they have been played as	----		(ReeseB)
-• FREN:   Reordered print menu												----		(ReeseB, ShadowDraikana, Vahkiti)
-• ONUA:   Changed certain token positions in ROLL for easier collection		----		(ReeseB)
-• ONUA:   Fixed KRB2 (Ussal Crab) Rahi for future use						----		(Vahkiti)
-• ONUA:   Fixed music in MDMN; starts with silence, leads to OnuaTheme		----		(ShadowDraikana)
-• ONUA:   Added a missing killbox into ROLL									----		(Vahkiti)
-• ONUA:   Edited BECH to remove water wall and extend sea floor				----		(Vahkiti)
-• ONUA:   Added bubbles to ATRM to prevent easy drowning					----		(ReeseB)
-• ONUA:   Added tutorial totem to HK01 for elemental glyph controls			----		(ReeseB)
-• ONUA:   Added Eathquake symbol on wall in MDMN							----		(Vahkiti)
-• ONUA:   Added unused webs, boudler to CLF2								----		(Vahkiti)
-• ONUA:   Updated Nui-Jaga model with pre-alpha high-poly model   			----		(Vahkiti)
-• ONUA:   Added WIP area to warplist based on pre-alpha BUGS model, NEST	----		(ReeseB)
-• ONUA:   Fixed HUD from showing after Legend FMV during convo with Whenua	----		(ShadowDraikana)
-• ONUA:   Fixed hive bases rendering in Onu-Koro introduction cinematic  	----		(ShadowDraikana)
-• ONUA:   Fixed various door models lacking bottom and side faces   	  	----		(sweg)
-• ONUA:   Improved the hitboxes for the Nui-Jaga and Fikou-Nui  			----		(Vahkiti)
-• ONUA:   Added ledge grab tutorial totem back into L1A1 					----		(ShadowDraikana)
-• ONUA:   Replaced tools in Onu-Koro with high-poly versions				----		(sweg)
-• GALI:   Fixed AI and movement speed of TTRT Rahi							----		(Vahkiti)
-• GALI:   Reverted sphere color to vanilla									----		(ReeseB)
-• GALI:   Moved disc quest Tohunga out of the water							----		(ReeseB, Vahkiti)
-• GALI:   Re-enabled HYDR boss intro pan									----		(ShadowDraikana)
-• GALI:   Added new underwater hives; added to invasion 					----		(Vahkiti)
-• GALI:   Improved MTUP area to look better and hide animation quirks		----		(Vahkiti)
-• GALI:   Fixed Ga-Koro horn pedestals being too short						----		(sweg)
-• GALI:   Fixed horn glyphs in Ga-Koro lacking side faces					----		(sweg)
-• GALI:   Moved energy pickups that were stuck in the ground in GLY3		----		(ReeseB)
-• GALI:   Added collision to furniture and plants in Ga-Koro				----		(sweg)
-• POHATU: Changed stone rain glyph texture to alternate lev6 version		----		(ReeseB)
-• POHATU: Changed stone rain glyph text to better fit its new functionality ----		(ReeseB)
-• POHATU: Moved RKFL between XROD and SHRN for a smoother difficulty curve	----		(ReeseB)
-• POHATU: Changed music in GLY1 to TechnoSnowboardPart2 					----		(ReeseB)
-• POHATU: Fixed two Tohunga in Po-Koro that had incorrect colors			----		(ReeseB)
-• POHATU: Fixed ability to change or use masks in BLR1 and BLR2 			----		(ShadowDraikana)
-• KOPAKA: Added energy pellets into TELE, moved cliff tokens				----		(ReeseB)
-• KOPAKA: Added extra skate to ice skates model 							----		(Vahkiti)
-• KOPAKA: Added missing invasion door to Nuju's hut 						----		(Vahkiti)
-• KOPAKA: Fixed collision of trees and stone cubes in Ko-Koro				----		(Vahkiti)
-• KOPAKA: Moved a token previously up a tree in Ko-Koro to the ground		----		(ReeseB)
-• KOPAKA: Updated ice shield model for Kopaka   				   			----		(Vahkiti)
-• KOPAKA: Fixed entrance of Nuju's hut allowing access during invasion  	----		(ShadowDraikana)
-• KOPAKA: Fixed a snow geometry cutoff on the Vuata Maca tree   			----		(sweg)
-• LEWA:   Added missing invasion door to Matau's hut						----		(Vahkiti, ReeseB)
-• LEWA:   Moved tokens in LE01 to less frustrating positions				----		(ReeseB)
-• LEWA:   Updated a certain Tohunga in VLLG 								----		(ReeseB)
-• TAHU:   Replaced all instances of bats with unused btfr enemy 			----		(ReeseB)
-• TAHU:   Changed vanilla line so that Ta-Koro itself didn't see a creature ----		(ReeseB)
-• TAHU:   Ported alpha area TA10; moved and added tokens					----		(ReeseB, ShadowDraikana)
-• TAHU:   Overhauled TA05 code, fixing various script errors 				----		(ShadowDraikana)
-• TAHU:   Adjusted entirety of TA10's UV maps to look less garbage			----		(sweg)
-• MAKUTA: Split ToaKaitaFight FMV in two to account for new gameplay		----		(Fraug L. Coolman, ReeseB)
-• MAKUTA: Ported previously unused alpha area, KUTA; added new code/detail	----		(ReeseB, ShadowDraikana)
-• MAKUTA: Ported Toa Kaita, added Aki and Rua masks*						----		(ReeseB, Vahkiti)
-• MAKUTA: Ported MANA, PST1, MAN1, and PST2 from the alpha*					----		(ReeseB)
-• MAKUTA: Added new area, MAN3*												----		(Vahkiti)
-• MAKUTA: Cleaned up existing level code									----		(ShadowDraikana)
-• MAKUTA: Credits now play after ending FMV									----		(ReeseB)
-• MAKUTA: Replaced Toa Kaita models with high-poly set accurate versions	----		(Vahkiti, Grampa Walker)
+Test Level
+• Made the background of TST1 look nicer									----		(Vahkiti)
+• Added a test area for Tahu     											----		(ReeseB)
+• Added test map for future flight sections 								----		(Vahkiti)
+• Enabled and overhauled the cut Language Test menu for future use  		----		(ShadowDraikana)
+
+Front End
+• Fixed and updated clicking textures for cursor on title screen			----		(Vahkiti)
+• Added new Extras menu; includes Glossary, Print, Theater					----		(Vahkiti)
+• Added images to the Glossary where they were missing						----		(Vahkiti, ReeseB)
+• Fixed grammar and punctuation of certain Glossary entries 				----		(ReeseB)
+• Toa Kaita now appear in the area once they have been played as			----		(ReeseB)
+• Reordered print menu														----		(ReeseB, ShadowDraikana, Vahkiti)
+
+Level 1 - Onua
+• Changed certain token positions in ROLL for easier collection 			----		(ReeseB)
+• Fixed KRB2 (Ussal Crab) Rahi for future use								----		(Vahkiti)
+• Fixed music in MDMN; starts with silence, leads to OnuaTheme				----		(ShadowDraikana)
+• Added a missing killbox into ROLL 										----		(Vahkiti)
+• Edited BECH to remove water wall and extend sea floor 					----		(Vahkiti)
+• Added bubbles to ATRM to prevent easy drowning							----		(ReeseB)
+• Added tutorial totem to HK01 for elemental glyph controls 				----		(ReeseB)
+• Added Eathquake symbol on wall in MDMN									----		(Vahkiti)
+• Added unused webs, boudler to CLF2										----		(Vahkiti)
+• Updated Nui-Jaga model with pre-alpha high-poly model   					----		(Vahkiti)
+• Added WIP area to warplist based on pre-alpha BUGS model, NEST			----		(ReeseB)
+• Fixed HUD from showing after Legend FMV during convo with Whenua			----		(ShadowDraikana)
+• Fixed hive bases rendering in Onu-Koro introduction cinematic  			----		(ShadowDraikana)
+• Fixed various door models lacking bottom and side faces   	  			----		(sweg)
+• Improved the hitboxes for the Nui-Jaga and Fikou-Nui  					----		(Vahkiti)
+• Added ledge grab tutorial totem back into L1A1 							----		(ShadowDraikana)
+• Replaced tools in Onu-Koro with high-poly versions						----		(sweg)
+
+Level 2 - Gali
+• Fixed AI and movement speed of TTRT Rahi									----		(Vahkiti)
+• Reverted sphere color to vanilla											----		(ReeseB)
+• Moved disc quest Tohunga out of the water 								----		(ReeseB, Vahkiti)
+• Re-enabled HYDR boss intro pan											----		(ShadowDraikana)
+• Added new underwater hives; added to invasion 							----		(Vahkiti)
+• Improved MTUP area to look better and hide animation quirks				----		(Vahkiti)
+• Fixed Ga-Koro horn pedestals being too short								----		(sweg)
+• Fixed horn glyphs in Ga-Koro lacking side faces							----		(sweg)
+• Moved energy pickups that were stuck in the ground in GLY3				----		(ReeseB)
+• Added collision to furniture and plants in Ga-Koro						----		(sweg)
+
+Level 3 - Pohatu
+• Changed stone rain glyph texture to alternate lev6 version				----		(ReeseB)
+• Changed stone rain glyph text to better fit its new functionality 		----		(ReeseB)
+• Moved RKFL between XROD and SHRN for a smoother difficulty curve			----		(ReeseB)
+• Changed music in GLY1 to TechnoSnowboardPart2 							----		(ReeseB)
+• Fixed two Tohunga in Po-Koro that had incorrect colors					----		(ReeseB)
+• Fixed ability to change or use masks in BLR1 and BLR2 					----		(ShadowDraikana)
+
+Level 4 - Kopaka
+• Added energy pellets into TELE, moved cliff tokens						----		(ReeseB)
+• Added extra skate to ice skates model 									----		(Vahkiti)
+• Added missing invasion door to Nuju's hut 								----		(Vahkiti)
+• Fixed collision of trees and stone cubes in Ko-Koro						----		(Vahkiti)
+• Moved a token previously up a tree in Ko-Koro to the ground				----		(ReeseB)
+• Updated ice shield model for Kopaka   				   					----		(Vahkiti)
+• Fixed entrance of Nuju's hut allowing access during invasion  			----		(ShadowDraikana)
+• Fixed a snow geometry cutoff on the Vuata Maca tree   					----		(sweg)
+
+Level 5 - Lewa
+• Added missing invasion door to Matau's hut								----		(Vahkiti, ReeseB)
+• Moved tokens in LE01 to less frustrating positions						----		(ReeseB)
+• Updated a certain Tohunga in VLLG 										----		(ReeseB)
+
+Level 6 - Tahu
+• Replaced all instances of bats with unused btfr enemy 					----		(ReeseB)
+• Changed vanilla line so that Ta-Koro itself didn't see a creature 		----		(ReeseB)
+• Ported alpha area TA10; moved and added tokens							----		(ReeseB, ShadowDraikana)
+• Overhauled TA05 code, fixing various script errors 						----		(ShadowDraikana)
+• Adjusted entirety of TA10's UV maps to look less garbage					----		(sweg)
+
+Level 7 - Makuta
+• Split ToaKaitaFight FMV in two to account for new gameplay				----		(Fraug L. Coolman, ReeseB)
+• Ported previously unused alpha area, KUTA; added new code/detail			----		(ReeseB, ShadowDraikana)
+• Ported Toa Kaita, added Aki and Rua masks*								----		(ReeseB, Vahkiti)
+• Ported MANA, PST1, MAN1, and PST2 from the alpha* 						----		(ReeseB)
+• Added new area, MAN3* 													----		(Vahkiti)
+• Cleaned up existing level code											----		(ShadowDraikana)
+• Credits now play after ending FMV 										----		(ReeseB)
+• Replaced Toa Kaita models with high-poly set accurate versions			----		(Vahkiti, Grampa Walker)
 
 *The Kaita, along with their areas and the rest of lev7, are not quite complete and polished yet, so keep that in mind when playing.
 
+-------------------------------------------------------------------------------------------------------------------------
+v1.1.1 (Something something whoops)
+
+Level 2 - Gali
+• Fixed a doorway in VLLG pointing to the wrong room (Nobody saw anything)	----		(ShadowDraikana)
+• Removed underwater hives in VLLG for now due to poor telegraphing 		----		(ShadowDraikana)
+• Fixed bottom platform in MTOP from not being properly extended			----		(ShadowDraikana)
+
+-------------------------------------------------------------------------------------------------------------------------
 v1.2: (Uncharted Waters)
 
-Per-Level Fixes:
-• GALI:   Removed STRT, HK01, and MTOP areas; moved gear to ISLD			----		(ReeseB, Vahkiti)
-• GALI:   Added new dialogue for Nokama for new rescue quest				----		(ReeseB)
-• GALI:   Ported ISLD map from alpha										----		(ShadowDraikana, ReeseB)
-• GALI:   Ported alpha SHRN, implemented waterfalls, doors, token door		----		(ShadowDraikana)
-• GALI:   Ported GLY1, GLY2, and GL3S from alpha							----		(ShadowDraikana)
-• GALI:   Ported alpha BECH and BMTN maps; moved Rau and Gate Stone to BECH	----		(ShadowDraikana, ReeseB)
-• GALI:   Ported previously unused alpha area, GIZR; merged with TAKV		----		(ReeseB, ShadowDraikana, Vahkiti, Grampa Walker)
-• GALI:   Ported alpha MBCH map; moved throwing disk from VTNL				----		(ShadowDraikana, ReeseB)
-• GALI:   Improved ported alpha maps in both code and models				----		(ShadowDraikana, Grampa Walker, Vahkiti)
-• GALI:   Adjusted ISLD main and water model UV maps						----		(sweg)
-• TAHU:   Added TP03, added new rescue mission								----		(ReeseB, ShadowDraikana, The Shadow Emperor)
+Level 2 - Gali
+• Removed STRT, HK01, and MTOP areas; moved gear to ISLD					----		(ReeseB, Vahkiti)
+• Added new dialogue for Nokama for new rescue quest						----		(ReeseB)
+• Ported ISLD map from alpha												----		(ShadowDraikana, ReeseB)
+• Ported alpha SHRN, implemented waterfalls, doors, token door				----		(ShadowDraikana)
+• Ported GLY1, GLY2, and GL3S from alpha									----		(ShadowDraikana)
+• Ported alpha BECH and BMTN maps; moved Rau and Gate Stone to BECH 		----		(ShadowDraikana, ReeseB)
+• Ported previously unused alpha area, GIZR; merged with TAKV				----		(ReeseB, ShadowDraikana, Vahkiti, Grampa Walker)
+• Ported alpha MBCH map; moved throwing disk from VTNL						----		(ShadowDraikana, ReeseB)
+• Improved ported alpha maps in both code and models						----		(ShadowDraikana, Grampa Walker, Vahkiti)
+• Adjusted ISLD main and water model UV maps								----		(sweg)
+
+Level 6 - Tahu
+• Added TP03, added new rescue mission										----		(ReeseB, ShadowDraikana, The Shadow Emperor)
