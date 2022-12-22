@@ -1,4 +1,4 @@
-﻿BIONICLE The Legend of Mata Nui Rebuilt Patch Notes:
+﻿BIONICLE The Legend of Mata Nui Rebuilt Patch Notes
 
 v1.0.0 (The Legend REBUILT)
 
@@ -271,10 +271,19 @@ v1.1.1 (Something something whoops)
 General changes and fixes
 • Updated patch notes formatting											----		(ShadowDraikana)
 
+Level 1 - Onua
+• Fixed broken paths causing Legend FMV to crash for several languages		----		(ShadowDraikana)
+
 Level 2 - Gali
 • Fixed a doorway in VLLG pointing to the wrong room (Nobody saw anything)	----		(ShadowDraikana)
 • Removed underwater hives in VLLG for now due to poor telegraphing 		----		(ShadowDraikana)
 • Fixed bottom platform in MTOP from not being properly extended			----		(ShadowDraikana)
+
+Level 6 - Tahu
+• Fixed disc in TA14 from respawning upon reentry if picked up previously	----		(ShadowDraikana)
+• Fixed glyph in TA14 triggering a crash upon reentry if picked up prior	----		(ShadowDraikana)
+• Added proper rendering code along with fog and cave lighting to TA14  	----		(ShadowDraikana)
+• Reduced file sizes of TA14 assets, and replaced collision data			----		(ShadowDraikana)
 
 -------------------------------------------------------------------------------------------------------------------------
 v1.2: (Uncharted Waters)
