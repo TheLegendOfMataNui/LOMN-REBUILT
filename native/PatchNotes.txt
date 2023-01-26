@@ -272,6 +272,7 @@ General changes and fixes
 • Updated patch notes formatting											----		(ShadowDraikana)
 
 Level 1 - Onua
+• Fixed two tutorial totems in BECH having their text swapped				----		(ShadowDraikana)
 • Fixed broken paths causing Legend FMV to crash for several languages		----		(ShadowDraikana)
 
 Level 2 - Gali
