@@ -73,6 +73,7 @@ class lego_level_1 : gs_lego_level {
             globalclass.unlockdirector.save();
         }
         globalclass.saverloaded = 0;
+        globalclass.hud.fadeinscreen();
         return null;
     }
     

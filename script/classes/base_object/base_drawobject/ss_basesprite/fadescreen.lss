@@ -54,7 +54,7 @@ class fadescreen : ss_basesprite {
     }
     
     method cleanupfull() {
-        if (!(this.faderectangle == null)) {
+        if (this.faderectangle != null) {
             this.faderectangle.cleanupfull();
             this.faderectangle = null;
         }
@@ -91,21 +91,39 @@ class fadescreen : ss_basesprite {
     
     method setincrementvalue() {
         this.incrementor = 255 - (255 * (this.fadetimeleft / this.faderate));
+        //Need to hide then show so the faderectangle gets refreshed every frame, thus allowing it to render over animated hud sprites
+        this.faderectangle.hide();
+        this.faderectangle.show();
         this.faderectangle.settransparency(this.incrementor);
         if (this.incrementor == 255) {
             this.incrementor = 0;
             this.blnshow = 0;
+            //Create OSI event 1005, FADESCREEN_COMPLETE
+            //Arg: 0 
+            //1 = Fadeout to black finished, 0 = Fadein from black finished
+            //Define above conditional as a value of 1 for argument 0
+            var var1 = new scriptevent(1005, [ 1 ]);
+            var1.send();
         }
         return null;
     }
     
     method setdecrementvalue() {
         this.decrementor = 255 * (this.fadetimeleft / this.faderate);
+        //Need to hide then show so the faderectangle gets refreshed every frame, thus allowing it to render over animated hud sprites
+        this.faderectangle.hide();
+        this.faderectangle.show();
         this.faderectangle.settransparency(this.decrementor);
         if (this.decrementor == 0) {
             this.faderectangle.hide();
             this.blnhide = 0;
-            globalclass.hud.show();
+            //globalclass.hud.show();
+            //OSI event 1005, FADESCREEN_COMPLETE 
+            //Arg: 0
+            //1 = Fadeout to black finished, 0 = Fadein from black finished
+            //Define above conditional as a value of 0 for argument 0
+            var var1 = new scriptevent(1005, [ 0 ]);
+            var1.send();
         }
         return null;
     }
@@ -115,19 +133,24 @@ class fadescreen : ss_basesprite {
         return null;
     }
     
-    method show() {
+    method show(custom_fadeoutrate) {
         this.faderectangle.add();
         this.faderectangle.enablealphachannel(1);
         this.faderectangle.enabletransparency(1);
         this.faderectangle.show();
         this.blnshow = 1;
         this.blnhide = 0;
-        globalclass.hud.hide();
-        this.fadetimeleft = this.faderate;
+        //globalclass.hud.hide();
+        if (custom_fadeoutrate == null) {
+            this.fadetimeleft = this.faderate;
+        }
+        else {
+            this.fadetimeleft = custom_fadeoutrate;
+        }
         return null;
     }
     
-    method hide() {
+    method hide(custom_fadeinrate) {
         this.decrementor = 255;
         this.faderectangle.add();
         this.faderectangle.enablealphachannel(1);
@@ -135,7 +158,12 @@ class fadescreen : ss_basesprite {
         this.faderectangle.show();
         this.blnhide = 1;
         this.blnshow = 0;
-        this.fadetimeleft = this.faderate;
+        if (custom_fadeinrate == null) {
+            this.fadetimeleft = this.faderate;
+        }
+        else {
+            this.fadetimeleft = custom_fadeinrate;
+        }
         return null;
     }
 }

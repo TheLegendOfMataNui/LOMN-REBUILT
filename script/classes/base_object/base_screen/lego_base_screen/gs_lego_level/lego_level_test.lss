@@ -33,6 +33,7 @@ class lego_level_test : gs_lego_level {
             globalclass.player.initfromsaver();
         }
         globalclass.saverloaded = 0;
+        globalclass.hud.fadeinscreen();
         return null;
     }
     

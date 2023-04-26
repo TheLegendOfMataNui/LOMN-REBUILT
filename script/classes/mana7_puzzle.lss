@@ -1,5 +1,6 @@
 class mana7_puzzle {
     property parent;
+    property run_once;
     
     method mana7_puzzle(param1) {
         this.parent = param1;
@@ -11,15 +12,20 @@ class mana7_puzzle {
         if (bettersaver::getbooleanvalue(101) == 0) {
             gchuddirector::playcinematic("Root/Data/cinematics/ToaKiniMeeting.bik", 1);
             bettersaver::setbooleanvalue(101, 1);
+            globalclass.hud.fadeinscreen();
         }
-        globalclass.bgmusic.changefilename("Root/Data/sounds/MusicMakutaTheme");
-        globalclass.bgmusic.play(1);				
+        else {
+            globalclass.bgmusic.changefilename("Root/Data/sounds/MusicMakutaTheme");
+            globalclass.bgmusic.play(1);				
+        }
         gcmodeldirector::setnearestmax(5);
         gcareadirector::setnearestmax(10);
+        this.run_once = 0;
         return null;
     }
     
     method cleanupfull() {
+        this.run_once = null;
         return null;
     }
     
@@ -33,6 +39,12 @@ class mana7_puzzle {
                 globalclass.player.changetoa("akam");
                 gccollisionphysicsgroup::settoaposition(scslosifoundation::stringtoidentifier("str0"), scslosifoundation::stringtoidentifier("lok0"));
 			}
+            if ((bettersaver::getbooleanvalue(101) == 1) && (this.run_once == 0)) {
+                globalclass.bgmusic.changefilename("Root/Data/sounds/MusicMakutaTheme");
+                globalclass.bgmusic.play(1);				
+                gcsaver::setsoundvolume(globalclass.level.sfx_volume);
+                this.run_once = 1;
+            }
 		}	
         return null;
     }

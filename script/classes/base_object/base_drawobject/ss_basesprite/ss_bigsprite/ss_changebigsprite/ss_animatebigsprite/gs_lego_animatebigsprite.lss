@@ -158,7 +158,7 @@ class gs_lego_animatebigsprite : ss_animatebigsprite {
                         if (this.loopcount == this.maxloops) {
                             this.animatingonflag = 0;
                             this.loopcount = 0;
-                            var1 = new scriptevent(1004, [ this.handle, 
+                            var1 = new scriptevent(1003, [ this.handle, 
                                 !this.loopbackwards ]);
                             var1.send();
                         }
@@ -175,7 +175,7 @@ class gs_lego_animatebigsprite : ss_animatebigsprite {
                     if (this.loopcount == this.maxloops) {
                         this.animatingonflag = 0;
                         this.loopcount = 0;
-                        var1 = new scriptevent(1004, [ this.handle, 
+                        var1 = new scriptevent(1003, [ this.handle, 
                             !this.loopbackwards ]);
                         var1.send();
                     }
