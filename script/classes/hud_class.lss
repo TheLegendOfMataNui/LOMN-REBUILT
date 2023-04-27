@@ -213,13 +213,13 @@ class hud_class {
         return null;
     }
     
-    method fadeoutscreen() {
-        this.screenfader.show();
+    method fadeoutscreen(fadeoutrate) {
+        this.screenfader.show(fadeoutrate);
         return null;
     }
     
-    method fadeinscreen() {
-        this.screenfader.hide();
+    method fadeinscreen(fadeinrate) {
+        this.screenfader.hide(fadeinrate);
         return null;
     }
 }

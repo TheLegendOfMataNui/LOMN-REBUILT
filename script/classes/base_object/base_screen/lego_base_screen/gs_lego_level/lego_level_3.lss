@@ -1,4 +1,5 @@
 class lego_level_3 : gs_lego_level {
+    property sfx_volume;
 
     method lego_level_3() {
         var area;
@@ -60,7 +61,7 @@ class lego_level_3 : gs_lego_level {
             }
             if (gcsaver::finditema(scslosifoundation::stringtoidentifier("hook"), scslosifoundation::stringtoidentifier("gly1"))) {
                 globalclass.player.setupgrapplinghook();
-                globalclass.player.setgrapplinghookdistance(120);
+                globalclass.player.setgrapplinghookdistance(45);
             }
             globalclass.player.initfromsaver();
         }
@@ -68,6 +69,18 @@ class lego_level_3 : gs_lego_level {
             globalclass.unlockdirector.save();
         }
         globalclass.saverloaded = 0;
+
+        //Check for if the level has just started from MTUP and cinematic not played yet; if so a blackscreen is created using fadeoutscreen.  Else, perform a normal fadein for loaded games
+        //Additionally, store game SFX volume settings then set to 0 temporarily.  This stored value will be retrieved by the area class to reset the audio properly after the cinematic ends
+        if ((scslosifoundation::identifiertostring(gcareadirector::getcurrentarea()) == "mtup") && (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin1")) == 0)) {
+            globalclass.hud.hide();
+            globalclass.hud.fadeoutscreen(0);
+            this.sfx_volume = gcsaver::getsoundvolume();
+            gcsaver::setsoundvolume(0);
+        }
+        else {
+            globalclass.hud.fadeinscreen();
+        }
         return null;
     }
     

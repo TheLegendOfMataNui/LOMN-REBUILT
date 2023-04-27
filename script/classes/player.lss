@@ -205,7 +205,7 @@ class player {
                 var tread_water = (this.actor.getcurrentanimationid() == scslosifoundation::stringtoidentifier("g043"));
                 var dive_underwater = (this.actor.getcurrentanimationid() == scslosifoundation::stringtoidentifier("g047"));                
                 var areaid = (scslosifoundation::identifiertostring(gcareadirector::getcurrentarea()));
-                //If gcareadirector returns the current area as one of the following areas, disable grapple.  Else, oroceed to the next check
+                //If gcareadirector returns the current area as one of the following areas, disable grapple.  Else, proceed to the next check
                 if ((areaid == "vllg") || (areaid == "tura") || (areaid == "shrn") || (areaid == "mosh")) {
                     debug::print("YOU ARE IN A PEACEFUL AREA, CANNOT SHOOT DRAGGER!");
                 }

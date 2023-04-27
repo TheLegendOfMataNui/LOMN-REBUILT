@@ -270,6 +270,10 @@ v1.1.1 (Something something whoops)
 
 General changes and fixes
 • Updated patch notes formatting											----		(ShadowDraikana)
+• Fixed grappling hooks having longer ranges when reloading saves			----		(ShadowDraikana)
+• Fixed jank with maps/audio flashing in just before a level intro plays	----		(ShadowDraikana)
+• Added an initial fadein for entering front end, levels, and loading saves ----		(ShadowDraikana)
+• Fixed brief HUD pop-in when entering the front end						----		(ShadowDraikana)
 
 Level 1 - Onua
 • Fixed two tutorial totems in BECH having their text swapped				----		(ShadowDraikana)
@@ -277,7 +281,7 @@ Level 1 - Onua
 
 Level 2 - Gali
 • Fixed a doorway in VLLG pointing to the wrong room (Nobody saw anything)	----		(ShadowDraikana)
-• Removed underwater hives in VLLG for now due to poor telegraphing 		----		(ShadowDraikana)
+• Removed underwater hives in VLLG due to poor telegraphing 				----		(ShadowDraikana)
 • Fixed bottom platform in MTOP from not being properly extended			----		(ShadowDraikana)
 
 Level 6 - Tahu

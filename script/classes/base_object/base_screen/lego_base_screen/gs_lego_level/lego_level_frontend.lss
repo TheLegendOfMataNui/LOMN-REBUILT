@@ -21,6 +21,8 @@ class lego_level_frontend : gs_lego_level {
         this.lego_level_initfull();
         globalclass.player.addmask("fake", 0);
         globalclass.saverloaded = 0;
+        globalclass.hud.hide();
+        globalclass.hud.fadeinscreen();
         return null;
     }
     

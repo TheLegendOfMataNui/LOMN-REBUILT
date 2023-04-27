@@ -17,7 +17,10 @@ class lego_area_mtup6 : gs_lego_area {
             this.cinema = gccinemaengine::create();
             gccinemaengine::load(this.cinema, "cin1");
             gccinemaengine::play(this.cinema);
+            //Abusing load ordering to ensure this removes the blackscreen as the cinematic starts
+            globalclass.hud.fadeinscreen();
         }
+        //Ensuring the music doesnt cut in for a frame or two upon initial level load prior to cinematic
         else {
             globalclass.bgmusic.changefilename("Root/Data/sounds/spiderwebambience");
             globalclass.bgmusic.play();
@@ -65,6 +68,8 @@ class lego_area_mtup6 : gs_lego_area {
             globalclass.player.maskcontrol.changemask(4);
             globalclass.bgmusic.changefilename("Root/Data/sounds/spiderwebambience");
             globalclass.bgmusic.play();
+            //Recalling stored SFX volume and resetting audio levels back to normal on the frame the cutscene ends
+            gcsaver::setsoundvolume(globalclass.level.sfx_volume);
         }
         return null;
     }
