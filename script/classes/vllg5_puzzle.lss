@@ -22,19 +22,19 @@ class vllg5_puzzle {
     property tuuli;
     property kongu;
     property vira;
-    property pala;
+    property taiki;
     property sanso;
     property susuko;
     property tamaru;
     property kumo;
-    property hofoh;
-    property orkahm;
+    property afa;
+    property orkan;
     property keeper;
-    property berata;
+    property boreas;
     property treimo;
     property oropeki;
-    property ohrag;
-    property usuhuya;
+    property berata;
+    property shu;
     property gunactive;
     property diskactive;
     
@@ -52,19 +52,19 @@ class vllg5_puzzle {
         this.tuuli = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl01"), 0);
         this.kongu = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl02"), 0);
         this.vira = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl03"), 0);
-        this.pala = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl04"), 0);
+        this.taiki = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl04"), 0);
         this.sanso = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl05"), 0);
         this.susuko = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl06"), 0);
         this.tamaru = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl07"), 0);
         this.kumo = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl08"), 0);
-        this.hofoh = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl09"), 0);
-        this.orkahm = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl10"), 0);
+        this.afa = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl09"), 0);
+        this.orkan = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl10"), 0);
         this.keeper = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl11"), 0);
-        this.berata = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl12"), 0);
+        this.boreas = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl12"), 0);
         this.treimo = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl13"), 0);
         this.oropeki = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl14"), 0);
-        this.ohrag = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl15"), 0);
-        this.usuhuya = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl16"), 0);
+        this.berata = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl15"), 0);
+        this.shu = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vl16"), 0);
         this.gunactive = 0;
         this.diskactive = 0;
         if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin4"))) {
@@ -97,7 +97,7 @@ class vllg5_puzzle {
             globalclass.player.processequipment(2);     
             //Set Tohunga: Makani (VLGR)
             gccharacter::settohunga(this.makani, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mkba"));
-            gccharacter::setcolors(this.makani, rgba( 0, 113, 58, 255), rgba( 0, 113, 58, 255), rgba( 0, 113, 58, 255));
+            gccharacter::setcolors(this.makani, rgba(0, 113, 58, 255), rgba(0, 113, 58, 255), rgba(0, 113, 58, 255));
             gccharacter::setorientation(this.makani, 169);
             gccharacter::setinputstate(this.makani, scslosifoundation::stringtoidentifier("none"));
             gccharacter::switchanimation(this.makani, scslosifoundation::stringtoidentifier("d000"), -1);
@@ -105,7 +105,7 @@ class vllg5_puzzle {
             
             //Set Tohunga: Tuuli (VL01)
             gccharacter::settohunga(this.tuuli, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk8a"));
-            gccharacter::setcolors(this.tuuli, rgba( 0, 113, 58, 255), rgba( 0, 113, 58, 255), rgba(0, 190, 173, 255));
+            gccharacter::setcolors(this.tuuli, rgba(0, 113, 58, 255), rgba(0, 113, 58, 255), rgba(0, 190, 173, 255));
             gccharacter::setinputstate(this.tuuli, scslosifoundation::stringtoidentifier("none"));
             gccharacter::switchanimation(this.tuuli, scslosifoundation::stringtoidentifier("d003"), -1);
             gcmodeldirector::hide(scslosifoundation::stringtoidentifier("blsp"), 0);  
@@ -123,7 +123,7 @@ class vllg5_puzzle {
             
             //Set Tohunga: Vira (VL03)
             gccharacter::settohunga(this.vira, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk0a"));
-            gccharacter::setcolors(this.vira, rgba(156, 210, 0, 255), rgba(156, 210, 0, 255), rgba( 0, 113, 58, 255));
+            gccharacter::setcolors(this.vira, rgba(156, 210, 0, 255), rgba(156, 210, 0, 255), rgba(0, 113, 58, 255));
             gccharacter::setorientation(this.vira, -151);
             gccharacter::setinputstate(this.vira, scslosifoundation::stringtoidentifier("none"));
             gccharacter::switchanimation(this.vira, scslosifoundation::stringtoidentifier("d003"), -1);
@@ -136,13 +136,13 @@ class vllg5_puzzle {
                 }
             }
             
-            //Set Tohunga: Pala (VL04)
-            gccharacter::settohunga(this.pala, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mkca"));
-            gccharacter::setcolors(this.pala, rgba( 0, 113, 58, 255), rgba( 0, 113, 58, 255), rgba(107, 107, 107, 255));
+            //Set Tohunga: Taiki (VL04)
+            gccharacter::settohunga(this.taiki, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mkca"));
+            gccharacter::setcolors(this.taiki, rgba(0, 113, 58, 255), rgba(0, 113, 58, 255), rgba(0, 190, 173, 255));
             
             //Set Tohunga: Sanso (VL05)
             gccharacter::settohunga(this.sanso, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk0a"));
-            gccharacter::setcolors(this.sanso, rgba(0, 190, 173, 255), rgba(0, 190, 173, 255), rgba( 0, 113, 58, 255));
+            gccharacter::setcolors(this.sanso, rgba(0, 190, 173, 255), rgba(0, 190, 173, 255), rgba(0, 113, 58, 255));
             if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin4")) == 0) {
                 gccharacter::setorientation(this.sanso, -165);
                 gccharacter::setinputstate(this.sanso, scslosifoundation::stringtoidentifier("none"));
@@ -151,7 +151,7 @@ class vllg5_puzzle {
 
             //Set Tohunga: Susuko (VL06)
             gccharacter::settohunga(this.susuko, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mkca"));
-            gccharacter::setcolors(this.susuko, rgba(156, 210, 0, 255), rgba( 0, 113, 58, 255), rgba(0, 190, 173, 255));
+            gccharacter::setcolors(this.susuko, rgba(156, 210, 0, 255), rgba(0, 113, 58, 255), rgba(0, 190, 173, 255));
             
             //Set Tohunga: Tamaru (VL07)
             gccharacter::settohunga(this.tamaru, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk9a"));
@@ -164,7 +164,7 @@ class vllg5_puzzle {
 
             //Set Tohunga: Kumo (VL08)
             gccharacter::settohunga(this.kumo, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk6a"));
-            gccharacter::setcolors(this.kumo, rgba( 0, 113, 58, 255), rgba( 0, 113, 58, 255), rgba( 0, 113, 58, 255));
+            gccharacter::setcolors(this.kumo, rgba(0, 113, 58, 255), rgba(0, 113, 58, 255), rgba(0, 113, 58, 255));
             gccharacter::setorientation(this.kumo, -132);
             gccharacter::setinputstate(this.kumo, scslosifoundation::stringtoidentifier("none"));
             gccharacter::switchanimation(this.kumo, scslosifoundation::stringtoidentifier("d003"), -1);
@@ -177,18 +177,18 @@ class vllg5_puzzle {
                 }
             }
             
-            //Set Tohunga: Hofoh (VL09)
-            gccharacter::settohunga(this.hofoh, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk2a"));
-            gccharacter::setcolors(this.hofoh, rgba(0, 190, 173, 255), rgba(0, 190, 173, 255), rgba( 0, 113, 58, 255));
+            //Set Tohunga: Afa (VL09)
+            gccharacter::settohunga(this.afa, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk2a"));
+            gccharacter::setcolors(this.afa, rgba(0, 113, 58, 255), rgba(0, 113, 58, 255), rgba(0, 190, 173, 255));
             
             
-            //Set Tohunga: Orkahm (VL10)
-            gccharacter::settohunga(this.orkahm, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mkba"));
-            gccharacter::setcolors(this.orkahm, rgba( 0, 113, 58, 255), rgba( 0, 113, 58, 255), rgba(107, 107, 107, 255));
+            //Set Tohunga: Orkan (VL10)
+            gccharacter::settohunga(this.orkan, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk3a"));
+            gccharacter::setcolors(this.orkan, rgba(0, 190, 173, 255), rgba(0, 190, 173, 255), rgba(0, 113, 58, 255));
             if (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin4")) == 0) {
-                gccharacter::setorientation(this.orkahm, -91);
-                gccharacter::setinputstate(this.orkahm, scslosifoundation::stringtoidentifier("none"));
-                gccharacter::switchanimation(this.orkahm, scslosifoundation::stringtoidentifier("hak5"), -1);
+                gccharacter::setorientation(this.orkan, -91);
+                gccharacter::setinputstate(this.orkan, scslosifoundation::stringtoidentifier("none"));
+                gccharacter::switchanimation(this.orkan, scslosifoundation::stringtoidentifier("hak5"), -1);
             }
 
             //Set Tohunga: Treekeeper (VL11)
@@ -198,13 +198,13 @@ class vllg5_puzzle {
             gccharacter::setinputstate(this.keeper, scslosifoundation::stringtoidentifier("none"));
             gccharacter::switchanimation(this.keeper, scslosifoundation::stringtoidentifier("d000"), -1);
             
-            //Set Tohunga: Berata (VL12)
-            gccharacter::settohunga(this.berata, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk7a"));
-            gccharacter::setcolors(this.berata, rgba(156, 210, 0, 255), rgba(156, 210, 0, 255), rgba( 0, 113, 58, 255));
-            gccharacter::setorientation(this.berata, -41);
-            gccharacter::setinputstate(this.berata, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(this.berata, scslosifoundation::stringtoidentifier("d000"), -1);
-            gccharacter::addpart(this.berata, "vl12/sash", 1);
+            //Set Tohunga: Boreas (VL12)
+            gccharacter::settohunga(this.boreas, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk7a"));
+            gccharacter::setcolors(this.boreas, rgba(0, 113, 58, 255), rgba(156, 210, 0, 255), rgba(156, 210, 0, 255));
+            gccharacter::setorientation(this.boreas, -41);
+            gccharacter::setinputstate(this.boreas, scslosifoundation::stringtoidentifier("none"));
+            gccharacter::switchanimation(this.boreas, scslosifoundation::stringtoidentifier("d000"), -1);
+            gccharacter::addpart(this.boreas, "vl12/sash", 1);
             
             //Set Tohunga: Treimo (VL13)
             gccharacter::settohunga(this.treimo, rgba(156, 210, 0, 255), rgba(0, 190, 173, 255), scslosifoundation::stringtoidentifier("mkaa"));
@@ -215,15 +215,14 @@ class vllg5_puzzle {
             
             //Set Tohunga: Oropeki (VL14)
             gccharacter::settohunga(this.oropeki, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk1a"));
-            gccharacter::setcolors(this.oropeki, rgba(156, 210, 0, 255), rgba(156, 210, 0, 255), rgba( 0, 113, 58, 255));
+            gccharacter::setcolors(this.oropeki, rgba(156, 210, 0, 255), rgba(156, 210, 0, 255), rgba(0, 113, 58, 255));
             
-            //Set Tohunga: Ohrag (VL15)
-            gccharacter::settohunga(this.ohrag, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk1a"));
-            gccharacter::setcolors(this.ohrag, rgba(82, 49, 16, 255), rgba(82, 49, 16, 255), rgba(0, 190, 173, 255));
+            //Set Tohunga: Berata (VL15)
+            gccharacter::settohunga(this.berata, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mk1a"));
+            gccharacter::setcolors(this.berata, rgba(82, 49, 16, 255), rgba(82, 49, 16, 255), rgba(0, 190, 173, 255));
            
-            //Set Tohunga: Usuhuya (VL16)
-            gccharacter::settohunga(this.usuhuya, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mkaa"));
-            gccharacter::setcolors(this.usuhuya, rgba( 0, 113, 58, 255), rgba(156, 210, 0, 255), rgba( 0, 113, 58, 255));
+            //Set Tohunga: Shu (VL16)
+            gccharacter::settohunga(this.shu, rgba(0, 113, 58, 255), rgba(0, 113, 58, 255), scslosifoundation::stringtoidentifier("mkaa"));
             
             //Hiding hives & Turaga door
             gcareadirector::hide(scslosifoundation::stringtoidentifier("dor2"), scslosifoundation::stringtoidentifier("vllg"));
@@ -345,19 +344,19 @@ class vllg5_puzzle {
         this.tuuli = null;
         this.kongu = null;
         this.vira = null;
-        this.pala = null;
+        this.taiki = null;
         this.sanso = null;
         this.susuko = null;
         this.tamaru = null;
         this.kumo = null;
-        this.hofoh = null;
-        this.orkahm = null;
+        this.afa = null;
+        this.orkan = null;
         this.keeper = null;
-        this.berata = null;
+        this.boreas = null;
         this.treimo = null;
         this.oropeki = null;
-        this.ohrag = null;
-        this.usuhuya = null;
+        this.berata = null;
+        this.shu = null;
         this.gunactive = null;
         this.diskactive = null;
         return null;
@@ -458,7 +457,7 @@ class vllg5_puzzle {
                     gccharacter::setsplitanimation(this.tamaru, scslosifoundation::stringtoidentifier("hak5"), -1);
                 }
                 else if (param1.args[0] == scslosifoundation::stringtoidentifier("vl10")) {
-                    gccharacter::setsplitanimation(this.orkahm, scslosifoundation::stringtoidentifier("hak5"), -1);
+                    gccharacter::setsplitanimation(this.orkan, scslosifoundation::stringtoidentifier("hak5"), -1);
                 }
             }
         }
