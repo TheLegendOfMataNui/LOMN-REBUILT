@@ -1,6 +1,7 @@
 class le03_puzzle {
     property parent;
     property hook;
+    property shu;
     
     method le03_puzzle(param1) {
         this.parent = param1;
@@ -9,7 +10,6 @@ class le03_puzzle {
     
     method initfull() {
         var hivehandle;
-        var tohunga;
         gcmodeldirector::setnearestmax(7);
         gcareadirector::setnearestmax(7);
         gcareadirector::setfog(-10381892, 0 - 5.0, 0 - 900.0, 0.01);
@@ -30,11 +30,11 @@ class le03_puzzle {
         gchive::setcreaturetype(hivehandle, scslosifoundation::stringtoidentifier("bats"));
         gchive::setspawnrate(hivehandle, 4);
         if (gcsaver::isconditionset(4194304) == 0) {
-            tohunga = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vlgr"), 0);
-            gccharacter::settohunga(tohunga, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), scslosifoundation::stringtoidentifier("mkaa"));
-            gccharacter::setcolors(tohunga, rgba( 0, 113, 58, 255), rgba(156, 210, 0, 255), rgba( 0, 113, 58, 255));
-            gccharacter::setinputstate(tohunga, scslosifoundation::stringtoidentifier("none"));
-            gccharacter::switchanimation(tohunga, scslosifoundation::stringtoidentifier("d003"), -1);
+            //Set Tohunga: Shu (VLGR)
+            this.shu = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("vlgr"), 0);
+            gccharacter::settohunga(this.shu, rgba(0, 113, 58, 255), rgba(0, 113, 58, 255), scslosifoundation::stringtoidentifier("mkaa"));
+            gccharacter::setinputstate(this.shu, scslosifoundation::stringtoidentifier("none"));
+            gccharacter::switchanimation(this.shu, scslosifoundation::stringtoidentifier("d003"), -1);
         }
         else {
             gcmodeldirector::hide(scslosifoundation::stringtoidentifier("vlgr"), 0);
@@ -47,11 +47,7 @@ class le03_puzzle {
             this.hook.cleanupfull();
             this.hook = null;
         }
-        return null;
-    }
-    
-    method exit() {
-        this.parent = null;
+        this.shu = null;
         return null;
     }
     
@@ -64,6 +60,11 @@ class le03_puzzle {
     }
     
     method input(param1) {
+        return null;
+    }
+    
+    method exit() {
+        this.parent = null;
         return null;
     }
 }

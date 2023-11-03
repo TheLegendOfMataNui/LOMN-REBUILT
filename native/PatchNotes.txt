@@ -284,6 +284,9 @@ Level 2 - Gali
 • Removed underwater hives in VLLG due to poor telegraphing 				----		(ShadowDraikana)
 • Fixed bottom platform in MTOP from not being properly extended			----		(ShadowDraikana)
 
+Level 5 - Lewa
+• Replaced several Le-Matoran with canon counterparts; updated others		----		(ShadowDraikana)
+
 Level 6 - Tahu
 • Fixed disc in TA14 from respawning upon reentry if picked up previously	----		(ShadowDraikana)
 • Fixed glyph in TA14 triggering a crash upon reentry if picked up prior	----		(ShadowDraikana)
