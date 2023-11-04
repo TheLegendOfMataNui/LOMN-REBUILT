@@ -25,7 +25,7 @@ class hudmask {
     method cleanupfull() {
         var var1;
         var var2;
-        if (!(this.allmasksarray == null)) {
+        if (this.allmasksarray != null) {
             var1 = this.allmasksarray.__length - 1;
             if (var1 >= 0) {
                 var2 = 0;
@@ -95,7 +95,7 @@ class hudmask {
     
     method selectmask(param1) {
         if (this.showmask) {
-            if (!(this.currentmask == null)) {
+            if (this.currentmask != null) {
                 this.allmasksarray[this.currentmask].animate(0);
                 this.allmasksarray[this.currentmask].hide();
             }
@@ -108,7 +108,7 @@ class hudmask {
     method show() {
         if (globalclass.hud.hidden == 0) {
             if (this.showmask) {
-                if (!(this.currentmask == null)) {
+                if (this.currentmask != null) {
                     this.allmasksarray[this.currentmask].show();
                     this.allmasksarray[this.currentmask].enablealphachannel(1);
                 }
@@ -118,7 +118,7 @@ class hudmask {
     }
     
     method hide() {
-        if (!(this.currentmask == null)) {
+        if (this.currentmask != null) {
             this.allmasksarray[this.currentmask].hide();
         }
         return null;
@@ -141,8 +141,8 @@ class hudmask {
     }
     
     method process(param1) {
-        if (!(this.currentmask == null)) {
-            if (!(this.currentmask == null)) {
+        if (this.currentmask != null) {
+            if (this.currentmask != null) {
                 this.allmasksarray[this.currentmask].process(param1);
             }
         }

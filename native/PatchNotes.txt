@@ -273,7 +273,8 @@ General changes and fixes
 • Fixed grappling hooks having longer ranges when reloading saves			----		(ShadowDraikana)
 • Fixed jank with maps/audio flashing in just before a level intro plays	----		(ShadowDraikana)
 • Added an initial fadein for entering front end, levels, and loading saves ----		(ShadowDraikana)
-• Fixed brief HUD pop-in when entering the front end						----		(ShadowDraikana)
+• Fixed brief HUD pop-in when entering the front end    					----		(ShadowDraikana)
+• Fixed a misalignment issue with life/energy/air HUD meters 				----		(ShadowDraikana)
 
 Level 1 - Onua
 • Fixed two tutorial totems in BECH having their text swapped				----		(ShadowDraikana)
