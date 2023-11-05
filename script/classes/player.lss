@@ -1045,6 +1045,9 @@ class player {
                 this.actor.setcodelife(this.life);
             }
         }
+        if (this.life >= 40) {
+            this.healthlow = 0;
+        }
         return null;
     }
     
@@ -1066,12 +1069,9 @@ class player {
                 this.actor.setcodelife(this.life);
             }
         }
-        if ((this.life == 40) && (this.healthlow == 0)) {
+        if ((this.life <= 40) && (this.healthlow == 0)) {
             gcstaticsoundsptrarray::playtablesound(1030);
             this.healthlow = 1;
-        }
-        else if (this.life >= 40) {
-            this.healthlow = 0;
         }
         return null;
     }
