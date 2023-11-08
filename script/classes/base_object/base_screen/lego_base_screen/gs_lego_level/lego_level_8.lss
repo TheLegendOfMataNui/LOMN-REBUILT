@@ -33,6 +33,8 @@ class lego_level_8 : gs_lego_level {
         this.areas.__append(area);
         area = new lego_area_tura8(this);
         this.areas.__append(area);
+        area = new lego_area_bdge(this);
+        this.areas.__append(area);
         return null;
     }
     

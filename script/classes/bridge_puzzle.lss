@@ -1,5 +1,5 @@
 class bridge_puzzle {
-    property parea;
+    property parent;
     property bridgeparts;
     property lasttouched;
     property fadetimer;
@@ -7,65 +7,67 @@ class bridge_puzzle {
     property firstcollisionwithtp;
     
     method bridge_puzzle(param1) {
-        this.parea = param1;
-        this.firstcollisionwithtp = 1;
+        this.parent = param1;
         return null;
     }
     
     method initfull() {
         var var1;
-        this.shakecamtimer = new lego_timer("shct", 2.0, 0);
         gcareadirector::setnearestmax(50);
+        gcareadirector::setfog(-402183, 0 - 30.0, 0 - 3000.0, 0.05);
+        gclightdirector::setcavelighting(0);
+        this.shakecamtimer = new lego_timer("shct", 2.0, 0);
         this.shakecamtimer.initfull();
-        this.bridgeparts = [ new lego_volatileplatform("pl00", this.parea.name), 
-            new lego_volatileplatform("pl01", this.parea.name), 
-            new lego_volatileplatform("pl02", this.parea.name), 
-            new lego_volatileplatform("pl03", this.parea.name), 
-            new lego_volatileplatform("pl04", this.parea.name), 
-            new lego_volatileplatform("pl05", this.parea.name), 
-            new lego_volatileplatform("pl06", this.parea.name), 
-            new lego_volatileplatform("pl07", this.parea.name), 
-            new lego_volatileplatform("pl08", this.parea.name), 
-            new lego_volatileplatform("pl09", this.parea.name), 
-            new lego_volatileplatform("pl10", this.parea.name), 
-            new lego_volatileplatform("pl11", this.parea.name), 
-            new lego_volatileplatform("pl12", this.parea.name), 
-            new lego_volatileplatform("pl13", this.parea.name), 
-            new lego_volatileplatform("pl14", this.parea.name), 
-            new lego_volatileplatform("pl15", this.parea.name), 
-            new lego_volatileplatform("pl16", this.parea.name), 
-            new lego_volatileplatform("pl17", this.parea.name), 
-            new lego_volatileplatform("pl18", this.parea.name), 
-            new lego_volatileplatform("pl19", this.parea.name), 
-            new lego_volatileplatform("pl20", this.parea.name), 
-            new lego_volatileplatform("pl21", this.parea.name), 
-            new lego_volatileplatform("pl22", this.parea.name), 
-            new lego_volatileplatform("pl23", this.parea.name), 
-            new lego_volatileplatform("pl24", this.parea.name), 
-            new lego_volatileplatform("pl25", this.parea.name), 
-            new lego_volatileplatform("pl26", this.parea.name), 
-            new lego_volatileplatform("pl27", this.parea.name), 
-            new lego_volatileplatform("pl28", this.parea.name), 
-            new lego_volatileplatform("pl29", this.parea.name), 
-            new lego_volatileplatform("pl30", this.parea.name), 
-            new lego_volatileplatform("pl31", this.parea.name), 
-            new lego_volatileplatform("pl32", this.parea.name), 
-            new lego_volatileplatform("pl33", this.parea.name), 
-            new lego_volatileplatform("pl34", this.parea.name), 
-            new lego_volatileplatform("pl35", this.parea.name), 
-            new lego_volatileplatform("pl36", this.parea.name), 
-            new lego_volatileplatform("pl37", this.parea.name), 
-            new lego_volatileplatform("pl38", this.parea.name), 
-            new lego_volatileplatform("pl39", this.parea.name), 
-            new lego_volatileplatform("pl40", this.parea.name), 
-            new lego_volatileplatform("pl41", this.parea.name), 
-            new lego_volatileplatform("pl42", this.parea.name) ];
+        this.bridgeparts = [ new lego_volatileplatform("pl00", this.parent.name), 
+            new lego_volatileplatform("pl01", this.parent.name), 
+            new lego_volatileplatform("pl02", this.parent.name), 
+            new lego_volatileplatform("pl03", this.parent.name), 
+            new lego_volatileplatform("pl04", this.parent.name), 
+            new lego_volatileplatform("pl05", this.parent.name), 
+            new lego_volatileplatform("pl06", this.parent.name), 
+            new lego_volatileplatform("pl07", this.parent.name), 
+            new lego_volatileplatform("pl08", this.parent.name), 
+            new lego_volatileplatform("pl09", this.parent.name), 
+            new lego_volatileplatform("pl10", this.parent.name), 
+            new lego_volatileplatform("pl11", this.parent.name), 
+            new lego_volatileplatform("pl12", this.parent.name), 
+            new lego_volatileplatform("pl13", this.parent.name), 
+            new lego_volatileplatform("pl14", this.parent.name), 
+            new lego_volatileplatform("pl15", this.parent.name), 
+            new lego_volatileplatform("pl16", this.parent.name), 
+            new lego_volatileplatform("pl17", this.parent.name), 
+            new lego_volatileplatform("pl18", this.parent.name), 
+            new lego_volatileplatform("pl19", this.parent.name), 
+            new lego_volatileplatform("pl20", this.parent.name), 
+            new lego_volatileplatform("pl21", this.parent.name), 
+            new lego_volatileplatform("pl22", this.parent.name), 
+            new lego_volatileplatform("pl23", this.parent.name), 
+            new lego_volatileplatform("pl24", this.parent.name), 
+            new lego_volatileplatform("pl25", this.parent.name), 
+            new lego_volatileplatform("pl26", this.parent.name), 
+            new lego_volatileplatform("pl27", this.parent.name), 
+            new lego_volatileplatform("pl28", this.parent.name), 
+            new lego_volatileplatform("pl29", this.parent.name), 
+            new lego_volatileplatform("pl30", this.parent.name), 
+            new lego_volatileplatform("pl31", this.parent.name), 
+            new lego_volatileplatform("pl32", this.parent.name), 
+            new lego_volatileplatform("pl33", this.parent.name), 
+            new lego_volatileplatform("pl34", this.parent.name), 
+            new lego_volatileplatform("pl35", this.parent.name), 
+            new lego_volatileplatform("pl36", this.parent.name), 
+            new lego_volatileplatform("pl37", this.parent.name), 
+            new lego_volatileplatform("pl38", this.parent.name), 
+            new lego_volatileplatform("pl39", this.parent.name), 
+            new lego_volatileplatform("pl40", this.parent.name), 
+            new lego_volatileplatform("pl41", this.parent.name), 
+            new lego_volatileplatform("pl42", this.parent.name) ];
         var1 = 0;
         while ((this.bridgeparts.__length - 1) >= var1) {
             this.bridgeparts[var1].initfull();
             var1 = var1 + 1;
         }
         this.lasttouched = 0;
+        this.firstcollisionwithtp = 1;
         return null;
     }
     
@@ -77,7 +79,6 @@ class bridge_puzzle {
             var1 = var1 + 1;
         }
         this.lasttouched = 0;
-        this.parea.level.cam.setaimode(11);
         return null;
     }
     
@@ -85,27 +86,23 @@ class bridge_puzzle {
         var var1;
         var1 = 0;
         while ((this.bridgeparts.__length - 1) >= var1) {
-            this.bridgeparts[var1].hide();
+            this.bridgeparts[var1].cleanupfull();
             this.bridgeparts[var1] = null;
             var1 = var1 + 1;
         }
         this.bridgeparts = null;
+        this.shakecamtimer.cleanupfull();
         this.shakecamtimer = null;
         this.fadetimer = null;
         this.lasttouched = null;
-        return null;
-    }
-    
-    method exit() {
-        this.parea = null;
         this.firstcollisionwithtp = null;
         return null;
     }
     
-    method input(param1) {
+    method process(param1) {
         return null;
     }
-    
+
     method onevent(param1) {
         var var1;
         var1 = 0;
@@ -120,8 +117,8 @@ class bridge_puzzle {
                 globalclass.level.cam.shakecamera(2.0, 0.08);
                 this.shakecamtimer.reset(0);
                 this.shakecamtimer.start();
-                if (param1.args[0] == scslosifoundation::stringtoidentifier("tpb0")) {
-                    if ((param1.args[1] == 1) && !(this.lasttouched == 1)) {
+                if (param1.args[0] == scslosifoundation::stringtoidentifier("brg0")) {
+                    if ((param1.args[1] == 1) && (this.lasttouched != 1)) {
                         this.bridgeparts[39].touch();
                         this.bridgeparts[37].touch();
                         this.bridgeparts[33].touch();
@@ -134,8 +131,8 @@ class bridge_puzzle {
                 }
                 this.firstcollisionwithtp = 0;
             }
-            if (param1.args[0] == scslosifoundation::stringtoidentifier("tpb1")) {
-                if ((param1.args[1] == 1) && !(this.lasttouched == 2)) {
+            if (param1.args[0] == scslosifoundation::stringtoidentifier("brg1")) {
+                if ((param1.args[1] == 1) && (this.lasttouched != 2)) {
                     this.bridgeparts[1].touch();
                     this.bridgeparts[6].touch();
                     this.bridgeparts[8].touch();
@@ -160,13 +157,13 @@ class bridge_puzzle {
         }
         else if (param1.eventid == 1) {
             if (param1.args[0] == scslosifoundation::stringtoidentifier("cnt1")) {
-                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl05")) && !(this.lasttouched == 3)) {
+                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl05")) && (this.lasttouched != 3)) {
                     this.bridgeparts[0].touch();
                     this.bridgeparts[9].touch();
                     this.bridgeparts[11].touch();
                     this.lasttouched = 3;
                 }
-                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl07")) && !(this.lasttouched == 4)) {
+                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl07")) && (this.lasttouched != 4)) {
                     this.bridgeparts[1].touch();
                     this.bridgeparts[2].touch();
                     this.bridgeparts[12].touch();
@@ -175,24 +172,24 @@ class bridge_puzzle {
                     this.bridgeparts[18].touch();
                     this.lasttouched = 5;
                 }
-                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl15")) && !(this.lasttouched == 6)) {
+                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl15")) && (this.lasttouched != 6)) {
                     this.bridgeparts[9].touch();
                     this.bridgeparts[11].touch();
                     this.bridgeparts[17].touch();
                     this.lasttouched = 6;
                 }
-                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl20")) && !(this.lasttouched == 7)) {
+                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl20")) && (this.lasttouched != 7)) {
                     this.bridgeparts[14].touch();
                     this.lasttouched = 7;
                 }
-                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl25")) && !(this.lasttouched == 8)) {
+                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl25")) && (this.lasttouched != 8)) {
                     this.bridgeparts[21].touch();
                     this.bridgeparts[26].touch();
                     this.bridgeparts[27].touch();
                     this.bridgeparts[32].touch();
                     this.lasttouched = 8;
                 }
-                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl32")) && !(this.lasttouched == 10)) {
+                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl32")) && (this.lasttouched != 10)) {
                     this.bridgeparts[22].touch();
                     this.bridgeparts[24].touch();
                     this.bridgeparts[34].touch();
@@ -201,13 +198,13 @@ class bridge_puzzle {
                     this.bridgeparts[41].touch();
                     this.lasttouched = 9;
                 }
-                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl35")) && !(this.lasttouched == 11)) {
+                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl35")) && (this.lasttouched != 11)) {
                     this.bridgeparts[29].touch();
                     this.bridgeparts[32].touch();
                     this.bridgeparts[39].touch();
                     this.lasttouched = 11;
                 }
-                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl40")) && !(this.lasttouched == 12)) {
+                if ((param1.args[1] == scslosifoundation::stringtoidentifier("pl40")) && (this.lasttouched != 12)) {
                     this.bridgeparts[34].touch();
                     this.bridgeparts[42].touch();
                     this.lasttouched = 12;
@@ -229,18 +226,18 @@ class bridge_puzzle {
             this.bridgeparts[3].touch();
         }
         else if (param1.eventid == 27) {
-            globalclass.player.actor.gotopos(this.parea.enterstartid, this.parea.enterlookid);
-            globalclass.player.unkill();
-            globalclass.player.actor.switchanimation(scslosifoundation::stringtoidentifier("o000"));
-            globalclass.player.actor.setinputstate("ninp");
-            this.parea.level.cam.setaimode(11);
-            gccollisionphysicsgroup::toggletriggerboxentered(scslosifoundation::stringtoidentifier("tb00"), 0);
-            gccollisionphysicsgroup::toggletriggerboxentered(scslosifoundation::stringtoidentifier("tb01"), 0);
+
         }
         return null;
     }
     
-    method process(param1) {
+    method input(param1) {
         return null;
     }
+    
+    method exit() {
+        this.parent = null;
+        return null;
+    }
+    
 }

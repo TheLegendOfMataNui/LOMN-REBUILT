@@ -1,19 +1,16 @@
-class lego_area_bech : gs_lego_area {
+class lego_area_bdge : gs_lego_area {
     property puzzle;
-    property saved;
     
-    method lego_area_bech(param1) {
-        this.saved = 0;
-        this.gs_lego_area("bech", param1, 0, 0);
-        this.puzzle = new beach_puzzle(this);
+    method lego_area_bdge(param1) {
+        this.gs_lego_area("bdge", param1, 0, 0);
+        this.puzzle = new bridge_puzzle(this);
         this.lego_area_initfull();
         return null;
     }
     
     method initfull() {
         this.lego_area_show();
-        this.puzzle.initfull();        
-        globalclass.enemy.killheight = -68;
+        this.puzzle.initfull();
         return null;
     }
     
@@ -26,22 +23,18 @@ class lego_area_bech : gs_lego_area {
     method process(param1) {
         this.puzzle.process(param1);
         return null;
-    }        
-
+    }
+    
     method onevent(param1) {
-        if (this.saved == 0) {
-            BetterSaver::Save();
-            this.saved = 1;
-        }
         this.puzzle.onevent(param1);
         return null;
     }
-        
+    
     method input(param1) {
         this.puzzle.input(param1);
         return null;
     }
-        
+    
     method exit() {
         this.lego_area_cleanupfull();
         if (this.puzzle != null) {

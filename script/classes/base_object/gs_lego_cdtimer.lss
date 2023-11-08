@@ -63,7 +63,7 @@ class gs_lego_cdtimer : base_object {
     }
     
     method cleanupfull() {
-        if (!(this.text == null)) {
+        if (this.text != null) {
             this.text.remove();
             this.text.cleanupfull();
             this.text = null;
@@ -97,11 +97,11 @@ class gs_lego_cdtimer : base_object {
                 }
                 var3 = scslosimath::floor(var2);
                 var4 = scslosimath::floor(this.time);
-                if (!(var3 == var4)) {
+                if (var3 != var4) {
                     gcstaticsoundsptrarray::playtablesound(1087);
                 }
                 if (this.time <= 10.0) {
-                    if (!(var3 == var4)) {
+                    if (var3 != var4) {
                         this.text.hide();
                         this.shown = 0;
                     }
