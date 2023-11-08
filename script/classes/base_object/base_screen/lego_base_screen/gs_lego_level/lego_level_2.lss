@@ -83,11 +83,6 @@ class lego_level_2 : gs_lego_level {
         return null;
     }
     
-    method onevent(param1) {
-        this.lego_level_onevent(param1);
-        return null;
-    }
-    
     method initshort() {
         this.lego_level_initshort();
         globalclass.player.addmask("fake", 0);
@@ -95,4 +90,14 @@ class lego_level_2 : gs_lego_level {
         globalclass.player.addmask("fake", 8);
         return null;
     }
+
+    method cleanupfull() {
+        this.lego_level_cleanupfull();
+        return null;
+    }
+
+    method onevent(param1) {
+        this.lego_level_onevent(param1);
+        return null;
+    }    
 }

@@ -151,6 +151,16 @@ class lego_level_7 : gs_lego_level {
         this.lego_level_initshort();
         return null;
     }
+
+    method cleanupfull() {
+        this.lego_level_cleanupfull();
+        return null;
+    }
+
+    method onevent(param1) {
+        this.lego_level_onevent(param1);
+        return null;
+    }    
     
     method settestforlavacollisions(param1) {
         var var1;
