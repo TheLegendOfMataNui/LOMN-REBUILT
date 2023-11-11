@@ -91,7 +91,7 @@ class mtup3_class {
                 globalclass.bgmusic.play(1);
                 globalclass.player.maskcontrol.changemask(1);
                 //Recalling stored SFX volume and resetting audio levels back to normal on the frame the cutscene ends
-                gcsaver::setsoundvolume(globalclass.level.sfx_volume);
+                gc3dsound::setglobalvolume(globalclass.level.sfx_volume);
             }
         }
         return null;

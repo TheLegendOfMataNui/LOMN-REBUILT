@@ -139,7 +139,7 @@ class lego_level_7 : gs_lego_level {
             globalclass.hud.hide();
             globalclass.hud.fadeoutscreen(0);
             this.sfx_volume = gcsaver::getsoundvolume();
-            gcsaver::setsoundvolume(0);
+            gc3dsound::setglobalvolume(0);
         }
         else {
             globalclass.hud.fadeinscreen();

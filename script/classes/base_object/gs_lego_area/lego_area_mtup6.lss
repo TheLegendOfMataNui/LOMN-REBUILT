@@ -69,7 +69,7 @@ class lego_area_mtup6 : gs_lego_area {
             globalclass.bgmusic.changefilename("Root/Data/sounds/spiderwebambience");
             globalclass.bgmusic.play();
             //Recalling stored SFX volume and resetting audio levels back to normal on the frame the cutscene ends
-            gcsaver::setsoundvolume(globalclass.level.sfx_volume);
+            gc3dsound::setglobalvolume(globalclass.level.sfx_volume);
         }
         return null;
     }

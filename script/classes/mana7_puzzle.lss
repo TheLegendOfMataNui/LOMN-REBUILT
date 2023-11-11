@@ -42,7 +42,8 @@ class mana7_puzzle {
             if ((bettersaver::getbooleanvalue(101) == 1) && (this.run_once == 0)) {
                 globalclass.bgmusic.changefilename("Root/Data/sounds/MusicMakutaTheme");
                 globalclass.bgmusic.play(1);				
-                gcsaver::setsoundvolume(globalclass.level.sfx_volume);
+                globalclass.hud.show();
+                gc3dsound::setglobalvolume(globalclass.level.sfx_volume);
                 this.run_once = 1;
             }
 		}	

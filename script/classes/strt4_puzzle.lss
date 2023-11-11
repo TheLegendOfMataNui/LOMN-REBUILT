@@ -134,7 +134,7 @@ class strt4_puzzle {
                 globalclass.bgmusic.play();
                 globalclass.player.maskcontrol.changemask(2);
                 //Recalling stored SFX volume and resetting audio levels back to normal on the frame the cutscene ends
-                gcsaver::setsoundvolume(globalclass.level.sfx_volume);
+                gc3dsound::setglobalvolume(globalclass.level.sfx_volume);
             }
         }
         return null;
