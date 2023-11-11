@@ -1,16 +1,62 @@
 class tablecopysound {
     property handle;
     property index;
-    
-    method tablecopysound(soundtable_id) {
+    property filename;
+    property soundtype;
+    property priority;
+    property streamed;
+
+    //USAGE ARGUMENTS:
+    //soundtable_id = use an integer to specify soundtable, set to null to use manual sound creation
+    //filename = string name of the sound in the sounds.blk you want to use, can specify the path or just the file
+    //soundtype = integer 0-3, 0 being None, 1 being Ambient, 2 being Pan, and 3 being 3D 
+    //priority = in all known cases, set to 65535
+    //streamed = bool, has something to do with d3d buffer allocation.  0 allocates buffers, 1 does not
+    method tablecopysound(soundtable_id, filename, soundtype, priority, streamed) {
         this.index = soundtable_id;
-        this.handle = gcstaticsoundsptrarray::gettablesoundcopy(soundtable_id);
-        if (this.handle == null) {
+        if (soundtable_id == null) {
+            this.handle = gc3dsound::create();
+            this.filename = filename;
+            if (soundtype == null) { 
+                this.soundtype = 0;
+            }
+            else {
+                this.soundtype = soundtype;
+            }
+            this.priority = priority;
+            if (streamed == null) {
+                this.streamed = 0;
+            }
+            else {
+                this.streamed = streamed;
+            }
+        }
+        else {
+            this.handle = gcstaticsoundsptrarray::gettablesoundcopy(soundtable_id);
+        }
+        if ((this.handle == null) && (this.index != null)) {
             debug::print(("ERROR --- can not create << " + __tostring(soundtable_id)) + " >> sound returned nothing");
         }
         return null;
     }
     
+    method initfull() {
+        if (this.index == null) {
+            gc3dsound::initthissound(this.handle, this.filename, this.soundtype, this.priority, this.streamed);
+        }
+        else {
+            debug::print("Oh no baby what is you doing?? Initfull is only for manual sound creation!");            
+        }
+        return null;
+    }
+    
+    //DEFUNCT, command will be removed later
+    //method setpresetenvironmenteax(param1) {
+    //    gc3dsound::setpresetenvironmenteax(param1);
+    //    return null;
+    //}
+    
+    //Argument MUST be an identifier.  Use scslosifoundation::stringtoidentifier(char_string_here) when passing to method
     method synctocharacter(char_id) {
         if (this.handle != null) {
             gc3dsound::synctocharacter(this.handle, char_id);
@@ -18,6 +64,7 @@ class tablecopysound {
         return null;
     }
     
+    //Argument MUST be an identifier.  Use scslosifoundation::stringtoidentifier(obj_string_here) when passing to method
     method synctoobject(obj_id) {
         if (this.handle != null) {
             gc3dsound::synctoobject(this.handle, obj_id);
@@ -25,6 +72,7 @@ class tablecopysound {
         return null;
     }
     
+    //Argument MUST be an identifier.  Use scslosifoundation::stringtoidentifier(projectile_string_here) when passing to method
     method synctoprojectile(projectile_id) {
         if (this.handle != null) {
             gc3dsound::synctoprojectile(this.handle, projectile_id);
@@ -32,12 +80,19 @@ class tablecopysound {
         return null;
     }
     
+    //USAGE ARGUMENTS (bool options):
+    //0 = Plays the sound once
+    //1 = Loops the sound continuously
+    //null or no argument defaults to 0, greater than 1 defaults to 1
     method play(bool) {
         if (this.handle != null) {
             if (bool == null) {
                 bool = 0;
             }
-            if (this.handle == null) {
+            else if (bool > 1) {
+                bool = 1;
+            }
+            if ((this.handle == null) && (this.index != null)) {
                 debug::print(("ERROR --- CAN'T Play sound << " + __tostring(this.index)) + " >> handle is nothing");
             }
             else {
@@ -47,14 +102,21 @@ class tablecopysound {
         return null;
     }
     
-    method stop(unused) {
+    method isplaying() {
+        if (this.handle != null) {
+            return gc3dsound::isplaying(this.handle);
+        }
+        return null;
+    }
+    
+    method stop() {
         if (this.handle != null) {
             gc3dsound::stop(this.handle);
         }
         return null;
     }
     
-    method stopreset(unused) {
+    method stopreset() {
         if (this.handle != null) {
             gc3dsound::stopreset(this.handle);
         }
@@ -64,36 +126,57 @@ class tablecopysound {
     method cleanupfull() {
         if (this.handle != null) {
             this.stop();
-            gcstaticsoundsptrarray::checkintablesoundcopy(this.handle);
+            gc3dsound::cleanupbeforekill(this.handle);
+            //checkintablesoundcopy can be called, but it literally redirects into cleanupBeforeKill anyway.  Command marked for removal
+            //gcstaticsoundsptrarray::checkintablesoundcopy(this.handle);
             this.handle = null;
+            this.index = null;
+            this.filename = null;
+            this.soundtype = null;
+            this.priority = null;
+            this.streamed = null;
         }
         return null;
     }
     
-    method setplayoffset(param1) {
+    method setplayoffset(float) {
         if (this.handle != null) {
-            gc3dsound::setplayoffset(this.handle, param1);
+            gc3dsound::setplayoffset(this.handle, float);
         }
         return null;
     }
     
-    method setvolume(param1) {
+    method setvolume(volume_float) {
         if (this.handle != null) {
-            gc3dsound::setvolume(this.handle, param1);
+            gc3dsound::setvolume(this.handle, volume_float);
         }
         return null;
     }
     
-    method setpan(param1) {
+    method getvolume() {
         if (this.handle != null) {
-            gc3dsound::setpan(this.handle, param1);
+            return gc3dsound::getvolume(this.handle);
         }
         return null;
     }
     
-    method setfrequency(param1) {
+    method setpan(long) {
         if (this.handle != null) {
-            gc3dsound::setfrequency(this.handle, param1);
+            gc3dsound::setpan(this.handle, long);
+        }
+        return null;
+    }
+    
+    method getpan() {
+        if (this.handle != null) {
+            return gc3dsound::getpan(this.handle);
+        }
+        return null;
+    }
+    
+    method setfrequency(long) {
+        if (this.handle != null) {
+            gc3dsound::setfrequency(this.handle, long);
         }
         return null;
     }
@@ -105,58 +188,225 @@ class tablecopysound {
         return null;
     }
     
-    method setposition(param1, param2, param3) {
+    method setposition(x_coordinate, y_coordinate, z_coordinate) {
         if (this.handle != null) {
-            gc3dsound::setposition(this.handle, param1, param2, param3);
+            gc3dsound::setposition(this.handle, x_coordinate, y_coordinate, z_coordinate);
+        }
+        return null;
+    }
+
+    //Command currently non-functional due to needing a variant type patch 
+    //USAGE ARGUMENTS (3 integer options):
+    //0 = Get X coordinate
+    //1 = Get Y coordinate
+    //2 = Get Z coordinate
+    //method getposition(vector_component_enum) {
+    //    if ((this.handle != null) && (vector_component_enum <= 2)) {
+    //        return gc3dsound::getpositioncomponent(this.handle, vector_component_enum);
+    //    }
+    //    else {
+    //        debug::print("WARNING: Invalid argument passed to method, cannot proceed!  Please see comments for valid arguments");
+    //    }
+    //    return null;
+    //}
+    
+    //Still unsure what this does as present, but keeping the command available anyway
+    method setoldposition(x_coordinate, y_coordinate, z_coordinate) {
+        if (this.handle != null) {
+            gc3dsound::setoldposition(this.handle, x_coordinate, y_coordinate, z_coordinate);
+        }
+        return null;
+    }
+
+    method setmindistance(float) {
+        if (this.handle != null) {
+            gc3dsound::setmindistance(this.handle, float);
         }
         return null;
     }
     
-    method setmindistance(param1) {
+    method getmindistance() {
         if (this.handle != null) {
-            gc3dsound::setmindistance(this.handle, param1);
+            return gc3dsound::setmindistance(this.handle);
         }
         return null;
     }
     
-    method setmaxdistance(param1) {
+    method setmaxdistance(float) {
         if (this.handle != null) {
-            gc3dsound::setmaxdistance(this.handle, param1);
+            gc3dsound::setmaxdistance(this.handle, float);
         }
         return null;
     }
     
-    method setconeorientation(param1, param2, param3) {
+    method getmaxdistance() {
         if (this.handle != null) {
-            gc3dsound::setconeorientation(this.handle, param1, param2, param3);
+            return gc3dsound::getmaxdistance(this.handle);
         }
         return null;
     }
     
-    method setconeangles(param1, param2) {
+    method setconeorientation(x_orientation, y_orientation, z_orientation) {
         if (this.handle != null) {
-            gc3dsound::setconeangles(this.handle, param1, param2);
+            gc3dsound::setconeorientation(this.handle, x_orientation, y_orientation, z_orientation);
         }
         return null;
     }
     
-    method setconeoutsidevolume(param1) {
+    //Command currently non-functional due to needing a variant type patch 
+    //USAGE ARGUMENTS (3 integer options):
+    //0 = Get X orientation
+    //1 = Get Y orientation
+    //2 = Get Z orientation
+    //method getconeorientation(vector_component_enum) {
+    //    if ((this.handle != null) && (vector_component_enum <= 2)) {
+    //        return gc3dsound::getconeorientationcomponent(this.handle, vector_component_enum);
+    //    }
+    //    else {
+    //        debug::print("WARNING: Invalid argument passed to method, cannot proceed!  Please see comments for valid arguments");
+    //    }
+    //    return null;
+    //}
+    
+    method setconeangles(inside_angle, outside_angle) {
         if (this.handle != null) {
-            gc3dsound::setconeoutsidevolume(this.handle, param1);
+            gc3dsound::setconeangles(this.handle, inside_angle, outside_angle);
         }
         return null;
     }
     
-    method setlistenerrollofffactor(param1) {
-        if (this.handle != null) {
-            gc3dsound::setlistenerrollofffactor(param1);
+    //USAGE ARGUMENTS (bool options):
+    //0 = Inside angle
+    //1 = Outside angle
+    method getconeangle(bool) {
+        if ((this.handle != null) && (bool <= 1)) {
+            return gc3dsound::getconeangle(this.handle, bool);
+        }
+        else {
+            debug::print("WARNING: Invalid argument passed to method, cannot proceed!  Please see comments for valid arguments");
         }
         return null;
     }
     
-    method drifttovolume(param1, param2) {
+    method setconeoutsidevolume(volume_int) {
         if (this.handle != null) {
-            gc3dsound::drifttovolume(this.handle, param1, param2);
+            gc3dsound::setconeoutsidevolume(this.handle, volume_int);
+        }
+        return null;
+    }
+    
+    method getconeoutsidevolume() {
+        if (this.handle != null) {
+            return gc3dsound::getconeoutsidevolume(this.handle);
+        }
+        return null;
+    }
+    
+    method setlistenerdistancefactor(float) {
+        if (this.handle != null) {
+            gc3dsound::setlistenerdistancefactor(float);
+        }
+        return null;
+    }
+    
+    method getlistenerdistancefactor() {
+        if (this.handle != null) {
+            return gc3dsound::getlistenerdistancefactor();
+        }
+        return null;
+    }
+    
+    method setlistenerdopplerfactor(float) {
+        if (this.handle != null) {
+            gc3dsound::setlistenerdopplerfactor(float);
+        }
+        return null;
+    }
+    
+    method getlistenerdopplerfactor() {
+        if (this.handle != null) {
+            return gc3dsound::getlistenerdopplerfactor();
+        }
+        return null;
+    }
+    
+    method setlistenerrollofffactor(float) {
+        if (this.handle != null) {
+            gc3dsound::setlistenerrollofffactor(float);
+        }
+        return null;
+    }
+    
+    method getlistenerrollofffactor() {
+        if (this.handle != null) {
+            return gc3dsound::getlistenerrollofffactor();
+        }
+        return null;
+    }
+    
+    //Command currently non-functional due to needing a variant type patch 
+    //USAGE ARGUMENTS (3 integer options):
+    //0 = Get X
+    //1 = Get Y
+    //2 = Get Z
+    //method getlistenerfrontcomponent(vector_component_enum) {
+    //    if ((this.handle != null) && (vector_component_enum <= 2)) {
+    //        return gc3dsound::getlistenerfrontcomponent(vector_component_enum);
+    //    }
+    //    else {
+    //        debug::print("WARNING: Invalid argument passed to method, cannot proceed!  Please see comments for valid arguments");
+    //    }
+    //    return null;
+    //}
+    
+    //Command currently non-functional due to needing a variant type patch 
+    //USAGE ARGUMENTS (3 integer options):
+    //0 = Get X
+    //1 = Get Y
+    //2 = Get Z
+    //method getlistenerupcomponent(vector_component_enum) {
+    //    if ((this.handle != null) && (vector_component_enum <= 2)) {
+    //        return gc3dsound::getlistenerupcomponent(vector_component_enum);
+    //    }
+    //    else {
+    //        debug::print("WARNING: Invalid argument passed to method, cannot proceed!  Please see comments for valid arguments");
+    //    }
+    //    return null;
+    //}
+    
+    //Command currently non-functional due to needing a variant type patch 
+    //USAGE ARGUMENTS (3 integer options):
+    //0 = Get X
+    //1 = Get Y
+    //2 = Get Z
+    //method getlistenervelocitycomponent(vector_component_enum) {
+    //    if ((this.handle != null) && (vector_component_enum <= 2)) {
+    //        return gc3dsound::getlistenervelocitycomponent(vector_component_enum);
+    //    }
+    //    else {
+    //        debug::print("WARNING: Invalid argument passed to method, cannot proceed!  Please see comments for valid arguments");
+    //    }
+    //    return null;
+    //}
+    
+    //Command currently non-functional due to needing a variant type patch 
+    //USAGE ARGUMENTS (3 integer options):
+    //0 = Get X
+    //1 = Get Y
+    //2 = Get Z
+    //method getvelocity(vector_component_enum) {
+    //    if ((this.handle != null) && (vector_component_enum <= 2)) {
+    //        return gc3dsound::getvelocitycomponent(this.handle, vector_component_enum);
+    //    }
+    //    else {
+    //        debug::print("WARNING: Invalid argument passed to method, cannot proceed!  Please see comments for valid arguments");
+    //    }
+    //    return null;
+    //}
+    
+    method drifttovolume(target_volume, drift_time_seconds) {
+        if (this.handle != null) {
+            gc3dsound::drifttovolume(this.handle, target_volume, drift_time_seconds);
         }
         return null;
     }

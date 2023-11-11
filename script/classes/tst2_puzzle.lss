@@ -3,6 +3,8 @@ class tst2_puzzle {
     property locky;
     property platform1;
     property platform2;
+    property test_sound;
+    property test_value;
     
     method tst2_puzzle(param1) {
         this.parent = param1;
@@ -27,6 +29,14 @@ class tst2_puzzle {
         this.platform2 = new lego_moveableobject("plt2");
         this.platform2.initfull();
         this.platform2.settweakable();
+
+        //sound creation test
+        this.test_sound = new tablecopysound(null, "beachambience3d", 1, 65535, 1);
+        this.test_sound.initfull();
+        this.test_sound.play();
+        if (this.test_sound.isplaying() == 1) {
+            debug::print("Test sound is playing");
+        }
         return null;
     }
     
@@ -42,6 +52,10 @@ class tst2_puzzle {
         if (this.platform2 != null) {
             this.platform2.cleanupfull();
             this.platform2 = null;
+        }
+        if (this.test_sound != null) {
+            this.test_sound.cleanupfull();
+            this.test_sound = null;
         }
         return null;
     }
