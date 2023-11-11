@@ -7,7 +7,7 @@ class player {
     property ammo;
     property actor;
     property actorid;
-    property draintimer;
+    property energydraintimer;
     property grapplinghooksetup;
     property spritedamageamount;
     property maskcontrol;
@@ -23,7 +23,6 @@ class player {
     property splooshplayed;
     property submerged;
     property maskon;
-    property drowningonland;
     property underwater;
     property airshown;
     property healthlow;
@@ -44,6 +43,7 @@ class player {
     property spawnedunderwater;
     property disablerespawn;
     property allowidleanim;
+    property airdraintimer;
     
     method player() {
         return null;
@@ -59,7 +59,7 @@ class player {
         this.tokens = 0;
         this.actor = null;
         this.actorid = null;
-        this.draintimer = 0.0;
+        this.energydraintimer = 0.0;
         this.grapplinghooksetup = 0;
         this.spritedamageamount = 5;
         this.gotglyph = 0;
@@ -72,7 +72,6 @@ class player {
         this.splooshplayed = 0;
         this.submerged = 0;
         this.maskon = 0;
-        this.drowningonland = 0;
         this.underwater = 0;
         this.airshown = 0;
         this.healthlow = 0;
@@ -88,6 +87,7 @@ class player {
         this.cinematic_delay = 0;
         this.disablerespawn = 0;
         this.allowidleanim = 1;
+        this.airdraintimer = 0.0;
         return null;
     }
     
@@ -96,9 +96,10 @@ class player {
         this.energy = this.maxenergy;
         this.air = this.maxair;
         this.tokens = 0;
-        this.draintimer = 0.0;
+        this.energydraintimer = 0.0;
         this.grapplinghooksetup = 0;
         this.maskcontrol.initshort();
+        this.airdraintimer = 0.0;
         return null;
     }
     
@@ -124,7 +125,7 @@ class player {
             this.actor = null;
         }
         this.actorid = null;
-        this.draintimer = null;
+        this.energydraintimer = null;
         this.grapplinghooksetup = null;
         this.spritedamageamount = null;
         if (this.maskcontrol != null) {
@@ -150,6 +151,7 @@ class player {
         this.spawnedunderwater = null;
         this.disablerespawn = null;
         this.allowidleanim = null;
+        this.airdraintimer = null;
         return null;
     }
     
@@ -251,7 +253,10 @@ class player {
         if (this.maskcontrol.isactive()) {
             this.drainpower(param1);
         }
-        if ((this.submerged == 1) || (this.drowningonland == 1)) {
+        if ((this.submerged == 1) && (this.maskon == 0)) {
+            this.drainair(param1);
+        }
+        if ((this.submerged == 0) && (this.maskon == 1)) {
             this.drainair(param1);
         }
         //if (this.draggercontroller.active == 1) {
@@ -305,28 +310,28 @@ class player {
                 }
             }
             else if (param1.eventid == 54) {
-                if (param1.args[0] == 1) {                   
+                var dive_underwater = (this.actor.getcurrentanimationid() == scslosifoundation::stringtoidentifier("g047"));                
+                if ((param1.args[0] == 1) || (dive_underwater)) {                   
+                    debug::print(scslosifoundation::identifiertostring(this.actor.getcurrentanimationid()));
                     this.submerged = 1;
                     this.canshootdragger(0);
-                    if (this.maskon == 0) {
-                        this.showair(1);
-                        this.airshown = 1;
-                    }
                     if ((this.splooshplayed == 0) && (this.actorid != "gali") && (this.actorid != "tahu")) {                     
                         gcstaticsoundsptrarray::playtablesound(1092);
                         this.splooshplayed = 1;
                         debug::print("SPLOOSH!");
                         this.underwater = 1;
                         this.isswimming();
+                        this.showair(1);
                     }
                 }
                 else if (param1.args[0] == 0) {                    
                     this.submerged = 0;
-                    this.addair(this.maxair);
                     this.canshootdragger(1);
-                    if (this.maskon == 0) {
+                    if ((this.airshown == 1) && (this.maskon == 0)) {
                         this.showair(0);
-                        this.airshown = 0;
+                        if (this.air < 60) {
+                            this.addair(this.maxair);
+                        }
                     }
                     if (this.splooshplayed) {
                         this.splooshplayed = 0;    
@@ -336,22 +341,26 @@ class player {
                 }
             }
             else if (param1.eventid == 44) {              
-                if ((this.maskon == 1) && (this.submerged == 1)) {
+                var sweem = (this.actor.getcurrentanimationid() != scslosifoundation::stringtoidentifier("g036"));                
+                var jump_stall = (this.actor.getcurrentanimationid() != scslosifoundation::stringtoidentifier("g021"));
+                if ((this.maskon == 1) && (this.submerged == 1) && (this.air < 60) && (jump_stall)) {
                     this.addair(this.maxair);
-                    //debug::print("Yes");
+                    debug::print("Yes");
                 }               
-                else if ((this.maskon == 1) && (this.submerged == 0)) {
-                    this.drowningonland = 1;
+                else if ((this.maskon == 1) && (this.submerged == 0)  && (this.airshown == 0)) {
                     this.showair(1);
-                    this.airshown = 1;
-                    //debug::print("Nono zone");
+                    debug::print("Nono zone");
                 }                
-                else if ((this.maskon == 0) && (this.submerged == 0)) {
-                    this.drowningonland = 0;
-                    this.addair(this.maxair);
+                else if ((this.maskon == 0) && (this.submerged == 0) && (this.air <= 60) && (this.airshown == 1)) {
+                    if (this.air < 60) {
+                        this.addair(this.maxair);
+                    }
                     this.showair(0);
-                    this.airshown = 0;
-                    //debug::print("Done the do");
+                    debug::print("Done the dew");
+                }
+                else if ((this.submerged == 1) && (sweem) && (this.airshown == 0)) {
+                    this.showair(1);
+                    debug::print("This event is so cursed I don't know what the fuck is happening anymore");
                 }
             }          
             else if (param1.eventid == 15) {
@@ -907,14 +916,14 @@ class player {
     }
     
     method drainpower(param1) {
-        this.draintimer = this.draintimer + param1.deltatime;
+        this.energydraintimer = this.energydraintimer + param1.deltatime;
         if (this.energy <= 0) {
             if (this.maskcontrol.isactive() == 1) {
                 this.maskcontrol.toggleactive();
             }
         }
-        else if (this.draintimer >= 1.0) {
-            this.draintimer = 0.0;
+        else if (this.energydraintimer >= 1.0) {
+            this.energydraintimer = 0.0;
             if (this.maskcontrol.isactive() == 1) {
                 this.removeenergy(this.maskcontrol.getdrainrate());
             }
@@ -923,9 +932,9 @@ class player {
     }
     
     method drainair(param1) {
-        this.draintimer = this.draintimer + param1.deltatime;
-        if (this.draintimer >= 1.0) {
-            this.draintimer = 0.0;
+        this.airdraintimer = this.airdraintimer + param1.deltatime;
+        if (this.airdraintimer >= 1.0) {
+            this.airdraintimer = 0.0;
             if (this.air >= 0) {
                 this.removeair(5);
             }
@@ -1358,12 +1367,12 @@ class player {
         return null;
     }
 
-    method showair(param1) {
-        if ((param1 == 1) && (this.airshown == 0)) {
+    method showair(bool) {
+        if ((bool == 1) && (this.airshown == 0)) {
             globalclass.hud.thingy.slideair(1);
             this.airshown = 1;
         }
-        else if ((param1 == 0) && (this.airshown == 1)) {
+        else if ((bool == 0) && (this.airshown == 1)) {
             globalclass.hud.thingy.slideair(0);
             this.airshown = 0;
         }

@@ -276,6 +276,7 @@ General changes and fixes
 • Fixed brief HUD pop-in when entering the front end    					----		(ShadowDraikana)
 • Fixed a misalignment issue with life/energy/air HUD meters 				----		(ShadowDraikana)
 • Fixed an oversight causing the low health sound to only play once			----		(ShadowDraikana)
+• Fixed all air drain consistency and visual issues with the air meter		----		(ShadowDraikana)
 
 Level 1 - Onua
 • Fixed two tutorial totems in BECH having their text swapped				----		(ShadowDraikana)
