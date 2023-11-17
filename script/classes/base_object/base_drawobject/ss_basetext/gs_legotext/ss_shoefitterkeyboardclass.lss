@@ -15,9 +15,11 @@ class ss_shoefitterkeyboardclass : gs_legotext {
     }
     
     method ss_shoefitterkeyboardcleanupfull() {
-        this.setstring("");
-        this.hide();
-        this.remove();
+        if (this.onscreen) {
+            this.setstring("");
+            this.hide();
+            this.remove();
+        }
         this.cleanupfull();
         return null;
     }
@@ -30,7 +32,7 @@ class ss_shoefitterkeyboardclass : gs_legotext {
                 this.stringsize = this.stringsize - 1;
                 this.setstring(scslosistringfuncs::left(this.string, this.stringsize));
             }
-            else if (!(this.string == null)) {
+            else if (this.string != null) {
                 this.setstring("");
             }
         }

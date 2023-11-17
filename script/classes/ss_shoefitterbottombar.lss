@@ -303,17 +303,21 @@ class ss_shoefitterbottombar {
         var var1;
         var var2;
         var var3;
-        var1 = this.flagarray.__length - 1;
-        var2 = 0;
-        while (var1 >= var2) {
-            this.clearflag(this.flagarray.__length - 1);
-            var2 = var2 + 1;
+        if (__isarray(this.flagarray)) { 
+            var1 = this.flagarray.__length - 1;
+            var2 = 0;
+            while (var1 >= var2) {
+                this.clearflag(var1);
+                var2 = var2 + 1;
+            }
         }
-        var3 = this.soundarray.__length - 1;
-        var2 = 0;
-        while (var3 >= var2) {
-            this.clearsound(this.soundarray.__length - 1);
-            var2 = var2 + 1;
+        if (__isarray(this.soundarray)) {
+            var3 = this.soundarray.__length - 1;
+            var2 = 0;
+            while (var3 >= var2) {
+                this.clearsound(var3);
+                var2 = var2 + 1;
+            }
         }
         return null;
     }

@@ -82,12 +82,15 @@ class ss_shoefittersidebar {
     method cleanupfull() {
         this.definingargs = 0;
         this.background.hide();
-        this.title.hide();
+        if (this.title.onscreen) {        
+            this.title.hide();
+            this.title.remove();
+        }
         if (this.flagtypearray.items[0].onscreen) {
             this.flagtypearray.hide();
+            this.flagtypearray.remove();
         }
-        this.title.remove();
-        this.flagtypearray.remove();
+        this.background.cleanupfull();
         this.title.cleanupfull();
         this.flagtypearray.cleanupfull();
         this.menu.cleanupfull();
