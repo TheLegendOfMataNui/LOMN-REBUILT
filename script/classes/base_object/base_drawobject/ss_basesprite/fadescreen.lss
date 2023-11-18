@@ -7,28 +7,16 @@ class fadescreen : ss_basesprite {
     property blnshow;
     property blnhide;
     
-    method fadescreen(param1, param2) {
-        var var1;
-        if (param1 == null) {
-            param1 = 0;
-        }
-        if (param1 == 0) {
-            var1 = "Root/data/art/hud/Black";
-        }
-        else if (param1 == 1) {
-            var1 = "Root/data/art/hud/White";
-        }
-        else if (param1 == 2) {
-            var1 = "Root/data/art/hud/Blue";
-        }
-        this.faderectangle = new ss_basesprite(var1, 0, 0, 0, screenx, screeny, 0);
-        this.faderate = param2;
+    method fadescreen() {
         return null;
     }
     
     method initfull() {
+        this.faderectangle = new ss_basesprite("Root/data/art/hud/Black", 0, 0, 0, screenx, screeny, 0);
         this.faderectangle.initfull();
         this.initshort();
+        //Setting this to a default of 1.0
+        this.faderate = 1.0;
         return null;
     }
     
@@ -55,6 +43,8 @@ class fadescreen : ss_basesprite {
     
     method cleanupfull() {
         if (this.faderectangle != null) {
+            this.faderectangle.hide();
+            this.faderectangle.remove();
             this.faderectangle.cleanupfull();
             this.faderectangle = null;
         }

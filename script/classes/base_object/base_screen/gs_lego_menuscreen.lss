@@ -34,7 +34,7 @@ class gs_lego_menuscreen : base_screen {
         this.screentimer.initfull();
         this.fadetimer = new lego_timer("msfz", 1.7, 0);
         this.fadetimer.initfull();
-        this.menufader = new fadescreen(0, 1.7);
+        this.menufader = new fadescreen();
         this.menufader.initfull();
         this.skipintro = 0;
         this.nextscreen = 0;
@@ -143,6 +143,14 @@ class gs_lego_menuscreen : base_screen {
             this.screentext.hide();
             this.screentext.cleanupfull();
             this.screentext = null;
+        }
+        if (this.screentimer != null) {
+            this.screentimer.cleanupfull();
+            this.screentimer = null;
+        }
+        if (this.fadetimer != null) {
+            this.fadetimer.cleanupfull();
+            this.fadetimer = null;
         }
         return null;
     }
