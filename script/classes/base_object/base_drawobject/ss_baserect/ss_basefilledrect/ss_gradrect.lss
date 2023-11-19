@@ -4,29 +4,31 @@ class ss_gradrect : ss_basefilledrect {
     property bottomleftcolor;
     property bottomrightcolor;
     
-    method ss_gradrect(param1, param2, param3, param4, param5, param6, param7, param8, param9) {
-        this.ss_basefilledrect(param1, param2, param3, param4, param5);
-        this.topleftcolor = param6;
-        if (!(param7 == null)) {
-            this.bottomleftcolor = param7;
+    method ss_gradrect(leftSide, topSide, rightSide, bottomSide, z_depth, topLeftVertex, bottomLeftVertex, topRightVertex, bottomRightVertex) {
+        this.ss_basefilledrect(leftSide, topSide, rightSide, bottomSide, z_depth);
+        if (topLeftVertex != null) {
+            this.topleftcolor = topLeftVertex;
+        }
+        else {
+            this.topleftcolor = rgba(0, 0, 0, 255);
+        }
+        if (bottomLeftVertex != null) {
+            this.bottomleftcolor = bottomLeftVertex;
         }
         else {
             this.bottomleftcolor = this.topleftcolor;
         }
-        if (!(param8 == null)) {
-            this.toprightcolor = param8;
+        if (topRightVertex != null) {
+            this.toprightcolor = topRightVertex;
         }
         else {
             this.toprightcolor = this.topleftcolor;
         }
-        if (!(param9 == null)) {
-            this.bottomrightcolor = param9;
-        }
-        else if (!(param7 == null)) {
-            this.bottomrightcolor = this.bottomleftcolor;
+        if (bottomRightVertex != null) {
+            this.bottomrightcolor = bottomRightVertex;
         }
         else {
-            this.bottomrightcolor = this.toprightcolor;
+            this.bottomrightcolor = this.topleftcolor;
         }
         return null;
     }
@@ -42,18 +44,18 @@ class ss_gradrect : ss_basefilledrect {
         return null;
     }
     
-    method changegrad(param1, param2) {
-        if (param1 == 0) {
-            gcfilledrectangle::setvertexcolor(this.rect, 0, param2);
+    method changegrad(vertex, new_rgba) {
+        if (vertex == 0) {
+            gcfilledrectangle::setvertexcolor(this.rect, 0, new_rgba);
         }
-        else if (param1 == 1) {
-            gcfilledrectangle::setvertexcolor(this.rect, 1, param2);
+        else if (vertex == 1) {
+            gcfilledrectangle::setvertexcolor(this.rect, 1, new_rgba);
         }
-        else if (param1 == 2) {
-            gcfilledrectangle::setvertexcolor(this.rect, 2, param2);
+        else if (vertex == 2) {
+            gcfilledrectangle::setvertexcolor(this.rect, 2, new_rgba);
         }
-        else if (param1 == 3) {
-            gcfilledrectangle::setvertexcolor(this.rect, 3, param2);
+        else if (vertex == 3) {
+            gcfilledrectangle::setvertexcolor(this.rect, 3, new_rgba);
         }
         return null;
     }

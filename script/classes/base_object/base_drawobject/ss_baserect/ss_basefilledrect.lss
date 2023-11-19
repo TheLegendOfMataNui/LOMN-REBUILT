@@ -1,7 +1,7 @@
 class ss_basefilledrect : ss_baserect {
     
-    method ss_basefilledrect(param1, param2, param3, param4, param5, param6) {
-        this.ss_baserect(param1, param2, param3, param4, param5, param6);
+    method ss_basefilledrect(leftSide, topSide, rightSide, bottomSide, z_depth, set_rgba) {
+        this.ss_baserect(leftSide, topSide, rightSide, bottomSide, z_depth, set_rgba);
         return null;
     }
     
@@ -23,77 +23,77 @@ class ss_basefilledrect : ss_baserect {
         return null;
     }
     
-    method setpos(param1, param2, param3, param4) {
-        if (!(this.x1 == null)) {
-            this.x1 = param1;
+    method setpos(leftSide, topSide, rightSide, bottomSide) {
+        if (this.x1 != null) {
+            this.x1 = leftSide;
         }
-        if (!(this.y1 == null)) {
-            this.y1 = param2;
+        if (this.y1 != null) {
+            this.y1 = topSide;
         }
-        if (!(this.x2 == null)) {
-            this.x2 = param3;
+        if (this.x2 != null) {
+            this.x2 = rightSide;
         }
-        if (!(this.y2 == null)) {
-            this.y2 = param4;
+        if (this.y2 != null) {
+            this.y2 = bottomSide;
         }
         gcfilledrectangle::setposition(this.rect, this.x1, this.y1, this.x2, this.y2);
         return null;
     }
     
-    method setzvalue(param1) {
-        if (!(param1 == null)) {
-            this.z = param1;
+    method setzvalue(z_depth) {
+        if (z_depth != null) {
+            this.z = z_depth;
         }
         gcfilledrectangle::setzdepth(this.rect, this.z);
         return null;
     }
     
-    method changepos(param1, param2) {
-        if (!(param1 == null)) {
-            this.x1 = this.x1 + param1;
+    method changepos(x_change, y_change) {
+        if (x_change != null) {
+            this.x1 = this.x1 + x_change;
         }
-        if (!(param2 == null)) {
-            this.y1 = this.y1 + param2;
+        if (y_change != null) {
+            this.y1 = this.y1 + y_change;
         }
-        if (!(param1 == null)) {
-            this.x2 = this.x2 + param1;
+        if (x_change != null) {
+            this.x2 = this.x2 + x_change;
         }
-        if (!(param2 == null)) {
-            this.y2 = this.y2 + param2;
+        if (y_change != null) {
+            this.y2 = this.y2 + y_change;
         }
         gcfilledrectangle::setposition(this.rect, this.x1, this.y1, this.x2, this.y2);
         return null;
     }
     
-    method setcolor(param1, param2, param3, param4) {
-        if (!(param1 == null)) {
-            this.mycolor = this.mycolor.__withred(param1);
+    method setcolor(red, green, blue, alpha) {
+        if (red != null) {
+            this.mycolor = this.mycolor.__withred(red);
         }
-        if (!(param2 == null)) {
-            this.mycolor = this.mycolor.__withgreen(param2);
+        if (green != null) {
+            this.mycolor = this.mycolor.__withgreen(green);
         }
-        if (!(param3 == null)) {
-            this.mycolor = this.mycolor.__withblue(param3);
+        if (blue != null) {
+            this.mycolor = this.mycolor.__withblue(blue);
         }
-        if (!(param4 == null)) {
-            this.mycolor = this.mycolor.__withalpha(param4);
+        if (alpha != null) {
+            this.mycolor = this.mycolor.__withalpha(alpha);
         }
         gcfilledrectangle::setcolor(this.rect, this.mycolor);
         return null;
     }
     
-    method changecolor(param1, param2, param3, param4) {
-        if (!(param1 == null)) {
-            this.mycolor = this.mycolor.__withred(this.mycolor.__red + param1);
+    method changecolor(red_change, green_change, blue_change, alpha_change) {
+        if (red_change != null) {
+            this.mycolor = this.mycolor.__withred(this.mycolor.__red + red_change);
         }
-        if (!(param2 == null)) {
-            this.mycolor = this.mycolor.__withgreen(this.mycolor.__green + param2);
+        if (green_change != null) {
+            this.mycolor = this.mycolor.__withgreen(this.mycolor.__green + green_change);
         }
-        if (!(param3 == null)) {
-            this.mycolor = this.mycolor.__withblue(this.mycolor.__blue + param3);
+        if (blue_change != null) {
+            this.mycolor = this.mycolor.__withblue(this.mycolor.__blue + blue_change);
         }
-        if (!(param4 == null)) {
-            this.mycolor = this.mycolor.__withalpha(this.mycolor.__alpha + param4);
+        if (alpha_change != null) {
+            this.mycolor = this.mycolor.__withalpha(this.mycolor.__alpha + alpha_change);
         }
         gcfilledrectangle::setcolor(this.rect, this.mycolor);
         return null;

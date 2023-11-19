@@ -22,7 +22,7 @@ class lego_area_mtup2 : gs_lego_area {
         gccinemaengine::setnextarea(this.cinema, scslosifoundation::stringtoidentifier("bech"));
         globalclass.hud.cutscene_warp = 1;
         //Abusing load ordering to ensure this removes the blackscreen as the cinematic starts
-        globalclass.hud.fadeinscreen();
+        globalclass.hud.fadeinscreen(2);
         return null;
     }
     

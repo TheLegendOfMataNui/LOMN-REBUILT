@@ -3,16 +3,16 @@ class ss_basesprite : base_drawobject {
     property sprite;
     property handle;
     
-    method ss_basesprite(file_path, left_side_pos, top_side_pos, z_coord, right_side_pos, bottom_side_pos, alpha) {
+    method ss_basesprite(file_path, leftSide, topSide, z_coord, rightSide, bottomSide, alpha) {
         this.filename = file_path;
-        if (left_side_pos != null) {
-            this.x1 = left_side_pos;
+        if (leftSide != null) {
+            this.x1 = leftSide;
         }
         else {
             this.x1 = 0;
         }
-        if (top_side_pos != null) {
-            this.y1 = top_side_pos;
+        if (topSide != null) {
+            this.y1 = topSide;
         }
         else {
             this.y1 = 0;
@@ -23,14 +23,14 @@ class ss_basesprite : base_drawobject {
         else {
             this.z = 0;
         }
-        if (right_side_pos != null) {
-            this.x2 = right_side_pos;
+        if (rightSide != null) {
+            this.x2 = rightSide;
         }
         else {
             this.x2 = 0;
         }
-        if (bottom_side_pos != null) {
-            this.y2 = bottom_side_pos;
+        if (bottomSide != null) {
+            this.y2 = bottomSide;
         }
         else {
             this.y2 = 0;

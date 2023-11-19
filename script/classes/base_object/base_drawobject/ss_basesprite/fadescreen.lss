@@ -12,11 +12,10 @@ class fadescreen : ss_basesprite {
     }
     
     method initfull() {
-        this.faderectangle = new ss_basesprite("Root/data/art/hud/Black", 0, 0, 0, screenx, screeny, 0);
+        this.faderectangle = new ss_gradrect(0, 0, screenx, screeny, 0, rgba(0, 0, 0, 255), rgba(0, 0, 0, 255), rgba(0, 0, 0, 255), rgba(0, 0, 0, 255));
         this.faderectangle.initfull();
+        this.faderectangle.add();
         this.initshort();
-        //Setting this to a default of 1.0
-        this.faderate = 1.0;
         return null;
     }
     
@@ -80,11 +79,18 @@ class fadescreen : ss_basesprite {
     }
     
     method setincrementvalue() {
-        this.incrementor = 255 - (255 * (this.fadetimeleft / this.faderate));
-        //Need to hide then show so the faderectangle gets refreshed every frame, thus allowing it to render over animated hud sprites
-        this.faderectangle.hide();
-        this.faderectangle.show();
-        this.faderectangle.settransparency(this.incrementor);
+        if (this.faderate > 0) {
+            this.incrementor = __toint(255 - (255 * (this.fadetimeleft / this.faderate)));
+            debug::print(this.incrementor);
+        }
+        else {
+            this.incrementor = 255;
+            globalclass.hud.hide();
+        }
+        this.faderectangle.changegrad(0, rgba(0, 0, 0, this.incrementor));
+        this.faderectangle.changegrad(1, rgba(0, 0, 0, this.incrementor));
+        this.faderectangle.changegrad(2, rgba(0, 0, 0, this.incrementor));
+        this.faderectangle.changegrad(3, rgba(0, 0, 0, this.incrementor));
         if (this.incrementor == 255) {
             this.incrementor = 0;
             this.blnshow = 0;
@@ -99,13 +105,18 @@ class fadescreen : ss_basesprite {
     }
     
     method setdecrementvalue() {
-        this.decrementor = 255 * (this.fadetimeleft / this.faderate);
-        //Need to hide then show so the faderectangle gets refreshed every frame, thus allowing it to render over animated hud sprites
-        this.faderectangle.hide();
-        this.faderectangle.show();
-        this.faderectangle.settransparency(this.decrementor);
+        if (this.faderate > 0) {
+            this.decrementor = __toint(255 * (this.fadetimeleft / this.faderate));
+            debug::print(this.decrementor);
+        }
+        else {
+            this.decrementor = 0;
+        }
+        this.faderectangle.changegrad(0, rgba(0, 0, 0, this.decrementor));
+        this.faderectangle.changegrad(1, rgba(0, 0, 0, this.decrementor));
+        this.faderectangle.changegrad(2, rgba(0, 0, 0, this.decrementor));
+        this.faderectangle.changegrad(3, rgba(0, 0, 0, this.decrementor));
         if (this.decrementor == 0) {
-            this.faderectangle.hide();
             this.blnhide = 0;
             //globalclass.hud.show();
             //OSI event 1005, FADESCREEN_COMPLETE 
@@ -123,37 +134,34 @@ class fadescreen : ss_basesprite {
         return null;
     }
     
-    method show(custom_fadeoutrate) {
-        this.faderectangle.add();
-        this.faderectangle.enablealphachannel(1);
-        this.faderectangle.enabletransparency(1);
+    method show(fadeOutRate) {
         this.faderectangle.show();
         this.blnshow = 1;
         this.blnhide = 0;
-        //globalclass.hud.hide();
-        if (custom_fadeoutrate == null) {
-            this.fadetimeleft = this.faderate;
+        if (fadeOutRate == null) {
+            //If no argument passed, set this to a default of 1.0
+            this.faderate = 1.0;
         }
         else {
-            this.fadetimeleft = custom_fadeoutrate;
+            this.faderate = fadeOutRate;
         }
+        this.fadetimeleft = this.faderate;
         return null;
     }
     
-    method hide(custom_fadeinrate) {
+    method hide(fadeInRate) {
         this.decrementor = 255;
-        this.faderectangle.add();
-        this.faderectangle.enablealphachannel(1);
-        this.faderectangle.enabletransparency(1);
         this.faderectangle.show();
         this.blnhide = 1;
         this.blnshow = 0;
-        if (custom_fadeinrate == null) {
-            this.fadetimeleft = this.faderate;
+        if (fadeInRate == null) {
+            //If no argument passed, set this to a default of 1.0
+            this.faderate = 1.0;
         }
         else {
-            this.fadetimeleft = custom_fadeinrate;
+            this.faderate = fadeInRate;
         }
+        this.fadetimeleft = this.faderate;
         return null;
     }
 }
