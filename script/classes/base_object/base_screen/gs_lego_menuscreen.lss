@@ -34,7 +34,7 @@ class gs_lego_menuscreen : base_screen {
         this.screentimer.initfull();
         this.fadetimer = new lego_timer("msfz", 1.7, 0);
         this.fadetimer.initfull();
-        this.menufader = new fadescreen();
+        this.menufader = new gs_screen_transition();
         this.menufader.initfull();
         this.skipintro = 0;
         this.nextscreen = 0;

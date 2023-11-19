@@ -31,7 +31,7 @@ class hud_class {
         this.itemsarray.__append(this.mask);
         this.debuginfo = new huddebuginfo();
         this.showdebuginfo = 0;
-        this.screenfader = new fadescreen();
+        this.screenfader = new gs_screen_transition();
         this.hidden = 0;
         this.added = 0;
         this.cdtimer = new gs_lego_cdtimer(15.0);

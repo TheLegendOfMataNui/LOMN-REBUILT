@@ -1,4 +1,4 @@
-class fadescreen : ss_basesprite {
+class gs_screen_transition : ss_gradrect {
     property faderectangle;
     property faderate;
     property fadetimeleft;
@@ -7,7 +7,7 @@ class fadescreen : ss_basesprite {
     property blnshow;
     property blnhide;
     
-    method fadescreen() {
+    method gs_screen_transition() {
         return null;
     }
     
