@@ -50,7 +50,7 @@ class gs_lego_level : lego_base_screen {
             this.startingarea = this.argarray[0];
         }
         debug::print("[][][] init cam ");
-        this.cam = new gs_legocamera(0 - 1000.0, 1500.0, 3000.0, 0 - 1000.0, 800.0, 0.0);
+        this.cam = new gs_legocamera(0 - 1000.0, 1500.0, 3000.0, 0 - 1000.0, 8000.0, 0.0);
         this.cam.initfull();
         if (globalclass.saverloaded) {
             this.toa = scslosifoundation::identifiertostring(gcsaver::gettoa());

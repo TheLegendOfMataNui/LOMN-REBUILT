@@ -32,8 +32,6 @@ class mtup3_class {
             this.cinema = gccinemaengine::create();
             gccinemaengine::load(this.cinema, "cin1");
             gccinemaengine::play(this.cinema);
-            //Abusing load ordering to ensure this removes the blackscreen as the cinematic starts
-            globalclass.hud.fadeinscreen();
         }
         //Ensuring the music doesnt cut in for a frame or two upon initial level load prior to cinematic
         else { 

@@ -117,7 +117,7 @@ class testlevelscreen : base_screen {
                     }
                     this.cleanupfull();
                     screenlist.forward(8);
-                    screenlist.screens[9].screen.toa = "onua";	
+                    screenlist.screens[9].screen.toa = "tahu";	
                     screenlist.screens[9].screen.startingarea = "tst6";	
                 }
                 //Go back to the root test menu

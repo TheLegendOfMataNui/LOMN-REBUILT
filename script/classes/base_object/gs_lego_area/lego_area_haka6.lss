@@ -178,9 +178,6 @@ class lego_area_haka6 : gs_lego_area {
                 }
             }
         }
-        else if (param1.eventid == 30) {
-            this.level.cam.setaimode(9);
-        }
         else if (param1.eventid == 41) {
             gcmodeldirector::hide(scslosifoundation::stringtoidentifier("vlgr"), 0);
         }

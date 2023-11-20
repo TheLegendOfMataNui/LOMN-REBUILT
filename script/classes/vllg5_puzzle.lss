@@ -478,9 +478,6 @@ class vllg5_puzzle {
                 }
             }
         }
-        else if (param1.eventid == 30) {
-            this.parent.level.cam.setaimode(9);
-        }
         return null;
     }
     

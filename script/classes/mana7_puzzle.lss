@@ -1,6 +1,7 @@
 class mana7_puzzle {
     property parent;
     property run_once;
+    property safe_count;
     
     method mana7_puzzle(param1) {
         this.parent = param1;
@@ -12,7 +13,7 @@ class mana7_puzzle {
         if (bettersaver::getbooleanvalue(101) == 0) {
             gchuddirector::playcinematic("Root/Data/cinematics/ToaKiniMeeting.bik", 1);
             bettersaver::setbooleanvalue(101, 1);
-            globalclass.hud.fadeinscreen();
+            this.run_once = 0;
         }
         else {
             globalclass.bgmusic.changefilename("Root/Data/sounds/MusicMakutaTheme");
@@ -20,12 +21,12 @@ class mana7_puzzle {
         }
         gcmodeldirector::setnearestmax(5);
         gcareadirector::setnearestmax(10);
-        this.run_once = 0;
         return null;
     }
     
     method cleanupfull() {
         this.run_once = null;
+        this.safe_count = null;
         return null;
     }
     
@@ -42,9 +43,20 @@ class mana7_puzzle {
             if ((bettersaver::getbooleanvalue(101) == 1) && (this.run_once == 0)) {
                 globalclass.bgmusic.changefilename("Root/Data/sounds/MusicMakutaTheme");
                 globalclass.bgmusic.play(1);				
-                globalclass.hud.show();
+                globalclass.hud.fadeinscreen();
                 gc3dsound::setglobalvolume(globalclass.level.sfx_volume);
+                this.parent.level.cam.setaimode(11);
                 this.run_once = 1;
+                this.safe_count = 0;
+            }
+            if (this.safe_count != null) {
+                if (this.safe_count < 3) { 
+                    this.safe_count = this.safe_count + 1;
+                    if (this.safe_count == 2) {
+                        globalclass.toggleinput();
+                        globalclass.hud.show();
+                    }
+                }
             }
 		}	
         return null;

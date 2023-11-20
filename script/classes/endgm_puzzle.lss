@@ -61,9 +61,6 @@ class endgm_puzzle {
                 this.safecount = 0;
             }
         }
-        else if (param1.eventid == 30) {
-            this.parent.level.cam.setaimode(9);
-        }
         else if (param1.eventid == 27) {
             globalclass.player.actor.gotopos(scslosifoundation::stringtoidentifier("str0"), scslosifoundation::stringtoidentifier("lok0"));
             globalclass.player.unkill();

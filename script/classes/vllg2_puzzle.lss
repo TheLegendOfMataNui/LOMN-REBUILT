@@ -483,9 +483,6 @@ class vllg2_puzzle {
                 }
             }
         }
-        else if (param1.eventid == 30) {
-            this.parent.level.cam.setaimode(9);
-        }
         else if (param1.eventid == 8) {
             if (param1.args[0] == scslosifoundation::stringtoidentifier("dspt")) {
                 if (this.desctext != null) {

@@ -216,9 +216,6 @@ class acmaskpuzzle {
                 globalclass.bgmusic.changefilename("Root/Data/sounds/MUSICpohatutheme");
                 globalclass.bgmusic.play(1);
             }
-            if (param1.args[0] == scslosifoundation::stringtoidentifier("cin3")) {
-                this.parent.level.cam.setaimode(9);
-            }
         }
         else if (param1.eventid == 6) {
             this.parent.level.cam.setaimode(11);

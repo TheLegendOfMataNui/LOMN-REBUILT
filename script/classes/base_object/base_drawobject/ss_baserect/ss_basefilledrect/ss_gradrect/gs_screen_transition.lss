@@ -81,7 +81,6 @@ class gs_screen_transition : ss_gradrect {
     method setincrementvalue() {
         if (this.faderate > 0) {
             this.incrementor = __toint(255 - (255 * (this.fadetimeleft / this.faderate)));
-            debug::print(this.incrementor);
         }
         else {
             this.incrementor = 255;
@@ -107,7 +106,6 @@ class gs_screen_transition : ss_gradrect {
     method setdecrementvalue() {
         if (this.faderate > 0) {
             this.decrementor = __toint(255 * (this.fadetimeleft / this.faderate));
-            debug::print(this.decrementor);
         }
         else {
             this.decrementor = 0;

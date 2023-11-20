@@ -72,10 +72,11 @@ class lego_level_2 : gs_lego_level {
         }
         globalclass.saverloaded = 0;
 
-        //Check for if the level has just started from MTUP; if so a blackscreen is created using fadeoutscreen in order to hide the loading jank.  Else, perform a normal fadein for loaded games
+        //Check for if the level has just started from MTUP; if so freeze camera, kill all input, hide hud to mask the loading jank.  Else, perform a normal fadein for loaded games
         if (scslosifoundation::identifiertostring(gcareadirector::getcurrentarea()) == "mtup") {
+            this.cam.setaimode(9);
+            globalclass.toggleinput();
             globalclass.hud.hide();
-            globalclass.hud.fadeoutscreen(0);
         }
         else {
             globalclass.hud.fadeinscreen();

@@ -489,6 +489,12 @@ class player {
                     debug::print("SPAWNED ON LAND");
                     this.spawnedunderwater = 0;
                 }
+
+                //If there was a cutscene warp and the global input is disabled, re-enable it and reset cutscene_warp property
+                if ((globalclass.hud.cutscene_warp == 1) && (globalclass.inputenabled == 0)) {
+                    globalclass.toggleinput();                    
+                    globalclass.hud.cutscene_warp = 0;
+                }
             }
 
             //Trigger box collision event
@@ -671,20 +677,28 @@ class player {
                     this.maskcontrol.toggleactive();
                     globalclass.hud.mask.hide();
                 }
+                //If input is currently enabled, disable it
+                if (globalclass.inputenabled == 1) {
+                    globalclass.toggleinput();                    
+                }
                 //Disable respawn system for cutscenes and conversations
                 this.disablerespawn = 1;
             }
 
-            //Cinema Play and Conversation Stop event
+            //Cinema Stop and Conversation Stop event
             else if (param1.eventid == 33) {
+                //If cutscene_warp returns 0 and global input is disabled, re-enable it
+                if ((globalclass.hud.cutscene_warp == 0) && (globalclass.inputenabled == 0)) {
+                    globalclass.toggleinput();                    
+                }
                 //Reenable the respawn system
                 this.disablerespawn = 0;
             }
 
             //Cinema Stop event
             else if (param1.eventid == 30) {
-                //Reset the player physics and the delay timer
-                globalclass.player.actor.setupphysics(1.5, 0.8, 1, 0, 0);
+                //Reset the player physics
+                globalclass.player.actor.setupphysics(1.5, 0.8, 1, 0, 0);                
             }
         }
         return null;

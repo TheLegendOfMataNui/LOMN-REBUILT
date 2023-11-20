@@ -163,7 +163,7 @@ class hud_class {
             else if (param1.eventid == 33) {
                 if (this.cutscene_warp == 1) {
                     debug::print("Cutscene is switching areas, don't show the HUD!");
-                    this.cutscene_warp = 0;
+                    this.hide();
                 }
                 else {
                     this.show();
