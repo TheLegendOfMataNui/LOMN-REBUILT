@@ -288,6 +288,9 @@ Level 2 - Gali
 • Removed underwater hives in VLLG due to poor telegraphing 				----		(ShadowDraikana)
 • Fixed bottom platform in MTOP from not being properly extended			----		(ShadowDraikana)
 
+Level 4 - Kopaka
+• Fixed Ice Elemental sometimes not resetting properly upon player death	----		(ShadowDraikana)
+
 Level 5 - Lewa
 • Replaced several Le-Matoran with canon counterparts; updated others		----		(ShadowDraikana)
 

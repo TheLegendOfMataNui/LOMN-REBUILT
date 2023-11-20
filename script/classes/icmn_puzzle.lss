@@ -40,10 +40,8 @@ class icmn_puzzle {
     method cleanupfull() {
         var var1;
         this.icey = null;
-        if (this.isdead == 0) {
-            var1 = scslosifoundation::stringtoidentifier("imon");
-            gcmodeldirector::remove(var1, var1);
-        }
+        var1 = scslosifoundation::stringtoidentifier("imon");
+        gcmodeldirector::remove(var1, var1);
         if (this.stone != null) {
             this.stone.cleanupfull();
             this.stone = null;
@@ -72,7 +70,7 @@ class icmn_puzzle {
             gciceboss::reset(this.icey);
         }
         globalclass.player.actor.setinputstate("ninp");
-        gccollisionphysicsgroup::toggletriggerboxentered(scslosifoundation::stringtoidentifier("ib01"), 0);
+        gccollisionphysicsgroup::toggletriggerboxentered(scslosifoundation::stringtoidentifier("tb01"), 0);
         return null;
     }
     
@@ -89,19 +87,25 @@ class icmn_puzzle {
             }
         }
         else if (param1.eventid == 3) {
-            if (param1.args[0] == scslosifoundation::stringtoidentifier("ib01")) {
+            if (param1.args[0] == scslosifoundation::stringtoidentifier("tb00")) {
+                globalclass.player.kill();
+                gcstaticsoundsptrarray::playtablesound(1048);
+                globalclass.player.actor.setinputstate("none");
+            }
+            else if (param1.args[0] == scslosifoundation::stringtoidentifier("tb01")) {
                 globalclass.player.actor.setsurfingability(0, 1.0);
                 globalclass.player.actor.idle();
                 globalclass.player.processequipment(1);
                 gciceboss::start(this.icey);
                 this.started_fight = 1;
             }
-            var2 = param1.args[0] - scslosifoundation::stringtoidentifier("ib01");
+            var2 = param1.args[0] - scslosifoundation::stringtoidentifier("tb01");
             if ((var2 >= 1) && (var2 <= 5)) {
                 gciceboss::settoaplat(this.icey, var2);
                 gciceboss::settoaonplat(this.icey, param1.args[1]);
             }
             else if (((param1.args[0] == scslosifoundation::stringtoidentifier("lev5")) && (this.isdead == 1)) && (this.hasstone == 1)) {
+                debug::print("Setting next level to 5");
                 globalclass.setnextlevel("lev5", 1);
             }
         }

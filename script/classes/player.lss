@@ -529,8 +529,14 @@ class player {
                 this.triggerboxid = param1.args[0];
                 //Set up the specified trigger box IDs to be used as killboxes
                 if ((trig_box_id0) || (trig_box_id1) || (trig_box_id2) || (trig_box_id3) || (trig_box_id4) || (trig_box_id5) || (trig_box_id6) || (trig_box_id7) || (trig_box_id8) || (trig_box_id9) || (trig_box_id10) || (trig_box_id11)) {
-                    //This is a temporary check to make sure this doesn't fire in wdmn due to tb01 being a hardcoded ID there
-                    if (gcareadirector::getcurrentarea() != scslosifoundation::stringtoidentifier("wdmn")) {
+                    //This is a temporary check to make sure this doesn't fire in icmn and wdmn due to tb01 being a hardcoded ID in those areas
+                    if (gcareadirector::getcurrentarea() == scslosifoundation::stringtoidentifier("icmn")) {
+
+                    }
+                    else if (gcareadirector::getcurrentarea() == scslosifoundation::stringtoidentifier("wdmn")) {
+
+                    }
+                    else { 
                         globalclass.player.kill();
                         gcstaticsoundsptrarray::playtablesound(1048);
                         globalclass.player.actor.setinputstate("none");
