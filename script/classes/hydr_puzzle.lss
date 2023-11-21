@@ -7,6 +7,7 @@ class hydr_puzzle {
     property desctext;
     property howtotext;
     property showintro;
+    property level_end;
     
     method hydr_puzzle(param1) {
         this.parent = param1;
@@ -50,6 +51,7 @@ class hydr_puzzle {
         this.howtotext.initfull();
         this.showintro = 0;
         this.playintro();
+        this.level_end = 0;
         return null;
     }
     
@@ -70,6 +72,11 @@ class hydr_puzzle {
     }
     
     method playextro() {
+        if ((this.hasstone == 1) && (this.isdead == 1) && (this.level_end == 0)) {
+            debug::print("Begin level transition");
+            globalclass.hud.fadeoutscreen();
+            this.level_end = 1;
+        }
         return null;
     }
     
@@ -84,6 +91,18 @@ class hydr_puzzle {
             this.stone.cleanupfull();
             this.stone = null;
         }
+        if (this.desctext != null) {
+            this.desctext.cleanupfull();
+            this.desctext = null;
+        }
+        if (this.howtotext != null) {
+            this.howtotext.cleanupfull();
+            this.howtotext = null;
+        }
+        this.isdead = null;
+        this.hasstone = null;
+        this.showintro = null;
+        this.level_end = null;
         return null;
     }
     
@@ -123,7 +142,13 @@ class hydr_puzzle {
         }
         else if (param1.eventid == 39) {
             this.hasstone = 1;
-            globalclass.setnextlevel("lev3", 1);
+            this.playextro();
+        }
+        else if (param1.eventid == 1005) {
+            if (param1.args[0] == 1) {
+                debug::print("Setting next level to 3");
+                globalclass.setnextlevel("lev3", 1);
+            }
         }
         else if (param1.eventid == 6) {
             this.parent.level.cam.setaimode(11);
@@ -141,6 +166,7 @@ class hydr_puzzle {
     }
     
     method exit() {
+        this.parent = null;
         return null;
     }
 }

@@ -13,6 +13,7 @@ class mdmn_puzzle {
     property mudmandead;
     property stone;
     property waterfall;
+    property level_end;
     
     method mdmn_puzzle(param1) {
         this.parent = param1;
@@ -48,6 +49,7 @@ class mdmn_puzzle {
             this.waterfall.hide();
             this.mudmonster.mudstate = 10;
         }
+        this.level_end = 0;
         return null;
     }
     
@@ -90,6 +92,7 @@ class mdmn_puzzle {
             this.waterfall.cleanupfull();
             this.waterfall = null;
         }
+        this.level_end = null;
         return null;
     }
     
@@ -233,6 +236,15 @@ class mdmn_puzzle {
         }
         else if (param1.eventid == 4) {
             if (param1.args[0] == scslosifoundation::stringtoidentifier("lev2")) {
+                if (this.level_end == 0) {
+                    debug::print("Begin level transition");
+                    globalclass.hud.fadeoutscreen();
+                    this.level_end = 1;
+                }
+            }
+        }
+        else if (param1.eventid == 1005) {
+            if (param1.args[0] == 1) {
                 debug::print("Setting next level to 2");
                 globalclass.setnextlevel("lev2", 1);
             }
@@ -253,7 +265,10 @@ class mdmn_puzzle {
             }
         }
         else if (param1.eventid == 27) {
-            this.resetarea();
+            if (this.level_end == 0) {
+                this.resetarea();
+                debug::print("RESET MUDMAN");
+            }
         }
         else if (param1.eventid == 35) {
             if ((param1.args[0] == 2003330414) && (param1.args[1] == 1)) {

@@ -64,6 +64,10 @@ class wdmn_puzzle {
             this.stone.cleanupfull();
             this.stone = null;
         }
+        this.isdead = null;
+        this.hasstone = null;
+        this.mshowintro = null;
+        this.playing = null;
         return null;
     }
     
@@ -76,7 +80,9 @@ class wdmn_puzzle {
             if (param1.args[0] == scslosifoundation::stringtoidentifier("wb00")) {
                 if (this.isdead == 1) {
                     if (this.hasstone == 1) {
-                        globalclass.setnextlevel("lev6", 1);
+                        debug::print("Begin level transition");
+                        this.mparent.level.cam.setaimode(7);
+                        globalclass.hud.fadeoutscreen();
                     }
                 }
                 else {
@@ -115,6 +121,12 @@ class wdmn_puzzle {
                 }
                 gcwindboss::start(this.mwindy);
                 this.playing = 1;
+            }
+        }
+        else if (param1.eventid == 1005) {
+            if (param1.args[0] == 1) {
+                debug::print("Setting next level to 6");
+                globalclass.setnextlevel("lev6", 1);
             }
         }
         return null;

@@ -5,6 +5,7 @@ class icmn_puzzle {
     property stone;
     property hasstone;
     property started_fight;
+    property level_end;
     
     method icmn_puzzle(param1) {
         this.parent = param1;
@@ -34,20 +35,25 @@ class icmn_puzzle {
         this.isdead = 0;
         this.started_fight = 0;
         globalclass.player.usecheckpoints = 1;
+        this.level_end = 0;
         return null;
     }
     
     method cleanupfull() {
         var var1;
         this.icey = null;
-        var1 = scslosifoundation::stringtoidentifier("imon");
-        gcmodeldirector::remove(var1, var1);
+        if (this.isdead == 0) {
+            var1 = scslosifoundation::stringtoidentifier("imon");
+            gcmodeldirector::remove(var1, var1);
+        }
         if (this.stone != null) {
             this.stone.cleanupfull();
             this.stone = null;
         }
+        this.isdead = null;
         this.hasstone = null;
         this.started_fight = null;
+        this.level_end = null;
         return null;
     }
     
@@ -87,7 +93,7 @@ class icmn_puzzle {
             }
         }
         else if (param1.eventid == 3) {
-            if (param1.args[0] == scslosifoundation::stringtoidentifier("tb00")) {
+            if ((param1.args[0] == scslosifoundation::stringtoidentifier("tb00")) && (this.level_end == 0)) {
                 globalclass.player.kill();
                 gcstaticsoundsptrarray::playtablesound(1048);
                 globalclass.player.actor.setinputstate("none");
@@ -105,6 +111,16 @@ class icmn_puzzle {
                 gciceboss::settoaonplat(this.icey, param1.args[1]);
             }
             else if (((param1.args[0] == scslosifoundation::stringtoidentifier("lev5")) && (this.isdead == 1)) && (this.hasstone == 1)) {
+                if (this.level_end == 0) {
+                    debug::print("Begin level transition");
+                    this.parent.level.cam.setaimode(7);
+                    globalclass.hud.fadeoutscreen();
+                    this.level_end = 1;
+                }
+            }
+        }
+        else if (param1.eventid == 1005) {
+            if (param1.args[0] == 1) {
                 debug::print("Setting next level to 5");
                 globalclass.setnextlevel("lev5", 1);
             }
@@ -120,6 +136,11 @@ class icmn_puzzle {
                 this.hasstone = 1;
             }
         }
+        //else if (param1.eventid == 2) {
+        //    if (param1.args[0] == scslosifoundation::stringtoidentifier("ar01")) {
+        //        this.parent.level.cam.setaimode(7);
+        //    }                    
+        //}
         return null;
     }
     
