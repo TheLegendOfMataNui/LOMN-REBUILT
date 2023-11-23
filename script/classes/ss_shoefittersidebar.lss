@@ -24,6 +24,7 @@ class ss_shoefittersidebar {
     property bonedefine;
     property flagsset;
     property parent;
+    property gobackflag;
     
     method ss_shoefittersidebar(param1, param2, param3, param4, param6, param7, param8, param9) {
         this.background = param1;
@@ -44,6 +45,7 @@ class ss_shoefittersidebar {
         this.savearray = param8;
         this.menu = new ss_shoefittermenu([  ], param3);
         this.keyboardcapture = new ss_shoefitterkeyboardclass();
+        this.gobackflag = 0;
         return null;
     }
     
@@ -115,6 +117,10 @@ class ss_shoefittersidebar {
             else {
                 this.showtime = this.showtime + param1.deltatime;
             }
+        }
+        if (this.gobackflag) {
+            screenlist.backward();
+            this.gobackflag = 0;
         }
         return null;
     }
@@ -228,7 +234,8 @@ class ss_shoefittersidebar {
             }
         }
         else if (this.menu.pointer == 1) {
-            screenlist.backward();
+            this.gobackflag = 1;
+            //screenlist.backward();
         }
         return null;
     }

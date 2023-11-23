@@ -70,11 +70,13 @@ class ss_shoefitterbottombar {
         this.background.hide();
         this.sidescrollbar.hide();
         this.animslider.hide();
-        this.framenumber.hide();
+        if (this.framenumber.onscreen) {
+            this.framenumber.hide();
+            this.framenumber.remove();
+        }
         this.background.remove();
         this.sidescrollbar.remove();
         this.animslider.remove();
-        this.framenumber.remove();
         this.background.cleanupfull();
         this.sidescrollbar.cleanupfull();
         this.animslider.cleanupfull();
