@@ -43,7 +43,6 @@ class ss_shoefittercharacterwindow {
             this.shoefittercamera = null;
         }
         if (this.shoefittercharacter != null) {
-            this.shoefittercharacter.hide();
             this.shoefittercharacter.cleanupfull();
             this.shoefittercharacter = null;
         }
