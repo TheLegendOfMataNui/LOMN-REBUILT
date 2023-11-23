@@ -15,7 +15,6 @@ class playmenuoption {
     method playmenuoption(param1, param2) {
         var var1;
         var var2;
-        var var3;
         var var4;
         var var5;
         var var6;
@@ -25,8 +24,7 @@ class playmenuoption {
         this.playtext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", var2, __toint(200 * screenratio), var1, 0, 1.0 * screenratio, 0, 4, 0, 1);
         gcsaver::setplayer(this.playnum);
         gcsaver::initdata();
-        var3 = gcsaver::load();
-        if (var3 == 1) {
+        if (gcsaver::load() == 1) {
             var4 = gcsaver::getpercentcomplete();
             this.level = gcsaver::getlevel();
             this.newgame = 0;
@@ -96,19 +94,19 @@ class playmenuoption {
     }
     
     method cleanupfull() {
-        if (!(this.playtext == null)) {
+        if (this.playtext != null) {
             this.playtext.hide();
             this.playtext.remove();
             this.playtext.cleanupfull();
             this.playtext = null;
         }
-        if (!(this.comptext == null)) {
+        if (this.comptext != null) {
             this.comptext.hide();
             this.comptext.remove();
             this.comptext.cleanupfull();
             this.comptext = null;
         }
-        if (!(this.levsprite == null)) {
+        if (this.levsprite != null) {
             this.levsprite.hide();
             this.levsprite.remove();
             this.levsprite.cleanupfull();
@@ -126,7 +124,7 @@ class playmenuoption {
         this.levelname = "lev1";
         this.newgame = 1;
         gcsaver::erasegame();
-        if (!(this.levsprite == null)) {
+        if (this.levsprite != null) {
             this.levsprite.hide();
             this.levsprite.remove();
             this.levsprite.cleanupfull();

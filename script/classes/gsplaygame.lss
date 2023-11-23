@@ -73,7 +73,7 @@ class gsplaygame {
     method cleanupshort() {
         var var1;
         this.active = 0;
-        if (!(this.playerarray == null)) {
+        if (this.playerarray != null) {
             var1 = 0;
             while ((this.playerarray.__length - 1) >= var1) {
                 this.playerarray[var1].cleanupfull();
@@ -82,11 +82,11 @@ class gsplaygame {
             }
             this.playerarray = null;
         }
-        if (!(this.backopt == null)) {
+        if (this.backopt != null) {
             this.backopt.cleanupfull();
             this.backopt = null;
         }
-        if (!(this.loadoptions == null)) {
+        if (this.loadoptions != null) {
             var1 = 0;
             while ((this.loadoptions.__length - 1) >= var1) {
                 this.loadoptions[var1].cleanupfull();
@@ -95,7 +95,7 @@ class gsplaygame {
             }
             this.loadoptions = null;
         }
-        if (!(this.sureoptions == null)) {
+        if (this.sureoptions != null) {
             var1 = 0;
             while ((this.sureoptions.__length - 1) >= var1) {
                 this.sureoptions[var1].cleanupfull();
