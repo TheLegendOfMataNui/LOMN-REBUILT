@@ -22,9 +22,7 @@ class graphicsoptions {
     }
     
     method initfull() {
-        var var1;
         var var2;
-        var1 = 0;
         this.curoption = -1;
         this.optarray = [  ];
         this.gammavalue = gcsaver::getgamma();
@@ -66,7 +64,7 @@ class graphicsoptions {
     }
     
     method cleanupfull() {
-        if (!(this.optarray == null)) {
+        if (this.optarray != null) {
             this.cleanupshort();
         }
         this.parent = null;
@@ -76,13 +74,7 @@ class graphicsoptions {
     method cleanupshort() {
         var var1;
         var var2;
-        var var3;
-        var var4;
-        var var5;
-        var var6;
-        var var7;
-        var var8;
-        if (!(this.optarray == null)) {
+        if (this.optarray != null) {
             var1 = this.optarray.__length - 1;
             var2 = 0;
             while (var1 >= var2) {
@@ -92,16 +84,10 @@ class graphicsoptions {
             }
             this.optarray = null;
         }
-        var3 = null;
-        var4 = null;
-        var5 = null;
         this.fogoption = null;
         this.gammaoption = null;
-        var6 = null;
-        var7 = null;
         this.particledetailoption = null;
         this.shadowdetailoption = null;
-        var8 = null;
         this.backoption = null;
         return null;
     }
@@ -157,34 +143,43 @@ class graphicsoptions {
             }
             var2 = var2 + 1;
         }
-        if (!(var1 == -1)) {
+        if (var1 != -1) {
             this.curoption = var1;
         }
         return null;
     }
     
     method mousebuttonreleased(param1) {
-        this.gammavalue = __toint(190 + (130 * (this.gammaoption.getslidervalue() * 0.01)));
-        debug::print("[][][] set gamma to " + __tostring(this.gammavalue));
-        gcsaver::setgamma(this.gammavalue);
-        this.particledetailvalue = this.particledetailoption.getslidervalue();
-        gcsaver::setparticledetail(this.particledetailvalue);
-        if (this.curoption == -1) {
+        if (param1 == 1) {
+            if (this.curoption == -1) {
             
+            }
+            else if (this.curoption == 0) {
+                this.gammavalue = __toint(190 + (130 * (this.gammaoption.getslidervalue() * 0.01)));
+                debug::print("[][][] set gamma to " + __tostring(this.gammavalue));
+                gcsaver::setgamma(this.gammavalue);
+            }
+            else if (this.curoption == 1) {
+                this.setfogvalue();
+                gcstaticsoundsptrarray::playtablesound(1072);
+            }
+            else if (this.curoption == 2) {
+                this.particledetailvalue = this.particledetailoption.getslidervalue();
+                gcsaver::setparticledetail(this.particledetailvalue);
+            }
+            else if (this.curoption == 3) {
+                this.setshadowvalue();
+                gcstaticsoundsptrarray::playtablesound(1072);
+            }
+            else if (this.curoption == 4) {
+                this.back();
+            }
+            else {
+                gcstaticsoundsptrarray::playtablesound(1072);
+            }
         }
-        else if (this.curoption == 1) {
-            this.setfogvalue();
-            gcstaticsoundsptrarray::playtablesound(1072);
-        }
-        else if (this.curoption == 3) {
-            this.setshadowvalue();
-            gcstaticsoundsptrarray::playtablesound(1072);
-        }
-        else if (this.curoption == 4) {
+        else if (param1 == 2) {
             this.back();
-        }
-        else {
-            gcstaticsoundsptrarray::playtablesound(1072);
         }
         this.curoption;
         return null;

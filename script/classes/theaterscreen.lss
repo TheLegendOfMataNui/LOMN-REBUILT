@@ -34,8 +34,6 @@ class theaterscreen {
     }
     
     method initfull() {
-        var var1;
-        var1 = 0;
         this.minidx = 0;
         this.showidx = 10;
         this.curidx = 0;

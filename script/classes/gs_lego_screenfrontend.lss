@@ -509,16 +509,16 @@ class gs_lego_screenfrontend {
         if (this.curscreen == 8) {
             this.options_graphics.onevent(param1);
         }
-        else if (this.curscreen == 7) {
-            this.options_credits.onevent(param1);
-        }
+        //else if (this.curscreen == 7) {
+        //    this.options_credits.onevent(param1);
+        //}
         else if (this.curscreen == 1) {
             this.options_sound.onevent(param1);
         }
         else if (this.curscreen == 9) {
             this.playgame.onevent(param1);
         }
-        if (this.curscreen == 11) {
+        else if (this.curscreen == 11) {
             this.extras.onevent(param1);
         }
         else if (param1.eventid == 26) {
@@ -674,10 +674,10 @@ class gs_lego_screenfrontend {
                         gcstaticsoundsptrarray::playtablesound(1073);
                         this.back();
                     }
-                    else if (this.curidx == 3) {
-                        gcstaticsoundsptrarray::playtablesound(1073);
-                        this.back();
-                    }
+                    //else if (this.curidx == 3) {
+                    //    gcstaticsoundsptrarray::playtablesound(1073);
+                    //    this.back();
+                    //}
                 }
                 else if (this.curscreen == 6) {
                     if (this.curidx == 0) {
@@ -751,6 +751,7 @@ class gs_lego_screenfrontend {
     }
     
     method back() {
+        this.menuactive = 0;
         this.screentimer = 0;
         this.advancescreen = 0;
         this.backscreen = 1;

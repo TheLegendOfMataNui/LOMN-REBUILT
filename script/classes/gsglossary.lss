@@ -190,21 +190,21 @@ class gsglossary {
     method cleanupshort() {
         var var1;
         this.active = 0;
-        if (!(this.background == null)) {
+        if (this.background != null) {
             this.background.hide();
             this.background.remove();
             this.background.cleanupfull();
             this.background = null;
         }
-        if (!(this.prevopt == null)) {
+        if (this.prevopt != null) {
             this.prevopt.cleanupfull();
             this.prevopt = null;
         }
-        if (!(this.nextopt == null)) {
+        if (this.nextopt != null) {
             this.nextopt.cleanupfull();
             this.nextopt = null;
         }
-        if (!(this.desc == null)) {
+        if (this.desc != null) {
             var1 = 0;
             while ((this.desc.__length - 1) >= var1) {
                 this.desc[var1].hide();
@@ -215,7 +215,7 @@ class gsglossary {
             }
             this.desc = null;
         }
-        if (!(this.images == null)) {
+        if (this.images != null) {
             this.images[(this.curscreen * 4) + 1].hide();
             this.images[(this.curscreen * 4) + 1].remove();
             this.images[(this.curscreen * 4) + 1].cleanupfull();

@@ -62,22 +62,22 @@ class menuoption {
     }
     
     method cleanupfull() {
-        if (!(this.lefttext == null)) {
+        if (this.lefttext != null) {
             this.lefttext.hide();
             this.lefttext.remove();
             this.lefttext.cleanupfull();
             this.lefttext = null;
         }
-        if (!(this.righttext == null)) {
+        if (this.righttext != null) {
             this.righttext.hide();
             this.righttext.remove();
             this.righttext.cleanupfull();
             this.righttext = null;
         }
-        if (!(this.slider == null)) {
+        if (this.slider != null) {
             this.slider = null;
         }
-        if (!(this.sliderbg == null)) {
+        if (this.sliderbg != null) {
             this.sliderbg.hide();
             this.sliderbg.remove();
             this.sliderbg.cleanupfull();
@@ -92,19 +92,18 @@ class menuoption {
                 this.slidervalue = gceditorslider::checkbuttonstate(this.slider);
             }
         }
-        param1.eventid;
         return null;
     }
     
     method setrightx(param1) {
-        if (!(this.righttext == null)) {
+        if (this.righttext != null) {
             this.righttext.setpos(param1, this.righttext.y1, 0);
         }
         return null;
     }
     
     method setrighttext(param1) {
-        if (!(this.righttext == null)) {
+        if (this.righttext != null) {
             this.righttext.setstring(param1);
         }
         return null;
@@ -128,11 +127,11 @@ class menuoption {
     }
     
     method check(param1, param2) {
-        if (!(this.lefttext == null)) {
+        if (this.lefttext != null) {
             if ((param2 > (this.lefttext.y1 - this.halfheight)) && (param2 < (this.lefttext.y1 + this.halfheight))) {
                 if (this.lit == 0) {
                     sctilefont::setcolor(this.lefttext.font, 255, 255, 0, 255);
-                    if (!(this.righttext == null)) {
+                    if (this.righttext != null) {
                         sctilefont::setcolor(this.righttext.font, 255, 255, 0, 255);
                     }
                     this.lit = 1;
@@ -141,7 +140,7 @@ class menuoption {
             }
             else if (this.lit) {
                 sctilefont::setcolor(this.lefttext.font, 255, 255, 255, 255);
-                if (!(this.righttext == null)) {
+                if (this.righttext != null) {
                     sctilefont::setcolor(this.righttext.font, 255, 255, 255, 255);
                 }
                 this.lit = 0;
