@@ -276,17 +276,17 @@ class vllg1_puzzle {
         this.coindoortexttimer = 0.0;
         this.upgradefruit_shown = gcsaver::finditem(scslosifoundation::stringtoidentifier("frut"));
         if (this.upgradefruit_shown == 0) {
-            this.upgradefruit = new lego_pickup("frut", 0, 6, "frut", 1, 1);
+            this.upgradefruit = new lego_pickup("frut", 0, 6);
             this.upgradefruit.initfull();
         }
         this.upgradefruit2_shown = gcsaver::finditem(scslosifoundation::stringtoidentifier("fru0"));
         if (this.upgradefruit2_shown == 0) {
-            this.upgradefruit2 = new lego_pickup("fru0", 0, 6, "frut", 1, 1);
+            this.upgradefruit2 = new lego_pickup("fru0", 0, 6);
             this.upgradefruit2.initfull();
         }
         this.upgradefruit3_shown = gcsaver::finditem(scslosifoundation::stringtoidentifier("fru1"));
         if (this.upgradefruit3_shown == 0) {
-            this.upgradefruit3 = new lego_pickup("fru1", 0, 6, "frut", 1, 1);
+            this.upgradefruit3 = new lego_pickup("fru1", 0, 6);
             this.upgradefruit3.initfull();
         }
         if (bettersaver::getbooleanvalue(58) == 1) {

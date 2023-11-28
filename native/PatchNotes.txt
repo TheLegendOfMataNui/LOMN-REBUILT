@@ -279,6 +279,7 @@ General changes and fixes
 • Fixed an oversight causing the low health sound to only play once			----		(ShadowDraikana)
 • Fixed all drain consistency and visual issues with the air meter			----		(ShadowDraikana)
 • Fixed issues with pausing being possible just before an intro cinematic	----		(ShadowDraikana)
+• Fixed inconsistencies with the Amana Volo pickup text     				----		(OndrikB)
 
 Level 1 - Onua
 • Fixed two tutorial totems in BECH having their text swapped				----		(ShadowDraikana)
