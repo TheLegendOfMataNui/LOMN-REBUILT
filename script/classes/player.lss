@@ -312,7 +312,7 @@ class player {
             else if (param1.eventid == 54) {
                 var dive_underwater = (this.actor.getcurrentanimationid() == scslosifoundation::stringtoidentifier("g047"));                
                 if ((param1.args[0] == 1) || (dive_underwater)) {                   
-                    debug::print(scslosifoundation::identifiertostring(this.actor.getcurrentanimationid()));
+                    //debug::print(scslosifoundation::identifiertostring(this.actor.getcurrentanimationid()));
                     this.submerged = 1;
                     this.canshootdragger(0);
                     if ((this.splooshplayed == 0) && (this.actorid != "gali") && (this.actorid != "tahu")) {                     

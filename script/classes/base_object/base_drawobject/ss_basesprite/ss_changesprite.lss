@@ -4,7 +4,7 @@ class ss_changesprite : ss_basesprite {
     property spritearray;
     property currentsprite;
     
-    method ss_changesprite(file_path, first_frame, last_frame, leftSide, topSide, z_coord, rightSide, bottomSide) {
+    method ss_changesprite(file_path, first_frame, last_frame, leftSide, topSide, z_depth, rightSide, bottomSide) {
         this.filename = file_path;
         this.first = first_frame;
         this.last = last_frame;
@@ -20,8 +20,8 @@ class ss_changesprite : ss_basesprite {
         else {
             this.y1 = 0;
         }
-        if (z_coord != null) {
-            this.z = z_coord;
+        if (z_depth != null) {
+            this.z = z_depth;
         }
         else {
             this.z = 0;

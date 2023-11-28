@@ -7,8 +7,8 @@ class ss_shoefittermarkerclass : ss_basesprite {
     property arg_value_array;
     property moveamount;
     
-    method ss_shoefittermarkerclass(param1, param2, param3, param4, param5, param6, param7, param8, param9) {
-        this.ss_basesprite(param1, param2, param3, param4, param5, param6);
+    method ss_shoefittermarkerclass(file_path, leftSide, topSide, z_depth, rightSide, bottomSide, param7, param8, param9) {
+        this.ss_basesprite(file_path, leftSide, topSide, z_depth, rightSide, bottomSide);
         this.startspot = param7;
         this.markername = param8;
         this.transparencyincr = 25;

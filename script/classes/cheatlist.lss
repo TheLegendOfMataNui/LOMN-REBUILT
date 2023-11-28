@@ -60,8 +60,8 @@ class cheatlist {
             "translation", 
             "animal control", 
             "telekinesis", 
-            "illusion" ];
-			//"ultimate power"];
+            "illusion",
+			"ultimate power"];
         this.abilitynames = [ "Grappling Hook", 
             "Elemental Glyph" ];
         this.letnames = [ "Life", 
@@ -290,7 +290,7 @@ class cheatlist {
         this.maxidx = -1;
         this.showidx = 20;
         this.x = 10;
-        this.y = 80;
+        this.y = 90;
         this.curidx = -1;
         this.visible = 0;
         this.screen = -1;
@@ -1255,7 +1255,7 @@ class cheatlist {
             this.maxidx = this.showidx;
         }
         this.x = 10;
-        this.y = 80;
+        this.y = 90;
         return null;
     }
     
@@ -1275,7 +1275,7 @@ class cheatlist {
             if (var1 <= this.showidx) {
                 var3.show();
             }
-            var3.scalefont(1.2);
+            //var3.scalefont(1.2);
             this.activemenu.__append(var3);
             var1 = var1 + 1;
         }
@@ -1299,7 +1299,7 @@ class cheatlist {
             if (var1 <= this.showidx) {
                 var3.show();
             }
-            var3.scalefont(1.2);
+            //var3.scalefont(1.2);
             this.activemenu.__append(var3);
             var1 = var1 + 1;
         }
@@ -1327,7 +1327,7 @@ class cheatlist {
         var3.initfull();
         var3.add();
         var3.show();
-        var3.scalefont(1.2);
+        //var3.scalefont(1.2);
         this.activemenu.__append(var3);
         var4 = 0;
         while ((var1.__length - 1) >= var4) {
@@ -1344,7 +1344,7 @@ class cheatlist {
             if ((var4 + 1) <= this.showidx) {
                 var3.show();
             }
-            var3.scalefont(1.2);
+            //var3.scalefont(1.2);
             this.activemenu.__append(var3);
             var4 = var4 + 1;
         }
@@ -1368,7 +1368,7 @@ class cheatlist {
             if (var1 <= this.showidx) {
                 var3.show();
             }
-            var3.scalefont(1.2);
+            //var3.scalefont(1.2);
             this.activemenu.__append(var3);
             var1 = var1 + 1;
         }
@@ -1392,7 +1392,7 @@ class cheatlist {
             if (var1 <= this.showidx) {
                 var3.show();
             }
-            var3.scalefont(1.2);
+            //var3.scalefont(1.2);
             this.activemenu.__append(var3);
             var1 = var1 + 1;
         }
@@ -1416,7 +1416,7 @@ class cheatlist {
             if (var1 <= this.showidx) {
                 var3.show();
             }
-            var3.scalefont(1.2);
+            //var3.scalefont(1.2);
             this.activemenu.__append(var3);
             var1 = var1 + 1;
         }
@@ -1440,7 +1440,7 @@ class cheatlist {
             if (var1 <= this.showidx) {
                 var3.show();
             }
-            var3.scalefont(1.2);
+            //var3.scalefont(1.2);
             this.activemenu.__append(var3);
             var1 = var1 + 1;
         }
@@ -1464,7 +1464,7 @@ class cheatlist {
             if (var1 <= this.showidx) {
                 var3.show();
             }
-            var3.scalefont(1.2);
+            //var3.scalefont(1.2);
             this.activemenu.__append(var3);
             var1 = var1 + 1;
         }
@@ -1488,7 +1488,7 @@ class cheatlist {
             if (var1 <= this.showidx) {
                 var3.show();
             }
-            var3.scalefont(1.2);
+            //var3.scalefont(1.2);
             this.activemenu.__append(var3);
             var1 = var1 + 1;
         }
@@ -1512,7 +1512,7 @@ class cheatlist {
             if (var1 <= this.showidx) {
                 var3.show();
             }
-            var3.scalefont(1.2);
+            //var3.scalefont(1.2);
             this.activemenu.__append(var3);
             var1 = var1 + 1;
         }
@@ -1536,7 +1536,7 @@ class cheatlist {
             if (var1 <= this.showidx) {
                 var3.show();
             }
-            var3.scalefont(1.2);
+            //var3.scalefont(1.2);
             this.activemenu.__append(var3);
             var1 = var1 + 1;
         }
@@ -1570,7 +1570,7 @@ class cheatlist {
             if (var1 <= this.showidx) {
                 var3.show();
             }
-            var3.scalefont(1.2);
+            //var3.scalefont(1.2);
             this.activemenu.__append(var3);
             var1 = var1 + 1;
         }
@@ -1594,7 +1594,7 @@ class cheatlist {
             if (var1 <= this.showidx) {
                 var3.show();
             }
-            var3.scalefont(1.2);
+            //var3.scalefont(1.2);
             this.activemenu.__append(var3);
             var1 = var1 + 1;
         }

@@ -2,6 +2,7 @@ function setup() {
     screenx = gcgame::getresolutionwidth();
     screeny = gcgame::getresolutionheight();
     screenratio = screenx / 640;
+    screenyratio = screeny / 480;
     globalclass = new global_class();
     globalclass.initfull();
     screenlist = new base_screenlist();
