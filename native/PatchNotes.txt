@@ -287,15 +287,10 @@ Front End
 • Added missing right click inputs to Extras, Sound, and Graphics menus 	----		(ShadowDraikana)
 • Updated title screen logo 		            		                    ----		(Vahkiti)
 
-Front End
-• Fixed brief HUD pop-in when first loading in  	           	    	    ----		(ShadowDraikana)
-• Fixed a crash caused by several menus incorrectly being set as active		----		(ShadowDraikana)
-• Added missing right click inputs to Extras, Sound, and Graphics menus 	----		(ShadowDraikana)
-• Updated title screen logo 		            		                    ----		(Vahkiti)
-
 Level 1 - Onua
 • Fixed two tutorial totems in BECH having their text swapped				----		(ShadowDraikana)
 • Fixed broken paths causing Legend FMV to crash for several languages		----		(ShadowDraikana)
+• Fixed the large tree in BECH to allow its leaves to render properly		----		(ShadowDraikana)
 
 Level 2 - Gali
 • Fixed a doorway in VLLG pointing to the wrong room (Nobody saw anything)	----		(ShadowDraikana)
@@ -306,7 +301,7 @@ Level 4 - Kopaka
 • Fixed Ice Elemental sometimes not resetting properly upon player death	----		(ShadowDraikana)
 
 Level 5 - Lewa
-• Replaced several Le-Matoran with canon counterparts; updated others		----		(ShadowDraikana)
+• Replaced several Tohunga with canon counterparts; updated others  		----		(ShadowDraikana)
 
 Level 6 - Tahu
 • Fixed disc in TA14 from respawning upon reentry if picked up previously	----		(ShadowDraikana)
