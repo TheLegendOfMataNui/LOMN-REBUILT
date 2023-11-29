@@ -297,6 +297,8 @@ Level 2 - Gali
 • Removed underwater hives in VLLG due to poor telegraphing 				----		(ShadowDraikana)
 • Fixed bottom platform in MTOP from not being properly extended			----		(ShadowDraikana)
 • Fixed a switch in GLY3 from appearing pressed already	    				----		(ShadowDraikana)
+• Added movement to buttons in GLY3 when pushing them down   				----		(ShadowDraikana)
+• Buttons being pressed and doors openened in GLY3 now save properly		----		(ShadowDraikana)
 
 Level 4 - Kopaka
 • Fixed Ice Elemental sometimes not resetting properly upon player death	----		(ShadowDraikana)

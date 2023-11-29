@@ -1,10 +1,5 @@
 class gly32_puzzle {
     property parent;
-    property switch1_up;
-    property switch2_up;
-    property switch3_up;
-    property switch4_up;
-    property switch5_up;
     property switch1;
     property switch2;
     property switch3;
@@ -17,14 +12,10 @@ class gly32_puzzle {
     property rotating;
     property rotatetime;
     property rotatespeed;
+    property ruru_active;
     
     method gly32_puzzle(param1) {
         this.parent = param1;
-        this.switch1_up = 1;
-        this.switch2_up = 1;
-        this.switch3_up = 1;
-        this.switch4_up = 1;
-        this.switch5_up = 1;
         return null;
     }
     
@@ -78,8 +69,9 @@ class gly32_puzzle {
         this.rotatespeed = 7;
         KEVIN = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("kevn"));
         gccharacter::setscale(KEVIN, 15.0);
-		gccharacter::setanimationscalar(KEVIN, 2.00);
+        gccharacter::setanimationscalar(KEVIN, 2.00);
         this.settostartingpositions();
+        this.ruru_active = 1;
         return null;
     }
     
@@ -118,6 +110,7 @@ class gly32_puzzle {
             this.glyph.cleanupfull();
             this.glyph = null;
         }
+        this.ruru_active = null;
         return null;
     }
     
@@ -131,12 +124,14 @@ class gly32_puzzle {
                 }
             }
         }
-        if ((globalclass.player.whichmaskonface() == 8) && (globalclass.player.ismaskpoweron() == 1)) {
+        if ((globalclass.player.whichmaskonface() == 8) && (globalclass.player.ismaskpoweron() == 1) && (this.ruru_active == 0)) {
             gcareadirector::setfog(-16777216, 0 - 1.0, 0 - 350.0, 0.05);
+            this.ruru_active = 1;
             debug::print("FOG DISPELLED");
         }
-        else {
+        else if ((globalclass.player.ismaskpoweron() == 0) && (this.ruru_active == 1)) {
             gcareadirector::setfog(-16777216, 0 - 1.0, 0 - 150.0, 0.05);
+            this.ruru_active = 0;
             debug::print("SPOOKY TIME");
         }
         return null;
@@ -148,47 +143,47 @@ class gly32_puzzle {
         }
         else if (param1.eventid == 1) {
             if (param1.args[0] == scslosifoundation::stringtoidentifier("swc1")) {
-                if (this.switch1_up) {
+                if (bettersaver::getbooleanvalue(102) == 0) {
                     gcstaticsoundsptrarray::playtablesound(1085);
-                    this.switch1.setlocalpos(0, -1, 0);
+                    this.switch1.interpolate(this.switch1.getx(), this.switch1.gety() - 1, this.switch1.getz(), 0.25);
                     this.numberofdownswitchs = this.numberofdownswitchs + 1;
-                    this.switch1_up = 0;
+                    bettersaver::setbooleanvalue(102, 1);
                     this.test();
                 }
             }
             else if (param1.args[0] == scslosifoundation::stringtoidentifier("swc2")) {
-                if (this.switch2_up) {
+                if (bettersaver::getbooleanvalue(103) == 0) {
                     gcstaticsoundsptrarray::playtablesound(1085);
-                    this.switch2.setlocalpos(0, -1, 0);
+                    this.switch2.interpolate(this.switch2.getx(), this.switch2.gety() - 1, this.switch2.getz(), 0.25);
                     this.numberofdownswitchs = this.numberofdownswitchs + 1;
-                    this.switch2_up = 0;
+                    bettersaver::setbooleanvalue(103, 1);
                     this.test();
                 }
             }
             else if (param1.args[0] == scslosifoundation::stringtoidentifier("swc3")) {
-                if (this.switch3_up) {
+                if (bettersaver::getbooleanvalue(104) == 0) {
                     gcstaticsoundsptrarray::playtablesound(1085);
-                    this.switch3.setlocalpos(0, -1, 0);
+                    this.switch3.interpolate(this.switch3.getx(), this.switch3.gety() - 1, this.switch3.getz(), 0.25);
                     this.numberofdownswitchs = this.numberofdownswitchs + 1;
-                    this.switch3_up = 0;
+                    bettersaver::setbooleanvalue(104, 1);
                     this.test();
                 }
             }
             else if (param1.args[0] == scslosifoundation::stringtoidentifier("swc4")) {
-                if (this.switch4_up) {
+                if (bettersaver::getbooleanvalue(105) == 0) {
                     gcstaticsoundsptrarray::playtablesound(1085);
-                    this.switch4.setlocalpos(0, -1, 0);
+                    this.switch4.interpolate(this.switch4.getx(), this.switch4.gety() - 1, this.switch4.getz(), 0.25);
                     this.numberofdownswitchs = this.numberofdownswitchs + 1;
-                    this.switch4_up = 0;
+                    bettersaver::setbooleanvalue(105, 1);
                     this.test();
                 }
             }
             else if (param1.args[0] == scslosifoundation::stringtoidentifier("swc5")) {
-                if (this.switch5_up) {
+                if (bettersaver::getbooleanvalue(106) == 0) {
                     gcstaticsoundsptrarray::playtablesound(1085);
-                    this.switch5.setlocalpos(0, -1, 0);
+                    this.switch5.interpolate(this.switch5.getx(), this.switch5.gety() - 1, this.switch5.getz(), 0.25);
                     this.numberofdownswitchs = this.numberofdownswitchs + 1;
-                    this.switch5_up = 0;
+                    bettersaver::setbooleanvalue(106, 1);
                     this.test();
                 }
             }
@@ -197,31 +192,41 @@ class gly32_puzzle {
     }
     
     method input(param1) {
+        //if (param1.event == 2) {
+        //    if (param1.button == 231) {
+        //        this.opendoors();
+        //    }
+        //}
         return null;
     }
     
     method settostartingpositions() {
-        if (this.switch1_up == 0) {
+        if (bettersaver::getbooleanvalue(102)) {
             this.switch1.setlocalpos(0, -1, 0);
             this.numberofdownswitchs = this.numberofdownswitchs + 1;
         }
-        if (this.switch2_up == 0) {
+        if (bettersaver::getbooleanvalue(103)) {
             this.switch2.setlocalpos(0, -1, 0);
             this.numberofdownswitchs = this.numberofdownswitchs + 1;
         }
-        if (this.switch3_up == 0) {
+        if (bettersaver::getbooleanvalue(104)) {
             this.switch3.setlocalpos(0, -1, 0);
             this.numberofdownswitchs = this.numberofdownswitchs + 1;
         }
-        if (this.switch4_up == 0) {
+        if (bettersaver::getbooleanvalue(105)) {
             this.switch4.setlocalpos(0, -1, 0);
             this.numberofdownswitchs = this.numberofdownswitchs + 1;
         }
-        if (this.switch5_up == 0) {
+        if (bettersaver::getbooleanvalue(106)) {
             this.switch5.setlocalpos(0, -1, 0);
             this.numberofdownswitchs = this.numberofdownswitchs + 1;
         }
-        this.test();
+        if (bettersaver::getbooleanvalue(107) == 0) {
+            this.test();
+        }
+        else {
+            this.opendoors(1);
+        }
         return null;
     }
     
@@ -237,12 +242,18 @@ class gly32_puzzle {
             var2 = this.doorarray[0].gety();
             var3 = this.doorarray[0].getz();
             globalclass.level.cam.settargetpos(var1, var2, var3);
+            bettersaver::setbooleanvalue(107, 1);
         }
         return null;
     }
     
-    method opendoors() {
-        this.curentorient = this.curentorient + 1;
+    method opendoors(bool) {
+        if ((bool == null) || (bool == 0)) {
+            this.curentorient = this.curentorient + 1;
+        }
+        else {
+            this.curentorient = this.curentorient + 100;
+        }
         if (this.curentorient > 100) {
             globalclass.level.cam.setaimode(11);
             this.rotating = 0;
