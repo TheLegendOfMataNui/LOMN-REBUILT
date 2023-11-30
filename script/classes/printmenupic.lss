@@ -3,11 +3,11 @@ class printmenupic {
     property highlight;
     property selectable;
     
-    method printmenupic(param1, param2, param3, param4, param5, param6, param7, param8, param9, param10, param11) {
-        this.selectable = param11;
+    method printmenupic(icon_filename, icon_x1, icon_y1, icon_x2, icon_y2, highlight_filename, highlight_x1, highlight_y1, highlight_x2, highlight_y2, is_selectable_bool) {
+        this.selectable = is_selectable_bool;
         if (this.selectable) {
-            this.image = new ss_basesprite(param1, __toint(param2 * screenratio), __toint(param3 * screenratio), 0, __toint(param4 * screenratio), __toint(param5 * screenratio));
-            this.highlight = new printmenuhighlight(param6, param7, param8, param9, param10);
+            this.image = new ss_basesprite(icon_filename, __toint(icon_x1 * screenratio), __toint(icon_y1 * screenratio), 0, __toint(icon_x2 * screenratio), __toint(icon_y2 * screenratio));
+            this.highlight = new printmenuhighlight(highlight_filename, highlight_x1, highlight_y1, highlight_x2, highlight_y2);
         }
         return null;
     }
@@ -23,13 +23,13 @@ class printmenupic {
     }
     
     method cleanupfull() {
-        if (!(this.image == null)) {
+        if (this.image != null) {
             this.image.hide();
             this.image.remove();
             this.image.cleanupfull();
             this.image = null;
         }
-        if (!(this.highlight == null)) {
+        if (this.highlight != null) {
             this.highlight.cleanupfull();
             this.highlight = null;
         }
@@ -52,10 +52,10 @@ class printmenupic {
         return null;
     }
     
-    method check(param1, param2) {
+    method check(mouse_x, mouse_y) {
         var var1;
         if (this.selectable) {
-            var1 = this.highlight.check(param1, param2);
+            var1 = this.highlight.check(mouse_x, mouse_y);
         }
         else {
             var1 = 0;

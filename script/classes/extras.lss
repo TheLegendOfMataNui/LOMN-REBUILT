@@ -138,11 +138,11 @@ class extras {
     }
 
     method process(param1) {
-        if (this.curscreen == 7) {
-            this.theater.process(param1);
-            debug::print("[][][] theater process");
-        }
-        else if (this.curscreen == 5) {
+        //if (this.curscreen == 7) {
+        //    this.theater.process(param1);
+        //    debug::print("[][][] theater process");
+        //}
+        if (this.curscreen == 5) {
             this.print.process(param1);
             debug::print("[][][] print process");
         }
@@ -160,9 +160,7 @@ class extras {
             }
             var2 = var2 + 1;
         }
-        if (var1 != -1) {
-            this.curoption = var1;
-        }
+        this.curoption = var1;
         return null;
     }
     
@@ -175,7 +173,7 @@ class extras {
                 this.glossary.initfull();
                 this.gotodifferentscreen(null, 4);
                 this.hideactivemenu();
-                this.process();
+                //this.process();
                 debug::print("[][][] glossary");
                 gcstaticsoundsptrarray::playtablesound(1073);
             }
@@ -191,7 +189,7 @@ class extras {
                 this.theater.initfull();
                 this.gotodifferentscreen(null, 7);
                 this.hideactivemenu();
-                this.process();
+                //this.process();
                 debug::print("[][][] theater");
                 gcstaticsoundsptrarray::playtablesound(1073);
             }

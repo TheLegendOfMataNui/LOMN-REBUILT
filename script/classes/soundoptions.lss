@@ -119,16 +119,24 @@ class soundoptions {
     method mousebuttonreleased(param1) {
         var var1;
         if (param1 == 1) {
+
+            //These need to update at all times until sliders can be mouse X axis locked 
+            this.musicvolumevalue = this.musicvolumeoption.getslidervalue();
+            gcsaver::setmusicvolume(this.musicvolumevalue);
+            this.musicvolumeoption.setrighttext(__tostring(this.musicvolumevalue) + "%");
+
+            this.soundvolumevalue = this.soundvolumeoption.getslidervalue();
+            gcsaver::setsoundvolume(this.soundvolumevalue);
+            this.soundvolumeoption.setrighttext(__tostring(this.soundvolumevalue) + "%");
+
             if (this.curoption == -1) {
             
             }
             else if (this.curoption == 0) {
-                this.musicvolumevalue = this.musicvolumeoption.getslidervalue();
-                gcsaver::setmusicvolume(this.musicvolumevalue);
+
             }
             else if (this.curoption == 1) {
-                this.soundvolumevalue = this.soundvolumeoption.getslidervalue();
-                gcsaver::setsoundvolume(this.soundvolumevalue);
+
             }
             else if (this.curoption == 2) {
                 this.back();
