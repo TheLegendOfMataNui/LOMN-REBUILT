@@ -28,6 +28,7 @@ class gs_lego_cdtimer : base_object {
     method reset() {
         this.time = this.total;
         sctilefont::setcolor(this.text.font, 255, 255, 0, 255);
+        this.text.scalefont(1.2);
         if (this.shown == 0) {
             this.text.show();
             this.shown = 1;
