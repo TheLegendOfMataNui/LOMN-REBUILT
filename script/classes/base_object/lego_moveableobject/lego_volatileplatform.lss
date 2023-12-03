@@ -96,7 +96,7 @@ class lego_volatileplatform : lego_moveableobject {
     //Using the touch method for handling sound setup 
     method touch(bool, rumble_soundtable_id, falling_soundtable_id) {
         if (this.touched == 0) {
-            if ((bool == null) || (bool <= 0)) {
+            if ((bool == null) || (bool == 0)) {
                 
             }
             else {
