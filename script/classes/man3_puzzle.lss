@@ -101,7 +101,7 @@ class man3_puzzle {
         if (this.bridge != null) {
             var1 = 0;
             while ((this.bridge.__length - 1) >= var1) {
-                this.bridge[var1].onevent(param1);
+                this.bridge[var1].onevent(param1, 1);
                 var1 = var1 + 1;
             }
         }

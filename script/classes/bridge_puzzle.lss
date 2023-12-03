@@ -107,7 +107,7 @@ class bridge_puzzle {
         var var1;
         var1 = 0;
         while ((this.bridgeparts.__length - 1) >= var1) {
-            this.bridgeparts[var1].onevent(param1);
+            this.bridgeparts[var1].onevent(param1, 1);
             var1 = var1 + 1;
         }
         if (param1.eventid == 4) {
@@ -119,13 +119,13 @@ class bridge_puzzle {
                 this.shakecamtimer.start();
                 if (param1.args[0] == scslosifoundation::stringtoidentifier("brg0")) {
                     if ((param1.args[1] == 1) && (this.lasttouched != 1)) {
-                        this.bridgeparts[39].touch();
-                        this.bridgeparts[37].touch();
-                        this.bridgeparts[33].touch();
-                        this.bridgeparts[28].touch();
-                        this.bridgeparts[14].touch();
-                        this.bridgeparts[9].touch();
-                        this.bridgeparts[3].touch();
+                        this.bridgeparts[39].touch(1);
+                        this.bridgeparts[37].touch(1);
+                        this.bridgeparts[33].touch(1);
+                        this.bridgeparts[28].touch(1);
+                        this.bridgeparts[14].touch(1);
+                        this.bridgeparts[9].touch(1);
+                        this.bridgeparts[3].touch(1);
                         this.lasttouched = 1;
                     }
                 }
@@ -133,15 +133,15 @@ class bridge_puzzle {
             }
             if (param1.args[0] == scslosifoundation::stringtoidentifier("brg1")) {
                 if ((param1.args[1] == 1) && (this.lasttouched != 2)) {
-                    this.bridgeparts[1].touch();
-                    this.bridgeparts[6].touch();
-                    this.bridgeparts[8].touch();
-                    this.bridgeparts[14].touch();
-                    this.bridgeparts[20].touch();
-                    this.bridgeparts[27].touch();
-                    this.bridgeparts[29].touch();
-                    this.bridgeparts[36].touch();
-                    this.bridgeparts[39].touch();
+                    this.bridgeparts[1].touch(1);
+                    this.bridgeparts[6].touch(1);
+                    this.bridgeparts[8].touch(1);
+                    this.bridgeparts[14].touch(1);
+                    this.bridgeparts[20].touch(1);
+                    this.bridgeparts[27].touch(1);
+                    this.bridgeparts[29].touch(1);
+                    this.bridgeparts[36].touch(1);
+                    this.bridgeparts[39].touch(1);
                     this.lasttouched = 2;
                 }
             }
@@ -217,13 +217,13 @@ class bridge_puzzle {
                 this.bridgeparts[var1].reset();
                 var1 = var1 + 1;
             }
-            this.bridgeparts[39].touch();
-            this.bridgeparts[37].touch();
-            this.bridgeparts[33].touch();
-            this.bridgeparts[28].touch();
-            this.bridgeparts[14].touch();
-            this.bridgeparts[9].touch();
-            this.bridgeparts[3].touch();
+            this.bridgeparts[39].touch(1);
+            this.bridgeparts[37].touch(1);
+            this.bridgeparts[33].touch(1);
+            this.bridgeparts[28].touch(1);
+            this.bridgeparts[14].touch(1);
+            this.bridgeparts[9].touch(1);
+            this.bridgeparts[3].touch(1);
         }
         else if (param1.eventid == 27) {
 

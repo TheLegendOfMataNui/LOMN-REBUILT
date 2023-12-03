@@ -85,14 +85,14 @@ class l1a3_puzzlep : base_object {
         if (param1.eventid == 1) {
             if (param1.args[0] == scslosifoundation::stringtoidentifier("cnt1")) {
                 if (param1.args[1] == scslosifoundation::stringtoidentifier("pl00")) {
-                    this.smallplats[1].touch();
+                    this.smallplats[1].touch(1);
                 }
                 else if (param1.args[1] == scslosifoundation::stringtoidentifier("pl03")) {
-                    this.smallplats[5].touch();
+                    this.smallplats[5].touch(1);
                 }
                 else if (param1.args[1] == scslosifoundation::stringtoidentifier("pl07")) {
-                    this.smallplats[8].touch();
-                    this.smallplats[10].touch();
+                    this.smallplats[8].touch(1);
+                    this.smallplats[10].touch(1);
                 }
             }
         }
@@ -111,14 +111,14 @@ class l1a3_puzzlep : base_object {
         if (this.smallplats != null) {
             var1 = 0;
             while ((this.smallplats.__length - 1) >= var1) {
-                this.smallplats[var1].onevent(param1);
+                this.smallplats[var1].onevent(param1, 1);
                 var1 = var1 + 1;
             }
         }
         if (this.largeplats != null) {
             var1 = 0;
             while ((this.largeplats.__length - 1) >= var1) {
-                this.largeplats[var1].onevent(param1);
+                this.largeplats[var1].onevent(param1, 1);
                 var1 = var1 + 1;
             }
         }

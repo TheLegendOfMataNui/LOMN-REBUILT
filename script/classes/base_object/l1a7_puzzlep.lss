@@ -18,12 +18,11 @@ class l1a7_puzzlep : base_object {
     method initfull() {
         var var1;
         gcareadirector::setfog(-16777216, 0 - 75.0, 0 - 200.0, 0.05);
-        gcareadirector::setnearestmax(30);
+        gcareadirector::setnearestmax(40);
         gcmodeldirector::setnearestmax(6);
         gclightdirector::setcavelighting(0);
         globalclass.bgmusic.changefilename("Root/Data/sounds/MUSICLEGOUNDERGROUND");
         globalclass.bgmusic.play(1);
-        this.lastid = scslosifoundation::stringtoidentifier("fake");
         this.door = new lego_moveableobject("drp0", this.parent.name);
         this.door.initfull();
         this.door.settweakable();
@@ -71,9 +70,9 @@ class l1a7_puzzlep : base_object {
             this.plataarray[var1].show();
             this.platbarray[var1].show();
             this.platcarray[var1].show();
-            this.plataarray[var1].settimetofall(0.5);
-            this.platbarray[var1].settimetofall(0.5);
-            this.platcarray[var1].settimetofall(0.5);
+            this.plataarray[var1].settimetofall();
+            this.platbarray[var1].settimetofall();
+            this.platcarray[var1].settimetofall();
             var1 = var1 + 1;
         }
         this.hooks = [ new lego_moveableobject("hot0"), 
@@ -117,23 +116,19 @@ class l1a7_puzzlep : base_object {
         }
         else if (param1.eventid == 1) {
             if (param1.args[0] == scslosifoundation::stringtoidentifier("cnt1")) {
-                var2 = param1.args[1];
-                if (!(var2 == this.lastid)) {
-                    var1 = 0;
-                    while ((this.plataarray.__length - 1) >= var1) {
-                        if (var2 == this.plataarray[var1].id) {
-                            if ((globalclass.player.whichmaskonface() == 7) && (globalclass.player.ismaskpoweron() == 1)) {
+                var1 = 0;
+                while ((this.plataarray.__length - 1) >= var1) {
+                    if (param1.args[1] == this.plataarray[var1].id) {
+                        if ((globalclass.player.whichmaskonface() == 7) && (globalclass.player.ismaskpoweron() == 1)) {
                                 
-                            }
-                            else {
-                                this.plataarray[var1].touch();
-                                this.platbarray[var1].touch();
-                                this.platcarray[var1].touch();
-                                this.lastid = var2;
-                            }
                         }
-                        var1 = var1 + 1;
+                        else {
+                            this.plataarray[var1].touch(1, 1038);
+                            this.platbarray[var1].touch();
+                            this.platcarray[var1].touch();
+                        }
                     }
+                    var1 = var1 + 1;
                 }
             }
         }

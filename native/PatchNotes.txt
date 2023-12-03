@@ -294,6 +294,7 @@ Level 1 - Onua
 • Fixed broken paths causing Legend FMV to crash for several languages		----		(ShadowDraikana)
 • Fixed the large tree in BECH to allow its leaves to render properly		----		(ShadowDraikana)
 • Adjusted platform collision in L1A7 to prevent no-Huna completion 		----		(ShadowDraikana)
+• Adjusted platform fall time in L1A7 and streamlined audio feedback 		----		(ShadowDraikana)
 
 Level 2 - Gali
 • Fixed a doorway in VLLG pointing to the wrong room (Nobody saw anything)	----		(ShadowDraikana)
