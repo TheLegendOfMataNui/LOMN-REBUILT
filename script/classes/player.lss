@@ -447,6 +447,8 @@ class player {
                 gccollisionphysicsgroup::spinmask(1.2);
                 //Sets a generic camera follow upon death instead of doing it per-killbox in each area
                 globalclass.level.cam.setaimode(7);
+                //Kill the surf state before physics reset happens in unkill
+                globalclass.player.actor.setsurfingability(0.0, 0.0);
             }
             else if (param1.eventid == 20) {
                 this.processequipment(1);

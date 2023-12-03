@@ -53,6 +53,7 @@ class snbd_puzzle {
     method initshort() {
         var var1;
         globalclass.player.actor.setsplitanimation(scslosifoundation::stringtoidentifier("k033"), 0);
+        globalclass.player.actor.setsurfingability(0.9, 0.8);
         var1 = 0;
         while ((this.wallarray.__length - 1) >= var1) {
             this.wallarray[var1].show();
