@@ -24,8 +24,6 @@ class lego_area_mtup5 : gs_lego_area {
             globalclass.bgmusic.changefilename("Root/Data/sounds/MusicLewaAmbience");
             globalclass.bgmusic.play();
         }
-        gcareadirector::setfog(-10381892, 0 - 5.0, 0 - 600.0, 0.01);
-        gclightdirector::setcavelighting(0);
         var1 = gcareadirector::gethive(scslosifoundation::stringtoidentifier("ghv0"));
         gchive::setmaxcreatures(var1, 2);
         gchive::setcreaturetype(var1, scslosifoundation::stringtoidentifier("lsrp"));
@@ -46,11 +44,6 @@ class lego_area_mtup5 : gs_lego_area {
         this.lego_area_hide();
         this.cinema = null;
         this.safecount = null;
-        return null;
-    }
-    
-    method exit() {
-        this.lego_area_cleanupfull();
         return null;
     }
     
@@ -95,6 +88,11 @@ class lego_area_mtup5 : gs_lego_area {
                 }
             }
         }
+        return null;
+    }
+    
+    method exit() {
+        this.lego_area_cleanupfull();
         return null;
     }
 }

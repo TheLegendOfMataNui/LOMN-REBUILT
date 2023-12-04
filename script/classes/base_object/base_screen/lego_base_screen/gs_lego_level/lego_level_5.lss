@@ -16,6 +16,8 @@ class lego_level_5 : gs_lego_level {
         this.areas.__append(area);
         area = new lego_area_cave5(this);
         this.areas.__append(area);
+        area = new lego_area_illu(this);
+        this.areas.__append(area);
         area = new lego_area_lep15(this);
         this.areas.__append(area);
         area = new lego_area_vllg5(this);

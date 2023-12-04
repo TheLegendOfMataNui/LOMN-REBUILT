@@ -5,8 +5,6 @@ class lego_level_8 : gs_lego_level {
         this.gs_lego_level("lev8", "nbua", "kini");
         area = new lego_area_kini(this);
         this.areas.__append(area);
-        area = new lego_area_illu(this);
-        this.areas.__append(area);
         area = new lego_area_lep3(this);
         this.areas.__append(area);
         area = new lev8_lstn(this);
