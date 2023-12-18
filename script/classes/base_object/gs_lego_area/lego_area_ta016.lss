@@ -5,17 +5,12 @@ class lego_area_ta016 : gs_lego_area {
         this.gs_lego_area("ta01", param1, 0, 0);
         this.puzzle = new ta016_puzzle(this);
         this.lego_area_initfull();
-        this.startingarea = [ 180, 
-            -356, 
-            0 - 51.4, 
-            689 ];
         return null;
     }
     
     method initfull() {
         this.lego_area_show();
         this.puzzle.initfull();
-        gcareadirector::setfog(-6750208, 0 - 1.0, 0 - 900.0, 0.05);
         return null;
     }
     
@@ -41,8 +36,11 @@ class lego_area_ta016 : gs_lego_area {
     }
     
     method exit() {
-        this.puzzle.exit();
-        this.puzzle = null;
+        this.lego_area_cleanupfull();
+        if (this.puzzle != null) {
+            this.puzzle.exit();
+            this.puzzle = null;
+        }
         return null;
     }
 }

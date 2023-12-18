@@ -8,34 +8,35 @@ class sprite_projectile {
     property lifespan;
     property detonateradius;
     
-    method sprite_projectile(param1, param2, param3, param4, param5, param6, param7, param8) {
-        this.id = scslosifoundation::stringtoidentifier(param1);
-        this.name = param1;
-        this.path = param3;
+    method sprite_projectile(spriteID, objectOrTextureName, filePath, speed, spriteSize, lifespan, numberOfFrames, type) {
+        this.id = scslosifoundation::stringtoidentifier(spriteID);
+        this.name = spriteID;
+        this.path = filePath;
         this.handle = null;
-        if (param4 == null) {
+        if (speed == null) {
             this.speed = 50;
         }
         else {
-            this.speed = param4;
+            this.speed = speed;
         }
-        if (param5 == null) {
+        if (spriteSize == null) {
             this.spritesize = 2;
         }
         else {
-            this.spritesize = param5;
+            this.spritesize = spriteSize;
         }
-        if (param6 == null) {
+        if (lifespan == null) {
             this.lifespan = 3;
         }
         else {
-            this.lifespan = param6;
+            this.lifespan = lifespan;
         }
-        if (param8 == null) {
-            param8 = 0;
+        //Type determines if the projectile is a texture (0) or a physical object (1).  Mismatching the type WILL crash
+        if (type == null) {
+            type = 0;
         }
         this.detonateradius = this.spritesize;
-        this.handle = gcvectorprojectile::create(this.id, this.path, param2, this.speed, this.spritesize, this.lifespan, this.detonateradius, param7, param8);
+        this.handle = gcvectorprojectile::create(this.id, this.path, objectOrTextureName, this.speed, this.spritesize, this.lifespan, this.detonateradius, numberOfFrames, type);
         if (this.handle == null) {
             debug::print(("ERROR --- handle of Sprite_Projectile " + this.name) + " is nothing.");
         }
@@ -47,6 +48,9 @@ class sprite_projectile {
     }
     
     method cleanupfull() {
+        if (this.hasdied() == 0) {
+            this.detonate();
+        }
         this.handle = null;
         this.id = null;
         this.name = null;
@@ -66,10 +70,12 @@ class sprite_projectile {
         return null;
     }
     
+    //Returns whether the projectile is still active or not
     method hasdied() {
         return gcvectorprojectile::hasdied(this.handle);
     }
     
+    //Detonates the projectile
     method detonate() {
         gcvectorprojectile::detonate(this.handle);
         return null;
