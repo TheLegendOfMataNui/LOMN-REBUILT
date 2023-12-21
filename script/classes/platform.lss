@@ -10,11 +10,11 @@ class platform {
     property shakevector;
     property shakerotate;
     property bouncevector;
-    property patharray;
+    //property patharray;
     property pathpoint;
-    property vectorshakearray;
-    property rotateshakearray;
-    property bouncearray;
+    //property vectorshakearray;
+    //property rotateshakearray;
+    //property bouncearray;
     property temppoint;
     property needtomove;
     property touched;
@@ -37,19 +37,38 @@ class platform {
     property hidetimername;
     property particaltime;
     property langthofexplotion;
-    property maintimer;
-    property frequency;
-    property curentarrayposition;
-    property curent_bounce_arrayposition;
-    property curent_vectorshake_arrayposition;
-    property curent_rotateshake_arrayposition;
+    //property maintimer;
+    //property frequency;
+    //property curentarrayposition;
+    //property curent_bounce_arrayposition;
+    //property curent_vectorshake_arrayposition;
+    //property curent_rotateshake_arrayposition;
     property explodeparticals;
     property platformfallingsound;
     property platformrumblesound;
     property dropsoundonce;
+
+    property path_positions; // Array of basicpoint. Each of the keyframe positions
+    property path_times; // Array of float. How much time the corresponding segment takes.
+    property path_currentindex; // Int. Which segment we're currently working on
+    property path_currenttime; // Float. How much time we've traveled along the path for. Resets to zero once we loop back to the path's start.
+
+    property rotateShake_positions; // Array of 2 basicpoints. First basicpoint sets the amount of rotation on each axis, second basicpoint is the inverse.
+    property rotateShake_times; // Array of float. How much time rotation shake takes.
+    property rotateShake_currentindex; // Int. Which segment we're currently working on
+    property rotateShake_currenttime; // Float. How much time the current rotation shake has lasted for. Resets to zero once the rotation finishes each cycle.
     
+    property vectorShake_positions; // Array of 2 basicpoints. First basicpoint sets the amount of movement on each axis, second basicpoint is the inverse.
+    property vectorShake_times; // Array of float. How much time vector shake takes.
+    property vectorShake_currentindex; // Int. Which segment we're currently working on
+    property vectorShake_currenttime; // Float. How much time the current vector shake has lasted for. Resets to zero once the movement finishes each cycle.
+    
+    property bounce_positions; // Array of 2 basicpoints. First basicpoint sets the amount of movement on each axis, second basicpoint is the inverse.
+    property bounce_times; // Array of float. How much time vector shake takes.
+    property bounce_currentindex; // Int. Which segment we're currently working on
+    property bounce_currenttime; // Float. How much time the current vector shake has lasted for. Resets to zero once the movement finishes each cycle.
+
     method platform(param1, param2) {
-        var var1;
         this.obj = new lego_physicsobject(param1, param2);
         this.objid = this.obj.id;
         this.id = this.obj.id;
@@ -69,12 +88,11 @@ class platform {
         this.bouncevector = new basicpoint(0.0, 0.0, 0.0);
         this.pathpoint = new basicpoint(0.0, 0.0, 0.0);
         this.temppoint = new basicpoint(0.0, 0.0, 0.0);
-        this.rotateshakearray = [  ];
-        this.vectorshakearray = [  ];
-        this.patharray = [  ];
-        this.bouncearray = [  ];
+        //this.rotateshakearray = [  ];
+        //this.vectorshakearray = [  ];
+        //this.patharray = [  ];
+        //this.bouncearray = [  ];
         this.touched = 0;
-        var1 = 0;
         this.bouncing = 0;
         this.needtomove = 0;
         this.haspath = 0;
@@ -95,12 +113,12 @@ class platform {
         this.hidetimername = null;
         this.particaltime = 0;
         this.langthofexplotion = 10.0;
-        this.maintimer = 0.0;
-        this.frequency = 1000;
-        this.curentarrayposition = 0;
-        this.curent_bounce_arrayposition = 0;
-        this.curent_vectorshake_arrayposition = 0;
-        this.curent_rotateshake_arrayposition = 0;
+        //this.maintimer = 0.0;
+        //this.frequency = 5; // This way, if we see it working, we know it's not using the old method.
+        //this.curentarrayposition = 0;
+        //this.curent_bounce_arrayposition = 0;
+        //this.curent_vectorshake_arrayposition = 0;
+        //this.curent_rotateshake_arrayposition = 0;
         this.platformfallingsound = null;
         this.platformrumblesound = null;
         return null;
@@ -129,20 +147,23 @@ class platform {
     }
     
     method cleanupfull() {
-        this.remove();
-        this.platformfallingsound = null;
-        this.platformrumblesound = null;
-        return null;
-    }
-    
-    method remove() {
         this.obj.cleanupfull();
         this.obj = null;
-        if (!(this.falltimer == null)) {
+        if (this.falltimer != null) {
             this.falltimer.cleanupfull();
+            this.falltimer = null;
         }
-        if (!(this.hidetimer == null)) {
+        if (this.hidetimer != null) {
             this.hidetimer.cleanupfull();
+            this.hidetimer = null;
+        }
+        if (this.platformrumblesound != null) {
+            this.platformrumblesound.cleanupfull();
+            this.platformrumblesound = null;
+        }
+        if (this.platformfallingsound != null) {
+            this.platformfallingsound.cleanupfull();
+            this.platformfallingsound = null;
         }
         return null;
     }
@@ -183,36 +204,108 @@ class platform {
     
     method process(param1) {
         var var1;
-        this.maintimer = this.maintimer + param1.deltatime;
+        //this.maintimer = this.maintimer + param1.deltatime;
         if (this.paused == 0) {
             
         }
-        if (this.maintimer >= (1 / this.frequency)) {
+        //if (this.maintimer >= (1 / this.frequency)) {
             if (this.dropping == 0) {
                 if (this.vectorshaking) {
-                    var1 = __toint(this.maintimer * this.frequency);
-                    this.curent_vectorshake_arrayposition = (this.curent_vectorshake_arrayposition + var1) % (this.vectorshakearray.__length - 1);
-                    this.shakevector = this.vectorshakearray[this.curent_vectorshake_arrayposition];
+                    //var1 = __toint(this.maintimer * this.frequency);
+                    //this.curent_vectorshake_arrayposition = (this.curent_vectorshake_arrayposition + var1) % (this.vectorshakearray.__length - 1);
+                    //this.shakevector = this.vectorshakearray[this.curent_vectorshake_arrayposition];
+
+                    // Advance time, and move to the next segment if necessary
+                    this.vectorShake_currenttime = this.vectorShake_currenttime + param1.deltatime;
+                    // While we have passed the current segment in time, advance to the next segment.
+                    // This does introduce a *potential* infinite loop if you accidentally give a time of zero, because it will be switching to the next segment forever. Don't do that.
+                    while (this.vectorShake_currenttime >= this.vectorShake_times[this.vectorShake_currentindex]) {
+                    // We have completed the time for the current vector shake
+                        this.vectorShake_currenttime = this.vectorShake_currenttime - this.vectorShake_times[this.vectorShake_currentindex];
+                        // Advance the current segment
+                        this.vectorShake_currentindex = (this.vectorShake_currentindex + 1) % this.vectorShake_positions.__length;
+                    }
+
+                    // Determine the start and end points of the current segment
+                    var start_point = this.vectorShake_positions[this.vectorShake_currentindex];
+                    var end_point = this.vectorShake_positions[(this.vectorShake_currentindex + 1) % this.vectorShake_positions.__length]; // The mod (%) makes the index 0 if we're at the last segment, meaning end_point will wrap back to the first point in the vectorShake_positions.
+                    // Determine the point we're currently at by lerping between the start and end points
+                    var amount = this.vectorShake_currenttime / this.vectorShake_times[this.vectorShake_currentindex];
+                    this.shakevector.lerp(start_point, end_point, amount);
                 }
                 if (this.rotateshaking) {
-                    var1 = __toint(this.maintimer * this.frequency);
-                    this.curent_rotateshake_arrayposition = (this.curent_rotateshake_arrayposition + var1) % (this.rotateshakearray.__length - 1);
-                    this.shakerotate = this.rotateshakearray[this.curent_rotateshake_arrayposition];
+                    //var1 = __toint(this.maintimer * this.frequency);
+                    //this.curent_rotateshake_arrayposition = (this.curent_rotateshake_arrayposition + var1) % (this.rotateshakearray.__length - 1);
+                    //this.shakerotate = this.rotateshakearray[this.curent_rotateshake_arrayposition];
+
+                    // Advance time, and move to the next segment if necessary
+                    this.rotateShake_currenttime = this.rotateShake_currenttime + param1.deltatime;
+                    // While we have passed the current segment in time, advance to the next segment.
+                    // This does introduce a *potential* infinite loop if you accidentally give a time of zero, because it will be switching to the next segment forever. Don't do that.
+                    while (this.rotateShake_currenttime >= this.rotateShake_times[this.rotateShake_currentindex]) {
+                    // We have completed the time for the current rotation shake
+                        this.rotateShake_currenttime = this.rotateShake_currenttime - this.rotateShake_times[this.rotateShake_currentindex];
+                        // Advance the current segment
+                        this.rotateShake_currentindex = (this.rotateShake_currentindex + 1) % this.rotateShake_positions.__length;
+                    }
+
+                    // Determine the start and end points of the current segment
+                    var start_point = this.rotateShake_positions[this.rotateShake_currentindex];
+                    var end_point = this.rotateShake_positions[(this.rotateShake_currentindex + 1) % this.rotateShake_positions.__length]; // The mod (%) makes the index 0 if we're at the last segment, meaning end_point will wrap back to the first point in the rotateShake_positions.
+                    // Determine the point we're currently at by lerping between the start and end points
+                    var amount = this.rotateShake_currenttime / this.rotateShake_times[this.rotateShake_currentindex];
+                    this.shakerotate.lerp(start_point, end_point, amount);
                 }
                 if (this.bouncing) {
-                    var1 = __toint(this.maintimer * this.frequency);
-                    this.curent_bounce_arrayposition = (this.curent_bounce_arrayposition + var1) % (this.bouncearray.__length - 1);
-                    this.bouncevector = this.bouncearray[this.curent_bounce_arrayposition];
+                    //var1 = __toint(this.maintimer * this.frequency);
+                    //this.curent_bounce_arrayposition = (this.curent_bounce_arrayposition + var1) % (this.bouncearray.__length - 1);
+                    //this.bouncevector = this.bouncearray[this.curent_bounce_arrayposition];
+
+                    // Advance time, and move to the next segment if necessary
+                    this.bounce_currenttime = this.bounce_currenttime + param1.deltatime;
+                    // While we have passed the current segment in time, advance to the next segment.
+                    // This does introduce a *potential* infinite loop if you accidentally give a time of zero, because it will be switching to the next segment forever. Don't do that.
+                    while (this.bounce_currenttime >= this.bounce_times[this.bounce_currentindex]) {
+                    // We have completed the time for the current rotation shake
+                        this.bounce_currenttime = this.bounce_currenttime - this.bounce_times[this.bounce_currentindex];
+                        // Advance the current segment
+                        this.bounce_currentindex = (this.bounce_currentindex + 1) % this.bounce_positions.__length;
+                    }
+
+                    // Determine the start and end points of the current segment
+                    var start_point = this.bounce_positions[this.bounce_currentindex];
+                    var end_point = this.bounce_positions[(this.bounce_currentindex + 1) % this.bounce_positions.__length]; // The mod (%) makes the index 0 if we're at the last segment, meaning end_point will wrap back to the first point in the bounce_positions.
+                    // Determine the point we're currently at by lerping between the start and end points
+                    var amount = this.bounce_currenttime / this.bounce_times[this.bounce_currentindex];
+                    this.bouncevector.lerp(start_point, end_point, amount);
                 }
                 if (this.haspath) {
-                    var1 = __toint(this.maintimer * this.frequency);
-                    this.curentarrayposition = (this.curentarrayposition + var1) % (this.patharray.__length - 1);
-                    this.pathpoint = this.patharray[this.curentarrayposition];
+                    //var1 = __toint(this.maintimer * this.frequency);
+                    //this.curentarrayposition = (this.curentarrayposition + var1) % (this.patharray.__length - 1);
+                    //this.pathpoint = this.patharray[this.curentarrayposition];
+
+                    // Advance time, and move to the next segment if necessary
+                    this.path_currenttime = this.path_currenttime + param1.deltatime;
+                    // While we have passed the current segment in time, advance to the next segment.
+                    // This does introduce a *potential* infinite loop if you accidentally give a path with all-zero times, because it will be switching to the next segment forever. Don't do that.
+                    while (this.path_currenttime >= this.path_times[this.path_currentindex]) {
+                    // We have completed the time for the current path
+                        this.path_currenttime = this.path_currenttime - this.path_times[this.path_currentindex];
+                        // Advance the current segment
+                        this.path_currentindex = (this.path_currentindex + 1) % this.path_positions.__length;
+                    }
+
+                    // Determine the start and end points of the current segment
+                    var start_point = this.path_positions[this.path_currentindex];
+                    var end_point = this.path_positions[(this.path_currentindex + 1) % this.path_positions.__length]; // The mod (%) makes the index 0 if we're at the last segment, meaning end_point will wrap back to the first point in the path_positions.
+                    // Determine the point we're currently at by lerping between the start and end points
+                    var amount = this.path_currenttime / this.path_times[this.path_currentindex];
+                    this.pathpoint.lerp(start_point, end_point, amount);
                 }
                 this.moveobj();
-                this.maintimer = 0.0;
+                //this.maintimer = 0.0;
             }
-        }
+        //}
         if (this.exploding) {
             this.particaltime = this.particaltime + param1.deltatime;
             if (this.langthofexplotion < this.particaltime) {
@@ -245,7 +338,7 @@ class platform {
     }
     
     method drop() {
-        if (!(this.platformfallingsound == null)) {
+        if (this.platformfallingsound != null) {
             if (this.dropsoundonce) {
                 this.platformfallingsound.play();
                 this.dropsoundonce = 0;
@@ -255,7 +348,7 @@ class platform {
         this.explode();
         this.obj.setmoveableflags(1, 1, 0, 1);
         this.obj.setrollangle(5, 5, 5);
-        if (!(this.hidetimer == null)) {
+        if (this.hidetimer != null) {
             this.hidetimer.reset(0);
             this.hidetimer.start();
         }
@@ -325,32 +418,38 @@ class platform {
         return null;
     }
     
-    method setuppath(param1, param2) {
-        var var1;
+    method setuppath(positions, times) {
+        this.path_positions = positions;
+        this.path_times = times;
+        this.path_currentindex = 0;
+        this.path_currenttime = 0.0;
+        this.haspath = 1;
+
+        // IMAGINE THIS IS GREEN
+        /*var var1;
         var var2;
         var var3;
         var var4;
         var var5;
         var var6;
         var var7;
-        this.haspath = 1;
         var1 = 0;
-        while ((param1.__length - 1) >= var1) {
-            if (var1 < (param1.__length - 1)) {
+        while ((positions.__length - 1) >= var1) {
+            if (var1 < (positions.__length - 1)) {
                 var2 = var1 + 1;
             }
             else {
                 var2 = 0;
             }
-            var3 = param2[var1] * this.frequency;
+            var3 = times[var1] * this.frequency;
             if (var3 < 1) {
                 var3 = 1;
             }
             var4 = 0;
             while (var3 >= var4) {
-                var5 = gcscripttools::getxdivisionalong3dline(param1[var1].x, param1[var1].y, param1[var1].z, param1[var2].x, param1[var2].y, param1[var2].z, var3, var4);
-                var6 = gcscripttools::getydivisionalong3dline(param1[var1].x, param1[var1].y, param1[var1].z, param1[var2].x, param1[var2].y, param1[var2].z, var3, var4);
-                var7 = gcscripttools::getzdivisionalong3dline(param1[var1].x, param1[var1].y, param1[var1].z, param1[var2].x, param1[var2].y, param1[var2].z, var3, var4);
+                var5 = gcscripttools::getxdivisionalong3dline(positions[var1].x, positions[var1].y, positions[var1].z, positions[var2].x, positions[var2].y, positions[var2].z, var3, var4);
+                var6 = gcscripttools::getydivisionalong3dline(positions[var1].x, positions[var1].y, positions[var1].z, positions[var2].x, positions[var2].y, positions[var2].z, var3, var4);
+                var7 = gcscripttools::getzdivisionalong3dline(positions[var1].x, positions[var1].y, positions[var1].z, positions[var2].x, positions[var2].y, positions[var2].z, var3, var4);
                 this.temppoint = new basicpoint(var5, var6, var7);
                 this.patharray.__append(this.temppoint);
                 var4 = var4 + 1;
@@ -359,13 +458,22 @@ class platform {
                 this.haspath = 0;
             }
             var1 = var1 + 1;
-        }
+        }*/
         return null;
     }
     
-    method setupbounce(param1, param2, param3, param4, param5, param6, param7) {
-        var var1;
-        var var2;
+    method setupbounce(startX, startY, startZ, bounce_time) {
+        this.bounce_positions = [ new basicpoint(startX, startY, startZ),
+            new basicpoint(0 - startX, 0 - startY, 0 - startZ) ];
+        this.bounce_times = [ bounce_time,
+            bounce_time ];
+        this.bounce_currentindex = 0;
+        this.bounce_currenttime = 0.0;
+        this.bouncing = 1;
+
+        // IMAGINE THIS IS GREEN
+        /*var start;
+        var end;
         var var3;
         var var4;
         var var5;
@@ -376,12 +484,12 @@ class platform {
         var var10;
         var var11;
         this.bouncing = 1;
-        var1 = new basicpoint(param1, param3, param5);
-        var2 = new basicpoint(0 - param1, 0 - param3, 0 - param5);
-        var3 = [ var1, 
-            var2 ];
-        var4 = [ param7, 
-            param7 ];
+        start = new basicpoint(startx, starty, startz);
+        end = new basicpoint(0 - startx, 0 - starty, 0 - startz);
+        var3 = [ start, 
+            end ];
+        var4 = [ time, 
+            time ];
         var5 = 0;
         while ((var3.__length - 1) >= var5) {
             if (var5 < (var3.__length - 1)) {
@@ -407,12 +515,21 @@ class platform {
                 this.bouncing = 0;
             }
             var5 = var5 + 1;
-        }
+        }*/
         return null;
     }
     
-    method setuptouchshakerotate(param1, param2, param3, param4) {
-        var var1;
+    method setuptouchshakerotate(x_shift, y_shift, z_shift, shake_time) {
+        this.rotateShake_positions = [ new basicpoint(x_shift, y_shift, z_shift),
+            new basicpoint(0 - x_shift, 0 - y_shift, 0 - z_shift) ];
+        this.rotateShake_times = [ shake_time,
+            shake_time ];
+        this.rotateShake_currentindex = 0;
+        this.rotateShake_currenttime = 0.0;
+        this.rotateshakewhentouched = 1;
+
+        // IMAGINE THIS IS GREEN
+        /*var var1;
         var var2;
         var var3;
         var var4;
@@ -421,12 +538,12 @@ class platform {
         var var7;
         var var8;
         this.rotateshakewhentouched = 1;
-        var1 = new basicpoint(param1, param2, param3);
-        var2 = new basicpoint(0 - param1, 0 - param2, 0 - param3);
+        var1 = new basicpoint(x_shift, y_shift, z_shift);
+        var2 = new basicpoint(0 - x_shift, 0 - y_shift, 0 - z_shift);
         var3 = [ var1, 
             var2 ];
-        var4 = [ param4, 
-            param4 ];
+        var4 = [ shake_time, 
+            shake_time ];
         var5 = 0;
         while ((var3.__length - 1) >= var5) {
             if (var5 < (var3.__length - 1)) {
@@ -441,10 +558,10 @@ class platform {
             }
             var8 = 0;
             while (var7 >= var8) {
-                param1 = gcscripttools::getxdivisionalong3dline(var3[var5].x, var3[var5].y, var3[var5].z, var3[var6].x, var3[var6].y, var3[var6].z, var7, var8);
-                param2 = gcscripttools::getydivisionalong3dline(var3[var5].x, var3[var5].y, var3[var5].z, var3[var6].x, var3[var6].y, var3[var6].z, var7, var8);
-                param3 = gcscripttools::getzdivisionalong3dline(var3[var5].x, var3[var5].y, var3[var5].z, var3[var6].x, var3[var6].y, var3[var6].z, var7, var8);
-                this.temppoint = new basicpoint(param1, param2, param3);
+                x_shift = gcscripttools::getxdivisionalong3dline(var3[var5].x, var3[var5].y, var3[var5].z, var3[var6].x, var3[var6].y, var3[var6].z, var7, var8);
+                y_shift = gcscripttools::getydivisionalong3dline(var3[var5].x, var3[var5].y, var3[var5].z, var3[var6].x, var3[var6].y, var3[var6].z, var7, var8);
+                z_shift = gcscripttools::getzdivisionalong3dline(var3[var5].x, var3[var5].y, var3[var5].z, var3[var6].x, var3[var6].y, var3[var6].z, var7, var8);
+                this.temppoint = new basicpoint(x_shift, y_shift, z_shift);
                 this.rotateshakearray.__append(this.temppoint);
                 var8 = var8 + 1;
             }
@@ -452,12 +569,22 @@ class platform {
                 this.rotateshakewhentouched = 0;
             }
             var5 = var5 + 1;
-        }
+        }*/
         return null;
     }
     
-    method setuptouchshakevector(param1, param2, param3, param4) {
-        var var1;
+    method setuptouchshakevector(x_shift, y_shift, z_shift, shake_time) {
+        this.vectorShake_positions = [ new basicpoint(x_shift, y_shift, z_shift),
+            new basicpoint(0 - x_shift, 0 - y_shift, 0 - z_shift) ];
+        this.vectorShake_times = [ shake_time,
+            shake_time ];
+        this.vectorShake_currentindex = 0;
+        this.vectorShake_currenttime = 0.0;
+        this.vectorshakewhentouched = 1;
+
+
+        // IMAGINE THIS IS GREEN
+        /*var var1;
         var var2;
         var var3;
         var var4;
@@ -466,12 +593,12 @@ class platform {
         var var7;
         var var8;
         this.vectorshakewhentouched = 1;
-        var1 = new basicpoint(param1, param2, param3);
-        var2 = new basicpoint(0 - param1, 0 - param2, 0 - param3);
+        var1 = new basicpoint(x_shift, y_shift, z_shift);
+        var2 = new basicpoint(0 - x_shift, 0 - y_shift, 0 - z_shift);
         var3 = [ var1, 
             var2 ];
-        var4 = [ param4, 
-            param4 ];
+        var4 = [ shake_time, 
+            shake_time ];
         var5 = 0;
         while ((var3.__length - 1) >= var5) {
             if (var5 < (var3.__length - 1)) {
@@ -486,10 +613,10 @@ class platform {
             }
             var8 = 0;
             while (var7 >= var8) {
-                param1 = gcscripttools::getxdivisionalong3dline(var3[var5].x, var3[var5].y, var3[var5].z, var3[var6].x, var3[var6].y, var3[var6].z, var7, var8);
-                param2 = gcscripttools::getydivisionalong3dline(var3[var5].x, var3[var5].y, var3[var5].z, var3[var6].x, var3[var6].y, var3[var6].z, var7, var8);
-                param3 = gcscripttools::getzdivisionalong3dline(var3[var5].x, var3[var5].y, var3[var5].z, var3[var6].x, var3[var6].y, var3[var6].z, var7, var8);
-                this.temppoint = new basicpoint(param1, param2, param3);
+                x_shift = gcscripttools::getxdivisionalong3dline(var3[var5].x, var3[var5].y, var3[var5].z, var3[var6].x, var3[var6].y, var3[var6].z, var7, var8);
+                y_shift = gcscripttools::getydivisionalong3dline(var3[var5].x, var3[var5].y, var3[var5].z, var3[var6].x, var3[var6].y, var3[var6].z, var7, var8);
+                z_shift = gcscripttools::getzdivisionalong3dline(var3[var5].x, var3[var5].y, var3[var5].z, var3[var6].x, var3[var6].y, var3[var6].z, var7, var8);
+                this.temppoint = new basicpoint(x_shift, y_shift, z_shift);
                 this.vectorshakearray.__append(this.temppoint);
                 var8 = var8 + 1;
             }
@@ -497,37 +624,45 @@ class platform {
                 this.vectorshakewhentouched = 0;
             }
             var5 = var5 + 1;
-        }
+        }*/
         return null;
     }
     
-    method setupfall(param1, param2, param3, param4) {
-        if (!(param3 == null)) {
-            this.hidetimerid = scslosifoundation::stringtoidentifier(param4);
-            this.hidetimername = param4;
-            this.hidetimer = new lego_timer(param4, param3, 0);
+    method setupfall(fallTime, fallTimerID, hideTime, hideTimerID) {
+        if (hideTime != null) {
+            this.hidetimerid = scslosifoundation::stringtoidentifier(hideTimerID);
+            this.hidetimername = hideTimerID;
+            this.hidetimer = new lego_timer(hideTimerID, hideTime, 0);
             this.hidetimer.initfull();
         }
         this.objwillfall = 1;
-        this.falltimerid = scslosifoundation::stringtoidentifier(param2);
-        this.falltimername = param2;
-        this.falltimer = new lego_timer(param2, param1, 0);
+        this.falltimerid = scslosifoundation::stringtoidentifier(fallTimerID);
+        this.falltimername = fallTimerID;
+        this.falltimer = new lego_timer(fallTimerID, fallTime, 0);
         this.falltimer.initfull();
         this.setupsounds();
         return null;
     }
     
-    method setupsounds(param1, param2) {
-        if (!(param1 == null)) {
-            this.platformrumblesound = new tablecopysound(param1);
+    method setupsounds(rumble_soundtable_id, falling_soundtable_id) {
+        if (this.platformrumblesound != null) {
+            this.platformrumblesound.cleanupfull();
+            this.platformrumblesound = null;
+        }
+        if (this.platformfallingsound != null) {
+            this.platformfallingsound.cleanupfull();
+            this.platformfallingsound = null;
+        }
+        if (rumble_soundtable_id != null) {
+            this.platformrumblesound = new tablecopysound(rumble_soundtable_id);
             this.platformrumblesound.synctoobject(this.id);
         }
         else {
             this.platformrumblesound = new tablecopysound(1039);
             this.platformrumblesound.synctoobject(this.id);
         }
-        if (!(param2 == null)) {
-            this.platformfallingsound = new tablecopysound(param2);
+        if (falling_soundtable_id != null) {
+            this.platformfallingsound = new tablecopysound(falling_soundtable_id);
             this.platformfallingsound.synctoobject(this.id);
         }
         else {
