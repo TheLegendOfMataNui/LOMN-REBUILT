@@ -3,6 +3,9 @@ class lego_timer : base_object {
     property id;
     property duration;
     property startnow;
+    property processListIndex;
+    property active;
+    property run_once;
     
     method lego_timer(timer_id, timer_length, start_now) {
         this.id = scslosifoundation::stringtoidentifier(timer_id);
@@ -19,17 +22,61 @@ class lego_timer : base_object {
         if (this.handle == null) {
             debug::print(("Tried to create a timer " + scslosifoundation::identifiertostring(this.id)) + " and it didn't work!!!!");
         }
+        this.active = 0;
+        this.run_once = 0;
+        // We need to add this class into the global processing list to allow us to run process here without an external call
+        this.processListIndex = globalclass.addtoprocesslist(this);
         return null;
     }
     
     method cleanupfull() {
         this.stop();
+        // Safety nullcheck before attempting to remove from the process list
+        if (globalclass.processlist != null) {
+            globalclass.removefromprocesslist(this.processListIndex);
+        }
+        this.processListIndex = null;
         this.handle = null;
+        this.id = null;
+        this.duration = null;
+        this.startnow = null;
+        this.active = null;
+        return null;
+    }
+    
+    method process(param1) {
+        // This bullfuckery is a script-side solution for the timer class lacking a pause/unpause functionality
+        // Eventually I'd like to fix the start/stop triggering a reset and add a proper pause command
+        //
+        // First, we check if the timer returns active or not.  this.active is set to 1 by the start() method when it gets run externally, reset sets it back to 0
+        if (this.active == 1) {
+            // This pair of ifs checks for the pause state, run_once, and if the timer length is greater than 0
+            // In essence we're cheesing the pause functionality by starting and stopping the timer dependent on the conditions here
+            // To do this, we have to make changes to the timer length every time the game gets paused (see comment below), because for some reason start/stop resets the timer regardless 
+            if ((globalclass.pause.ispaused == 0) && (this.run_once == 0) && (this.getduration() > 0)) {
+                debug::print("Game is NOT paused, timer should proceed");
+                debug::print("time remaining: " + __tostring(this.getduration()));
+                debug::print(__tostring(this.durationlast()) + " time elapsed");
+                // What we do here is change the timer length by grabbing the current duration and subtracting elapsed time, the result then becomes the new timer length
+                this.setduration(this.getduration() - this.durationlast());
+                debug::print("New time remaining: " + __tostring(this.getduration()));
+                this.start();
+                this.run_once = 1;
+            }
+            if ((globalclass.pause.ispaused == 1) && (this.run_once == 1) && (this.getduration() > 0)) {
+                debug::print("Game IS paused, timer should not proceed");
+                this.stop();
+                debug::print("time remaining: " + __tostring(this.getduration()));
+                debug::print(__tostring(this.durationlast()) + " time elapsed");
+                this.run_once = 0;
+            }
+        }
         return null;
     }
     
     method start() {
         gctimer::start(this.handle);
+        this.active = 1;
         return null;
     }
     
@@ -45,34 +92,44 @@ class lego_timer : base_object {
         else {
             this.startnow = param1;
         }
+        //debug::print("ORIGINAL duration length: " + __tostring(this.duration));
+        // Here we reset the timer to its original length (stored as this.duration), which was unaffected by our processing shenanigans
+        this.setduration(this.duration);
         gctimer::reset(this.handle, this.startnow);
+        this.active = 0;
         return null;
     }
     
     method deactivate() {
         gctimer::deactivate(this.handle);
+        this.active = 0;
         return null;
     }
     
-    method setduration(param1) {
-        this.duration = param1;
-        gctimer::settargettime(this.handle, param1);
+    method setduration(timer_duration, durationOverride) {
+        // This check protects the original timer length stored in this.duration from our processing bullshit
+        // Second arg needed in order to override original timer length externally
+        if (durationOverride != null) {
+            this.duration = timer_duration;
+        }
+        gctimer::settargettime(this.handle, timer_duration);
         return null;
     }
     
     method getduration() {
-        return this.duration;
+        return gctimer::gettargettime(this.handle);
     }
     
     method durationpeek() {
-        return gctimer::durationpeek();
+        return gctimer::durationpeek(this.handle);
     }
     
+    //Returns the elapsed time
     method durationlast() {
-        return gctimer::durationpeek();
+        return gctimer::durationlast(this.handle);
     }
     
     method durationaverage() {
-        return gctimer::durationaverage();
+        return gctimer::durationaverage(this.handle);
     }
 }

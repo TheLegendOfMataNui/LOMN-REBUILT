@@ -112,7 +112,6 @@ class global_class : base_object {
         this.eventlist.__append(this.enemy);
         this.inputlist.__append(this.enemy);
         this.processlist.__append(this.enemy);
-        this.debugtimer.initfull();
         this.debugstring.initfull();
         var1 = 0;
         while ((this.eventlist.__length - 1) >= var1) {
@@ -144,6 +143,7 @@ class global_class : base_object {
             this.preloadfonts[var2].hide();
             var2 = var2 + 1;
         }
+        this.debugtimer.initfull();
         return null;
     }
     
@@ -486,7 +486,7 @@ class global_class : base_object {
             this.debugstring.setpos(320 - var3, 60, 0);
             this.debugstring.add();
             this.debugstring.show();
-            this.debugtimer.setduration(var1);
+            this.debugtimer.setduration(var1, 1);
             this.debugtimer.reset(0);
             this.debugtimer.start();
             this.hittoggletimer = 0;
