@@ -203,7 +203,7 @@ class lego_pickup {
     
     method process(param1) {
         var var1;
-        if (this.objshown == 1) {
+        if ((this.objshown == 1) && (globalclass.pause.ispaused == 0)) {
             this.deltatimer = this.deltatimer + param1.deltatime;
             if (this.deltatimer > (1 / this.spinspeed)) {
                 
