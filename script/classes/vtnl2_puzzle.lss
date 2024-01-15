@@ -2,7 +2,6 @@ class vtnl2_puzzle {
     property parent;
     property caveplatforms;
     property randomnumber;
-    property passedtrigplane;
     
     method vtnl2_puzzle(param1) {
         this.parent = param1;
@@ -19,7 +18,6 @@ class vtnl2_puzzle {
         gclightdirector::setcavelighting(1);
         globalclass.bgmusic.changefilename("Root/Data/sounds/MusicGaliAmbience");
         globalclass.bgmusic.play();
-        this.passedtrigplane = 0;
         this.randomnumber = new slosi_random(0);
         this.caveplatforms = [ new lego_moveableobject("pf01"), 
             new lego_moveableobject("pf03"), 
@@ -70,6 +68,10 @@ class vtnl2_puzzle {
             this.caveplatforms = null;
         }
         this.randomnumber = null;
+        return null;
+    }
+    
+    method process(param1) {
         return null;
     }
     

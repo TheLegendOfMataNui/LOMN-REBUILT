@@ -37,16 +37,6 @@ class ttun2_puzzle {
                 this.call_ev_safe_time_once = 0;
             }
         }
-        else if (param1.eventid == 27) {
-            if (this.enteredbackdoor) {
-                globalclass.player.actor.setunderwater(0);
-                debug::print("******************************** OUT OF WATER");
-            }
-            else {
-                debug::print("******************************** IN WATER");
-                globalclass.player.actor.setwaterlevel(1000);
-            }
-        }
         return null;
     }
     

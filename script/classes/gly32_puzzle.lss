@@ -138,10 +138,7 @@ class gly32_puzzle {
     }
     
     method onevent(param1) {
-        if (param1.eventid == 27) {
-            globalclass.player.actor.setunderwater(1);
-        }
-        else if (param1.eventid == 1) {
+        if (param1.eventid == 1) {
             if (param1.args[0] == scslosifoundation::stringtoidentifier("swc1")) {
                 if (bettersaver::getbooleanvalue(102) == 0) {
                     gcstaticsoundsptrarray::playtablesound(1085);

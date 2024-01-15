@@ -20,6 +20,11 @@ class lego_area_vtnl2 : gs_lego_area {
         return null;
     }
     
+    method process(param1) {
+        this.puzzle.process(param1);
+        return null;
+    }        
+
     method onevent(param1) {
         this.puzzle.onevent(param1);
         return null;

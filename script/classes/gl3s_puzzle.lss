@@ -127,6 +127,8 @@ class gl3s_puzzle {
             if (param1.args[0] == scslosifoundation::stringtoidentifier("surf")) {
                 this.startsurf();
                 globalclass.player.usecheckpoints = 1;
+                globalclass.player.spawnedunderwater = 0;
+                debug::print("CHECKPOINT TRIGGER HIT >>>>>>> STARTING SURF");
             }
         }
         else if (param1.eventid == 27) {
@@ -134,9 +136,6 @@ class gl3s_puzzle {
             if (globalclass.player.usecheckpoints == 1) {
                 globalclass.player.actor.setpos(-21.016275, 10.851161, -112.240814);
                 globalclass.player.actor.setorientation(24);
-            }
-            else {
-                globalclass.player.actor.setwaterlevel(1000);
             }
         }
         return null;

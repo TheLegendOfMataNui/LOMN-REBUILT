@@ -81,9 +81,6 @@ class isld2_puzzle {
                 this.whirlcone.show();
             }
         }
-        else if (param1.eventid == 27) {
-            globalclass.player.actor.setwaterlevel(1000);
-        }
         else if (param1.eventid == 44) {
             if (this.call_ev_safe_time_once) {
                 if (this.parent.enterstartid == scslosifoundation::stringtoidentifier("str0")) {

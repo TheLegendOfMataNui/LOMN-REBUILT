@@ -10,7 +10,6 @@ class shrn2_puzzle {
     property bossdoortext2;
     property bossdoortexttimer;
     property showbossdoor;
-    property inwater;
     property nokama;
     property unasa;
     property amtapi;
@@ -34,7 +33,15 @@ class shrn2_puzzle {
         gclightdirector::setcavelighting(0);
         globalclass.bgmusic.changefilename("Root/Data/sounds/MusicShrine");
         globalclass.bgmusic.play();
-        this.inwater = 1;
+        if ((gcsaver::getstart() == scslosifoundation::stringtoidentifier("str1")) || (gcsaver::getstart() == scslosifoundation::stringtoidentifier("str7")) || (gcsaver::getstart() == scslosifoundation::stringtoidentifier("str9")) || (globalclass.player.crashbandicootwarped == 2)) {
+            //SHOULD NOT SPAWN IN WATER
+            globalclass.player.underwater = 0;
+            globalclass.player.isswimming();              
+        }
+        else {
+            //SHOULD SPAWN IN WATER
+            globalclass.player.actor.setwaterlevel(1000);
+        }            
         this.doors = [ new lego_moveableobject("dor1"), 
             new lego_moveableobject("dor3"), 
             new lego_moveableobject("dor2"), 
@@ -166,7 +173,6 @@ class shrn2_puzzle {
             this.bossdoortext2.cleanupfull();
             this.bossdoortext2 = null;
         }
-        this.inwater = null;
         this.portalactive = null;
         this.nokama = null;
         this.unasa = null;
@@ -179,8 +185,7 @@ class shrn2_puzzle {
     method onevent(param1) {
         var portal_trigger;
         if (param1.eventid == 27) {
-            debug::print(scslosifoundation::identifiertostring(gcsaver::getstart()));
-            this.inwater = 1;
+            debug::print("Respawned at start point: " + scslosifoundation::identifiertostring(gcsaver::getstart()));
         }
         else if (param1.eventid == 1) {
             if (param1.args[0] == scslosifoundation::stringtoidentifier("cnt1")) {
@@ -238,19 +243,6 @@ class shrn2_puzzle {
                 //ENTERED FROM: GL3S
                 bettersaver::setbooleanvalue(78, 1);
             }
-            else if (this.inwater == 1) {
-                if ((gcsaver::getstart() == scslosifoundation::stringtoidentifier("str1")) || (gcsaver::getstart() == scslosifoundation::stringtoidentifier("str7")) || (gcsaver::getstart() == scslosifoundation::stringtoidentifier("str9")) || (globalclass.player.crashbandicootwarped == 2)) {
-                    //SHOULD NOT SPAWN IN WATER
-                    globalclass.player.underwater = 0;
-                    globalclass.player.isswimming();              
-                }
-                else {
-                    //SHOULD SPAWN IN WATER
-                    globalclass.player.underwater = 1;
-                    globalclass.player.isswimming();
-                }            
-            }
-            this.inwater = 0;
         }
         return null;
     }

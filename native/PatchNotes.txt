@@ -301,6 +301,7 @@ Level 2 - Gali
 • Fixed a switch in GLY3 from appearing pressed already	    				----		(ShadowDraikana)
 • Added movement to buttons in GLY3 when pushing them down   				----		(ShadowDraikana)
 • Buttons being pressed and doors openened in GLY3 now save properly		----		(ShadowDraikana)
+• Fixed underwater respawns sometimes not working correctly 		        ----		(ShadowDraikana)
 
 Level 4 - Kopaka
 • Fixed Ice Elemental sometimes not resetting properly upon player death	----		(ShadowDraikana)

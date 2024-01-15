@@ -291,7 +291,7 @@ class player {
             this.actor.onevent(param1);
             if ((param1.eventid == 40)  && (this.toadied == 0)) {
                 if (param1.args[1] != null) {
-                    debug::print("ouch! by " + __tostring(param1.args[1]));
+                    //debug::print("ouch! by " + __tostring(param1.args[1]));
                     if ((param1.args[1] == scslosifoundation::stringtoidentifier("crsh")) || (param1.args[1] == scslosifoundation::stringtoidentifier("hell"))) {
                         debug::print("Damaged by " + scslosifoundation::identifiertostring(param1.args[1]) + ", not playing damage sound");
                     }
@@ -483,14 +483,6 @@ class player {
                 if (this.crashbandicootwarped == 2) {                
                     globalclass.player.actor.gotopos(scslosifoundation::stringtoidentifier("str9"), scslosifoundation::stringtoidentifier("lok9"));
                 }
-                if (this.submerged == 1) {
-                    debug::print("SPAWNED IN WOTOR");
-                    this.spawnedunderwater = 1;
-                }
-                else {
-                    debug::print("SPAWNED ON LAND");
-                    this.spawnedunderwater = 0;
-                }
 
                 //If there was a cutscene warp and the global input is disabled, re-enable it and reset cutscene_warp property
                 if ((globalclass.hud.cutscene_warp == 1) && (globalclass.inputenabled == 0)) {
@@ -613,21 +605,25 @@ class player {
                 if (this.disablerespawn == 0) {
                     //If the player is not swimming, reset physics
                     if (this.spawnedunderwater == 0) {
-                        globalclass.player.actor.setupphysics(1.5, 0.8, 1, 0, 0);
+                        this.actor.setupphysics(1.5, 0.8, 1, 0, 0);
+                    }
+                    else if (this.spawnedunderwater == 1) {
+                        this.actor.setwaterlevel(1000);
+                        debug::print("Attempting to spawn in underwater state...");
                     }
                     //This if/else is for handing off player positioning back to the area's code in the case of a checkpoint system being present.  Otherwise, use the generic setup
                     if (this.usecheckpoints == 1) {
                         debug::print("Handing off respawn position to area checkpoint handler");
                     }
                     else {
-                        globalclass.player.actor.gotopos(gcsaver::getstart(), gcsaver::getlook());
+                        this.actor.gotopos(gcsaver::getstart(), gcsaver::getlook());
                     }
                     //Normal respawn code
-                    globalclass.player.unkill();
+                    this.unkill();
                     globalclass.level.cam.setaimode(11);
                     //Is the idle animation allowed or not?
                     if (this.allowidleanim == 1) {
-                        globalclass.player.actor.idle();
+                        this.actor.idle();
                     }
                     //Generic handling for resetting triggerboxes dynamically instead of hard scripting it
                     if (this.triggerboxid != null) {
@@ -672,6 +668,16 @@ class player {
                 }   
                 //Reenable player collisions with characters now that the screenwipe and respawn are finished, ending invincibility period
                 globalclass.player.actor.enablecollisions();
+
+                //This is so stupid but here we are... need this to make sure the game knows whether the spawn point was underwater or on land
+                if (this.submerged == 1) {
+                    debug::print("SPAWNED IN WOTOR");
+                    this.spawnedunderwater = 1;
+                }
+                else {
+                    debug::print("SPAWNED ON LAND");
+                    this.spawnedunderwater = 0;
+                }
             }
 
             //Cinema Play and Conversation Start event
