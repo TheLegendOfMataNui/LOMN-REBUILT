@@ -13,39 +13,30 @@ class gs_lego_screenmenu : base_object {
     
     method gs_lego_screenmenu(param1) {
         this.items = param1;
-        this.bgart = new ss_basesprite("Root/Data/Art/MenuArt/LUKE", 0, 0, 0, 852, 480);
+        this.bgart = new ss_basesprite("Root/Data/Art/MenuArt/LUKE", 0, 0, 3, 640, 480);
         return null;
     }
     
     method initfull() {
-        var var1;
-        var var2;
         var var3;
         var var4;
         var var5;
-        var var6;
-        var width = gcgame::getresolutionwidth();
         this.bgart.initfull();
         this.bgart.add();
         this.bgart.show();
-        if (width == 640.000000) {
-            this.bgart.setpos(-113, 0, 753, 480);
-        }     
-        this.startx = screenx * 0.56;
-        this.starty = screeny * 0.41;
-        var1 = this.startx;
-        var2 = this.starty;
+        this.startx = 358.4;
+        this.starty = 196.8;
         this.xchange = 0;
         this.ychange = 40;
         this.maxlines = 6;
         var3 = 0;
         while ((this.items.__length - 1) >= var3) {
-            var4 = new gs_legoactivetext("Root/Data/Art/Fonts/BionicleFont", "Root/Data/Art/Fonts/BionicleFontHi", this.items[var3], var1, var2, 1, 2.0, 0, 4, 0);
+            var4 = new gs_legoactivetext("Root/Data/Art/Fonts/BionicleFont", "Root/Data/Art/Fonts/BionicleFontHi", this.items[var3], this.startx, this.starty, 1, 2.0, 0, 4, 0);
             this.items[var3] = var4;
             this.items[var3].initfull();
             this.items[var3].add();
-            var1 = var1 + this.xchange;
-            var2 = var2 + this.ychange;
+            this.startx = this.startx + this.xchange;
+            this.starty = this.starty + this.ychange;
             var3 = var3 + 3;
         }
         if ((this.items.__length / 3) < this.maxlines) {
@@ -62,7 +53,6 @@ class gs_lego_screenmenu : base_object {
         this.argarray = this.items[2];
         this.lineposition = 0;
         this.items[this.pointer].setactive();
-        var6 = 1;
         return null;
     }
     
@@ -144,7 +134,6 @@ class gs_lego_screenmenu : base_object {
                 this.setscroll(0);
                 this.pointer = 0;
             }
-            param1;
         }
         this.setforscreen();
         this.items[this.pointer].setactive();
@@ -191,13 +180,13 @@ class gs_lego_screenmenu : base_object {
             this.items[var1].hide();
             var1 = var1 + 3;
         }
-        var2 = this.startx - (param1 * this.xchange);
-        var3 = this.starty - (param1 * this.ychange);
+        var2 = 358.4 - (param1 * 0);
+        var3 = 196.8 - (param1 * 40);
         var1 = 0;
         while ((this.items.__length - 1) >= var1) {
-            this.items[var1].setpos(var2, var3, 0);
-            var2 = var2 + this.xchange;
-            var3 = var3 + this.ychange;
+            this.items[var1].setpos(var2, var3, 0);            
+            var2 = var2 + 0;
+            var3 = var3 + 40;
             var1 = var1 + 3;
         }
         var1 = param1;
@@ -213,7 +202,7 @@ class gs_lego_screenmenu : base_object {
         var var1;
         var1 = 0;
         while ((this.items.__length - 1) >= var1) {
-            if (!(var1 == this.pointer)) {
+            if (var1 != this.pointer) {
                 this.items[var1].hide();
             }
             var1 = var1 + 3;

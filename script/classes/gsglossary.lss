@@ -26,7 +26,7 @@ class gsglossary {
         var var7;
         var var8;
         this.active = 1;
-        this.background = new ss_basesprite("Root/data/art/Glossary/Glossary_Background", __toint(0 * screenratio), __toint(0 * screenratio), 0, __toint(640 * screenratio), __toint(480 * screenratio));
+        this.background = new ss_basesprite("Root/data/art/Glossary/Glossary_Background", 0, 0, 0, 640, 480);
         this.background.initfull();
         this.background.add();
         this.background.show();
@@ -35,12 +35,12 @@ class gsglossary {
         this.prevopt.initfull();
         this.nextopt.initfull();
         this.curopt = -1;
-        var1 = __toint(60 * screenratio);
-        var2 = __toint(188 * screenratio);
-        var3 = __toint(77 * screenratio);
-        var4 = __toint(266 * screenratio);
-        var5 = __toint(205 * screenratio);
-        var6 = __toint(394 * screenratio);
+        var1 = 60;
+        var2 = 188;
+        var3 = 77;
+        var4 = 266;
+        var5 = 205;
+        var6 = 394;
         this.images = [ 0, 
             new ss_basesprite("Root/data/art/Glossary/Amaja_circle", var1, var3, 0, var2, var5), 
             1, 
@@ -167,9 +167,8 @@ class gsglossary {
             new ss_basesprite("Root/data/art/Glossary/Wahi", var1, var4, 0, var2, var6) ];
         this.curscreen = 0;
         this.lastscreen = 30;
-        var7 = __toint(200 * screenratio);
-        this.desc = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "", var7, var3 + 10, 0, 1.0 * screenratio, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "", var7, var4 + 10, 0, 1.0 * screenratio, 0, 4, 0, 1) ];
+        this.desc = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "", 200, var3 + 10, 0, 1.0, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "", 200, var4 + 10, 0, 1.0 , 0, 4, 0, 1) ];
         var8 = 0;
         while ((this.desc.__length - 1) >= var8) {
             this.desc[var8].initfull();

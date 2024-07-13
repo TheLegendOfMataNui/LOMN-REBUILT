@@ -53,21 +53,16 @@ class pausescreen {
     
     method pause() {
         var var1;
-        var width = gcgame::getresolutionwidth();
-        var lang = gcareadirector::getlanguage();
         if (gcgame::pausegame() == 1) {
             this.menustrings = [ 
-                new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad_bev", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 59), screenx * 0.5, (screeny * 0.45) - 30, 5, 2.0, 256, 4, 0, 1), 
-                new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad_bev", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 23), screenx * 0.5, (screeny * 0.45), 0, 2.0, 256, 4, 0, 1), 
-                new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad_bev", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 88), screenx * 0.5, (screeny * 0.45) + 30, 5, 2.0, 256, 4, 0, 1),
-                new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad_bev", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 41), screenx * 0.5, (screeny * 0.45) + 60, 5, 2.0, 256, 4, 0, 1) ];            
-                this.menubox = new ss_basesprite("Root/Data/Art/Menubox", 285, 130, 0, 565, 330);            
+                new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad_bev", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 59), 320, 216 - 30, 5, 2.0, 256, 4, 0, 1), 
+                new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad_bev", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 23), 320, 216, 5, 2.0, 256, 4, 0, 1), 
+                new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad_bev", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 88), 320, 216 + 30, 5, 2.0, 256, 4, 0, 1),
+                new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad_bev", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 41), 320, 216 + 60, 5, 2.0, 256, 4, 0, 1) ];            
+                this.menubox = new ss_basesprite("Root/Data/Art/Menubox", 180, 130, 0, 460, 330);            
             this.menubox.initfull();
             this.menubox.add();
             this.menubox.show();
-            if (width == 640.000000) {
-                this.menubox.setpos(178, 130, 460, 330);
-            }    
             var1 = 0;
             while ((this.menustrings.__length - 1) >= var1) {
                 this.menustrings[var1].initfull();

@@ -13,13 +13,13 @@ class hudtokens : base_objectarray {
     }
 
     method setcolor() {
-        var var1;
+        //var var1;
         var var2;
         var var3;
         this.tcount = 0;
         this.tidx = 0;
         this.cidx = 2;
-        var1 = screenx - 184;
+        //var1 = screenx - 184;
         if (globalclass.player.actorid == "nbua") {
             var2 = "Root/data/art/pickups/token/token";
             var3 = 11;
@@ -58,9 +58,9 @@ class hudtokens : base_objectarray {
             var2 = "Root/data/art/pickups/onuatoken/onua_token";
         }
         this.base_objectarray([ 
-            new gs_lego_animatesprite(var2, 0, var3, 1, var1, 20, 0, var1 + 64, 84), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "X", (var1 + 64) + 5, 52, 0, 1.2, 0, 4, 0), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "0", ((var1 + 64) + 5) + 32, 52, 0, 1.7, 0, 4, 0) ]);
+            new gs_lego_animatesprite(var2, 0, var3, 1, 456, 20, 0, 456 + 64, 84), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "X", (456 + 64) + 5, 52, 0, 1.2, 0, 4, 0), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "0", ((456 + 64) + 5) + 32, 52, 0, 1.7, 0, 4, 0) ]);
         this.items[0].initfull();
         this.items[1].initfull();
         this.items[2].initfull();

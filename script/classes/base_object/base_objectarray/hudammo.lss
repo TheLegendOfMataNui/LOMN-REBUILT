@@ -14,13 +14,12 @@ class hudammo : base_objectarray {
     }
     
     method setcolor() {
-        var var1;
-        var var2;
+        //var var1;
+        //var var2;
         var var3;
         var var4;
-        var var5;
-        var1 = screenx - 180;
-        var2 = screeny - 84;
+        //var1 = screenx - 180;
+        //var2 = screeny - 84;
         if (globalclass.player.actorid == "onua") {
             var4 = "Root/data/art/hud/elemrotate/hpybllonua";
         }
@@ -54,20 +53,19 @@ class hudammo : base_objectarray {
         else if (globalclass.player.actorid == "when") {
             var4 = "Root/data/art/hud/elemrotate/hpybllonua";
         }
-        this.base_objectarray([ new gs_lego_animatesprite(var4, 0, 12, 1, var1, var2, 0, var1 + 64, var2 + 64), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "X", (var1 + 64) + 5, var2 + 32, 0, 1.2, 0, 4, 0), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "0", ((var1 + 64) + 5) + 32, var2 + 32, 0, 1.7, 0, 4, 0) ]);
+        this.base_objectarray([ new gs_lego_animatesprite(var4, 0, 12, 1, 460, 396, 0, 460 + 64, 396 + 64), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "X", (460 + 64) + 5, 396 + 32, 0, 1.2, 0, 4, 0), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "0", ((460 + 64) + 5) + 32, 396 + 32, 0, 1.7, 0, 4, 0) ]);
         this.spriteidx = 0;
         this.textidx = 2;
         this.items[0].initfull();
         this.items[1].initfull();
         this.items[2].initfull();
-        var5 = gcsaver::getammo();
-        if (var5 == null) {
+        if (gcsaver::getammo() == null) {
             this.setammo(999);
         }
         else {
-            this.setammo(var5);
+            this.setammo(gcsaver::getammo());
         }
         this.add();
         this.show();

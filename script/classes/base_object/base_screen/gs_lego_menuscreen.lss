@@ -25,10 +25,10 @@ class gs_lego_menuscreen : base_screen {
             this.returningfromarootscreen = 1;
         }
         this.introscreens = [  ];
-        this.screentext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "...", screenx / 2, screeny - 80, 0, 1, 256, 4, 0);
+        this.screentext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "...", 320, 480 - 80, 0, 1, 256, 4, 0);
         this.screentext.initfull();
         this.screentext.add();
-        this.screentext.scalefont(1.5);
+        this.screentext.scalefont(1.5, 1.5);
         this.inputenabled = 0;
         this.screentimer = new lego_timer("mstz", 7.0, 0);
         this.screentimer.initfull();
@@ -262,7 +262,7 @@ class gs_lego_menuscreen : base_screen {
             this.temptimer = 0;
             this.menu.hideall();
             sctilefont::setcolor(this.screentext.font, 255, 255, 0, 255);
-            this.screentext.scalefont(2.0);
+            this.screentext.scalefont(2.0, 2.0);
             this.screentext.setstring(gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 27) + "...");
             this.screentext.show();
             gcsaver::load();
@@ -310,17 +310,17 @@ class gs_lego_menuscreen : base_screen {
                 globalclass.initshort();
             }
         }
-        //else if (var1 == 44) {
-        //    this.temptimer = 0;
-        //    this.selected = 1;
-        //    this.menu.hideall();
-        //}
         else if (var1 == 24) {
             this.temptimer = 0;
             this.selected = 1;
             this.menu.hideall();
         }
         else if (var1 == 25) {
+            this.temptimer = 0;
+            this.selected = 1;
+            this.menu.hideall();
+        }
+        else if (var1 == 44) {
             this.temptimer = 0;
             this.selected = 1;
             this.menu.hideall();
@@ -335,7 +335,7 @@ class gs_lego_menuscreen : base_screen {
                 globalclass.initshort();
             }
             sctilefont::setcolor(this.screentext.font, 255, 255, 0, 255);
-            this.screentext.scalefont(2.0);
+            this.screentext.scalefont(2.0, 2.0);
             this.screentext.setstring(gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 27) + "...");
             this.screentext.show();
         }

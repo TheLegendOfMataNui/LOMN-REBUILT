@@ -32,7 +32,7 @@ class gsprintmenu {
         var var1;
         this.active = 1;
         this.subon = 0;
-        this.background1 = new ss_basesprite("Root/data/art/PrintMenu/BACKGROUND01", __toint(0 * screenratio), __toint(0 * screenratio), 0, __toint(640 * screenratio), __toint(480 * screenratio));
+        this.background1 = new ss_basesprite("Root/data/art/PrintMenu/BACKGROUND01", 0, 0, 0, 640, 480);
         this.background1.initfull();
         this.background1.add();
         this.background1.show();
@@ -55,7 +55,7 @@ class gsprintmenu {
         }
         this.printer = scprinter::create();
         this.printlock = 0;
-        this.printtext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "Printing...", __toint(320 * screenratio), __toint(460 * screenratio), 0, 1.0 * screenratio, 256, 4, 0, 1);
+        this.printtext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "Printing...", 320, 460, 0, 1.0, 256, 4, 0, 1);
         return null;
     }
     
@@ -351,7 +351,7 @@ class gsprintmenu {
         debug::print("Switching to print...");
         this.subon = 1;
         this.hide();
-        this.background2 = new ss_basesprite("Root/data/art/PrintMenu/BACKGROUND02", __toint(0 * screenratio), __toint(0 * screenratio), 0, __toint(640 * screenratio), __toint(480 * screenratio));
+        this.background2 = new ss_basesprite("Root/data/art/PrintMenu/BACKGROUND02", 0, 0, 0, 640, 480);
         this.background2.initfull();
         this.background2.add();
         this.background2.show();
@@ -555,7 +555,7 @@ class gsprintmenu {
             var5 = 432;
         }
         if ((param1 >= 0) && (param1 <= (this.imagelist.__length - 1))) {
-            this.image2 = new ss_basesprite(var1, __toint(var2 * screenratio), __toint(var3 * screenratio), 0, __toint(var4 * screenratio), __toint(var5 * screenratio));
+            this.image2 = new ss_basesprite(var1, var2, var3, 0, var4, var5);
             this.image2.initfull();
             this.image2.add();
             this.image2.show();

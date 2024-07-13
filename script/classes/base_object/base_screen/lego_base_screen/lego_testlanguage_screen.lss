@@ -12,11 +12,11 @@ class lego_testlanguage_screen : lego_base_screen {
     
     method initfull() {
         var var1;
-        this.items = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "BionicleFont", screenx * 0.05, screeny * 0.05, 0, 1.25, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "BionicleFontshad", screenx * 0.05, (screeny * 0.05) + 30, 0, 1.25, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "TECH FONT", screenx * 0.05, (screeny * 0.05) + 60, 0, 1.0, 0, 4, 0, 1),
-            new gs_legotext("Root/Data/Art/Fonts/tech_font_01_hilight", "TECH FONT HILIGHTED", screenx * 0.05, (screeny * 0.05) + 90, 0, 1.0, 0, 4, 0, 1),
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontMat", "MATORAN", screenx * 0.05, (screeny * 0.05) + 120, 0, 1.25, 0, 4, 0, 1) ];
+        this.items = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "BionicleFont", 32, 24, 0, 1.25, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "BionicleFontshad", 32, 24 + 30, 0, 1.25, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "TECH FONT", 32, 24 + 60, 0, 1.0, 0, 4, 0, 1),
+            new gs_legotext("Root/Data/Art/Fonts/tech_font_01_hilight", "TECH FONT HILIGHTED", 32, 24 + 90, 0, 1.0, 0, 4, 0, 1),
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontMat", "MATORAN", 32, 24 + 120, 0, 1.25, 0, 4, 0, 1) ];
         var1 = 0;
         while ((this.items.__length - 1) >= var1) {
             this.items[var1].initfull();
@@ -152,8 +152,8 @@ class lego_testlanguage_screen : lego_base_screen {
         }
         this.stringtable.initfull();
         if (this.examplestring == null) {
-            var x_pos = (screenx * 0.5);
-            var y_pos = (screeny - 300);
+            var x_pos = 320;
+            var y_pos = 180;
             this.examplestring = [ new gs_lego_languagetext(font, 0, this.stringtable, x_pos, y_pos, 0, scaling, 256, 2, 0),
                 new gs_lego_languagetext(font, 1, this.stringtable, x_pos, y_pos, 0, scaling, 256, 2, 0),
                 new gs_lego_languagetext(font, 2, this.stringtable, x_pos, y_pos, 0, scaling, 256, 2, 0),

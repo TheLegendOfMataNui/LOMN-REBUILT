@@ -39,7 +39,9 @@ class hudthingy {
             var2 = var2 + 1;
         }
         var4 = this.lifebar.__length - 1;
-        this.lifebar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.lifebar[var4].x1 + 15, this.lifebar[var4].y1, 0, this.lifebar[var4].x2 + 15, this.lifebar[var4].y2));
+        debug::print(this.lifebar[var4].x1);
+        debug::print("lifebar x1 above");
+        this.lifebar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.lifebar[var4].x1 + (15 * screenratio), this.lifebar[var4].y1, 0, this.lifebar[var4].x2 + (15 * screenratio), this.lifebar[var4].y2, 1));
         this.partsarray.__append(this.lifebar);
         this.airbar = [ new ss_basesprite("Root/data/art/hud/16x16frntend__clr", 72, 50, 0, 88, 66) ];
         var1 = __toint(3);
@@ -50,7 +52,7 @@ class hudthingy {
             var2 = var2 + 1;
         }
         var4 = this.airbar.__length - 1;
-        this.airbar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.airbar[var4].x1 + 15, this.airbar[var4].y1, 0, this.airbar[var4].x2 + 15, this.airbar[var4].y2));
+        this.airbar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.airbar[var4].x1 + (15 * screenratio), this.airbar[var4].y1, 0, this.airbar[var4].x2 + (15 * screenratio), this.airbar[var4].y2, 1));
         this.partsarray.__append(this.airbar);
         this.energybar = [ new ss_basesprite("Root/data/art/hud/16x16frntend__clr", 72, 64, 0, 88, 80) ];
         var1 = __toint(3);
@@ -61,7 +63,7 @@ class hudthingy {
             var2 = var2 + 1;
         }
         var4 = this.energybar.__length - 1;
-        this.energybar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.energybar[var4].x1 + 15, this.energybar[var4].y1, 0, this.energybar[var4].x2 + 15, this.energybar[var4].y2));
+        this.energybar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.energybar[var4].x1 + (15 * screenratio), this.energybar[var4].y1, 0, this.energybar[var4].x2 + (15 * screenratio), this.energybar[var4].y2, 1));
         this.partsarray.__append(this.energybar);
         this.redlites = [  ];
         var4 = this.lifebar.__length - 1;
@@ -311,21 +313,21 @@ class hudthingy {
     }
     
     method process(param1) {
-        if ((this.movement < 0) && (this.airbar[0].x1 >= -86)) {
+        if ((this.movement < 0) && (this.airbar[0].x1 >= (-86 * screenratio))) {
             this.changepos(-10);
-            if (this.airbar[0].x1 <= -86) {
+            if (this.airbar[0].x1 <= (-86 * screenratio)) {
                 this.movement = 0;
             }
         }              
-        if ((this.movement == -2) && (this.airbar[0].x1 >= -86)) {
+        if ((this.movement == -2) && (this.airbar[0].x1 >= (-86 * screenratio))) {
             this.changepos(-50);
-            if (this.airbar[0].x1 <= -86) {
+            if (this.airbar[0].x1 <= (-86 * screenratio)) {
                 this.movement = 0;
             }
         }            
-        if ((this.movement > 0) && (this.airbar[0].x1 <= 66)) {
+        if ((this.movement > 0) && (this.airbar[0].x1 <= (66 * screenratio))) {
             this.changepos(10);
-            if (this.airbar[0].x1 >= 66) {
+            if (this.airbar[0].x1 >= (66 * screenratio)) {
                 this.movement = 0;
             }
         }            
@@ -577,7 +579,7 @@ class hudthingy {
         if (var1 > var2) {
             while (var1 > var2) {
                 var3 = this.lifebar.__length - 1;
-                var4 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", this.lifebar[var3].x1 + 1, this.lifebar[var3].y1, 0, this.lifebar[var3].x2 + 1, this.lifebar[var3].y2);
+                var4 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", this.lifebar[var3].x1 + (screenratio * 1), this.lifebar[var3].y1, 0, this.lifebar[var3].x2 + (screenratio * 1), this.lifebar[var3].y2, 1);
                 var4.initfull();
                 var4.enablealphachannel(1);
                 var4.add();
@@ -614,7 +616,7 @@ class hudthingy {
             while (var1 > var2) {
                 debug::print("[][][] add max energy");
                 var3 = this.energybar.__length - 1;
-                var4 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", this.energybar[var3].x1 + 1, this.energybar[var3].y1, 0, this.energybar[var3].x2 + 1, this.energybar[var3].y2);
+                var4 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", this.energybar[var3].x1 + (screenratio * 1), this.energybar[var3].y1, 0, this.energybar[var3].x2 + (screenratio * 1), this.energybar[var3].y2, 1);
                 var4.initfull();
                 var4.enablealphachannel(1);
                 var4.add();
@@ -651,7 +653,7 @@ class hudthingy {
         if (var1 > var2) {
             while (var1 > var2) {
                 var3 = this.airbar.__length - 1;
-                var4 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", this.airbar[var3].x1 + 1, this.airbar[var3].y1, 0, this.airbar[var3].x2 + 1, this.airbar[var3].y2);
+                var4 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", this.airbar[var3].x1 + (screenratio * 1), this.airbar[var3].y1, 0, this.airbar[var3].x2 + (screenratio * 1), this.airbar[var3].y2, 1);
                 var4.initfull();
                 var4.enablealphachannel(1);
                 var4.add();

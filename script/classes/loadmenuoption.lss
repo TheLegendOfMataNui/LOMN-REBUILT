@@ -5,7 +5,7 @@ class loadmenuoption {
     property selectable;
     
     method loadmenuoption(param1, param2) {
-        this.text = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", param1, __toint(320 * screenratio), __toint(param2 * screenratio), 0, 1.0 * screenratio, 256, 4, 0, 1);
+        this.text = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", param1, 320, param2, 0, 1.0, 256, 4, 0, 1);
         this.lit = 0;
         this.selectable = 1;
         return null;

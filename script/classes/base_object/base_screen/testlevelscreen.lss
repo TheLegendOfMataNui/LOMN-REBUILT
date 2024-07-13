@@ -14,11 +14,11 @@ class testlevelscreen : base_screen {
     
     method initfull() {
         var var1;
-        this.menustrings = [ new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "TST1 - GENERAL SHENANIGANS", screenx * 0.05, screeny * 0.25, 0, 1.0, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "TST2 - WATER AND HYDRA", screenx * 0.05, (screeny * 0.25) + 40, 0, 1.0, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "TST5 - NUI RAMA SECTION", screenx * 0.05, (screeny * 0.25) + 80, 0, 1.0, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "TST6 - TAHU TEST AREA", screenx * 0.05, (screeny * 0.25) + 120, 0, 1.0, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "BACK", screenx * 0.05, (screeny * 0.25) + 160, 0, 1.0, 0, 4, 0, 1) ];
+        this.menustrings = [ new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "TST1 - GENERAL SHENANIGANS", 32, 120, 0, 1.0, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "TST2 - WATER AND HYDRA", 32, 120 + 40, 0, 1.0, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "TST5 - NUI RAMA SECTION", 32, 120 + 80, 0, 1.0, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "TST6 - TAHU TEST AREA", 32, 120 + 120, 0, 1.0, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "BACK", 32, 120 + 160, 0, 1.0, 0, 4, 0, 1) ];
         var1 = 0;
         while ((this.menustrings.__length - 1) >= var1) {
             this.menustrings[var1].initfull();

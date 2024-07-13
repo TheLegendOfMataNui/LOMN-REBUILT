@@ -1,7 +1,7 @@
 class gs_legotext : ss_basetext {
     property newfont;
     
-    method gs_legotext(font_name, string, x_pos, y_pos, z_pos, scale, horizontal_alignment, vertical_alignment, padding, is_new_font) {
+    method gs_legotext(font_name, string, x_pos, y_pos, z_depth, scale, horizontal_alignment, vertical_alignment, padding, is_new_font, useStaticCoord) {
         if (is_new_font == null) {
             this.newfont = 0;
         }
@@ -11,19 +11,61 @@ class gs_legotext : ss_basetext {
         this.fontname = font_name;
         this.string = string;
         if (padding != null) {
-            this.padadjustment = padding;
+            this.padadjustment = padding * screenyratio;
         }
         else {
             this.padadjustment = 0;
         }
-        this.x1 = x_pos;
-        this.y1 = y_pos + this.padadjustment;
-        this.z = z_pos;
-        if (scale != null) {
-            this.scale = scale;
+        //Ensuring this is a bool 0 or 1
+        if (useStaticCoord != null) {
+            if (useStaticCoord >= 1) {
+                useStaticCoord = 1;
+            }
         }
         else {
-            this.scale = 1;
+            useStaticCoord = 0;
+        }
+        if (x_pos != null) {
+            if ((useStaticCoord == 0) || (useStaticCoord == null)) {
+                this.x1 = (x_pos * screenratio);
+            }
+            else {
+                this.x1 = x_pos;
+            }
+        }
+        else {
+            this.x1 = 0;
+        }
+        if (y_pos != null) {
+            if ((useStaticCoord == 0) || (useStaticCoord == null)) {
+                this.y1 = (y_pos * screenyratio) + this.padadjustment;
+            }
+            else {
+                this.y1 = y_pos + this.padadjustment;
+            }
+        }
+        else {
+            this.y1 = 0;
+        }
+        if (z_depth != null) {
+            this.z = z_depth;
+        }
+        else {
+            this.z = 0;
+        }
+        if (scale != null) {
+            //if ((useStaticCoord == 0) || (useStaticCoord == null)) {
+                this.x_scale = scale * screenyratio;
+                this.y_scale = scale * screenyratio;
+            //}
+            //else {
+            //    this.x_scale = scale;
+            //    this.y_scale = scale;
+            //}
+        }
+        else {
+            this.x_scale = 1;
+            this.y_scale = 1;
         }
         if (horizontal_alignment != null) {
             this.horizontal = horizontal_alignment;
@@ -48,7 +90,7 @@ class gs_legotext : ss_basetext {
             this.font = globalclass.getgamefont(this.fontname);
         }
         this.text = sctextobject::create(this.x1, this.y1, this.z, this.font, this.string);
-        sctextobject::setscale(this.text, this.scale, this.scale);
+        sctextobject::setscale(this.text, this.x_scale, this.y_scale);
         sctextobject::setjustification(this.text, this.horizontal | this.verticle);
         sctextobject::enablejustification(this.text, 1);
         return null;
@@ -68,7 +110,7 @@ class gs_legotext : ss_basetext {
             this.font = globalclass.getgamefont(this.fontname);
         }
         this.text = sctextobject::create(this.x1, this.y1, this.z, this.font, this.string);
-        sctextobject::setscale(this.text, this.scale, this.scale);
+        sctextobject::setscale(this.text, this.x_scale, this.y_scale);
         sctextobject::setjustification(this.text, this.horizontal | this.verticle);
         sctextobject::enablejustification(this.text, 1);
         return null;
@@ -98,9 +140,15 @@ class gs_legotext : ss_basetext {
         return null;
     }
     
-    method scalefont(scale) {
-        this.scale = scale;
-        sctextobject::setscale(this.text, this.scale, this.scale);
+    method scalefont(x_scale, y_scale) {
+        this.x_scale = x_scale * screenyratio;
+        if (y_scale != null) {
+            this.y_scale = y_scale * screenyratio;                         
+        }
+        else {
+            this.y_scale = this.x_scale;
+        }
+        sctextobject::setscale(this.text, this.x_scale, this.y_scale);
         return null;
     }
 }

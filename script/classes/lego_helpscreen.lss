@@ -17,39 +17,35 @@ class lego_helpscreen {
     }
     
     method show() {
-        var width = gcgame::getresolutionwidth();
         var lang = gcareadirector::getlanguage();
         globalclass.hud.hide();
         if (lang == 0) {
-            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_US", 0, 0, 0, 852, 480);              
+            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_US", -113, 0, 0, 753, 480);              
         }
         else if (lang == 1) {
-            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_FR", 0, 0, 0, 852, 480);
+            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_FR", -113, 0, 0, 753, 480);
         }
         else if (lang == 2) {
-            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_GER", 0, 0, 0, 852, 480);
+            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_GER", -113, 0, 0, 753, 480);
         }
         else if (lang == 3) {
-            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_DAN", 0, 0, 0, 852, 480);
+            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_DAN", -113, 0, 0, 753, 480);
         }
         else if (lang == 4) {
-            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_NL", 0, 0, 0, 852, 480);
+            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_NL", -113, 0, 0, 753, 480);
         }
         else if (lang == 5) {
-            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_ITA", 0, 0, 0, 852, 480);
+            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_ITA", -113, 0, 0, 753, 480);
         }
         else if (lang == 6) {
-            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_SPA", 0, 0, 0, 852, 480);
+            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_SPA", -113, 0, 0, 753, 480);
         }
         else if (lang == 7) {
-            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_SWE", 0, 0, 0, 852, 480);
+            this.helpscreen = new ss_basesprite("Root/Data/Art/MenuArt/Help_Screen_SWE", -113, 0, 0, 753, 480);
         }          
         this.helpscreen.initfull();
         this.helpscreen.add();
         this.helpscreen.show();   
-        if (width == 640.000000) {
-            this.helpscreen.setpos(-113, 0, 753, 480);
-        }     
         this.shown = 1;
         globalclass.pause.toggleinput(0);
         return null;

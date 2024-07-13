@@ -15,9 +15,9 @@ class huddebuginfo {
         this.framecount = 0;
         this.frametime = 0.0;
         this.firstpass = 1;
-        this.text = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "clock", screenx * 0.5, screeny - 40, 0, 1.0, 256, 4, 0);
-        this.textfps = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", "fps", screenx * 0.5, screeny - 25, 0, 1.0, 256, 4, 0);
-        this.textarea = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "area", screenx * 0.5, screeny - 10, 0, 1.0, 256, 4, 0);
+        this.text = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "clock", 320, 480 - 40, 0, 1.0, 256, 4, 0);
+        this.textfps = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", "fps", 320, 480 - 25, 0, 1.0, 256, 4, 0);
+        this.textarea = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "area", 320, 480 - 10, 0, 1.0, 256, 4, 0);
         this.text.initfull();
         this.textfps.initfull();
         this.textarea.initfull();

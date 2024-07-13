@@ -38,7 +38,7 @@ class lego_pickup {
                 string = gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier(stringtablegroup), groupid, 0);
             }
         }
-        this.desctext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", string, screenx * 0.5, screeny - 130, 0, 1.2, 256, 0, 0);
+        this.desctext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", string, 320, 350, 0, 1.2, 256, 0, 0);
         this.howtotextarray = [  ];
         if (numberofstrings > 0) {
             var1 = 0;
@@ -52,7 +52,7 @@ class lego_pickup {
                 else {
                     string = "Text not localized yet...";
                 }
-                this.howtotextarray.__append(new gs_legotext("Root/Data/Art/Fonts/BionicleFont", string, screenx * 0.5, (screeny - 100) + (20 * var1), 0, 1.0, 256, 0, 0));
+                this.howtotextarray.__append(new gs_legotext("Root/Data/Art/Fonts/BionicleFont", string, 320, 380 + (20 * var1), 0, 1.0, 256, 0, 0));
                 var1 = var1 + 1;
             }
         }

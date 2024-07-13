@@ -39,10 +39,10 @@ class optionscreen : base_screen {
             "Numpad Keys" ];
         this.currentkeyboardoptions = gckeymapper::getkeyoption(gcgame::getkeymapper()) - 1;
         this.gammalevel = gcgraphicsoptions::getgammacorrection();
-        this.menustrings = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFont", (gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 25) + ":  ") + this.languagestrings[this.currentlanguage], screenx * 0.25, screeny * 0.25, 0, 1.0, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", (gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 18) + ":  ") + __tostring(this.gammalevel), screenx * 0.25, (screeny * 0.25) + 40, 0, 1.0, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "KeyBoard Settings: " + this.keyboardoptionsstrings[this.currentkeyboardoptions], screenx * 0.25, (screeny * 0.25) + 80, 0, 1.0, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 3), screenx * 0.25, (screeny * 0.25) + 120, 0, 1.0, 0, 4, 0, 1) ];
+        this.menustrings = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFont", (gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 25) + ":  ") + this.languagestrings[this.currentlanguage], 160, 120, 0, 1.0, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", (gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 18) + ":  ") + __tostring(this.gammalevel), 160, 120 + 40, 0, 1.0, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "KeyBoard Settings: " + this.keyboardoptionsstrings[this.currentkeyboardoptions], 160, 120 + 80, 0, 1.0, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFont", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 3), 160, 120 + 120, 0, 1.0, 0, 4, 0, 1) ];
         var1 = 0;
         while ((this.menustrings.__length - 1) >= var1) {
             this.menustrings[var1].initfull();

@@ -19,9 +19,9 @@ class playmenuoption {
         var var5;
         var var6;
         this.playnum = param1;
-        var1 = __toint((140 + param2) * screenratio);
+        var1 = 140 + param2;
         var2 = gcareadirector::getscriptfluffstringuint(scslosifoundation::stringtoidentifier("fend"), 1, 60, this.playnum);
-        this.playtext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", var2, __toint(200 * screenratio), var1, 0, 1.0 * screenratio, 0, 4, 0, 1);
+        this.playtext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", var2, 200, var1, 0, 1.0, 0, 4, 0, 1);
         gcsaver::setplayer(this.playnum);
         gcsaver::initdata();
         if (gcsaver::load() == 1) {
@@ -37,7 +37,7 @@ class playmenuoption {
             this.newgame = 1;
             var5 = gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 32);
         }
-        this.comptext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", var5, __toint(440 * screenratio), var1, 0, 1.0 * screenratio, 512, 4, 0, 1);
+        this.comptext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", var5, 440, var1, 0, 1.0, 512, 4, 0, 1);
         this.lit = 0;
         if (this.level == 1) {
             var6 = "Root/data/art/status/stONUA";
@@ -73,7 +73,7 @@ class playmenuoption {
         }
         this.halfheight = __toint(25 * screenratio);
         if (this.level > 0) {
-            this.levsprite = new ss_basesprite(var6, __toint(275 * screenratio), var1 - this.halfheight, 0, __toint(325 * screenratio), var1 + this.halfheight);
+            this.levsprite = new ss_basesprite(var6, 275, var1 - 25, 0, 325, var1 + 25);
         }
         return null;
     }

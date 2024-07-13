@@ -42,9 +42,9 @@ class menuoption {
             else {
                 this.slidervalue = (this.initialvalue + 144) - 100;
             }
-            this.slider = gceditorslider::create("Root/data/art/slider/lego_slider", screenx * 0.5, (50.0 + (this.offset * 40.0)) - this.halfheight, 32, 32, 0, 144, 1, this.slidervalue);
+            this.slider = gceditorslider::create("Root/data/art/slider/lego_slider", 320 * screenratio, ((50.0 + (this.offset * 40.0)) - (32 * 0.5) + 2) * screenyratio, 32 * screenratio, 32 * screenyratio, 0, 144, 1, this.slidervalue);
             gceditorslider::setactive(this.slider, 1);
-            this.sliderbg = new ss_basesprite("Root/data/art/slider/lego_slider_bg", screenx * 0.5, (50.0 + (this.offset * 40.0)) - this.halfheight, 0, (screenx * 0.5) + 192, (50.0 + (this.offset * 40.0)) + this.halfheight);
+            this.sliderbg = new ss_basesprite("Root/data/art/slider/lego_slider_bg", 320, (50.0 + (this.offset * 40.0)) - (32 * 0.5) + 2, 0, (320) + 192, (50.0 + (this.offset * 40.0)) + (32 * 0.5) + 2);
             this.sliderbg.initfull();
             this.sliderbg.add();
             this.sliderbg.show();
@@ -53,7 +53,7 @@ class menuoption {
             this.slider = null;
             this.sliderbg = null;
             this.slidervalue = null;
-            this.righttext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", this.right, screenx * 0.5, 50.0 + (this.offset * 40.0), 0, 1.5, 0, 4, 0, 1);
+            this.righttext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", this.right, 240, 50.0 + (this.offset * 40.0), 0, 1.5, 0, 4, 0, 1);
             this.righttext.initfull();
             this.righttext.add();
             this.righttext.show();

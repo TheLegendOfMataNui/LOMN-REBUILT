@@ -1,9 +1,9 @@
 class ss_activesprite : ss_basesprite {
     property filename2;
     
-    method ss_activesprite(param1, param2, param3, param4, param5, param6, param7, param8) {
-        this.ss_basesprite(param1, param3, param4, param5, param6, param7, param8);
-        this.filename2 = param2;
+    method ss_activesprite(file_path, file_path2, leftSide, topSide, z_depth, rightSide, bottomSide, useStaticCoord, alpha) {
+        this.ss_basesprite(file_path, leftSide, topSide, z_depth, rightSide, bottomSide, useStaticCoord, alpha);
+        this.filename2 = file_path2;
         return null;
     }
     

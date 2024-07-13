@@ -6,26 +6,45 @@ class ss_basetext : base_drawobject {
     property ident;
     property horizontal;
     property verticle;
-    property scale;
+    property x_scale;
+    property y_scale;
     property padadjustment;
+    property scale;
     
-    method ss_basetext(font_name, string, x_pos, y_pos, z_pos, scale, horizontal_alignment, vertical_alignment, padding) {
+    method ss_basetext(font_name, string, x_pos, y_pos, z_depth, scale, horizontal_alignment, vertical_alignment, padding) {
         this.fontname = font_name;
         this.string = string;
         if (padding != null) {
-            this.padadjustment = padding;
+            this.padadjustment = padding * screenyratio;
         }
         else {
             this.padadjustment = 0;
         }
-        this.x1 = x_pos;
-        this.y1 = y_pos + this.padadjustment;
-        this.z = z_pos;
-        if (scale != null) {
-            this.scale = scale;
+        if (x_pos != null) {
+            this.x1 = (x_pos * screenratio);
         }
         else {
-            this.scale = 1;
+            this.x1 = 0;
+        }
+        if (y_pos != null) {
+            this.y1 = (y_pos * screenyratio) + this.padadjustment;
+        }
+        else {
+            this.y1 = 0;
+        }
+        if (z_depth != null) {
+            this.z = z_depth;
+        }
+        else {
+            this.z = 0;
+        }
+        if (scale != null) {
+            this.x_scale = scale * screenyratio;
+            this.y_scale = scale * screenyratio;
+        }
+        else {
+            this.x_scale = 1;
+            this.y_scale = 1;
         }
         if (horizontal_alignment != null) {
             this.horizontal = horizontal_alignment;
@@ -45,8 +64,8 @@ class ss_basetext : base_drawobject {
     method initfull() {
         this.font = sctilefont::create(this.fontname);
         this.text = sctextobject::create(this.x1, this.y1, this.z, this.font, this.string);
-        sctextobject::setscale(this.text, this.scale, this.scale);
-        sctilefont::setscale(this.font, this.scale, this.scale);
+        sctextobject::setscale(this.text, this.x_scale, this.y_scale);
+        sctilefont::setscale(this.font, this.x_scale, this.y_scale);
         sctextobject::setjustification(this.text, this.horizontal | this.verticle);
         sctextobject::enablejustification(this.text, 1);
         return null;
@@ -55,7 +74,7 @@ class ss_basetext : base_drawobject {
     method initshort() {
         this.font = sctilefont::create(this.fontname);
         this.text = sctextobject::create(this.x1, this.y1, this.z, this.font, this.string);
-        sctilefont::setscale(this.font, this.scale, this.scale);
+        sctilefont::setscale(this.font, this.x_scale, this.y_scale);
         sctextobject::setjustification(this.text, this.horizontal | this.verticle);
         sctextobject::enablejustification(this.text, 1);
         return null;
@@ -99,10 +118,16 @@ class ss_basetext : base_drawobject {
         return null;
     }
     
-    method setpos(param1, param2, param3) {
-        this.x1 = param1;
-        this.y1 = param2 + this.padadjustment;
-        this.z = param3;
+    method setpos(x_pos, y_pos, z_depth) {
+        if (x_pos != null) {
+            this.x1 = x_pos * screenratio;
+        }
+        if (y_pos != null) {
+            this.y1 = (y_pos * screenyratio) + this.padadjustment;
+        }
+        if (z_depth != null) {
+            this.z = z_depth;
+        }
         sctextobject::setposition(this.text, this.x1, this.y1, this.z);
         return null;
     }
@@ -115,15 +140,15 @@ class ss_basetext : base_drawobject {
         return null;
     }
     
-    method changepos(param1, param2, param3) {
-        if (param1 != null) {
-            this.x1 = param1 + this.x1;
+    method changepos(x_offset, y_offset, z_offset) {
+        if (x_offset != null) {
+            this.x1 = (x_offset * screenratio) + this.x1;
         }
-        if (param2 != null) {
-            this.y1 = param2 + this.y1;
+        if (y_offset != null) {
+            this.y1 = (y_offset * screenyratio) + this.y1;
         }
-        if (param3 != null) {
-            this.z = param3 + this.z;
+        if (z_offset != null) {
+            this.z = z_offset + this.z;
         }
         sctextobject::setposition(this.text, this.x1, this.y1, this.z);
         return null;
@@ -142,9 +167,15 @@ class ss_basetext : base_drawobject {
         return null;
     }
     
-    method scalefont(param1) {
-        this.scale = param1;
-        sctilefont::setscale(this.font, this.scale, this.scale);
+    method scalefont(x_scale, y_scale) {
+        this.x_scale = x_scale * screenyratio;
+        if (y_scale != null) {
+            this.y_scale = y_scale * screenyratio;                         
+        }
+        else {
+            this.y_scale = this.x_scale;
+        }
+        sctilefont::setscale(this.font, this.x_scale, this.y_scale);
         return null;
     }
     

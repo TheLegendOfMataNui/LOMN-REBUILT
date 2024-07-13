@@ -56,7 +56,7 @@ class ss_shoefitterbottombar {
         this.movepause = 0.0;
         this.horizontalgrid = [ [  ], 
             [  ] ];
-        this.horizontalbar.w = this.horizontalbar.x2 == this.horizontalbar.x1;
+        //this.horizontalbar.w = this.horizontalbar.x2 == this.horizontalbar.x1;
         this.moveslider(26);
         return null;
     }
@@ -381,7 +381,7 @@ class ss_shoefitterbottombar {
     
     method animationrunning(param1, param2) {
         if (this.animationlength[0] != 0) {
-            this.moveslider(26 + ((param2.shoefittercharacter.gettime() / this.animationlength[0]) * 534));
+            this.moveslider((26 * screenratio) + ((param2.shoefittercharacter.gettime() / this.animationlength[0]) * 534));
         }
         return null;
     }
@@ -409,7 +409,7 @@ class ss_shoefitterbottombar {
         var4 = 534 / var3;
         var1 = 0;
         while ((var3 - 1) >= var1) {
-            this.horizontalgrid[0].__append(new ss_basesprite(this.horizontalbar.filename, 26 + (var4 * var1), this.horizontalbar.y1, this.horizontalbar.z, (26 + (var4 * var1)) + this.horizontalbar.w, this.horizontalbar.y2));
+            this.horizontalgrid[0].__append(new ss_basesprite(this.horizontalbar.filename, this.horizontalbar.x1 + 26 + (var4 * var1), this.horizontalbar.y1, this.horizontalbar.z, (this.horizontalbar.x1 + 26 + (var4 * var1)) + this.horizontalbar.w, this.horizontalbar.y2, 1));
             var1 = var1 + 1;
         }
         var1 = 0;

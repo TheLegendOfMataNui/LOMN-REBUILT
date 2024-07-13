@@ -27,7 +27,7 @@ class gs_lego_animatesprite : ss_animatesprite {
             if ((var1 >= 1000) && (var1 < 10000)) {
                 var2 = this.filename + __tostring(var1);
             }
-            var3 = new ss_basesprite(var2, this.x1, this.y1, this.z, this.x2, this.y2);
+            var3 = new ss_basesprite(var2, this.x1, this.y1, this.z, this.x2, this.y2, 1);
             var3.initfull();
             this.spritearray.__append(var3);
             var1 = var1 + 1;
@@ -51,51 +51,33 @@ class gs_lego_animatesprite : ss_animatesprite {
         return null;
     }
     
-    method setcolor(param1, param2, param3, param4) {
+    method setcolor(red, green, blue, alpha) {
         var var1;
         var1 = 0;
         while ((this.spritearray.__length - 1) >= var1) {
-            this.spritearray[var1].setcolor(param1, param2, param3, param4);
+            this.spritearray[var1].setcolor(red, green, blue, alpha);
             var1 = var1 + 1;
         }
         return null;
     }
     
-    method setpos(param1, param2, param3, param4) {
+    //Handing these to ss_basesprite for calculation 
+    method setpos(leftSide, topSide, rightSide, bottomSide) {
         var var1;
-        if (param1 != null) {
-            this.x1 = param1;
-        }
-        if (param3 != null) {
-            this.x2 = param3;
-        }
-        if (param2 != null) {
-            this.y1 = param2;
-        }
-        if (param4 != null) {
-            this.y2 = param4;
-        }
         var1 = 0;
         while ((this.spritearray.__length - 1) >= var1) {
-            this.spritearray[var1].setpos(this.x1, this.y1, this.x2, this.y2);
+            this.spritearray[var1].setpos(leftSide, topSide, rightSide, bottomSide);
             var1 = var1 + 1;
         }
         return null;
     }
     
-    method changepos(param1, param2) {
+    //Handing these to ss_basesprite for calculation 
+    method changepos(x_offset, y_offset) {
         var var1;
-        if (param1 != null) {
-            this.x1 = this.x1 + param1;
-            this.x2 = this.x2 + param1;
-        }
-        if (param2 != null) {
-            this.y1 = this.y1 + param2;
-            this.y2 = this.y2 + param2;
-        }
         var1 = 0;
         while ((this.spritearray.__length - 1) >= var1) {
-            this.spritearray[var1].changepos(param1, param2);
+            this.spritearray[var1].changepos(x_offset, y_offset);
             var1 = var1 + 1;
         }
         return null;

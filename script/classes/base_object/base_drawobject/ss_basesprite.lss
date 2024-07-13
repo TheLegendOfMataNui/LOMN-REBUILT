@@ -3,34 +3,63 @@ class ss_basesprite : base_drawobject {
     property sprite;
     property handle;
     
-    method ss_basesprite(file_path, leftSide, topSide, z_coord, rightSide, bottomSide, alpha) {
+    method ss_basesprite(file_path, leftSide, topSide, z_depth, rightSide, bottomSide, useStaticCoord, alpha) {
         this.filename = file_path;
+        //Ensuring this is a bool 0 or 1
+        if (useStaticCoord != null) {
+            if (useStaticCoord >= 1) {
+                useStaticCoord = 1;
+            }
+        }
+        else {
+            useStaticCoord = 0;
+        }
         if (leftSide != null) {
-            this.x1 = leftSide;
+            if (useStaticCoord == 0) {
+                this.x1 = leftSide * screenratio;
+            }
+            else {
+                this.x1 = leftSide;
+            }
         }
         else {
             this.x1 = 0;
         }
         if (topSide != null) {
-            this.y1 = topSide;
+            if (useStaticCoord == 0) {
+                this.y1 = (topSide * screenyratio);
+            }
+            else {
+                this.y1 = topSide;
+            }
         }
         else {
             this.y1 = 0;
         }
-        if (z_coord != null) {
-            this.z = z_coord;
+        if (z_depth != null) {
+            this.z = z_depth;
         }
         else {
             this.z = 0;
         }
         if (rightSide != null) {
-            this.x2 = rightSide;
+            if (useStaticCoord == 0) {
+                this.x2 = this.xOffset2(rightSide);
+            }
+            else {
+                this.x2 = rightSide;
+            }
         }
         else {
             this.x2 = 0;
         }
         if (bottomSide != null) {
-            this.y2 = bottomSide;
+            if (useStaticCoord == 0) {
+                this.y2 = (bottomSide * screenyratio);
+            }
+            else {
+                this.y2 = bottomSide;
+            }
         }
         else {
             this.y2 = 0;
@@ -44,6 +73,27 @@ class ss_basesprite : base_drawobject {
         return null;
     }
     
+    method xOffset(baseOffset) {
+        if (((screenx / screeny) > 1.4) && (baseOffset != 0) ) {
+            var altOffset = (baseOffset + ((screenx - 640) * (screenyratio / 10)));
+            return altOffset;
+        }
+        else {
+            var altOffset = (baseOffset * screenratio);
+            return altOffset;
+        }
+    }
+    method xOffset2(baseOffset) {
+        if (((screenx / screeny) > 1.4) && (baseOffset != 0) ) {
+            var altOffset = (baseOffset + ((screenx - 640) * (screenratio / 100)));
+            return altOffset;
+        }
+        else {
+            var altOffset = (baseOffset * screenratio);
+            return altOffset;
+        }
+    }
+
     method initfull() {
         this.sprite = gcbigsprite::loadhudsprite(this.x1, this.y1, this.x2, this.y2, this.filename, 0);
         gcbigsprite::setzdepth(this.sprite, this.z);
@@ -96,59 +146,75 @@ class ss_basesprite : base_drawobject {
         return null;
     }
     
-    method setpos(param1, param2, param3, param4) {
-        if (param1 != null) {
-            this.x1 = param1;
+    method setpos(leftSide, topSide, rightSide, bottomSide) {
+        if (leftSide != null) {
+            this.x1 = leftSide * screenratio;
         }
-        if (param3 != null) {
-            this.x2 = param3;
+        if (topSide != null) {
+            this.y1 = topSide * screenyratio;
         }
-        if (param2 != null) {
-            this.y1 = param2;
+        if (rightSide != null) {
+            this.x2 = rightSide * screenratio;
         }
-        if (param4 != null) {
-            this.y2 = param4;
-        }
-        gcbigsprite::sethudposition(this.sprite, this.x1, this.y1, this.x2, this.y2);
-        gcbigsprite::setzdepth(this.sprite, this.z);
-        return null;
-    }
-    
-    method changepos(param1, param2) {
-        if (param1 != null) {
-            this.x1 = this.x1 + param1;
-            this.x2 = this.x2 + param1;
-        }
-        if (param2 != null) {
-            this.y1 = this.y1 + param2;
-            this.y2 = this.y2 + param2;
+        if (bottomSide != null) {
+            this.y2 = bottomSide * screenyratio;
         }
         gcbigsprite::sethudposition(this.sprite, this.x1, this.y1, this.x2, this.y2);
         return null;
     }
     
-    method setzvalue(param1) {
-        if (param1 != null) {
-            this.z = param1;
+    method changepos(x_offset, y_offset) {
+        if (x_offset != null) {
+            this.x1 = this.x1 + (x_offset * screenratio);
+            this.x2 = this.x2 + (x_offset * screenratio);
+        }
+        if (y_offset != null) {
+            this.y1 = this.y1 + (y_offset * screenyratio);
+            this.y2 = this.y2 + (y_offset * screenyratio);
+        }
+        gcbigsprite::sethudposition(this.sprite, this.x1, this.y1, this.x2, this.y2);
+        return null;
+    }
+    
+    method stretch(left_stretch, top_stretch, right_stretch, bottom_stretch) {
+        if (left_stretch != null) {
+            this.x1 = this.x1 + (left_stretch * screenratio);
+        }
+        if (top_stretch != null) {
+            this.y1 = this.y1 + (top_stretch * screenyratio);
+        }
+        if (right_stretch != null) {
+            this.x2 = this.x2 + (right_stretch * screenratio);
+        }
+        if (bottom_stretch != null) {
+            this.y2 = this.y2 + (bottom_stretch * screenyratio);
+        }
+        gcbigsprite::sethudposition(this.sprite, this.x1, this.y1, this.x2, this.y2);
+        return null;
+    }
+
+    method setzvalue(z_depth) {
+        if (z_depth != null) {
+            this.z = z_depth;
         }
         gcbigsprite::setzdepth(this.sprite, this.z);
         return null;
     }
     
-    method enabletransparency(param1) {
+    method enabletransparency(bool) {
         var var1;
-        if (param1 != null) {
-            var1 = param1;
+        if (bool != null) {
+            var1 = bool;
         }
         else {
             var1 = 1;
         }
-        gcbigsprite::enabletransparency(this.sprite, param1);
+        gcbigsprite::enabletransparency(this.sprite, bool);
         return null;
     }
     
-    method settransparency(param1) {
-        this.transval = param1;
+    method settransparency(int) {
+        this.transval = int;
         gcbigsprite::settransparency(this.sprite, this.transval);
         return null;
     }

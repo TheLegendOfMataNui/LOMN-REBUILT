@@ -7,14 +7,14 @@ class hudmask {
     property movement;
     property animating;
     property offx;
-    property ydiff;
+    //property ydiff;
     
     method hudmask() {
         return null;
     }
     
     method initfull() {
-        this.ydiff = screeny - 480;
+        //this.ydiff = screeny - 480;
         this.currentmask = null;
         this.allmasksarray = [  ];
         this.animating = 0;
@@ -89,7 +89,9 @@ class hudmask {
         param1.initfull();
         param1.add();
         param1.hide();
-        param1.setpos(20, 396 + this.ydiff, 84, 460 + this.ydiff);
+        //This is used to set the positions of all the masks rather than the mask class for each individual one.  Decent way of handling it, pls don't touch kthx
+        //param1.setpos(20, 396 + this.ydiff, 84, 460 + this.ydiff);
+        param1.setpos(20, 396, 84, 460);
         return null;
     }
     
