@@ -303,6 +303,9 @@ Level 2 - Gali
 • Buttons being pressed and doors openened in GLY3 now save properly		----		(ShadowDraikana)
 • Fixed underwater respawns sometimes not working correctly 		        ----		(ShadowDraikana)
 
+Level 3 - Pohatu
+• Fixed crash when reentering GLY3 after collecting stone rain glyph		----		(ShadowDraikana)
+
 Level 4 - Kopaka
 • Fixed Ice Elemental sometimes not resetting properly upon player death	----		(ShadowDraikana)
 
