@@ -35,13 +35,16 @@ class menuoption {
         this.lefttext.add();
         this.lefttext.show();
         if (this.type == 2) {
-            this.righttext = null;
             if (this.initialvalue == 0) {
                 this.slidervalue = 0;
             }
             else {
                 this.slidervalue = (this.initialvalue + 144) - 100;
             }
+            this.righttext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", this.right, (screenx * 0.4), 50.0 + (this.offset * 40.0), 0, 1.5, 0, 4, 0, 1);
+            this.righttext.initfull();
+            this.righttext.add();
+            this.righttext.show();
             this.slider = gceditorslider::create("Root/data/art/slider/lego_slider", screenx * 0.5, (50.0 + (this.offset * 40.0)) - this.halfheight, 32, 32, 0, 144, 1, this.slidervalue);
             gceditorslider::setactive(this.slider, 1);
             this.sliderbg = new ss_basesprite("Root/data/art/slider/lego_slider_bg", screenx * 0.5, (50.0 + (this.offset * 40.0)) - this.halfheight, 0, (screenx * 0.5) + 192, (50.0 + (this.offset * 40.0)) + this.halfheight);
@@ -49,11 +52,11 @@ class menuoption {
             this.sliderbg.add();
             this.sliderbg.show();
         }
-        else {
+        else  if (this.type == 1) {
             this.slider = null;
             this.sliderbg = null;
             this.slidervalue = null;
-            this.righttext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", this.right, screenx * 0.5, 50.0 + (this.offset * 40.0), 0, 1.5, 0, 4, 0, 1);
+            this.righttext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", this.right, screenx * 0.4, 50.0 + (this.offset * 40.0), 0, 1.5, 0, 4, 0, 1);
             this.righttext.initfull();
             this.righttext.add();
             this.righttext.show();
@@ -113,6 +116,10 @@ class menuoption {
         return this.lefttext.getwidth();
     }
     
+    method getlefttextheight() {
+        return this.lefttext.getheight();
+    }
+    
     method getslidervalue() {
         if (this.slidervalue == null) {
             return 0;
@@ -126,24 +133,56 @@ class menuoption {
         return null;
     }
     
-    method check(param1, param2) {
-        if (this.lefttext != null) {
-            if ((param2 > (this.lefttext.y1 - this.halfheight)) && (param2 < (this.lefttext.y1 + this.halfheight))) {
-                if (this.lit == 0) {
-                    sctilefont::setcolor(this.lefttext.font, 255, 255, 0, 255);
-                    if (this.righttext != null) {
-                        sctilefont::setcolor(this.righttext.font, 255, 255, 0, 255);
+    method check(cursor_x, cursor_y) {        
+        //cursor_x = cursor_x * screenratio;
+        //cursor_y = cursor_y * screenyratio;
+        if ((this.type == 0) || (this.type == null)) {
+            if (this.lefttext != null) {
+                if ((cursor_x > this.lefttext.x1) && (cursor_x < (this.lefttext.x1 + (this.lefttext.getwidth() + (10 * screenratio)))) && (cursor_y > (this.lefttext.y1 - 2)) && (cursor_y < (this.lefttext.y1 + (20 * screenyratio)))) {
+                    if (this.lit == 0) {
+                        sctilefont::setcolor(this.lefttext.font, 255, 255, 0, 255);
+                        this.lit = 1;
+                        gcstaticsoundsptrarray::playtablesound(1072);
                     }
-                    this.lit = 1;
-                    gcstaticsoundsptrarray::playtablesound(1072);
+                }
+                else if (this.lit) {
+                    sctilefont::setcolor(this.lefttext.font, 255, 255, 255, 255);
+                    this.lit = 0;
                 }
             }
-            else if (this.lit) {
-                sctilefont::setcolor(this.lefttext.font, 255, 255, 255, 255);
-                if (this.righttext != null) {
-                    sctilefont::setcolor(this.righttext.font, 255, 255, 255, 255);
+        }
+        if (this.type == 1) {
+            if ((this.lefttext != null) && (this.righttext != null)) {
+                if ((cursor_x > this.lefttext.x1) && (cursor_x < (this.righttext.x1 + (this.righttext.getwidth() + (10 * screenratio)))) && (cursor_y > this.lefttext.y1) && (cursor_y < (this.lefttext.y1 + (20 * screenyratio)))) {
+                    if (this.lit == 0) {
+                        sctilefont::setcolor(this.lefttext.font, 255, 255, 0, 255);
+                        sctilefont::setcolor(this.righttext.font, 255, 255, 0, 255);
+                        this.lit = 1;
+                        gcstaticsoundsptrarray::playtablesound(1072);
+                    }
                 }
-                this.lit = 0;
+                else if (this.lit) {
+                    sctilefont::setcolor(this.lefttext.font, 255, 255, 255, 255);
+                    sctilefont::setcolor(this.righttext.font, 255, 255, 255, 255);
+                    this.lit = 0;
+                }
+            }
+        }
+        if (this.type == 2) {
+            if ((this.lefttext != null) && (this.righttext != null)) {
+                if ((cursor_x > this.lefttext.x1) && (cursor_x < (this.sliderbg.x2 + (10 * screenratio))) && (cursor_y > this.lefttext.y1) && (cursor_y < (this.lefttext.y1 + (20 * screenyratio)))) {
+                    if (this.lit == 0) {
+                        sctilefont::setcolor(this.lefttext.font, 255, 255, 0, 255);
+                        sctilefont::setcolor(this.righttext.font, 255, 255, 0, 255);
+                        this.lit = 1;
+                        gcstaticsoundsptrarray::playtablesound(1072);
+                    }
+                }
+                else if (this.lit) {
+                    sctilefont::setcolor(this.lefttext.font, 255, 255, 255, 255);
+                    sctilefont::setcolor(this.righttext.font, 255, 255, 255, 255);
+                    this.lit = 0;
+                }
             }
         }
         return this.lit;

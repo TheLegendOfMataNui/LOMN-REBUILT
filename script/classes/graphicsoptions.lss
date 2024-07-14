@@ -164,22 +164,21 @@ class graphicsoptions {
             
             }
             else if (this.curoption == 0) {
+
             }
             else if (this.curoption == 1) {
                 this.setfogvalue();
-                gcstaticsoundsptrarray::playtablesound(1072);
+                gcstaticsoundsptrarray::playtablesound(1074);
             }
             else if (this.curoption == 2) {
+
             }
             else if (this.curoption == 3) {
                 this.setshadowvalue();
-                gcstaticsoundsptrarray::playtablesound(1072);
+                gcstaticsoundsptrarray::playtablesound(1074);
             }
             else if (this.curoption == 4) {
                 this.back();
-            }
-            else {
-                gcstaticsoundsptrarray::playtablesound(1072);
             }
         }
         else if (param1 == 2) {

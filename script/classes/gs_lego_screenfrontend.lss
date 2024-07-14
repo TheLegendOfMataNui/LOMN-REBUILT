@@ -633,7 +633,12 @@ class gs_lego_screenfrontend {
                     var1 = 0;
                     while ((this.mainmenutext.__length - 1) >= var1) {
                         if (this.activemenu[var1].getactive() == 1) {
-                            gcstaticsoundsptrarray::playtablesound(1073);
+                            if (var1 == (this.mainmenutext.__length - 1)) {
+                                gcstaticsoundsptrarray::playtablesound(1073);
+                            }
+                            else {
+                                gcstaticsoundsptrarray::playtablesound(1074);
+                            }
                             this.forward();
                             this.titleimage.fadeout(0.5);
                         }
@@ -649,7 +654,7 @@ class gs_lego_screenfrontend {
                                 this.back();
                             }
                             else {
-                                gcstaticsoundsptrarray::playtablesound(1073);
+                                gcstaticsoundsptrarray::playtablesound(1074);
                                 this.forward();
                             }
                         }
@@ -662,12 +667,12 @@ class gs_lego_screenfrontend {
                         if (this.activemenu[var1].getactive() == 1) {
                             if (this.curidx == 0) {
                                 gckeymapper::setkeyoption(gcgame::getkeymapper(), 1);
-                                gcstaticsoundsptrarray::playtablesound(1073);
+                                gcstaticsoundsptrarray::playtablesound(1074);
                                 this.back();
                             }
                             else if (this.curidx == 1) {
                                 gckeymapper::setkeyoption(gcgame::getkeymapper(), 2);
-                                gcstaticsoundsptrarray::playtablesound(1073);
+                                gcstaticsoundsptrarray::playtablesound(1074);
                                 this.back();
                             }
                             else if (this.curidx == 2) {
@@ -689,49 +694,49 @@ class gs_lego_screenfrontend {
                             if (this.curidx == 0) {
                                 gcareadirector::setlanguage(0);
                                 this.updatestrings();
-                                gcstaticsoundsptrarray::playtablesound(1073);
+                                gcstaticsoundsptrarray::playtablesound(1074);
                                 this.back();
                             }
                             else if (this.curidx == 1) {
                                 gcareadirector::setlanguage(1);
                                 this.updatestrings();
-                                gcstaticsoundsptrarray::playtablesound(1073);
+                                gcstaticsoundsptrarray::playtablesound(1074);
                                 this.back();
                             }
                             else if (this.curidx == 2) {
                                 gcareadirector::setlanguage(6);
                                 this.updatestrings();
-                                gcstaticsoundsptrarray::playtablesound(1073);
+                                gcstaticsoundsptrarray::playtablesound(1074);
                                 this.back();
                             }
                             else if (this.curidx == 3) {
                                 gcareadirector::setlanguage(5);
                                 this.updatestrings();
-                                gcstaticsoundsptrarray::playtablesound(1073);
+                                gcstaticsoundsptrarray::playtablesound(1074);
                                 this.back();
                             }
                             else if (this.curidx == 4) {
                                 gcareadirector::setlanguage(4);
                                 this.updatestrings();
-                                gcstaticsoundsptrarray::playtablesound(1073);
+                                gcstaticsoundsptrarray::playtablesound(1074);
                                 this.back();
                             }
                             else if (this.curidx == 5) {
                                 gcareadirector::setlanguage(2);
                                 this.updatestrings();
-                                gcstaticsoundsptrarray::playtablesound(1073);
+                                gcstaticsoundsptrarray::playtablesound(1074);
                                 this.back();
                             }
                             else if (this.curidx == 6) {
                                 gcareadirector::setlanguage(3);
                                 this.updatestrings();
-                                gcstaticsoundsptrarray::playtablesound(1073);
+                                gcstaticsoundsptrarray::playtablesound(1074);
                                 this.back();
                             }
                             else if (this.curidx == 7) {
                                 gcareadirector::setlanguage(7);
                                 this.updatestrings();
-                                gcstaticsoundsptrarray::playtablesound(1073);
+                                gcstaticsoundsptrarray::playtablesound(1074);
                                 this.back();
                             }
                             else if (this.curidx == 8) {
@@ -1106,7 +1111,7 @@ class gs_lego_screenfrontend {
                 this.activemenu.__append(var2);
                 var1 = var1 + 1;
             }
-            this.activemenu[0].setactive();
+            //this.activemenu[0].setactive();
             this.menuactive = 1;
         }
         else {
@@ -1139,24 +1144,27 @@ class gs_lego_screenfrontend {
     method checkrealhighlights(param1, param2) {
         var var1;
         if (this.menuactive == 1) {
-            var1 = param1[param2];
-            if ((this.mousex > var1[1]) && (this.mousex < (var1[1] + 300))) {
-                if ((this.mousey > var1[2]) && (this.mousey < (var1[2] + 20))) {
-                    if (((this.activemenu.__length - 1) + 1) > param2) {
-                        if (this.activemenu[param2].getactive() == 0) {
-                            this.activemenu[this.curidx].setinactive();
-                            this.curidx = param2;
-                            this.activemenu[this.curidx].setactive();
-                            gcstaticsoundsptrarray::playtablesound(1072);
+            if ((this.curscreen == -1) || (this.curscreen == 0) || (this.curscreen == 6) || (this.curscreen == 3)) {
+                var1 = param1[param2];
+                //if ((this.mousex > (this.activemenu[param2].x1 / screenratio)) && (this.mousex < ((this.activemenu[param2].x1 / screenratio) + (this.activemenu[param2].getwidth() / screenratio) + 11))) {
+                if ((this.mousex > (this.activemenu[param2].x1 / screenyratio)) && (this.mousex < ((this.activemenu[param2].x1 / screenyratio) + (this.activemenu[param2].getwidth() / screenyratio) + 11))) {
+                    if ((this.mousey > (this.activemenu[param2].y1 / screenyratio) - 6) && (this.mousey < ((this.activemenu[param2].y1 / screenyratio) + (24)))) {
+                        if (((this.activemenu.__length - 1) + 1) > param2) {
+                            if (this.activemenu[param2].getactive() == 0) {
+                                this.activemenu[this.curidx].setinactive();
+                                this.curidx = param2;
+                                this.activemenu[this.curidx].setactive();
+                                gcstaticsoundsptrarray::playtablesound(1072);
+                            }
                         }
+                    }
+                    else if (((this.activemenu.__length - 1) + 1) > param2) {
+                        this.activemenu[param2].setinactive();
                     }
                 }
                 else if (((this.activemenu.__length - 1) + 1) > param2) {
                     this.activemenu[param2].setinactive();
                 }
-            }
-            else if (((this.activemenu.__length - 1) + 1) > param2) {
-                this.activemenu[param2].setinactive();
             }
         }
         return null;

@@ -133,12 +133,15 @@ class playmenuoption {
         return null;
     }
     
-    method check(param1, param2) {
-        if ((param2 > (this.playtext.y1 - this.halfheight)) && (param2 < (this.playtext.y1 + this.halfheight))) {
+    method check(cursor_x, cursor_y) {        
+        //cursor_x = cursor_x * screenratio;
+        //cursor_y = cursor_y * screenyratio;
+        if ((cursor_x > this.playtext.x1) && (cursor_x < (this.comptext.x1 + (10 * screenratio))) && (cursor_y > this.playtext.y1) && (cursor_y < (this.playtext.y1 + (16 * screenyratio)))) {
             if (this.lit == 0) {
                 sctilefont::setcolor(this.playtext.font, 255, 255, 0, 255);
                 sctilefont::setcolor(this.comptext.font, 255, 255, 0, 255);
                 this.lit = 1;
+                gcstaticsoundsptrarray::playtablesound(1072);
             }
         }
         else if (this.lit) {

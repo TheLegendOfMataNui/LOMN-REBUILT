@@ -26,8 +26,10 @@ class printmenuhighlight {
         return null;
     }
     
-    method check(mouse_x, mouse_y) {
-        if ((((mouse_y > this.image.y1) && (mouse_y < this.image.y2)) && (mouse_x > this.image.x1)) && (mouse_x < this.image.x2)) {
+    method check(cursor_x, cursor_y) {
+        //cursor_x = cursor_x * screenratio;
+        //cursor_y = cursor_y * screenyratio;
+        if ((((cursor_y > this.image.y1) && (cursor_y < this.image.y2)) && (cursor_x > this.image.x1)) && (cursor_x < this.image.x2)) {
             if (this.lit == 0) {
                 this.image.show();
                 this.lit = 1;

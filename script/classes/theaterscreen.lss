@@ -104,7 +104,7 @@ class theaterscreen {
     method input(param1) {
         if (this.active) {
             if (this.curoption == 3) {
-
+                debug::print("Why the hell is this even here?");
             }
         }
         return null;
@@ -150,55 +150,46 @@ class theaterscreen {
             
             }
             else if (this.curoption == 0) {
-                gcstaticsoundsptrarray::playtablesound(1072);
                 globalclass.bgmusic.stop();
                 gchuddirector::playcinematic("Root/Data/cinematics/BIONICLEFMV3.bik", 1);
                 globalclass.bgmusic.play(1);
             }
             else if (this.curoption == 1) {
-                gcstaticsoundsptrarray::playtablesound(1072);
                 globalclass.bgmusic.stop();
                 gchuddirector::playcinematic("Root/Data/cinematics/LegendFMVEn.bik", 1);
                 globalclass.bgmusic.play(1);
             }
             else if (this.curoption == 2) {
-                gcstaticsoundsptrarray::playtablesound(1072);
                 globalclass.bgmusic.stop();
                 gchuddirector::playcinematic("Root/Data/cinematics/ToaKiniMeeting.bik", 1);
                 globalclass.bgmusic.play(1);
             }
             else if (this.curoption == 3) {
-                gcstaticsoundsptrarray::playtablesound(1072);
                 globalclass.bgmusic.stop();
                 gchuddirector::playcinematic("Root/Data/cinematics/ToaKaitaFight.bik", 1);
                 globalclass.bgmusic.play(1);
             }
             else if (this.curoption == 4) {
-                gcstaticsoundsptrarray::playtablesound(1072);
                 globalclass.bgmusic.stop();
                 gchuddirector::playcinematic("Root/Data/cinematics/ewokCelebration.bik", 1);
                 globalclass.bgmusic.play(1);
             }
             else if (this.curoption == 5) {
-                gcstaticsoundsptrarray::playtablesound(1072);
                 globalclass.bgmusic.stop();
                 gchuddirector::playcinematic("Root/Data/cinematics/CreditsFMV1.bik", 1);
                 globalclass.bgmusic.play(1);
             }
             else if (this.curoption == 6) {
-                gcstaticsoundsptrarray::playtablesound(1072);
                 globalclass.bgmusic.stop();
                 gchuddirector::playcinematic("Root/Data/cinematics/behindthescenes.bik", 1);
                 globalclass.bgmusic.play(1);
             }
             else if (this.curoption == 7) {
-                gcstaticsoundsptrarray::playtablesound(1072);
                 globalclass.bgmusic.stop();
                 gchuddirector::playcinematic("Root/Data/cinematics/BIONICLETRAILER.bik", 1);
                 globalclass.bgmusic.play(1);
             }
             else if (this.curoption == 8) {
-                gcstaticsoundsptrarray::playtablesound(1072);
                 globalclass.bgmusic.stop();
                 gchuddirector::playcinematic("Root/Data/cinematics/AnimationTests.bik", 1);
                 globalclass.bgmusic.play(1);
@@ -206,9 +197,6 @@ class theaterscreen {
             else if (this.curoption == 9) {
 			    debug::print("[][][] back");
 			    this.back();
-            }
-            else {
-                gcstaticsoundsptrarray::playtablesound(1072);
             }
         }
         else if (param1 == 2) {

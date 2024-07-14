@@ -266,15 +266,10 @@ class gsglossary {
     }
     
     method back() {
+        this.active = 0;
         this.cleanupshort();
         this.parent.initfull();
-        this.parent.active = 1;
-        return null;
-    }
-    
-    method forward() {
-        this.cleanupshort();
-        this.parent.forward();
+        gcstaticsoundsptrarray::playtablesound(1073);
         return null;
     }
     
@@ -305,6 +300,7 @@ class gsglossary {
             this.hidecur();
             this.curscreen = this.curscreen + 1;
             this.showcur();
+            gcstaticsoundsptrarray::playtablesound(1074);
         }
         return null;
     }
@@ -314,6 +310,7 @@ class gsglossary {
             this.hidecur();
             this.curscreen = this.curscreen - 1;
             this.showcur();
+            gcstaticsoundsptrarray::playtablesound(1073);
         }
         else {
             this.back();
