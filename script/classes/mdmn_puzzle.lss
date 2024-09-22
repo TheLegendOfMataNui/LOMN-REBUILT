@@ -222,9 +222,7 @@ class mdmn_puzzle {
         }
         else if (param1.eventid == 13) {
             if (this.mudmonster.mudstate == 5) {
-                var1 = gcmodeldirector::getcharacter(1836409945);
-                gccharacter::setsplitanimation(var1, 1831874864, -1);
-                var1 = null;
+                gccharacter::setsplitanimation(gcmodeldirector::getcharacter(1836409945), 1831874864, -1);
                 this.mudtimer = 0;
                 gcmudboss::setdoprocess(this.mudmonster.mudman, 0);
                 gcstaticsoundsptrarray::playtablesound(484);
@@ -250,7 +248,7 @@ class mdmn_puzzle {
             }
         }
         else if (param1.eventid == 43) {
-            if (this.mudmonster != null) {
+            if (gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("mudY"), 0) != null) {
                 this.mudmonster.mudstate = 10;
                 this.mudtimer = 0;
                 var2 = gcmudboss::getpositionx(this.mudmonster.mudman);

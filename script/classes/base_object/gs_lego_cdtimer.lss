@@ -52,9 +52,7 @@ class gs_lego_cdtimer : base_object {
     }
     
     method initfull() {
-        var var1;
-        var1 = "Root/Data/Art/Fonts/BionicleFont";
-        this.text = new gs_legotext(var1, "", screenx * 0.5, 55, 0, 1.2, 256, 4, 0, 1);
+        this.text = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "", screenx * 0.5, 55, 0, 1.2, 256, 4, 0, 1);
         this.text.initfull();
         sctilefont::setcolor(this.text.font, 255, 255, 0, 255);
         this.text.add();
