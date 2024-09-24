@@ -267,8 +267,8 @@ class player {
         if (this.cinematic_start == 1) {
             if (this.cinematic_delay == 0) {
                 globalclass.level.cam.setaimode(0);
-                globalclass.player.actor.physicson(0);
-                globalclass.player.actor.idle();
+                this.actor.physicson(0);
+                this.actor.idle();
             }
             //Timer reached end point, reset it and stop this code from firing until reactivated again
             if (this.cinematic_delay > 0.01) {
@@ -429,10 +429,10 @@ class player {
             }
             else if (param1.eventid == 7) {
                 if ((this.gotglyph == 1) && (param1.args[2] == scslosifoundation::stringtoidentifier("glyp"))) {
-                    if (gctoa::glyphdone(globalclass.player.actor.toahandle) == 1) {
-                        if (globalclass.player.energy >= this.glyphpowerdrain) {
-                            globalclass.player.removeenergy(this.glyphpowerdrain);
-                            gctoa::startglyph(globalclass.player.actor.toahandle);
+                    if (gctoa::glyphdone(this.actor.toahandle) == 1) {
+                        if (this.energy >= this.glyphpowerdrain) {
+                            this.removeenergy(this.glyphpowerdrain);
+                            gctoa::startglyph(this.actor.toahandle);
                         }
                     }
                 }
@@ -448,7 +448,7 @@ class player {
                 //Sets a generic camera follow upon death instead of doing it per-killbox in each area
                 globalclass.level.cam.setaimode(7);
                 //Kill the surf state before physics reset happens in unkill
-                globalclass.player.actor.setsurfingability(0.0, 0.0);
+                this.actor.setsurfingability(0.0, 0.0);
             }
             else if (param1.eventid == 20) {
                 this.processequipment(1);
@@ -457,7 +457,7 @@ class player {
                     this.warpsound.cleanupfull();
                     this.warpsound = null;
                 }
-                globalclass.player.actor.show();
+                this.actor.show();
                 this.hittrigger = 0;
                 this.usecheckpoints = null;
                 this.spawnedunderwater = null;
@@ -465,7 +465,7 @@ class player {
             }  
             else if (param1.eventid == 21) {
                 //Setup the physics again to stop the landing noise when jumping into a trigger
-                globalclass.player.actor.setupphysics(1.5, 0.8, 1, 0, 0);
+                this.actor.setupphysics(1.5, 0.8, 1, 0, 0);
                 //If equiptype returns 1, set up equipment for combat
                 if (this.equiptype == 1) {
                     this.processequipment(1);
@@ -481,7 +481,7 @@ class player {
 
                 //This is a temporary hack as gccollisionphysicsgroup::switchareawithtransition() doesnt take str and lok points as arguments
                 if (this.crashbandicootwarped == 2) {                
-                    globalclass.player.actor.gotopos(scslosifoundation::stringtoidentifier("str9"), scslosifoundation::stringtoidentifier("lok9"));
+                    this.actor.gotopos(scslosifoundation::stringtoidentifier("str9"), scslosifoundation::stringtoidentifier("lok9"));
                 }
 
                 //If there was a cutscene warp and the global input is disabled, re-enable it and reset cutscene_warp property
@@ -531,17 +531,17 @@ class player {
 
                     }
                     else { 
-                        globalclass.player.kill();
+                        this.kill();
                         gcstaticsoundsptrarray::playtablesound(1048);
-                        globalclass.player.actor.setinputstate("none");
+                        this.actor.setinputstate("none");
                     }
                 }
                 //Set up the specified trigger box IDs to be used as surfing/sliding killboxes and ignore certain respawn code
                 else if ((trig_box_surf0) || (trig_box_surf1) || (trig_box_surf2) || (trig_box_surf3) || (trig_box_surf4) || (trig_box_surf5) || (trig_box_surf6) || (trig_box_surf7) || (trig_box_surf8) || (trig_box_surf9)) {
                     //TODO: probably make a tiny method to store this code in, hell move all of this handling to a new class maybe?
-                    globalclass.player.kill();
+                    this.kill();
                     gcstaticsoundsptrarray::playtablesound(1048);
-                    globalclass.player.actor.setinputstate("none");
+                    this.actor.setinputstate("none");
                 }
             }
 
@@ -561,12 +561,12 @@ class player {
                     if ((trig_plane_id0) || (trig_plane_id1) || (trig_plane_id2) || (trig_plane_id3) || (trig_plane_id4) || (trig_plane_id5) || (trig_plane_id6)) {
                         debug::print("************* ENTERED TRIGGER PLANE");
                         //Check if the player jumped or swam through the trigger, and if not, set idle state as normal
-                        if ((globalclass.player.actor.isjumping() == 0) && (this.submerged == 0)) {
+                        if ((this.actor.isjumping() == 0) && (this.submerged == 0)) {
                             debug::print("^^^^^^^^^^^^^ DIDN'T JUMP OR SWIM THROUGH TRIGGER PLANE, SETTING PLAYER TO IDLE");
-                            globalclass.player.actor.idle();
+                            this.actor.idle();
                             globalclass.level.cam.setaimode(0);
                         }
-                        else if ((globalclass.player.actor.isjumping() == 1) || (this.submerged == 1)) {
+                        else if ((this.actor.isjumping() == 1) || (this.submerged == 1)) {
                             debug::print("############## JUMPED OR SWAM THROUGH TRIGGER PLANE, NOT SETTING PLAYER TO IDLE");
                             globalclass.level.cam.setaimode(7);                            
                         }
@@ -576,9 +576,9 @@ class player {
                     if ((portal) && (gcsaver::portalactive() == 1) && (this.crashbandicootwarped == 0)) {
                         debug::print("************* ENTERED PORTAL, DO THE DEW");
                         //Check if the player jumped through the portal, and if not, set idle state as normal
-                        if (globalclass.player.actor.isjumping() == 0) {
+                        if (this.actor.isjumping() == 0) {
                             debug::print("$$$$$$$$$$ DIDN'T JUMP THROUGH PORTAL, SETTING PLAYER TO IDLE");
-                            globalclass.player.actor.idle();
+                            this.actor.idle();
                         }
                         else {
                             debug::print("^^^^^^^^^^^^^ JUMPED THROUGH PORTAL, NOT SETTING PLAYER TO IDLE");
@@ -589,9 +589,9 @@ class player {
                         this.warpsound.play(0);
                         this.spiraleffect = gcareadirector::createemitter(19, gccharacter::getpositionx(toa), gccharacter::getpositiony(toa), gccharacter::getpositionz(toa));
                         globalclass.hud.hide();
-                        globalclass.player.actor.physicson(0);
+                        this.actor.physicson(0);
                         globalclass.level.cam.setaimode(0);
-                        globalclass.player.actor.fadeout(1.5);
+                        this.actor.fadeout(1.5);
                         this.hittrigger = 1;
                         this.crashbandicootwarped = 1;                        
                         debug::print("WOAH!");
@@ -638,7 +638,7 @@ class player {
                 debug::print("GETTING FADE EVENT FOR: " + __tostring(scslosifoundation::identifiertostring(param1.args[0])));
                 //Once player fadeout ends, hide them to complete it properly, then check the area and perform appropriate warp
                 if ((param1.args[0] == scslosifoundation::stringtoidentifier("cnt1")) && (this.crashbandicootwarped == 1)) {
-                    globalclass.player.actor.hide();
+                    this.actor.hide();
                     if (this.crashbandicootwarped == 1) {
                         //Check whether the portal was in tura or shrn, and increment property for the last time before area transition
                         if ((gcareadirector::getcurrentarea() == scslosifoundation::stringtoidentifier("tura"))) {
@@ -667,7 +667,7 @@ class player {
                     this.crashbandicootwarped = 0;
                 }   
                 //Reenable player collisions with characters now that the screenwipe and respawn are finished, ending invincibility period
-                globalclass.player.actor.enablecollisions();
+                this.actor.enablecollisions();
 
                 //This is so stupid but here we are... need this to make sure the game knows whether the spawn point was underwater or on land
                 if (this.submerged == 1) {
@@ -712,7 +712,7 @@ class player {
             //Cinema Stop event
             else if (param1.eventid == 30) {
                 //Reset the player physics
-                globalclass.player.actor.setupphysics(1.5, 0.8, 1, 0, 0);                
+                this.actor.setupphysics(1.5, 0.8, 1, 0, 0);                
             }
         }
         return null;
@@ -812,7 +812,6 @@ class player {
     }
     
     method actorinitfull() {
-        var var1;
         if (this.actor != null) {
             this.actor.initfull();
             this.actor.setcodelife(this.life);
@@ -934,7 +933,7 @@ class player {
         else if (char_id == "when") {
             this.addmask("fake", 8);
         }
-        globalclass.player.actor.gotopos(this.enterstartid, this.enterlookid);
+        this.actor.gotopos(this.enterstartid, this.enterlookid);
         return null;
     }
     
@@ -1037,7 +1036,7 @@ class player {
             //Don't run this in drgn since it breaks collision with the platforms on respawn
             if (gcareadirector::getcurrentarea() != scslosifoundation::stringtoidentifier("drgn")) {
                 //Disable player collision with other characters to create an invincibility period during respawn
-                globalclass.player.actor.disablecollisions();
+                this.actor.disablecollisions();
             }
             if (this.actor.isdraggeractive() == 1) {
                 this.actor.deactivatedragger();                
