@@ -314,6 +314,7 @@ Level 4 - Kopaka
 
 Level 5 - Lewa
 • Replaced several Tohunga with canon counterparts; updated others  		----		(ShadowDraikana)
+• Fixed oversight in SHRN causing music to not play                 		----		(ShadowDraikana)
 
 Level 6 - Tahu
 • Fixed disc in TA14 from respawning upon reentry if picked up previously	----		(ShadowDraikana)
