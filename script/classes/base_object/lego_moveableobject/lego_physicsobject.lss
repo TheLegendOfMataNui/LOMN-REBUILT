@@ -19,7 +19,7 @@ class lego_physicsobject : lego_moveableobject {
         if (param16 == null) {
             param16 = 2;
         }
-        if (!(param7 == null) & !(param8 == null)) {
+        if ((param7 != null) & (param8 != null)) {
             this.madeonthefly = 1;
             var1 = gcmoveableobj::create("dumy", "dummy", "dummy", 0);
             if (param10 == null) {

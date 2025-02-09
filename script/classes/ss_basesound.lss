@@ -9,13 +9,13 @@ class ss_basesound {
     method ss_basesound(param1, param2, param3, param4) {
         this.filename = param1 + ".PCSND";
         this.sndid = scslosifoundation::stringtoidentifier(param2);
-        if (!(param3 == null)) {
+        if (param3 != null) {
             this.playtype = param3;
         }
         else {
             this.playtype = 0;
         }
-        if (!(param4 == null)) {
+        if (param4 != null) {
             this.restart = param4;
         }
         else {

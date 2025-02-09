@@ -38,24 +38,24 @@ class ss_shoefittercurrentdisplay {
     method cleanupfull() {
         if (this.currentlabel.onscreen) {
             this.currentlabel.hide();
+            this.currentlabel.remove();
         }
         if (this.framelabel.onscreen) {
             this.framelabel.hide();
+            this.framelabel.remove();
         }
         if (this.timelabel.onscreen) {
             this.timelabel.hide();
+            this.timelabel.remove();
         }
         if (this.cframe.onscreen) {
             this.cframe.hide();
+            this.cframe.remove();
         }
         if (this.ctime.onscreen) {
             this.ctime.hide();
+            this.ctime.remove();
         }
-        this.currentlabel.remove();
-        this.framelabel.remove();
-        this.timelabel.remove();
-        this.cframe.remove();
-        this.ctime.remove();
         this.currentlabel.cleanupfull();
         this.framelabel.cleanupfull();
         this.timelabel.cleanupfull();

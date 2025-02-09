@@ -2,22 +2,18 @@ class lego_area_illu : gs_lego_area {
     property parent;
     
     method lego_area_illu(param1) {
-        this.parent = param1;
         this.gs_lego_area("illu", param1, 0, 0);
         this.lego_area_initfull();
         return null;
     }
     
     method initfull() {
-        var var1;
-        var var2;
-        var var3;
-        var var4;
-        var var5;
-        var var6;
         this.lego_area_show();
-        this.lego_area_initfull();
-        gcmodeldirector::setnearestmax(15);
+        gcareadirector::setnearestmax(50);
+        gcmodeldirector::setnearestmax(50);
+        gcareadirector::setnearestmaxdist(1000);
+        gclightdirector::setcavelighting(0);
+        gcareadirector::setfog(-10381892, 0 - 5.0, 0 - 600.0, 0.01);
         globalclass.bgmusic.changefilename("Root/Data/sounds/MusicLewaDrumAndBass");
         globalclass.bgmusic.play(1);
         return null;
@@ -25,7 +21,6 @@ class lego_area_illu : gs_lego_area {
     
     method cleanupfull() {
         this.lego_area_hide();
-        this.lego_area_cleanupfull();
         return null;
     }
     
@@ -42,7 +37,7 @@ class lego_area_illu : gs_lego_area {
     }
     
     method exit() {
-        this.parent = null;
+        this.lego_area_cleanupfull();
         return null;
     }
 }

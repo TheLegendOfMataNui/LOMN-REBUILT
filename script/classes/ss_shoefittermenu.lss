@@ -76,8 +76,10 @@ class ss_shoefittermenu {
         var var1;
         var1 = 0;
         while ((this.items.__length - 1) >= var1) {
-            this.items[var1].name.hide();
-            this.items[var1].name.remove();
+            if (this.items[var1].name.onscreen) {
+                this.items[var1].name.hide();
+                this.items[var1].name.remove();
+            }
             this.items[var1].name.cleanupfull();
             var1 = var1 + 1;
         }

@@ -27,6 +27,7 @@ class rkmn_puzzle {
     property usemini3;
     property havestone;
     property ending;
+    property level_end;
     
     method rkmn_puzzle(param1) {
         this.parent = param1;
@@ -41,7 +42,6 @@ class rkmn_puzzle {
         gccollisionphysicsgroup::turnoffnextarea(scslosifoundation::stringtoidentifier("tp00"));
         var1 = gccollisionphysicsgroup::gettriggerplane(scslosifoundation::stringtoidentifier("tp00"));
         gctriggerplane::setplaneresponses(var1, 3, 3);
-        this.rocker = new rockman(this.parent.name);
         gccharactermoveinterpreter::checkanimdone(1919627320);
         gccharactermoveinterpreter::checkanimdone(1919627321);
         gccharactermoveinterpreter::checkanimdone(1919627315);
@@ -86,7 +86,6 @@ class rkmn_puzzle {
             new platform("flr8", this.parent.name), 
             new platform("flr9", this.parent.name) ];
         this.rockmandead = 0;
-        gcareadirector::setnearestmax(50);
         this.stone = new lego_pickup("ston", 0, 4, "item", 8, 0);
         this.stone.initfull();
         this.stone.obj.setpos(0, 0, 0);
@@ -137,6 +136,7 @@ class rkmn_puzzle {
         gclightdirector::setcavelighting(0);
         gcareadirector::hide(scslosifoundation::stringtoidentifier("lbld"), 0);
         this.reset();
+        this.level_end = 0;
         return null;
     }
     
@@ -291,7 +291,17 @@ class rkmn_puzzle {
                 }
             }
             else if (param1.args[0] == scslosifoundation::stringtoidentifier("lev4")) {
-                globalclass.setnextlevel("lev4", 1);
+                if (this.level_end == 0) {
+                    debug::print("Begin level transition");
+                    globalclass.hud.fadeoutscreen();
+                    this.level_end = 1;
+                }
+            }
+        }
+        else if (param1.eventid == 1005) {
+            if (param1.args[0] == 1) {
+                debug::print("Setting next level to 4");
+                globalclass.setnextlevel("lev4", 1);                
             }
         }
         else if (param1.eventid == 52) {
@@ -550,6 +560,7 @@ class rkmn_puzzle {
             this.stone.cleanupfull();
             this.stone = null;
         }
+        this.level_end = null;
         return null;
     }
     

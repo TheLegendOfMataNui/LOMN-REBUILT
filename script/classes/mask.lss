@@ -12,6 +12,7 @@ class mask {
         return null;
     }
     
+    //Each mask when added as a gs_lego_animatesprite is using zeroed out coordinates for sides.  This is because Saffire chose to use the setpos method call in hudmask itself for positioning
     method add() {
         gctoa::addmask(globalclass.player.actor.toahandle, this.maskid, "john pruden");
         if (this.maskname == 7) {

@@ -28,6 +28,7 @@ class gs_lego_cdtimer : base_object {
     method reset() {
         this.time = this.total;
         sctilefont::setcolor(this.text.font, 255, 255, 0, 255);
+        this.text.scalefont(1.2);
         if (this.shown == 0) {
             this.text.show();
             this.shown = 1;
@@ -51,9 +52,7 @@ class gs_lego_cdtimer : base_object {
     }
     
     method initfull() {
-        var var1;
-        var1 = "Root/Data/Art/Fonts/BionicleFont";
-        this.text = new gs_legotext(var1, "", screenx * 0.5, 55, 0, 1.2, 256, 4, 0, 1);
+        this.text = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "", screenx * 0.5, 55, 0, 1.2, 256, 4, 0, 1);
         this.text.initfull();
         sctilefont::setcolor(this.text.font, 255, 255, 0, 255);
         this.text.add();
@@ -63,7 +62,7 @@ class gs_lego_cdtimer : base_object {
     }
     
     method cleanupfull() {
-        if (!(this.text == null)) {
+        if (this.text != null) {
             this.text.remove();
             this.text.cleanupfull();
             this.text = null;
@@ -97,11 +96,11 @@ class gs_lego_cdtimer : base_object {
                 }
                 var3 = scslosimath::floor(var2);
                 var4 = scslosimath::floor(this.time);
-                if (!(var3 == var4)) {
+                if (var3 != var4) {
                     gcstaticsoundsptrarray::playtablesound(1087);
                 }
                 if (this.time <= 10.0) {
-                    if (!(var3 == var4)) {
+                    if (var3 != var4) {
                         this.text.hide();
                         this.shown = 0;
                     }

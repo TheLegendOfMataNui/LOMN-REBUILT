@@ -48,36 +48,36 @@ class ss_shoefitterselecteddisplay {
     method cleanupfull() {
         if (this.animationname.onscreen) {
             this.animationname.hide();
+            this.animationname.remove();
         }
         if (this.animationnumber.onscreen) {
             this.animationnumber.hide();
+            this.animationnumber.remove();
         }
         if (this.selectedlabel.onscreen) {
             this.selectedlabel.hide();
+            this.selectedlabel.remove();
         }
         if (this.selecteditem.onscreen) {
             this.selecteditem.hide();
+            this.selecteditem.remove();
         }
         if (this.startlabel.onscreen) {
             this.startlabel.hide();
+            this.startlabel.remove();
         }
         if (this.endlabel.onscreen) {
             this.endlabel.hide();
+            this.endlabel.remove();
         }
         if (this.startnumber.onscreen) {
             this.startnumber.hide();
+            this.startnumber.remove();
         }
         if (this.endnumber.onscreen) {
             this.endnumber.hide();
+            this.endnumber.remove();
         }
-        this.animationname.remove();
-        this.animationnumber.remove();
-        this.selectedlabel.remove();
-        this.selecteditem.remove();
-        this.startlabel.remove();
-        this.endlabel.remove();
-        this.startnumber.remove();
-        this.endnumber.remove();
         this.animationname.cleanupfull();
         this.animationnumber.cleanupfull();
         this.selectedlabel.cleanupfull();
@@ -116,7 +116,7 @@ class ss_shoefitterselecteddisplay {
     method setflags(param1, param2, param3) {
         this.selecteditem.setstring(scslosistringfuncs::toupper(param1));
         this.startnumber.setstring(__tostring(param2));
-        if (!(param3 == null)) {
+        if (param3 != null) {
             this.endnumber.setstring(__tostring(param3));
         }
         return null;

@@ -77,7 +77,7 @@ class hudammo : base_objectarray {
     method cleanupfull() {
         var var1;
         var var2;
-        if (!(this.items == null)) {
+        if (this.items != null) {
             var1 = this.items.__length - 1;
             var2 = 0;
             while (var1 >= var2) {
@@ -103,7 +103,7 @@ class hudammo : base_objectarray {
     }
     
     method add() {
-        if (!(this.items == null)) {
+        if (this.items != null) {
             this.items[0].add();
             this.items[1].add();
             this.items[2].add();
@@ -113,7 +113,7 @@ class hudammo : base_objectarray {
     
     method show() {
         if (globalclass.hud.hidden == 0) {
-            if (!(this.items == null)) {
+            if (this.items != null) {
                 this.items[0].show();
                 this.items[1].show();
                 this.items[2].show();
@@ -126,7 +126,7 @@ class hudammo : base_objectarray {
     
     method hide() {
         var var1;
-        if (!(this.items == null)) {
+        if (this.items != null) {
             var1 = 0;
             while ((this.items.__length - 1) >= var1) {
                 this.items[var1].hide();
@@ -137,7 +137,7 @@ class hudammo : base_objectarray {
     }
     
     method setammo(param1) {
-        if (!(this.items == null)) {
+        if (this.items != null) {
             this.count = param1;
             if (this.count < 10) {
                 this.items[this.textidx].setstring("00" + __tostring(this.count));
@@ -157,7 +157,7 @@ class hudammo : base_objectarray {
     }
     
     method process(param1) {
-        if (!(this.items == null)) {
+        if (this.items != null) {
             this.items[this.spriteidx].process(param1);
         }
         return null;

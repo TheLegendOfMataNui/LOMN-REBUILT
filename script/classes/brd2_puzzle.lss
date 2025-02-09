@@ -19,6 +19,7 @@ class brd2_puzzle {
     
     method initshort() {
         globalclass.player.actor.setsplitanimation(scslosifoundation::stringtoidentifier("k033"), 0);
+        globalclass.player.actor.setsurfingability(1.0, 0.8);
         return null;
     }
     

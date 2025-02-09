@@ -266,26 +266,56 @@ Level 7 - Makuta
 *The Kaita, along with their areas and the rest of lev7, are not quite complete and polished yet, so keep that in mind when playing.
 
 -------------------------------------------------------------------------------------------------------------------------
-v1.1.1 (Something something whoops)
+v1.2 (Something something whoops)
 
 General changes and fixes
 • Updated patch notes formatting											----		(ShadowDraikana)
 • Fixed grappling hooks having longer ranges when reloading saves			----		(ShadowDraikana)
 • Fixed jank with maps/audio flashing in just before a level intro plays	----		(ShadowDraikana)
-• Added an initial fadein for entering front end, levels, and loading saves ----		(ShadowDraikana)
-• Fixed brief HUD pop-in when entering the front end						----		(ShadowDraikana)
+• Added an initial fadein for entering front end, levels, and loading saves	----		(ShadowDraikana)
+• Added proper fadeout when transitioning from one level to the next 		----		(ShadowDraikana)
+• Fixed a misalignment issue with life/energy/air HUD meters 				----		(ShadowDraikana)
+• Fixed an oversight causing the low health sound to only play once			----		(ShadowDraikana)
+• Fixed all drain consistency and visual issues with the air meter			----		(ShadowDraikana)
+• Fixed issues with pausing being possible just before an intro cinematic	----		(ShadowDraikana)
+• Fixed inconsistencies with the Amana Volo pickup text     				----		(OndrikB)
+• Reduced debug menu text size and moved the menu down slightly				----		(ShadowDraikana)
+• Fixed issue that would sometimes break respawns in areas with slides		----		(ShadowDraikana)
+• Fixed infinite air meter exploit with the KauKau                  		----		(ShadowDraikana)
+
+Front End
+• Fixed brief HUD pop-in when first loading in  	           	    	    ----		(ShadowDraikana)
+• Added missing right click input to Extras menu 		                    ----		(ShadowDraikana)
+• Updated title screen logo 		            		                    ----		(Vahkiti)
+• Added missing clicking sounds to some menus	           	   	            ----		(ShadowDraikana)
+• Updated and changed click sounds across various menus	           	   	    ----		(ShadowDraikana)
 
 Level 1 - Onua
 • Fixed two tutorial totems in BECH having their text swapped				----		(ShadowDraikana)
 • Fixed broken paths causing Legend FMV to crash for several languages		----		(ShadowDraikana)
+• Fixed the large tree in BECH to allow its leaves to render properly		----		(ShadowDraikana)
+• Adjusted platform collision in L1A7 to prevent no-Huna completion 		----		(ShadowDraikana)
+• Adjusted platform fall time in L1A7 and streamlined audio feedback 		----		(ShadowDraikana)
+• Fixed Onua falling very slightly post-Nobua beach cutscene        		----		(ShadowDraikana)
 
 Level 2 - Gali
 • Fixed a doorway in VLLG pointing to the wrong room (Nobody saw anything)	----		(ShadowDraikana)
 • Removed underwater hives in VLLG due to poor telegraphing 				----		(ShadowDraikana)
 • Fixed bottom platform in MTOP from not being properly extended			----		(ShadowDraikana)
+• Fixed a switch in GLY3 from appearing pressed already	    				----		(ShadowDraikana)
+• Added movement to buttons in GLY3 when pushing them down   				----		(ShadowDraikana)
+• Buttons being pressed and doors openened in GLY3 now save properly		----		(ShadowDraikana)
+• Fixed underwater respawns sometimes not working correctly 		        ----		(ShadowDraikana)
+
+Level 3 - Pohatu
+• Fixed crash when reentering GLY3 after collecting stone rain glyph		----		(ShadowDraikana)
+
+Level 4 - Kopaka
+• Fixed Ice Elemental sometimes not resetting properly upon player death	----		(ShadowDraikana)
 
 Level 5 - Lewa
-• Replaced several Le-Matoran with canon counterparts; updated others		----		(ShadowDraikana)
+• Replaced several Tohunga with canon counterparts; updated others  		----		(ShadowDraikana)
+• Fixed oversight in SHRN causing music to not play                 		----		(ShadowDraikana)
 
 Level 6 - Tahu
 • Fixed disc in TA14 from respawning upon reentry if picked up previously	----		(ShadowDraikana)

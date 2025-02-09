@@ -49,7 +49,7 @@ class bmtn2_puzzle {
         gccharacter::setkapura(this.kapura);
         this.upgradefruit3_shown = gcsaver::finditem(scslosifoundation::stringtoidentifier("fru1"));
         if (this.upgradefruit3_shown == 0) {
-            this.upgradefruit3 = new lego_pickup("fru1", 0, 6, "frut", 1, 1);
+            this.upgradefruit3 = new lego_pickup("fru1", 0, 6);
             this.upgradefruit3.initfull();
         }
 

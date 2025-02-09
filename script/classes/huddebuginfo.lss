@@ -33,18 +33,25 @@ class huddebuginfo {
     }
     
     method cleanupfull() {
-        if (!(this.text == null)) {
+        if (this.text != null) {
+            this.text.hide();
             this.text.cleanupfull();
             this.text = null;
         }
-        if (!(this.textfps == null)) {
+        if (this.textfps != null) {
+            this.textfps.hide();
             this.textfps.cleanupfull();
             this.textfps = null;
         }
-        if (!(this.textarea == null)) {
+        if (this.textarea != null) {
+            this.textarea.hide();
             this.textarea.cleanupfull();
             this.textarea = null;
         }
+        this.framecount = null;
+        this.frametime = null;
+        this.starttime = null;
+        this.firstpass = null;
         return null;
     }
     
@@ -112,7 +119,7 @@ class huddebuginfo {
             this.framecount = 0;
         }
         var11 = gcareadirector::getcurrentarea();
-        if (!(var11 == 1061109567)) {
+        if (var11 != 1061109567) {
             this.textarea.setstring(scslosifoundation::identifiertostring(var11));
         }
         return null;

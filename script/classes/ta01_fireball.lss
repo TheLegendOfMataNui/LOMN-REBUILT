@@ -24,11 +24,9 @@ class ta01_fireball {
     }
     
     method cleanupfull() {
-        var var1;
         this.obj.cleanupfull();
         this.obj = null;
         this.name = null;
-        var1 = null;
         if (this.burningsoundcleanedup == 0) {
             this.burningsound.cleanupfull();
             this.burningsound = null;
@@ -55,7 +53,6 @@ class ta01_fireball {
                 this.detonate(param1.args[2], param1.args[3], param1.args[4], param1.args[0]);
             }
         }
-        param1.eventid;
         return null;
     }
     

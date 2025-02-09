@@ -133,13 +133,14 @@ class lego_level_7 : gs_lego_level {
         }
         globalclass.saverloaded = 0;
 
-        //Check for if the level has just started from MANA and FMV not played yet; if so a blackscreen is created using fadeoutscreen.  Else, perform a normal fadein for loaded games
+        //Check for if the level has just started from MANA and FMV not played yet; if so freeze camera, kill all input, hide hud to mask the loading jank.  Else, perform a normal fadein for loaded games
         //Additionally, store game SFX volume settings then set to 0 temporarily.  This stored value will be retrieved by the area class to reset the audio properly after the FMV ends
         if ((scslosifoundation::identifiertostring(gcareadirector::getcurrentarea()) == "mana") && (bettersaver::getbooleanvalue(101) == 0)) {
+            this.cam.setaimode(9);
+            globalclass.toggleinput();
             globalclass.hud.hide();
-            globalclass.hud.fadeoutscreen(0);
             this.sfx_volume = gcsaver::getsoundvolume();
-            gcsaver::setsoundvolume(0);
+            gc3dsound::setglobalvolume(0);
         }
         else {
             globalclass.hud.fadeinscreen();
@@ -151,6 +152,16 @@ class lego_level_7 : gs_lego_level {
         this.lego_level_initshort();
         return null;
     }
+
+    method cleanupfull() {
+        this.lego_level_cleanupfull();
+        return null;
+    }
+
+    method onevent(param1) {
+        this.lego_level_onevent(param1);
+        return null;
+    }    
     
     method settestforlavacollisions(param1) {
         var var1;

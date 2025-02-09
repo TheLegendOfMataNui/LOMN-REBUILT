@@ -5,4 +5,5 @@ global screenlist;
 global screenx;
 global screeny;
 global screenratio;
+global screenyratio;
 global newfrontend;

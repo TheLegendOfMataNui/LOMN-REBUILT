@@ -82,6 +82,8 @@ class gs_lego_toa : gs_lego_character {
         // Set the HUD head to the correct sprite
         globalclass.hud.thingy.switch_eyes(this.open_eye_sprite_filename, this.closed_eye_sprite_filename);
 
+        //Leaving this here for now, synclistenertocamera is used primarily but if this is ever needed it's here for reference
+        //gc3dsound::synclistenertomaincharacter();
         return null;
     }
     

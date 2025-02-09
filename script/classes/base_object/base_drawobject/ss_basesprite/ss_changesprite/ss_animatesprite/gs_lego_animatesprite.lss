@@ -3,8 +3,8 @@ class gs_lego_animatesprite : ss_animatesprite {
     property maxloops;
     property loopbackwards;
     
-    method gs_lego_animatesprite(filepath, first_frame, last_frame, frames_animating, left_side_pos, top_side_pos, z_coord, right_side_pos, bottom_side_pos) {
-        this.ss_animatesprite(filepath, first_frame, last_frame, frames_animating, left_side_pos, top_side_pos, z_coord, right_side_pos, bottom_side_pos);
+    method gs_lego_animatesprite(filepath, first_frame, last_frame, frames_animating, leftSide, topSide, z_coord, rightSide, bottomSide) {
+        this.ss_animatesprite(filepath, first_frame, last_frame, frames_animating, leftSide, topSide, z_coord, rightSide, bottomSide);
         return null;
     }
     

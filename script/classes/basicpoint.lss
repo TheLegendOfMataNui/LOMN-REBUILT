@@ -3,19 +3,19 @@ class basicpoint {
     property y;
     property z;
     
-    method basicpoint(param1, param2, param3) {
-        if (param1 == null) {
-            param1 = 0.0;
+    method basicpoint(x, y, z) {
+        if (x == null) {
+            x = 0.0;
         }
-        if (param2 == null) {
-            param2 = 0.0;
+        if (y == null) {
+            y = 0.0;
         }
-        if (param3 == null) {
-            param3 = 0.0;
+        if (z == null) {
+            z = 0.0;
         }
-        this.x = param1;
-        this.y = param2;
-        this.z = param3;
+        this.x = x;
+        this.y = y;
+        this.z = z;
         return null;
     }
     
@@ -46,6 +46,17 @@ class basicpoint {
         this.x = param1.x + param2.x;
         this.y = param1.y + param2.y;
         this.z = param1.z + param2.z;
+        return null;
+    }
+
+    // Usage: Given a starting point, ending point, and float amount between them (0.0 to 1.0)
+    // this will set this point to the specified location between them.
+    // (So, 0.0 is the start point, 0.5 is halfway inbetween, and 1.0 is the end point.)
+    method lerp(start, end, amount) {
+        // See https://en.wikipedia.org/wiki/Linear_interpolation
+        this.x = start.x * (1.0 - amount) + end.x * amount;
+        this.y = start.y * (1.0 - amount) + end.y * amount;
+        this.z = start.z * (1.0 - amount) + end.z * amount;
         return null;
     }
     

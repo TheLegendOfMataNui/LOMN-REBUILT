@@ -50,11 +50,14 @@ class shrn5_puzzle {
                 gccinemaengine::play(this.cinema);
             }
         }
+
         //Makes sure the music gets handled by event 30 the first time, afterwards load it normally on subsequent area entries
-        else {
+        //To do this, we simply check if cin3 has played.  We also cover the debug menu warp case by checking for cin2 having not been played
+        if ((gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin3"))) || (gcsaver::findcinema(scslosifoundation::stringtoidentifier("cin2")) == 0)) {
             globalclass.bgmusic.changefilename("Root/Data/sounds/MusicShrine");
             globalclass.bgmusic.play();
         }
+
         matau = gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("mata"), 0);
         gccharacter::setinputstate(matau, scslosifoundation::stringtoidentifier("none"));
         gccharacter::switchanimation(matau, scslosifoundation::stringtoidentifier("ma00"), -1);

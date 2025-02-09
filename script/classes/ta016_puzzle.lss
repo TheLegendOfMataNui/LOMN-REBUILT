@@ -12,6 +12,9 @@ class ta016_puzzle {
         var var1;
         var var2;
         gcareadirector::setnearestmax(50);
+        gcareadirector::setfog(-6750208, 0 - 1.0, 0 - 900.0, 0.05);
+        globalclass.bgmusic.changefilename("Root/Data/sounds/MusicPart2LegoUNDERGROUND");
+        globalclass.bgmusic.play(1);
         this.platformsarray = [ new platform("pl12"), 
             new platform("pl13"), 
             new platform("pl14"), 
@@ -50,8 +53,6 @@ class ta016_puzzle {
             new ta01_fireball("fb17", 14), 
             new ta01_fireball("fb18", 14), 
             new ta01_fireball("fb99", 3) ];
-        globalclass.bgmusic.changefilename("Root/Data/sounds/MusicPart2LegoUNDERGROUND");
-        globalclass.bgmusic.play(1);
         return null;
     }
     
@@ -73,13 +74,14 @@ class ta016_puzzle {
             this.platformsarray[var1] = null;
             var1 = var1 + 1;
         }
+        var1 = 0;
+        while ((this.fireballarray.__length - 1) >= var1) {
+            this.fireballarray[var1].cleanupfull();
+            this.fireballarray[var1] = null;
+            var1 = var1 + 1;
+        }
         this.platformsarray = null;
         this.fireballarray = null;
-        return null;
-    }
-    
-    method exit() {
-        this.parent = null;
         return null;
     }
     
@@ -100,15 +102,19 @@ class ta016_puzzle {
     
     method onevent(param1) {
         var var1;
-        var1 = 0;
-        while ((this.platformsarray.__length - 1) >= var1) {
-            this.platformsarray[var1].onevent(param1);
-            var1 = var1 + 1;
+        if (this.platformsarray != null) {
+            var1 = 0;
+            while ((this.platformsarray.__length - 1) >= var1) {
+                this.platformsarray[var1].onevent(param1);
+                var1 = var1 + 1;
+            }
         }
-        var1 = 0;
-        while ((this.fireballarray.__length - 1) >= var1) {
-            this.fireballarray[var1].onevent(param1);
-            var1 = var1 + 1;
+        if (this.fireballarray != null) {
+            var1 = 0;
+            while ((this.fireballarray.__length - 1) >= var1) {
+                this.fireballarray[var1].onevent(param1);
+                var1 = var1 + 1;
+            }
         }
         if (param1.eventid == 1) {
             if (param1.args[1] == scslosifoundation::stringtoidentifier("cnt1")) {
@@ -128,6 +134,11 @@ class ta016_puzzle {
     }
     
     method input(param1) {
+        return null;
+    }
+    
+    method exit() {
+        this.parent = null;
         return null;
     }
 }

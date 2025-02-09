@@ -102,7 +102,7 @@ class hk01_puzzle {
         if (this.ledgearray != null) {
             var1 = 0;
             while ((this.ledgearray.__length - 1) >= var1) {
-                this.ledgearray[var1].onevent(param1);
+                this.ledgearray[var1].onevent(param1, 1);
                 var1 = var1 + 1;
             }
         }

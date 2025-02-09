@@ -2,8 +2,8 @@ class printmenuhighlight {
     property image;
     property lit;
     
-    method printmenuhighlight(param1, param2, param3, param4, param5) {
-        this.image = new ss_basesprite(param1, __toint(param2 * screenratio), __toint(param3 * screenratio), 0, __toint(param4 * screenratio), __toint(param5 * screenratio));
+    method printmenuhighlight(filename, x1, y1, x2, y2) {
+        this.image = new ss_basesprite(filename, __toint(x1 * screenratio), __toint(y1 * screenratio), 0, __toint(x2 * screenratio), __toint(y2 * screenratio));
         this.lit = 0;
         return null;
     }
@@ -17,7 +17,7 @@ class printmenuhighlight {
     }
     
     method cleanupfull() {
-        if (!(this.image == null)) {
+        if (this.image != null) {
             this.image.hide();
             this.image.remove();
             this.image.cleanupfull();
@@ -26,8 +26,10 @@ class printmenuhighlight {
         return null;
     }
     
-    method check(param1, param2) {
-        if ((((param2 > this.image.y1) && (param2 < this.image.y2)) && (param1 > this.image.x1)) && (param1 < this.image.x2)) {
+    method check(cursor_x, cursor_y) {
+        //cursor_x = cursor_x * screenratio;
+        //cursor_y = cursor_y * screenyratio;
+        if ((((cursor_y > this.image.y1) && (cursor_y < this.image.y2)) && (cursor_x > this.image.x1)) && (cursor_x < this.image.x2)) {
             if (this.lit == 0) {
                 this.image.show();
                 this.lit = 1;

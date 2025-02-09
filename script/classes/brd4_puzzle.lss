@@ -55,6 +55,9 @@ class brd4_puzzle {
     method initshort() {
         var var1;
         globalclass.player.actor.setsplitanimation(scslosifoundation::stringtoidentifier("k033"), 0);
+        globalclass.player.actor.setsurfingability(1.0, 0.8);
+        globalclass.player.actor.setsurfminspeed(40.0);
+        globalclass.player.actor.setsurfmaxspeed(60.0);
         var1 = 0;
         while ((this.wallarray.__length - 1) >= var1) {
             this.wallarray[var1].show();

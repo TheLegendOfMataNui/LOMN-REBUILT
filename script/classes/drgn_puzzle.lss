@@ -43,8 +43,8 @@ class drgn_puzzle {
             this.stone.cleanupfull();
             this.stone = null;
         }
-        globalclass.player.maskcontrol.usemasks(1);
-        this.parent = null;
+        this.isdead = null;
+        this.hasstone = null;
         return null;
     }
     
@@ -82,7 +82,14 @@ class drgn_puzzle {
         }
         else if (param1.eventid == 39) {
             this.hasstone = 1;
-            globalclass.setnextlevel("lev7", 1);
+            debug::print("Begin level transition");
+            globalclass.hud.fadeoutscreen();
+        }
+        else if (param1.eventid == 1005) {
+            if (param1.args[0] == 1) {
+                debug::print("Setting next level to 7");
+                globalclass.setnextlevel("lev7", 1);
+            }
         }
         return null;
     }

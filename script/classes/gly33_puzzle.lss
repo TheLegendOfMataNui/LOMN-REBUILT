@@ -40,11 +40,6 @@ class gly33_puzzle {
             this.glyph.initfull();
             this.glyph.show();
         }
-        else {
-            this.glyph = new lego_moveableobject("glyp");
-            this.glyph.initfull();
-            this.glyph.hide();
-        }
         this.targetarray = [ new target_class("sw00", "tmr0", 60, "gly3", 581.273, 13.378, 70.55, this),
             new target_class("sw01", "tmr1", 60, "gly3", 580.566, 24.17, 9.237, this),
             new target_class("sw02", "tmr2", 60, "gly3", 611.16, 0 - 2.9, 0 - 9.64, this),

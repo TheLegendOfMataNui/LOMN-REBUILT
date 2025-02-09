@@ -73,7 +73,7 @@ class gsplaygame {
     method cleanupshort() {
         var var1;
         this.active = 0;
-        if (!(this.playerarray == null)) {
+        if (this.playerarray != null) {
             var1 = 0;
             while ((this.playerarray.__length - 1) >= var1) {
                 this.playerarray[var1].cleanupfull();
@@ -82,11 +82,11 @@ class gsplaygame {
             }
             this.playerarray = null;
         }
-        if (!(this.backopt == null)) {
+        if (this.backopt != null) {
             this.backopt.cleanupfull();
             this.backopt = null;
         }
-        if (!(this.loadoptions == null)) {
+        if (this.loadoptions != null) {
             var1 = 0;
             while ((this.loadoptions.__length - 1) >= var1) {
                 this.loadoptions[var1].cleanupfull();
@@ -95,7 +95,7 @@ class gsplaygame {
             }
             this.loadoptions = null;
         }
-        if (!(this.sureoptions == null)) {
+        if (this.sureoptions != null) {
             var1 = 0;
             while ((this.sureoptions.__length - 1) >= var1) {
                 this.sureoptions[var1].cleanupfull();
@@ -139,6 +139,7 @@ class gsplaygame {
     method back() {
         this.cleanupshort();
         this.parent.back();
+        gcstaticsoundsptrarray::playtablesound(1073);
         return null;
     }
     
@@ -201,12 +202,15 @@ class gsplaygame {
                             this.sureoptions[var1].text.hide();
                             var1 = var1 + 1;
                         }
+                        gcstaticsoundsptrarray::playtablesound(1073);
                     }
                     if (this.surecuroption == 0) {
                         this.forward();
+                        gcstaticsoundsptrarray::playtablesound(1073);
                     }
                     else if (this.surecuroption == 1) {
                         this.playerarray[this.curoption].eraseentry();
+                        gcstaticsoundsptrarray::playtablesound(1074);
                     }
                 }
                 else {
@@ -220,6 +224,7 @@ class gsplaygame {
                     if (this.loadcuroption == 0) {
                         this.lockplayer = 0;
                         this.forward();
+                        gcstaticsoundsptrarray::playtablesound(1074);
                     }
                     else if (this.loadcuroption == 1) {
                         this.sureon = 1;
@@ -228,9 +233,11 @@ class gsplaygame {
                             this.sureoptions[var1].text.show();
                             var1 = var1 + 1;
                         }
+                        gcstaticsoundsptrarray::playtablesound(1074);
                     }
                     else if (this.loadcuroption == 2) {
                         this.lockplayer = 0;
+                        gcstaticsoundsptrarray::playtablesound(1073);
                     }
                 }
             }
@@ -252,6 +259,7 @@ class gsplaygame {
                         var1 = var1 + 1;
                     }
                 }
+                gcstaticsoundsptrarray::playtablesound(1074);
             }
             else if (this.curoption > (this.playerarray.__length - 1)) {
                 this.back();
