@@ -51,6 +51,7 @@ class sprite_projectile {
         if (this.hasdied() == 0) {
             this.detonate();
         }
+        debug::print(scslosifoundation::identifiertostring(this.id));
         this.handle = null;
         this.id = null;
         this.name = null;
@@ -80,6 +81,12 @@ class sprite_projectile {
         gcvectorprojectile::detonate(this.handle);
         return null;
     }
+    
+    //Sets projectile to a given set of coordinates
+    //method setposition(x_coord, y_coord, z_coord) {
+    //    gcvectorprojectile::setposition(this.handle, x_coord, y_coord, z_coord);
+    //    return null;
+    //}
     
     method onevent(param1) {
         return null;

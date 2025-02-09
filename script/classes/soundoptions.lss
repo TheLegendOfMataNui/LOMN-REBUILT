@@ -141,9 +141,6 @@ class soundoptions {
             else if (this.curoption == 2) {
                 this.back();
             }
-            else {
-                gcstaticsoundsptrarray::playtablesound(1072);
-            }
         }
         else if (param1 == 2) {
             this.back();

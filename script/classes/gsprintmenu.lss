@@ -257,6 +257,7 @@ class gsprintmenu {
         this.cleanupshort();
         this.parent.initfull();
         this.parent.active = 1;
+        gcstaticsoundsptrarray::playtablesound(1073);
         return null;
     }
     
@@ -309,6 +310,7 @@ class gsprintmenu {
             if (this.subon) {
                 if (this.backopt2.lit) {
                     this.switchtomenu();
+                    gcstaticsoundsptrarray::playtablesound(1073);
                 }
                 else {
                     var1 = 0;
@@ -318,6 +320,7 @@ class gsprintmenu {
                         }
                         var1 = var1 + 1;
                     }
+                    gcstaticsoundsptrarray::playtablesound(1074);
                 }
             }
             else if (this.backopt1.lit) {
@@ -333,6 +336,7 @@ class gsprintmenu {
                     }
                     var1 = var1 + 1;
                 }
+                gcstaticsoundsptrarray::playtablesound(1074);
             }
         }
         else if (param1 == 2) {

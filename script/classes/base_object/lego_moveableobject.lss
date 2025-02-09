@@ -70,12 +70,12 @@ class lego_moveableobject : base_object {
     
     method cleanupfull() {
         gcmoveableobj::killanimtexture(this.handle);
+        this.name = null;
+        this.handle = null;
         if (this.madeonthefly) {
             this.remove();
         }
-        this.name = null;
         this.id = null;
-        this.handle = null;
         this.anims = null;
         this.currentanim = null;
         this.defaultanim = null;
@@ -83,6 +83,7 @@ class lego_moveableobject : base_object {
     }
     
     method remove() {
+        debug::print(scslosifoundation::identifiertostring(this.id));
         gcareadirector::remove(this.id, this.areaid);
         return null;
     }

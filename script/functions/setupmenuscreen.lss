@@ -1,6 +1,4 @@
 function setupmenuscreen() {
-    var var1;
-    var1 = new gs_lego_menuscreen(createmenuobject());
-    screenlist.addscreen(var1, 1);
+    screenlist.addscreen(new gs_lego_menuscreen(createmenuobject()), 1);
     return null;
 }

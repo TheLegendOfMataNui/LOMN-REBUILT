@@ -1,6 +1,5 @@
 class loadmenuoption {
     property text;
-    property halfheight;
     property lit;
     property selectable;
     
@@ -15,7 +14,6 @@ class loadmenuoption {
         this.text.initfull();
         this.text.add();
         this.text.show();
-        this.halfheight = this.text.getheight() * 0.5;
         return null;
     }
     
@@ -32,16 +30,21 @@ class loadmenuoption {
         return null;
     }
     
-    method check(param1, param2) {
-        if (((this.selectable == 1) && (param2 > (this.text.y1 - this.halfheight))) && (param2 < (this.text.y1 + this.halfheight))) {
-            if (this.lit == 0) {
-                sctilefont::setcolor(this.text.font, 255, 255, 0, 255);
-                this.lit = 1;
+    method check(cursor_x, cursor_y) {
+        //cursor_x = cursor_x * screenratio;
+        //cursor_y = cursor_y * screenyratio;
+        if (this.selectable == 1) {
+            if ((cursor_x > (this.text.x1 - (this.text.getwidth() / 2))) && (cursor_x < (this.text.x1 + ((this.text.getwidth() / 2) + (10 * screenratio)))) && (cursor_y > (this.text.y1)) && (cursor_y < (this.text.y1 + (16 * screenyratio)))) {
+                if (this.lit == 0) {
+                    sctilefont::setcolor(this.text.font, 255, 255, 0, 255);
+                    this.lit = 1;
+                    gcstaticsoundsptrarray::playtablesound(1072);
+                }
             }
-        }
-        else if ((this.selectable == 1) && this.lit) {
-            sctilefont::setcolor(this.text.font, 255, 255, 255, 255);
-            this.lit = 0;
+            else if ((this.selectable == 1) && this.lit) {
+                sctilefont::setcolor(this.text.font, 255, 255, 255, 255);
+                this.lit = 0;
+            }
         }
         return this.lit;
     }
