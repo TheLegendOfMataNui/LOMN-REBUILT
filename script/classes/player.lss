@@ -342,12 +342,7 @@ class player {
             }
             else if (param1.eventid == 44) {              
                 var sweem = (this.actor.getcurrentanimationid() != scslosifoundation::stringtoidentifier("g036"));                
-                var jump_stall = (this.actor.getcurrentanimationid() != scslosifoundation::stringtoidentifier("g021"));
-                if ((this.maskon == 1) && (this.submerged == 1) && (this.air < 60) && (jump_stall)) {
-                    this.addair(this.maxair);
-                    debug::print("Yes");
-                }               
-                else if ((this.maskon == 1) && (this.submerged == 0)  && (this.airshown == 0)) {
+                if ((this.maskon == 1) && (this.submerged == 0)  && (this.airshown == 0)) {
                     this.showair(1);
                     debug::print("Nono zone");
                 }                
