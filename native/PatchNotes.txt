@@ -266,7 +266,7 @@ Level 7 - Makuta
 *The Kaita, along with their areas and the rest of lev7, are not quite complete and polished yet, so keep that in mind when playing.
 
 -------------------------------------------------------------------------------------------------------------------------
-v1.1.1 (Something something whoops)
+v1.2 (Something something whoops)
 
 General changes and fixes
 • Updated patch notes formatting											----		(ShadowDraikana)
@@ -324,7 +324,7 @@ Level 6 - Tahu
 • Reduced file sizes of TA14 assets, and replaced collision data			----		(ShadowDraikana)
 
 -------------------------------------------------------------------------------------------------------------------------
-v1.2: (Uncharted Waters)
+v1.3: (Uncharted Waters)
 
 Level 2 - Gali
 • Removed STRT, HK01, and MTOP areas; moved gear to ISLD					----		(ReeseB, Vahkiti)
@@ -337,6 +337,7 @@ Level 2 - Gali
 • Ported alpha MBCH map; moved throwing disk from VTNL						----		(ShadowDraikana, ReeseB)
 • Improved ported alpha maps in both code and models						----		(ShadowDraikana, Grampa Walker, Vahkiti)
 • Adjusted ISLD main and water model UV maps								----		(sweg)
+• Fixed spawn point and reentry issues with ISLD               				----		(ShadowDraikana)
 
 Level 6 - Tahu
 • Added TP03, added new rescue mission										----		(ReeseB, ShadowDraikana, The Shadow Emperor)
