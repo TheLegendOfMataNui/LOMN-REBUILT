@@ -306,12 +306,14 @@ Level 2 - Gali
 • Added movement to buttons in GLY3 when pushing them down   				----		(ShadowDraikana)
 • Buttons being pressed and doors openened in GLY3 now save properly		----		(ShadowDraikana)
 • Fixed underwater respawns sometimes not working correctly 		        ----		(ShadowDraikana)
+• Replaced Water Elemental fight music with GaliTheme     	                ----		(ShadowDraikana)
 
 Level 3 - Pohatu
 • Fixed crash when reentering GLY3 after collecting stone rain glyph		----		(ShadowDraikana)
 
 Level 4 - Kopaka
 • Fixed Ice Elemental sometimes not resetting properly upon player death	----		(ShadowDraikana)
+• Disabled TechnoSnowboard from playing during Ice Elemental fight     		----		(ShadowDraikana)
 
 Level 5 - Lewa
 • Replaced several Tohunga with canon counterparts; updated others  		----		(ShadowDraikana)

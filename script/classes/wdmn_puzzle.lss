@@ -16,6 +16,7 @@ class wdmn_puzzle {
         var var2;
         gcareadirector::setfog(-10381892, 0 - 5.0, 0 - 600.0, 0.01);
         gclightdirector::setcavelighting(0);
+        globalclass.bgmusic.changefilename("Root/Data/sounds/MusicLewaTheme");
         if (gcsaver::finditem(scslosifoundation::stringtoidentifier("ston")) == 0) {
             this.stone = new lego_pickup("ston", 0, 4, "item", 8, 0);
             this.stone.initfull();
@@ -118,6 +119,7 @@ class wdmn_puzzle {
             if (this.playing == 0) {
                 if (this.mshowintro == 1) {
                     this.playintro();
+                    globalclass.bgmusic.play();
                 }
                 gcwindboss::start(this.mwindy);
                 this.playing = 1;

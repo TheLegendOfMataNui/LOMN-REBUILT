@@ -23,6 +23,8 @@ class hydr_puzzle {
         gcareadirector::setfog(-9143565, 0 - 1000.0, 0 - 2400.0, 0.01);
         gclightdirector::setcavelighting(0);
         gcareadirector::setnearestmax(20);
+        globalclass.bgmusic.changefilename("Root/Data/sounds/Musicgalitheme");
+        globalclass.bgmusic.play();
         if (gcsaver::finditem(scslosifoundation::stringtoidentifier("ston")) == 0) {
             this.stone = new lego_pickup("ston", 0, 4, "item", 9, 0);
             this.stone.initfull();
