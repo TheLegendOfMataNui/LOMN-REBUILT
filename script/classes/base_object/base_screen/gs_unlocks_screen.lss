@@ -1,0 +1,554 @@
+class gs_unlocks_screen : base_screen {
+    property activeidx;
+    property inputidx;
+    property go_back;
+    property value_array;
+    property character_strings;
+    property char_status_array;
+    property char_unlock_array;
+    property title_text_array;
+    property glyph_strings;
+    property glyph_status_array;
+    property glyph_unlock_array;
+    property completion_strings;
+    property completion_status_array;
+    property completion_unlock_array;
+    property char_active;
+    property glyph_active;
+    property completion_active;
+    
+    method gs_unlocks_screen(param1) {
+        this.activeidx = null;
+        this.inputidx = null;
+        this.go_back = 0;
+        this.title_text_array = null;
+        this.value_array = null;
+        this.character_strings = null;
+        this.char_status_array = null;
+        this.char_unlock_array = null;
+        this.glyph_strings = null;
+        this.glyph_status_array = null;
+        this.glyph_unlock_array = null;
+        this.completion_strings = null;
+        this.completion_status_array = null;
+        this.completion_unlock_array = null;
+        return null;
+    }
+    
+    method initfull() {
+        //Set up the title text array
+        this.title_text_array = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Characters", 80, 80, 0, 1.5, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Collected Art Glyphs", 448, 80, 0, 1.5, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Game Completion", 80, 270, 0, 1.5, 0, 4, 0, 1) ]; 
+
+        foreach (var title_text_array : this.title_text_array) {
+            title_text_array.initfull();
+            title_text_array.add();
+            sctilefont::setcolor(title_text_array.font, 25, 134, 189, 255);
+            title_text_array.show();
+        }
+
+        //This is retarded
+        this.value_array = [ "False", 
+            "True" ]; 
+        
+        //This array copies the current values of all character related unlocks, to be used later
+        this.char_unlock_array = [ globalclass.unlockdirector.unlocks.played_onua,
+            globalclass.unlockdirector.unlocks.played_gali,
+            globalclass.unlockdirector.unlocks.played_pohatu,
+            globalclass.unlockdirector.unlocks.played_kopaka,
+            globalclass.unlockdirector.unlocks.played_lewa,
+            globalclass.unlockdirector.unlocks.played_tahu,
+            globalclass.unlockdirector.unlocks.played_akamai,
+            globalclass.unlockdirector.unlocks.played_wairuha,
+            globalclass.unlockdirector.unlocks.played_nobua ];
+        
+        //This array copies the current values of all art glyph related unlocks, to be used later
+        this.glyph_unlock_array = [ globalclass.unlockdirector.unlocks.printonua, 
+            globalclass.unlockdirector.unlocks.printgali,
+            globalclass.unlockdirector.unlocks.printpoha,
+            globalclass.unlockdirector.unlocks.printkopa,
+            globalclass.unlockdirector.unlocks.printlewa,
+            globalclass.unlockdirector.unlocks.printtahu ];
+        
+        //This array copies the current values of all game completion related unlocks, to be used later
+        this.completion_unlock_array = [ globalclass.unlockdirector.unlocks.beatkuta ];
+
+        //Set up left hand side text for the char unlocks
+        this.character_strings = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Onua: ", 82, 110, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Gali: ", 82, 110 + 15, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Pohatu: ", 82, 110 + 30, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Kopaka: ", 82, 110 + 45, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Lewa: ", 82, 110 + 60, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Tahu: ", 82, 110 + 75, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Akamai: ", 82, 110 + 90, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Wairuha: ", 82, 110 + 105, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Nobua: ", 82, 110 + 120, 0, 1, 0, 4, 0, 1) ]; 
+
+        foreach (var character_strings : this.character_strings) {
+            character_strings.initfull();
+            character_strings.add();
+            character_strings.show();
+        }
+        //Set up the status of the char unlocks.  We use whichever bool is returned from the associated value in this.char_unlock_array to 
+        //determine whether to display False (0) or True (1) text 
+        this.char_status_array = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[0]], 250, 110, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[1]], 250, 110 + 15, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[2]], 250, 110 + 30, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[3]], 250, 110 + 45, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[4]], 250, 110 + 60, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[5]], 250, 110 + 75, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[6]], 250, 110 + 90, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[7]], 250, 110 + 105, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[8]], 250, 110 + 120, 0, 1, 0, 4, 0, 1) ]; 
+
+        foreach (var char_status_array : this.char_status_array) {
+            char_status_array.initfull();
+            char_status_array.add();
+            char_status_array.show();
+            if (char_status_array.string == "True") {
+                sctilefont::setcolor(char_status_array.font, 0, 255, 0, 255);
+            }
+            if (char_status_array.string == "False") { 
+                sctilefont::setcolor(char_status_array.font, 255, 0, 0, 255);
+            }
+        }
+
+        //Set up left text for the glyph unlocks
+        this.glyph_strings = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Onua Art Glyph: ", 450, 110, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Gali Art Glyph: ", 450, 110 + 15, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Pohatu Art Glyph: ", 450, 110 + 30, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Kopaka Art Glyph: ", 450, 110 + 45, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Lewa Art Glyph: ", 450, 110 + 60, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Tahu Art Glyph: ", 450, 110 + 75, 0, 1, 0, 4, 0, 1) ]; 
+
+        foreach (var glyph_strings : this.glyph_strings) {
+            glyph_strings.initfull();
+            glyph_strings.add();
+            glyph_strings.show();
+        }
+
+        //Set up the status of the glyph unlocks.  We use whichever bool is returned from the associated value in this.glyph_unlock_array to 
+        //determine whether to display False (0) or True (1) text 
+        this.glyph_status_array = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[0]], 640, 110, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[1]], 640, 110 + 15, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[2]], 640, 110 + 30, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[3]], 640, 110 + 45, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[4]], 640, 110 + 60, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[5]], 640, 110 + 75, 0, 1, 0, 4, 0, 1) ]; 
+
+        foreach (var glyph_status_array : this.glyph_status_array) {
+            glyph_status_array.initfull();
+            glyph_status_array.add();
+            glyph_status_array.show();
+            if (glyph_status_array.string == "True") {
+                sctilefont::setcolor(glyph_status_array.font, 0, 255, 0, 255);
+            }
+            if (glyph_status_array.string == "False") { 
+                sctilefont::setcolor(glyph_status_array.font, 255, 0, 0, 255);
+            }
+        }
+
+        //Set up left text for the completion unlocks
+        this.completion_strings = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Beat Main Game: ", 82, 300, 0, 1, 0, 4, 0, 1) ]; 
+
+        foreach (var completion_strings : this.completion_strings) {
+            completion_strings.initfull();
+            completion_strings.add();
+            completion_strings.show();
+        }
+
+        //Set up the status of the completion unlocks.  We use whichever bool is returned from the associated value in this.completion_unlock_array to 
+        //determine whether to display False (0) or True (1) text 
+        this.completion_status_array = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.completion_unlock_array[0]], 250, 300, 0, 1, 0, 4, 0, 1) ]; 
+
+        foreach (var completion_status_array : this.completion_status_array) {
+            completion_status_array.initfull();
+            completion_status_array.add();
+            completion_status_array.show();
+            if (completion_status_array.string == "True") {
+                sctilefont::setcolor(completion_status_array.font, 0, 255, 0, 255);
+            }
+            if (completion_status_array.string == "False") { 
+                sctilefont::setcolor(completion_status_array.font, 255, 0, 0, 255);
+            }
+        }
+
+        //Set the initial highlighted menu item to 0, and color it yellow
+        this.activeidx = 0;
+        sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+
+        //Set the char unlocks list as active while glyphs and completion inactive
+        this.char_active = 1;
+        this.glyph_active = 0;
+        this.completion_active = 0;
+        return null;
+    }
+    
+    method cleanupfull() {
+        this.value_array = null;
+        this.char_unlock_array = null;
+        this.glyph_unlock_array = null;
+        this.completion_unlock_array = null;
+        if (this.title_text_array != null) {
+            foreach (var title_text_array : this.title_text_array) {
+                title_text_array.hide();
+                title_text_array.cleanupfull();
+            }
+            this.title_text_array = null;
+        }
+        if (this.character_strings != null) {
+            foreach (var character_strings : this.character_strings) {
+                character_strings.hide();
+                character_strings.cleanupfull();
+            }
+            this.character_strings = null;
+        }
+        if (this.char_status_array != null) {
+            foreach (var char_status_array : this.char_status_array) {
+                char_status_array.hide();
+                char_status_array.cleanupfull();
+            }
+            this.char_status_array = null;
+        }
+        if (this.glyph_strings != null) {
+            foreach (var glyph_strings : this.glyph_strings) {
+                glyph_strings.hide();
+                glyph_strings.cleanupfull();
+            }
+            this.glyph_strings = null;
+        }
+        if (this.glyph_status_array != null) {
+            foreach (var glyph_status_array : this.glyph_status_array) {
+                glyph_status_array.hide();
+                glyph_status_array.cleanupfull();
+            }
+            this.glyph_status_array = null;
+        }
+        if (this.completion_strings != null) {
+            foreach (var completion_strings : this.completion_strings) {
+                completion_strings.hide();
+                completion_strings.cleanupfull();
+            }
+            this.completion_strings = null;
+        }
+        if (this.completion_status_array != null) {
+            foreach (var completion_status_array : this.completion_status_array) {
+                completion_status_array.hide();
+                completion_status_array.cleanupfull();
+            }
+            this.completion_status_array = null;
+        }
+        this.activeidx = null;
+        this.inputidx = null;
+        this.go_back = null;
+        this.char_active = null;
+        this.glyph_active = null;
+        this.completion_active = null;
+        return null;
+    }
+    
+    method process(param1) {
+        if (this.go_back) {
+            screenlist.backward();
+            this.go_back = 0;
+        }
+        return null;
+    }
+    
+    method input(param1) {
+        if (param1.event == 2) {
+            //button 38 = up arrow key
+            if (param1.button == 38) {
+                gcstaticsoundsptrarray::playtablesound(1072);
+                if (this.char_active == 1) {
+                    sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.activeidx = this.activeidx - 1;
+                    //If scrolling past the top of char unlocks, wrap to the bottom of the completion unlocks
+                    if (this.activeidx < 0) {
+                        this.char_active = 0;
+                        this.completion_active = 1;
+                        this.activeidx = this.completion_strings.__length - 1;
+                        sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 0, 255);
+                    }
+                    else {
+                        sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+                    }
+                }
+                else if (this.glyph_active == 1) {
+                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.activeidx = this.activeidx - 1;
+                    //If scrolling past the top of glyph unlocks, wrap to the bottom 
+                    if (this.activeidx < 0) {
+                        this.activeidx = this.glyph_strings.__length - 1;
+                    }
+                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                }
+                else if (this.completion_active == 1) {
+                    sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.activeidx = this.activeidx - 1;
+                    //If scrolling past the top of completion unlocks, wrap to the bottom of the char unlocks
+                    if (this.activeidx < 0) {
+                        this.char_active = 1;
+                        this.completion_active = 0;
+                        this.activeidx = this.character_strings.__length - 1;
+                        sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+                    }
+                    else {
+                        sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 0, 255);
+                    }
+                }
+            }
+            //button 40 = down arrow key
+            else if (param1.button == 40) {
+                gcstaticsoundsptrarray::playtablesound(1072);
+                if (this.char_active == 1) {
+                    sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.activeidx = this.activeidx + 1;
+                    //If scrolling past the bottom of char unlocks, continue to the top of the completion unlocks
+                    if (this.activeidx > (this.character_strings.__length - 1)) {
+                        this.char_active = 0;
+                        this.completion_active = 1;
+                        this.activeidx = 0;
+                        sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 0, 255);
+                    }
+                    else {
+                        sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+                    }
+                }
+                else if (this.glyph_active == 1) {
+                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.activeidx = this.activeidx + 1;
+                    //If scrolling past the bottom of glyph unlocks, continue to the top
+                    if (this.activeidx > (this.glyph_strings.__length - 1)) {
+                        this.activeidx = 0;
+                    }
+                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                }
+                else if (this.completion_active == 1) {
+                    sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.activeidx = this.activeidx + 1;
+                    //If scrolling past the bottom of char unlocks, continue to the top of the completion unlocks
+                    if (this.activeidx > (this.completion_strings.__length - 1)) {
+                        this.char_active = 1;
+                        this.completion_active = 0;
+                        this.activeidx = 0;
+                        sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+                    }
+                    else {
+                        sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 0, 255);
+                    }
+                }
+            }
+            //button 39 = right arrow key
+            else if (param1.button == 39) {
+                //Swap the active list from character to glyph unlocks
+                if (this.char_active == 1) {
+                    gcstaticsoundsptrarray::playtablesound(1072);
+                    this.char_active = 0;
+                    this.glyph_active = 1;
+                    sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 255, 255);
+                    if (this.activeidx > (this.glyph_strings.__length - 1)) {
+                        this.activeidx = this.glyph_strings.__length - 1;
+                        sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                    }
+                    else {
+                        sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                    }
+                }
+                //Swap to top of characters list
+                else if (this.glyph_active == 1) {
+                    gcstaticsoundsptrarray::playtablesound(1072);
+                    this.char_active = 1;
+                    this.glyph_active = 0;
+                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.activeidx = 0;
+                    sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+                }
+                //Swap to the bottom of the glyphs list
+                else if (this.completion_active == 1) {
+                    gcstaticsoundsptrarray::playtablesound(1072);
+                    this.completion_active = 0;
+                    this.glyph_active = 1;
+                    sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.activeidx = this.glyph_strings.__length - 1;
+                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                }
+            }
+            //button 37 = left arrow key
+            else if (param1.button == 37) {
+                //Swap the active list from glyph to character unlocks
+                if (this.glyph_active == 1) {
+                    gcstaticsoundsptrarray::playtablesound(1072);
+                    this.char_active = 1;
+                    this.glyph_active = 0;
+                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 255, 255);
+                    sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+                }
+                //Shortcut to top of glyphs
+                else if (this.char_active == 1) {
+                    gcstaticsoundsptrarray::playtablesound(1072);
+                    this.char_active = 0;
+                    this.glyph_active = 1;
+                    sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.activeidx = 0;
+                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                }
+                //Shortcut to top of glyphs
+                else if (this.completion_active == 1) {
+                    gcstaticsoundsptrarray::playtablesound(1072);
+                    this.completion_active = 0;
+                    this.glyph_active = 1;
+                    sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.activeidx = 0;
+                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                }
+            }
+            else if (param1.button == 13) {
+                gcstaticsoundsptrarray::playtablesound(1073);
+                if (this.char_active == 1) {
+                    //If the char_unlock_array returns True, toggle the value to False and update string, while pushing false and the active id to the update_char_unlocks method
+                    if (this.char_unlock_array[this.activeidx] == 1) {
+                        this.update_char_unlocks(this.activeidx, 0);
+                        this.char_unlock_array[this.activeidx] = false;
+                        debug::print("Char Unlock Updated to: False"); 
+                        this.char_status_array[this.activeidx].remove();
+                        this.char_status_array[this.activeidx].setstring("False");
+                        sctilefont::setcolor(this.char_status_array[this.activeidx].font, 255, 0, 0, 255);
+                        this.char_status_array[this.activeidx].add();
+                        this.char_status_array[this.activeidx].show();
+                    }
+                    //If the char_unlock_array returns False, toggle the value to True and update string, while pushing true and the active id to the update_char_unlocks method
+                    else if (this.char_unlock_array[this.activeidx] == 0) {
+                        this.update_char_unlocks(this.activeidx, 1);
+                        this.char_unlock_array[this.activeidx] = true;
+                        debug::print("Char Unlock Updated to: True"); 
+                        this.char_status_array[this.activeidx].remove();
+                        this.char_status_array[this.activeidx].setstring("True");
+                        sctilefont::setcolor(this.char_status_array[this.activeidx].font, 0, 255, 0, 255);
+                        this.char_status_array[this.activeidx].add();
+                        this.char_status_array[this.activeidx].show();
+                    }                
+                }
+                else if (this.glyph_active == 1) {
+                    //If the glyph_unlock_array returns True, toggle the value to False and update string, while pushing false and the active id to the update_glyph_unlocks method
+                    if (this.glyph_unlock_array[this.activeidx] == 1) {
+                        this.update_glyph_unlocks(this.activeidx, 0);
+                        this.glyph_unlock_array[this.activeidx] = false;
+                        debug::print("Glyph Unlock Updated to: False"); 
+                        this.glyph_status_array[this.activeidx].remove();
+                        this.glyph_status_array[this.activeidx].setstring("False");
+                        sctilefont::setcolor(this.glyph_status_array[this.activeidx].font, 255, 0, 0, 255);
+                        this.glyph_status_array[this.activeidx].add();
+                        this.glyph_status_array[this.activeidx].show();
+                    }
+                    //If the glyph_unlock_array returns False, toggle the value to True and update string, while pushing true and the active id to the update_glyph_unlocks method
+                    else if (this.glyph_unlock_array[this.activeidx] == 0) {
+                        this.update_glyph_unlocks(this.activeidx, 1);
+                        this.glyph_unlock_array[this.activeidx] = true;
+                        debug::print("Glyph Unlock Updated to: True"); 
+                        this.glyph_status_array[this.activeidx].remove();
+                        this.glyph_status_array[this.activeidx].setstring("True");
+                        sctilefont::setcolor(this.glyph_status_array[this.activeidx].font, 0, 255, 0, 255);
+                        this.glyph_status_array[this.activeidx].add();
+                        this.glyph_status_array[this.activeidx].show();
+                    }                
+                }
+                else if (this.completion_active == 1) {
+                    //If the completion_unlock_array returns True, toggle the value to False and update string, while pushing false and the active id to the update_completion_unlocks method
+                    if (this.completion_unlock_array[this.activeidx] == 1) {
+                        this.update_completion_unlocks(this.activeidx, 0);
+                        this.completion_unlock_array[this.activeidx] = false;
+                        debug::print("Completion Unlock Updated to: False"); 
+                        this.completion_status_array[this.activeidx].remove();
+                        this.completion_status_array[this.activeidx].setstring("False");
+                        sctilefont::setcolor(this.completion_status_array[this.activeidx].font, 255, 0, 0, 255);
+                        this.completion_status_array[this.activeidx].add();
+                        this.completion_status_array[this.activeidx].show();
+                    }
+                    //If the completion_unlock_array returns False, toggle the value to True and update string, while pushing true and the active id to the update_completion_unlocks method
+                    else if (this.completion_unlock_array[this.activeidx] == 0) {
+                        this.update_completion_unlocks(this.activeidx, 1);
+                        this.completion_unlock_array[this.activeidx] = true;
+                        debug::print("Completion Unlock Updated to: True"); 
+                        this.completion_status_array[this.activeidx].remove();
+                        this.completion_status_array[this.activeidx].setstring("True");
+                        sctilefont::setcolor(this.completion_status_array[this.activeidx].font, 0, 255, 0, 255);
+                        this.completion_status_array[this.activeidx].add();
+                        this.completion_status_array[this.activeidx].show();
+                    }                
+                }
+            }
+            //Go back to the root test menu
+            else if (param1.button == 251) {
+                gcstaticsoundsptrarray::playtablesound(1073);
+                this.go_back = 1;
+                globalclass.unlockdirector.save();
+            }
+        }
+        return null;
+    }
+    
+    //We use this method to update the physical unlocks for the characters.  Actual changes will not save until closing this menu
+    method update_char_unlocks(selected_id, new_value) {
+        if (selected_id == 0) {
+            globalclass.unlockdirector.unlocks.played_onua = new_value;
+        }
+        else if (selected_id == 1) {
+            globalclass.unlockdirector.unlocks.played_gali = new_value;
+        }
+        else if (selected_id == 2) {
+            globalclass.unlockdirector.unlocks.played_pohatu = new_value;
+        }
+        else if (selected_id == 3) {
+            globalclass.unlockdirector.unlocks.played_kopaka = new_value;
+        }
+        else if (selected_id == 4) {
+            globalclass.unlockdirector.unlocks.played_lewa = new_value;
+        }
+        else if (selected_id == 5) {
+            globalclass.unlockdirector.unlocks.played_tahu = new_value;
+        }
+        else if (selected_id == 6) {
+            globalclass.unlockdirector.unlocks.played_akamai = new_value;
+        }
+        else if (selected_id == 7) {
+            globalclass.unlockdirector.unlocks.played_wairuha = new_value;
+        }
+        else if (selected_id == 8) {
+            globalclass.unlockdirector.unlocks.played_nobua = new_value;
+        }
+        return null;
+    }
+    
+    //We use this method to update the physical unlocks for the art glyphs.  Actual changes will not save until closing this menu
+    method update_glyph_unlocks(selected_id, new_value) {
+        if (selected_id == 0) {
+            globalclass.unlockdirector.unlocks.printonua = new_value;
+        }
+        else if (selected_id == 1) {
+            globalclass.unlockdirector.unlocks.printgali = new_value;
+        }
+        else if (selected_id == 2) {
+            globalclass.unlockdirector.unlocks.printpoha = new_value;
+        }
+        else if (selected_id == 3) {
+            globalclass.unlockdirector.unlocks.printkopa = new_value;
+        }
+        else if (selected_id == 4) {
+            globalclass.unlockdirector.unlocks.printlewa = new_value;
+        }
+        else if (selected_id == 5) {
+            globalclass.unlockdirector.unlocks.printtahu = new_value;
+        }
+        return null;
+    }
+    
+    //We use this method to update the physical unlocks for game completion.  Actual changes will not save until closing this menu
+    method update_completion_unlocks(selected_id, new_value) {
+        if (selected_id == 0) {
+            globalclass.unlockdirector.unlocks.beatkuta = new_value;
+        }
+        return null;
+    }
+}

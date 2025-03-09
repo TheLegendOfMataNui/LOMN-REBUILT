@@ -13,7 +13,7 @@ function setupinterface() {
     setupfrontendscreen();
     setupareaviewer();
     setupcinviewer();
-    setupprintscreen();
+    setupunlocksscreen();
     setupshoefitterscreen();
     setuptestlevelscreen();
     setuplanguagetest();

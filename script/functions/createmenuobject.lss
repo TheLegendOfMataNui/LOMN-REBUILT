@@ -1,11 +1,19 @@
 function createmenuobject() {
     var var1;
-    var var2;
     var1 = [ "Shoefitter",
         6,
         null,
+        //"Cinema Editor", 
+        //5, 
+        //null, 
         "Language Test", 
         20, 
+        null, 
+        "Unlocks Menu", 
+        44, 
+        null, 
+        "Test Level", 
+        25, 
         null, 
         gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 35), 
         24, 
@@ -13,14 +21,8 @@ function createmenuobject() {
         gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 26), 
         23, 
         null, 
-        //"Print Menu", 
-        //44, 
-        //null, 
         "Front end", 
         21, 
-        null, 
-        "Test Level", 
-        25, 
         null, 
         "Level-1 Onua", 
         9, 
@@ -49,6 +51,5 @@ function createmenuobject() {
         gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 41), 
         22, 
         null ];
-    var2 = new gs_lego_screenmenu(var1);
-    return var2;
+    return new gs_lego_screenmenu(var1);
 }
