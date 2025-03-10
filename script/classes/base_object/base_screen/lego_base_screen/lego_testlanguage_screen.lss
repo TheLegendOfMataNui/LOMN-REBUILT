@@ -27,7 +27,7 @@ class lego_testlanguage_screen : lego_base_screen {
         this.stringtable = new gs_lego_stringtable("Strings");
         this.examplestring = null;
         this.currentitem = 0;
-        sctilefont::setcolor(this.items[this.currentitem].font, 0, 255, 0, 255);
+        this.items[this.currentitem].setcolor(0, 255, 0, 255);
         this.newlanguage();
         return null;
     }
@@ -98,7 +98,7 @@ class lego_testlanguage_screen : lego_base_screen {
     }
     
     method setpointer(item_increment) {
-        sctilefont::setcolor(this.items[this.currentitem].font, 255, 255, 255, 255);
+        this.items[this.currentitem].setcolor(255, 255, 255, 255);
         this.currentitem = this.currentitem + item_increment;
         if (this.currentitem < 0) {
             this.currentitem = this.items.__length - 1;
@@ -106,7 +106,7 @@ class lego_testlanguage_screen : lego_base_screen {
         if (this.currentitem > (this.items.__length - 1)) {
             this.currentitem = 0;
         }
-        sctilefont::setcolor(this.items[this.currentitem].font, 0, 255, 0, 255);
+        this.items[this.currentitem].setcolor(0, 255, 0, 255);
         this.newlanguage();
         return null;
     }

@@ -36,13 +36,13 @@ class loadmenuoption {
         if (this.selectable == 1) {
             if ((cursor_x > (this.text.x1 - (this.text.getwidth() / 2))) && (cursor_x < (this.text.x1 + ((this.text.getwidth() / 2) + (10 * screenratio)))) && (cursor_y > (this.text.y1)) && (cursor_y < (this.text.y1 + (16 * screenyratio)))) {
                 if (this.lit == 0) {
-                    sctilefont::setcolor(this.text.font, 255, 255, 0, 255);
+                    this.text.setcolor(255, 255, 0, 255);
                     this.lit = 1;
                     gcstaticsoundsptrarray::playtablesound(1072);
                 }
             }
             else if ((this.selectable == 1) && this.lit) {
-                sctilefont::setcolor(this.text.font, 255, 255, 255, 255);
+                this.text.setcolor(255, 255, 255, 255);
                 this.lit = 0;
             }
         }

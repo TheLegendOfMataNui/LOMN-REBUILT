@@ -167,4 +167,9 @@ class ss_basetext : base_drawobject {
         sctextobject::settransparency(this.text, param1);
         return null;
     }
+    
+    method setcolor(red, green, blue, alpha) {
+        sctilefont::setcolor(this.font, red, green, blue, alpha);
+        return null;
+    }
 }

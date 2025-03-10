@@ -44,7 +44,7 @@ class gs_unlocks_screen : base_screen {
         foreach (var title_text_array : this.title_text_array) {
             title_text_array.initfull();
             title_text_array.add();
-            sctilefont::setcolor(title_text_array.font, 25, 134, 189, 255);
+            title_text_array.setcolor(25, 134, 189, 255);
             title_text_array.show();
         }
 
@@ -107,10 +107,10 @@ class gs_unlocks_screen : base_screen {
             char_status_array.add();
             char_status_array.show();
             if (char_status_array.string == "True") {
-                sctilefont::setcolor(char_status_array.font, 0, 255, 0, 255);
+                char_status_array.setcolor(0, 255, 0, 255);
             }
             if (char_status_array.string == "False") { 
-                sctilefont::setcolor(char_status_array.font, 255, 0, 0, 255);
+                char_status_array.setcolor(255, 0, 0, 255);
             }
         }
 
@@ -142,10 +142,10 @@ class gs_unlocks_screen : base_screen {
             glyph_status_array.add();
             glyph_status_array.show();
             if (glyph_status_array.string == "True") {
-                sctilefont::setcolor(glyph_status_array.font, 0, 255, 0, 255);
+                glyph_status_array.setcolor(0, 255, 0, 255);
             }
             if (glyph_status_array.string == "False") { 
-                sctilefont::setcolor(glyph_status_array.font, 255, 0, 0, 255);
+                glyph_status_array.setcolor(255, 0, 0, 255);
             }
         }
 
@@ -167,16 +167,16 @@ class gs_unlocks_screen : base_screen {
             completion_status_array.add();
             completion_status_array.show();
             if (completion_status_array.string == "True") {
-                sctilefont::setcolor(completion_status_array.font, 0, 255, 0, 255);
+                completion_status_array.setcolor(0, 255, 0, 255);
             }
             if (completion_status_array.string == "False") { 
-                sctilefont::setcolor(completion_status_array.font, 255, 0, 0, 255);
+                completion_status_array.setcolor(255, 0, 0, 255);
             }
         }
 
         //Set the initial highlighted menu item to 0, and color it yellow
         this.activeidx = 0;
-        sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+        this.character_strings[this.activeidx].setcolor(255, 255, 0, 255);
 
         //Set the char unlocks list as active while glyphs and completion inactive
         this.char_active = 1;
@@ -262,40 +262,40 @@ class gs_unlocks_screen : base_screen {
             if (param1.button == 38) {
                 gcstaticsoundsptrarray::playtablesound(1072);
                 if (this.char_active == 1) {
-                    sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.character_strings[this.activeidx].setcolor(255, 255, 255, 255);
                     this.activeidx = this.activeidx - 1;
                     //If scrolling past the top of char unlocks, wrap to the bottom of the completion unlocks
                     if (this.activeidx < 0) {
                         this.char_active = 0;
                         this.completion_active = 1;
                         this.activeidx = this.completion_strings.__length - 1;
-                        sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 0, 255);
+                        this.completion_strings[this.activeidx].setcolor(255, 255, 0, 255);
                     }
                     else {
-                        sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+                        this.character_strings[this.activeidx].setcolor(255, 255, 0, 255);
                     }
                 }
                 else if (this.glyph_active == 1) {
-                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.glyph_strings[this.activeidx].setcolor(255, 255, 255, 255);
                     this.activeidx = this.activeidx - 1;
                     //If scrolling past the top of glyph unlocks, wrap to the bottom 
                     if (this.activeidx < 0) {
                         this.activeidx = this.glyph_strings.__length - 1;
                     }
-                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                    this.glyph_strings[this.activeidx].setcolor(255, 255, 0, 255);
                 }
                 else if (this.completion_active == 1) {
-                    sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.completion_strings[this.activeidx].setcolor(255, 255, 255, 255);
                     this.activeidx = this.activeidx - 1;
                     //If scrolling past the top of completion unlocks, wrap to the bottom of the char unlocks
                     if (this.activeidx < 0) {
                         this.char_active = 1;
                         this.completion_active = 0;
                         this.activeidx = this.character_strings.__length - 1;
-                        sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+                        this.character_strings[this.activeidx].setcolor(255, 255, 0, 255);
                     }
                     else {
-                        sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 0, 255);
+                        this.completion_strings[this.activeidx].setcolor(255, 255, 0, 255);
                     }
                 }
             }
@@ -303,40 +303,40 @@ class gs_unlocks_screen : base_screen {
             else if (param1.button == 40) {
                 gcstaticsoundsptrarray::playtablesound(1072);
                 if (this.char_active == 1) {
-                    sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.character_strings[this.activeidx].setcolor(255, 255, 255, 255);
                     this.activeidx = this.activeidx + 1;
                     //If scrolling past the bottom of char unlocks, continue to the top of the completion unlocks
                     if (this.activeidx > (this.character_strings.__length - 1)) {
                         this.char_active = 0;
                         this.completion_active = 1;
                         this.activeidx = 0;
-                        sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 0, 255);
+                        this.completion_strings[this.activeidx].setcolor(255, 255, 0, 255);
                     }
                     else {
-                        sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+                        this.character_strings[this.activeidx].setcolor(255, 255, 0, 255);
                     }
                 }
                 else if (this.glyph_active == 1) {
-                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.glyph_strings[this.activeidx].setcolor(255, 255, 255, 255);
                     this.activeidx = this.activeidx + 1;
                     //If scrolling past the bottom of glyph unlocks, continue to the top
                     if (this.activeidx > (this.glyph_strings.__length - 1)) {
                         this.activeidx = 0;
                     }
-                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                    this.glyph_strings[this.activeidx].setcolor(255, 255, 0, 255);
                 }
                 else if (this.completion_active == 1) {
-                    sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.completion_strings[this.activeidx].setcolor(255, 255, 255, 255);
                     this.activeidx = this.activeidx + 1;
                     //If scrolling past the bottom of char unlocks, continue to the top of the completion unlocks
                     if (this.activeidx > (this.completion_strings.__length - 1)) {
                         this.char_active = 1;
                         this.completion_active = 0;
                         this.activeidx = 0;
-                        sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+                        this.character_strings[this.activeidx].setcolor(255, 255, 0, 255);
                     }
                     else {
-                        sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 0, 255);
+                        this.completion_strings[this.activeidx].setcolor(255, 255, 0, 255);
                     }
                 }
             }
@@ -347,13 +347,13 @@ class gs_unlocks_screen : base_screen {
                     gcstaticsoundsptrarray::playtablesound(1072);
                     this.char_active = 0;
                     this.glyph_active = 1;
-                    sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.character_strings[this.activeidx].setcolor(255, 255, 255, 255);
                     if (this.activeidx > (this.glyph_strings.__length - 1)) {
                         this.activeidx = this.glyph_strings.__length - 1;
-                        sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                        this.glyph_strings[this.activeidx].setcolor(255, 255, 0, 255);
                     }
                     else {
-                        sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                        this.glyph_strings[this.activeidx].setcolor(255, 255, 0, 255);
                     }
                 }
                 //Swap to top of characters list
@@ -361,18 +361,18 @@ class gs_unlocks_screen : base_screen {
                     gcstaticsoundsptrarray::playtablesound(1072);
                     this.char_active = 1;
                     this.glyph_active = 0;
-                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.glyph_strings[this.activeidx].setcolor(255, 255, 255, 255);
                     this.activeidx = 0;
-                    sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+                    this.character_strings[this.activeidx].setcolor(255, 255, 0, 255);
                 }
                 //Swap to the bottom of the glyphs list
                 else if (this.completion_active == 1) {
                     gcstaticsoundsptrarray::playtablesound(1072);
                     this.completion_active = 0;
                     this.glyph_active = 1;
-                    sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.completion_strings[this.activeidx].setcolor(255, 255, 255, 255);
                     this.activeidx = this.glyph_strings.__length - 1;
-                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                    this.glyph_strings[this.activeidx].setcolor(255, 255, 0, 255);
                 }
             }
             //button 37 = left arrow key
@@ -382,26 +382,26 @@ class gs_unlocks_screen : base_screen {
                     gcstaticsoundsptrarray::playtablesound(1072);
                     this.char_active = 1;
                     this.glyph_active = 0;
-                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 255, 255);
-                    sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 0, 255);
+                    this.glyph_strings[this.activeidx].setcolor(255, 255, 255, 255);
+                    this.character_strings[this.activeidx].setcolor(255, 255, 0, 255);
                 }
                 //Shortcut to top of glyphs
                 else if (this.char_active == 1) {
                     gcstaticsoundsptrarray::playtablesound(1072);
                     this.char_active = 0;
                     this.glyph_active = 1;
-                    sctilefont::setcolor(this.character_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.character_strings[this.activeidx].setcolor(255, 255, 255, 255);
                     this.activeidx = 0;
-                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                    this.glyph_strings[this.activeidx].setcolor(255, 255, 0, 255);
                 }
                 //Shortcut to top of glyphs
                 else if (this.completion_active == 1) {
                     gcstaticsoundsptrarray::playtablesound(1072);
                     this.completion_active = 0;
                     this.glyph_active = 1;
-                    sctilefont::setcolor(this.completion_strings[this.activeidx].font, 255, 255, 255, 255);
+                    this.completion_strings[this.activeidx].setcolor(255, 255, 255, 255);
                     this.activeidx = 0;
-                    sctilefont::setcolor(this.glyph_strings[this.activeidx].font, 255, 255, 0, 255);
+                    this.glyph_strings[this.activeidx].setcolor(255, 255, 0, 255);
                 }
             }
             else if (param1.button == 13) {
@@ -414,7 +414,7 @@ class gs_unlocks_screen : base_screen {
                         debug::print("Char Unlock Updated to: False"); 
                         this.char_status_array[this.activeidx].remove();
                         this.char_status_array[this.activeidx].setstring("False");
-                        sctilefont::setcolor(this.char_status_array[this.activeidx].font, 255, 0, 0, 255);
+                        this.char_status_array[this.activeidx].setcolor(255, 0, 0, 255);
                         this.char_status_array[this.activeidx].add();
                         this.char_status_array[this.activeidx].show();
                     }
@@ -425,7 +425,7 @@ class gs_unlocks_screen : base_screen {
                         debug::print("Char Unlock Updated to: True"); 
                         this.char_status_array[this.activeidx].remove();
                         this.char_status_array[this.activeidx].setstring("True");
-                        sctilefont::setcolor(this.char_status_array[this.activeidx].font, 0, 255, 0, 255);
+                        this.char_status_array[this.activeidx].setcolor(0, 255, 0, 255);
                         this.char_status_array[this.activeidx].add();
                         this.char_status_array[this.activeidx].show();
                     }                
@@ -438,7 +438,7 @@ class gs_unlocks_screen : base_screen {
                         debug::print("Glyph Unlock Updated to: False"); 
                         this.glyph_status_array[this.activeidx].remove();
                         this.glyph_status_array[this.activeidx].setstring("False");
-                        sctilefont::setcolor(this.glyph_status_array[this.activeidx].font, 255, 0, 0, 255);
+                        this.glyph_status_array[this.activeidx].setcolor(255, 0, 0, 255);
                         this.glyph_status_array[this.activeidx].add();
                         this.glyph_status_array[this.activeidx].show();
                     }
@@ -449,7 +449,7 @@ class gs_unlocks_screen : base_screen {
                         debug::print("Glyph Unlock Updated to: True"); 
                         this.glyph_status_array[this.activeidx].remove();
                         this.glyph_status_array[this.activeidx].setstring("True");
-                        sctilefont::setcolor(this.glyph_status_array[this.activeidx].font, 0, 255, 0, 255);
+                        this.glyph_status_array[this.activeidx].setcolor(0, 255, 0, 255);
                         this.glyph_status_array[this.activeidx].add();
                         this.glyph_status_array[this.activeidx].show();
                     }                
@@ -462,7 +462,7 @@ class gs_unlocks_screen : base_screen {
                         debug::print("Completion Unlock Updated to: False"); 
                         this.completion_status_array[this.activeidx].remove();
                         this.completion_status_array[this.activeidx].setstring("False");
-                        sctilefont::setcolor(this.completion_status_array[this.activeidx].font, 255, 0, 0, 255);
+                        this.completion_status_array[this.activeidx].setcolor(255, 0, 0, 255);
                         this.completion_status_array[this.activeidx].add();
                         this.completion_status_array[this.activeidx].show();
                     }
@@ -473,7 +473,7 @@ class gs_unlocks_screen : base_screen {
                         debug::print("Completion Unlock Updated to: True"); 
                         this.completion_status_array[this.activeidx].remove();
                         this.completion_status_array[this.activeidx].setstring("True");
-                        sctilefont::setcolor(this.completion_status_array[this.activeidx].font, 0, 255, 0, 255);
+                        this.completion_status_array[this.activeidx].setcolor(0, 255, 0, 255);
                         this.completion_status_array[this.activeidx].add();
                         this.completion_status_array[this.activeidx].show();
                     }                

@@ -139,7 +139,7 @@ class gs_lego_menuscreen : base_screen {
             this.menufader = null;
         }
         if (this.screentext != null) {
-            sctilefont::setcolor(this.screentext.font, 255, 255, 255, 255);
+            this.screentext.setcolor(255, 255, 255, 255);
             this.screentext.hide();
             this.screentext.cleanupfull();
             this.screentext = null;
@@ -261,7 +261,7 @@ class gs_lego_menuscreen : base_screen {
             this.selected = 1;
             this.temptimer = 0;
             this.menu.hideall();
-            sctilefont::setcolor(this.screentext.font, 255, 255, 0, 255);
+            this.screentext.setcolor(255, 255, 0, 255);
             this.screentext.scalefont(2.0);
             this.screentext.setstring(gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 27) + "...");
             this.screentext.show();
@@ -334,7 +334,7 @@ class gs_lego_menuscreen : base_screen {
             if (globalclass.shortinit) {
                 globalclass.initshort();
             }
-            sctilefont::setcolor(this.screentext.font, 255, 255, 0, 255);
+            this.screentext.setcolor(255, 255, 0, 255);
             this.screentext.scalefont(2.0);
             this.screentext.setstring(gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 27) + "...");
             this.screentext.show();

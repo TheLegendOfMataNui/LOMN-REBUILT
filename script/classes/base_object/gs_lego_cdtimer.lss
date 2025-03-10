@@ -27,7 +27,7 @@ class gs_lego_cdtimer : base_object {
     
     method reset() {
         this.time = this.total;
-        sctilefont::setcolor(this.text.font, 255, 255, 0, 255);
+        this.text.setcolor(255, 255, 0, 255);
         this.text.scalefont(1.2);
         if (this.shown == 0) {
             this.text.show();
@@ -54,7 +54,7 @@ class gs_lego_cdtimer : base_object {
     method initfull() {
         this.text = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "", screenx * 0.5, 55, 0, 1.2, 256, 4, 0, 1);
         this.text.initfull();
-        sctilefont::setcolor(this.text.font, 255, 255, 0, 255);
+        this.text.setcolor(255, 255, 0, 255);
         this.text.add();
         this.text.show();
         this.shown = 1;
@@ -91,7 +91,7 @@ class gs_lego_cdtimer : base_object {
                 var2 = this.time;
                 this.time = this.time - var1;
                 if ((var2 > 10.0) && (this.time <= 10.0)) {
-                    sctilefont::setcolor(this.text.font, 255, 0, 0, 255);
+                    this.text.setcolor(255, 0, 0, 255);
                     this.text.scalefont(1.5);
                 }
                 var3 = scslosimath::floor(var2);

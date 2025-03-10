@@ -140,13 +140,13 @@ class menuoption {
             if (this.lefttext != null) {
                 if ((cursor_x > this.lefttext.x1) && (cursor_x < (this.lefttext.x1 + (this.lefttext.getwidth() + (10 * screenratio)))) && (cursor_y > (this.lefttext.y1 - 2)) && (cursor_y < (this.lefttext.y1 + (20 * screenyratio)))) {
                     if (this.lit == 0) {
-                        sctilefont::setcolor(this.lefttext.font, 255, 255, 0, 255);
+                        this.lefttext.setcolor(255, 255, 0, 255);
                         this.lit = 1;
                         gcstaticsoundsptrarray::playtablesound(1072);
                     }
                 }
                 else if (this.lit) {
-                    sctilefont::setcolor(this.lefttext.font, 255, 255, 255, 255);
+                    this.lefttext.setcolor(255, 255, 255, 255);
                     this.lit = 0;
                 }
             }
@@ -155,15 +155,15 @@ class menuoption {
             if ((this.lefttext != null) && (this.righttext != null)) {
                 if ((cursor_x > this.lefttext.x1) && (cursor_x < (this.righttext.x1 + (this.righttext.getwidth() + (10 * screenratio)))) && (cursor_y > this.lefttext.y1) && (cursor_y < (this.lefttext.y1 + (20 * screenyratio)))) {
                     if (this.lit == 0) {
-                        sctilefont::setcolor(this.lefttext.font, 255, 255, 0, 255);
-                        sctilefont::setcolor(this.righttext.font, 255, 255, 0, 255);
+                        this.lefttext.setcolor(255, 255, 0, 255);
+                        this.righttext.setcolor(255, 255, 0, 255);
                         this.lit = 1;
                         gcstaticsoundsptrarray::playtablesound(1072);
                     }
                 }
                 else if (this.lit) {
-                    sctilefont::setcolor(this.lefttext.font, 255, 255, 255, 255);
-                    sctilefont::setcolor(this.righttext.font, 255, 255, 255, 255);
+                    this.lefttext.setcolor(255, 255, 255, 255);
+                    this.righttext.setcolor(255, 255, 255, 255);
                     this.lit = 0;
                 }
             }
@@ -172,15 +172,15 @@ class menuoption {
             if ((this.lefttext != null) && (this.righttext != null)) {
                 if ((cursor_x > this.lefttext.x1) && (cursor_x < (this.sliderbg.x2 + (10 * screenratio))) && (cursor_y > this.lefttext.y1) && (cursor_y < (this.lefttext.y1 + (20 * screenyratio)))) {
                     if (this.lit == 0) {
-                        sctilefont::setcolor(this.lefttext.font, 255, 255, 0, 255);
-                        sctilefont::setcolor(this.righttext.font, 255, 255, 0, 255);
+                        this.lefttext.setcolor(255, 255, 0, 255);
+                        this.righttext.setcolor(255, 255, 0, 255);
                         this.lit = 1;
                         gcstaticsoundsptrarray::playtablesound(1072);
                     }
                 }
                 else if (this.lit) {
-                    sctilefont::setcolor(this.lefttext.font, 255, 255, 255, 255);
-                    sctilefont::setcolor(this.righttext.font, 255, 255, 255, 255);
+                    this.lefttext.setcolor(255, 255, 255, 255);
+                    this.righttext.setcolor(255, 255, 255, 255);
                     this.lit = 0;
                 }
             }
