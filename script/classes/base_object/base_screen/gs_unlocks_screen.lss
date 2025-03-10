@@ -37,9 +37,9 @@ class gs_unlocks_screen : base_screen {
     
     method initfull() {
         //Set up the title text array
-        this.title_text_array = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Characters", 80, 80, 0, 1.5, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Collected Art Glyphs", 448, 80, 0, 1.5, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Game Completion", 80, 270, 0, 1.5, 0, 4, 0, 1) ]; 
+        this.title_text_array = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Characters", 30, 80, 0, 1.5, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Collected Art Glyphs", 348, 80, 0, 1.5, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Game Completion", 30, 270, 0, 1.5, 0, 4, 0, 1) ]; 
 
         foreach (var title_text_array : this.title_text_array) {
             title_text_array.initfull();
@@ -75,15 +75,15 @@ class gs_unlocks_screen : base_screen {
         this.completion_unlock_array = [ globalclass.unlockdirector.unlocks.beatkuta ];
 
         //Set up left hand side text for the char unlocks
-        this.character_strings = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Onua: ", 82, 110, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Gali: ", 82, 110 + 15, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Pohatu: ", 82, 110 + 30, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Kopaka: ", 82, 110 + 45, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Lewa: ", 82, 110 + 60, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Tahu: ", 82, 110 + 75, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Akamai: ", 82, 110 + 90, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Wairuha: ", 82, 110 + 105, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Nobua: ", 82, 110 + 120, 0, 1, 0, 4, 0, 1) ]; 
+        this.character_strings = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Onua: ", 32, 110, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Gali: ", 32, 110 + 15, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Pohatu: ", 32, 110 + 30, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Kopaka: ", 32, 110 + 45, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Lewa: ", 32, 110 + 60, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Tahu: ", 32, 110 + 75, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Akamai: ", 32, 110 + 90, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Wairuha: ", 32, 110 + 105, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Played Nobua: ", 32, 110 + 120, 0, 1, 0, 4, 0, 1) ]; 
 
         foreach (var character_strings : this.character_strings) {
             character_strings.initfull();
@@ -92,15 +92,15 @@ class gs_unlocks_screen : base_screen {
         }
         //Set up the status of the char unlocks.  We use whichever bool is returned from the associated value in this.char_unlock_array to 
         //determine whether to display False (0) or True (1) text 
-        this.char_status_array = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[0]], 250, 110, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[1]], 250, 110 + 15, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[2]], 250, 110 + 30, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[3]], 250, 110 + 45, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[4]], 250, 110 + 60, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[5]], 250, 110 + 75, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[6]], 250, 110 + 90, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[7]], 250, 110 + 105, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[8]], 250, 110 + 120, 0, 1, 0, 4, 0, 1) ]; 
+        this.char_status_array = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[0]], 200, 110, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[1]], 200, 110 + 15, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[2]], 200, 110 + 30, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[3]], 200, 110 + 45, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[4]], 200, 110 + 60, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[5]], 200, 110 + 75, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[6]], 200, 110 + 90, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[7]], 200, 110 + 105, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.char_unlock_array[8]], 200, 110 + 120, 0, 1, 0, 4, 0, 1) ]; 
 
         foreach (var char_status_array : this.char_status_array) {
             char_status_array.initfull();
@@ -115,12 +115,12 @@ class gs_unlocks_screen : base_screen {
         }
 
         //Set up left text for the glyph unlocks
-        this.glyph_strings = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Onua Art Glyph: ", 450, 110, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Gali Art Glyph: ", 450, 110 + 15, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Pohatu Art Glyph: ", 450, 110 + 30, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Kopaka Art Glyph: ", 450, 110 + 45, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Lewa Art Glyph: ", 450, 110 + 60, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Tahu Art Glyph: ", 450, 110 + 75, 0, 1, 0, 4, 0, 1) ]; 
+        this.glyph_strings = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Onua Art Glyph: ", 350, 110, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Gali Art Glyph: ", 350, 110 + 15, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Pohatu Art Glyph: ", 350, 110 + 30, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Kopaka Art Glyph: ", 350, 110 + 45, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Lewa Art Glyph: ", 350, 110 + 60, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Tahu Art Glyph: ", 350, 110 + 75, 0, 1, 0, 4, 0, 1) ]; 
 
         foreach (var glyph_strings : this.glyph_strings) {
             glyph_strings.initfull();
@@ -130,12 +130,12 @@ class gs_unlocks_screen : base_screen {
 
         //Set up the status of the glyph unlocks.  We use whichever bool is returned from the associated value in this.glyph_unlock_array to 
         //determine whether to display False (0) or True (1) text 
-        this.glyph_status_array = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[0]], 640, 110, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[1]], 640, 110 + 15, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[2]], 640, 110 + 30, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[3]], 640, 110 + 45, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[4]], 640, 110 + 60, 0, 1, 0, 4, 0, 1), 
-            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[5]], 640, 110 + 75, 0, 1, 0, 4, 0, 1) ]; 
+        this.glyph_status_array = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[0]], 540, 110, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[1]], 540, 110 + 15, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[2]], 540, 110 + 30, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[3]], 540, 110 + 45, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[4]], 540, 110 + 60, 0, 1, 0, 4, 0, 1), 
+            new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.glyph_unlock_array[5]], 540, 110 + 75, 0, 1, 0, 4, 0, 1) ]; 
 
         foreach (var glyph_status_array : this.glyph_status_array) {
             glyph_status_array.initfull();
@@ -150,7 +150,7 @@ class gs_unlocks_screen : base_screen {
         }
 
         //Set up left text for the completion unlocks
-        this.completion_strings = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Beat Main Game: ", 82, 300, 0, 1, 0, 4, 0, 1) ]; 
+        this.completion_strings = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "Beat Main Game: ", 32, 300, 0, 1, 0, 4, 0, 1) ]; 
 
         foreach (var completion_strings : this.completion_strings) {
             completion_strings.initfull();
@@ -160,7 +160,7 @@ class gs_unlocks_screen : base_screen {
 
         //Set up the status of the completion unlocks.  We use whichever bool is returned from the associated value in this.completion_unlock_array to 
         //determine whether to display False (0) or True (1) text 
-        this.completion_status_array = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.completion_unlock_array[0]], 250, 300, 0, 1, 0, 4, 0, 1) ]; 
+        this.completion_status_array = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", this.value_array[this.completion_unlock_array[0]], 200, 300, 0, 1, 0, 4, 0, 1) ]; 
 
         foreach (var completion_status_array : this.completion_status_array) {
             completion_status_array.initfull();
