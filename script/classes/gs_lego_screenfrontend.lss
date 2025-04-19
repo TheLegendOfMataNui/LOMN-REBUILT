@@ -1125,6 +1125,8 @@ class gs_lego_screenfrontend {
         }
         else {
             this.menuactive = 0;
+            //force refresh the cursor so text doesnt render on top of it
+            this.refresh_cursor();
         }
         this.curidx = 0;
         return null;

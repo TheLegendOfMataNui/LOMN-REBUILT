@@ -60,6 +60,9 @@ class extras {
         this.optarray.__append(this.backoption);
         this.active = 1;
         this.setupoutsidescreens();
+
+        //force refresh the cursor to ensure returning from submenus here doesnt re-render text on top
+        this.parent.refresh_cursor();
         return null;
     }
     
@@ -241,6 +244,8 @@ class extras {
         }
         else {
             this.menuactive = 0;
+            //force refresh the cursor so text doesnt render on top of it
+            this.parent.refresh_cursor();
         }
         this.curidx = 0;
         return null;
