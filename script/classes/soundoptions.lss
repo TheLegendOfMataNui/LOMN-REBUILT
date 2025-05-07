@@ -8,10 +8,6 @@ class soundoptions {
     property musicvolumevalue;
     property soundvolumeoption;
     property soundvolumevalue;
-    property playmusicoption;
-    property playmusicvalue;
-    property playsoundoption;
-    property playsoundvalue;
     property backoption;
     property active;
     
@@ -60,10 +56,11 @@ class soundoptions {
             }
             this.optarray = null;
         }
+        this.musicvolumeoption.cleanupfull();
         this.musicvolumeoption = null;
+        this.soundvolumeoption.cleanupfull();
         this.soundvolumeoption = null;
-        this.playmusicoption = null;
-        this.playsoundoption = null;
+        this.backoption.cleanupfull();
         this.backoption = null;
         return null;
     }
@@ -117,7 +114,6 @@ class soundoptions {
     }
     
     method mousebuttonreleased(param1) {
-        var var1;
         if (param1 == 1) {
 
             //These need to update at all times until sliders can be mouse X axis locked 

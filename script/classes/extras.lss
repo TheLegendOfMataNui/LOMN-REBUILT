@@ -6,22 +6,12 @@ class extras {
     property optarray;
     property backoption;
     property active;
-    property extratext;
     property printmenu;
     property glossarymenu;
     property theaterscreen;
     property print;
     property glossary;
     property theater;
-    property minidx;
-    property maxidx;
-    property showidx;
-    property x;
-    property y;
-    property curidx;
-    property activemenu;
-    property backmenu;
-    property menuactive;
     property curscreen;
     
     method extras(param1) {
@@ -38,12 +28,6 @@ class extras {
     }
     
     method initfull() {
-        this.minidx = 0;
-        this.showidx = 10;
-        this.curidx = 0;
-        this.activemenu = [  ];
-        this.backmenu = [  ];
-        this.menuactive = 0;
         this.curoption = -1;
         this.optarray = [  ];
         this.glossarymenu = new menuoption(gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 20), "", this.optarray.__length);
@@ -70,13 +54,26 @@ class extras {
         if (this.optarray != null) {
             this.cleanupshort();
         }
-        this.parent = null;
+        this.curscreen = null;
+        if (this.print != null) {
+            this.print.cleanupfull();
+            this.print = null;
+        }
+        if (this.glossary != null) {
+            this.glossary.cleanupfull();
+            this.glossary = null;
+        }
+        if (this.theater != null) {
+            this.theater.cleanupfull();
+            this.theater = null;
+        }
         return null;
     }
     
     method cleanupshort() {
         var var1;
         var var2;
+        this.active = 0;
         if (this.optarray != null) {
             var1 = this.optarray.__length - 1;
             var2 = 0;
@@ -87,6 +84,13 @@ class extras {
             }
             this.optarray = null;
         }
+        this.glossarymenu.cleanupfull();
+        this.glossarymenu = null;
+        this.printmenu.cleanupfull();
+        this.printmenu = null;
+        this.theaterscreen.cleanupfull();
+        this.theaterscreen = null;
+        this.backoption.cleanupfull();
         this.backoption = null;
         return null;
     }
@@ -140,14 +144,15 @@ class extras {
     }
 
     method process(param1) {
-        //if (this.curscreen == 7) {
-        //    this.theater.process(param1);
-        //    debug::print("[][][] theater process");
-        //}
         if (this.curscreen == 5) {
             this.print.process(param1);
             debug::print("[][][] print process");
         }
+        return null;
+    }
+
+    method exit() {
+        this.parent = null;
         return null;
     }
     
@@ -173,25 +178,23 @@ class extras {
             }
             else if (this.curoption == 0) {
                 this.glossary.initfull();
-                this.gotodifferentscreen(null, 4);
-                this.hideactivemenu();
-                //this.process();
+                this.gotodifferentscreen(4);
+                this.cleanupshort();
                 debug::print("[][][] glossary");
                 gcstaticsoundsptrarray::playtablesound(1074);
             }
             else if (this.curoption == 1) {
                 this.print.initfull();
-                this.gotodifferentscreen(null, 5);
-                this.hideactivemenu();
+                this.gotodifferentscreen(5);
+                this.cleanupshort();
                 this.process();
                 debug::print("[][][] printmenu");
                 gcstaticsoundsptrarray::playtablesound(1074);
             }
             else if (this.curoption == 2) {
                 this.theater.initfull();
-                this.gotodifferentscreen(null, 7);
-                this.hideactivemenu();
-                //this.process();
+                this.gotodifferentscreen(7);
+                this.cleanupshort();
                 debug::print("[][][] theater");
                 gcstaticsoundsptrarray::playtablesound(1074);
             }
@@ -206,55 +209,17 @@ class extras {
         return null;
     }
 
-    method hideactivemenu() {
-        this.active = 0;
-        this.glossarymenu.cleanupfull();
-        this.printmenu.cleanupfull();
-        this.theaterscreen.cleanupfull();
-        this.backoption.cleanupfull();
-        return null;
-    }
+    method gotodifferentscreen(screen_id) {
+        this.curscreen = screen_id;
 
-    method gotodifferentscreen(param1, param2) {
-        var var1;
-        var var2;
-        this.curscreen = param2;
-        if (param1 != null) {
-            this.maxidx = param1.__length - 1;
-            var1 = 0;
-            while (this.maxidx >= var1) {
-                var2 = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", param1[var1][0], param1[var1][1], param1[var1][2], 0, 2.0, 0, 4, 0, 1);
-                var2.initfull();
-                var2.add();
-                if (var1 <= this.showidx) {
-                    var2.show();
-                }
-                this.backmenu.__append(var2);
-                var2 = new gs_legoactivetext("Root/Data/Art/Fonts/BionicleFont", "Root/Data/Art/Fonts/BionicleFontHi", param1[var1][0], param1[var1][1], param1[var1][2], 0, 2.0, 0, 4, 0, 0);
-                var2.initfull();
-                var2.add();
-                if (var1 <= this.showidx) {
-                    var2.show();
-                }
-                this.activemenu.__append(var2);
-                var1 = var1 + 1;
-            }
-            //this.activemenu[0].setactive();
-            this.menuactive = 1;
-        }
-        else {
-            this.menuactive = 0;
-            //force refresh the cursor so text doesnt render on top of it
-            this.parent.refresh_cursor();
-        }
-        this.curidx = 0;
+        //force refresh the cursor so text doesnt render on top of it
+        this.parent.refresh_cursor();
         return null;
     }
     
     method back() {
         debug::print("[][][] back");
-        this.active = 0;
-        this.cleanupshort();
+        this.cleanupfull();
         this.parent.back();
         gcstaticsoundsptrarray::playtablesound(1073);
         return null;

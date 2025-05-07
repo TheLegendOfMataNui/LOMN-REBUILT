@@ -42,16 +42,13 @@ class gsprintmenu {
         this.defaultpics = [ 
             new printmenupic("Root/data/art/PrintMenu/fgs1", 38, 48, 102, 112, "Root/data/art/PrintMenu/HL01", 22, 37, 118, 133, 1), 
             new printmenupic("Root/data/art/PrintMenu/fis1", 139, 49, 203, 113, "Root/data/art/PrintMenu/HL02", 122, 37, 218, 133, 1) ];
-        var1 = 0;
-        while ((this.defaultpics.__length - 1) >= var1) {
-            this.imagelist.__append(this.defaultpics[var1]);
-            var1 = var1 + 1;
+
+        foreach (var defaultpics : this.defaultpics) {
+            this.imagelist.__append(defaultpics);
         }
         this.printerglyphs();
-        var1 = 0;
-        while ((this.imagelist.__length - 1) >= var1) {
-            this.imagelist[var1].initfull();
-            var1 = var1 + 1;
+        foreach (var imagelist : this.imagelist) {
+            imagelist.initfull();
         }
         this.printer = scprinter::create();
         this.printlock = 0;
@@ -230,25 +227,19 @@ class gsprintmenu {
     }
     
     method hide() {
-        var var1;
         this.background1.hide();
         this.backopt1.image.hide();
         this.backopt1.lit = 0;
-        var1 = 0;
-        while ((this.imagelist.__length - 1) >= var1) {
-            this.imagelist[var1].hide();
-            var1 = var1 + 1;
+        foreach (var imagelist : this.imagelist) {
+            imagelist.hide();
         }
         return null;
     }
     
     method show() {
-        var var1;
         this.background1.show();
-        var1 = 0;
-        while ((this.imagelist.__length - 1) >= var1) {
-            this.imagelist[var1].show();
-            var1 = var1 + 1;
+        foreach (var imagelist : this.imagelist) {
+            imagelist.show();
         }
         return null;
     }
@@ -267,38 +258,33 @@ class gsprintmenu {
         return null;
     }
     
-    method checkmousepos(param1, param2) {
+    method checkmousepos(mouse_x, mouse_y) {
         var var1;
-        var var2;
         var1 = 0;
         if (this.subon) {
-            if (this.backopt2.check(param1, param2)) {
+            if (this.backopt2.check(mouse_x, mouse_y)) {
                 var1 = 1;
             }
-            var2 = 0;
-            while ((this.optlist.__length - 1) >= var2) {
+            foreach (var optlist : this.optlist) {
                 if (var1) {
-                    this.optlist[var2].check(0, 0);
+                    optlist.check(0, 0);
                 }
-                else if (this.optlist[var2].check(param1, param2)) {
+                else if (optlist.check(mouse_x, mouse_y)) {
                     var1 = 1;
                 }
-                var2 = var2 + 1;
             }
         }
         else {
-            if (this.backopt1.check(param1, param2)) {
+            if (this.backopt1.check(mouse_x, mouse_y)) {
                 var1 = 1;
             }
-            var2 = 0;
-            while ((this.imagelist.__length - 1) >= var2) {
+            foreach (var imagelist : this.imagelist) {
                 if (var1) {
-                    this.imagelist[var2].check(0, 0);
+                    imagelist.check(0, 0);
                 }
-                else if (this.imagelist[var2].check(param1, param2)) {
+                else if (imagelist.check(mouse_x, mouse_y)) {
                     var1 = 1;
                 }
-                var2 = var2 + 1;
             }
         }
         return null;
@@ -351,7 +337,6 @@ class gsprintmenu {
         var var3;
         var var4;
         var var5;
-        var var6;
         debug::print("Switching to print...");
         this.subon = 1;
         this.hide();
@@ -569,10 +554,8 @@ class gsprintmenu {
             new printmenuhighlight("Root/data/art/PrintMenu/HIGHLIGHT_3", 445, 192, 509, 288), 
             new printmenuhighlight("Root/data/art/PrintMenu/HIGHLIGHT_6", 445, 270, 509, 366), 
             new printmenuhighlight("Root/data/art/PrintMenu/HIGHLIGHT_8", 445, 347, 509, 443) ];
-        var6 = 0;
-        while ((this.optlist.__length - 1) >= var6) {
-            this.optlist[var6].initfull();
-            var6 = var6 + 1;
+        foreach (var optlist : this.optlist) {
+            optlist.initfull();
         }
         return null;
     }
@@ -587,13 +570,13 @@ class gsprintmenu {
         this.background2 = null;
         this.backopt2.cleanupfull();
         this.backopt2 = null;
-        if (!(this.image2 == null)) {
+        if (this.image2 != null) {
             this.image2.hide();
             this.image2.remove();
             this.image2.cleanupfull();
             this.image2 = null;
         }
-        if (!(this.optlist == null)) {
+        if (this.optlist != null) {
             var1 = 0;
             while ((this.optlist.__length - 1) >= var1) {
                 this.optlist[var1].cleanupfull();
@@ -750,169 +733,140 @@ class gsprintmenu {
     }
 
     method printerglyphs() {
-        var var1;
-	    if ((globalclass.unlockdirector.unlocks.printonua) == 1) {
+        if ((globalclass.unlockdirector.unlocks.printonua) == 1) {
             this.onuapics = [
                 new printmenupic("Root/data/art/PrintMenu/ops1", 238, 48, 302, 112, "Root/data/art/PrintMenu/HL03", 221, 37, 317, 133, 1), 
                 new printmenupic("Root/data/art/PrintMenu/oas1", 338, 48, 402, 112, "Root/data/art/PrintMenu/HL04", 322, 37, 418, 133, 1), 
                 new printmenupic("Root/data/art/PrintMenu/ocs1", 438, 48, 502, 112, "Root/data/art/PrintMenu/HL05", 422, 37, 518, 133, 1), 
                 new printmenupic("Root/data/art/PrintMenu/oms1", 538, 48, 602, 112, "Root/data/art/PrintMenu/HL06", 522, 37, 618, 133, 1) ];
-            var1 = 0;
-            while ((this.onuapics.__length - 1) >= var1) {
-                this.imagelist.__append(this.onuapics[var1]);
-                var1 = var1 + 1;
+            foreach (var onuapics : this.onuapics) {
+                this.imagelist.__append(onuapics);
             }
-	    }
+        }
         else {
             this.onuapics = [
                 new printmenupic("Root/data/art/PrintMenu/ops1", 9999, 48, 9999, 112, "Root/data/art/PrintMenu/HL03", 9999, 37, 9999, 133, 1), 
                 new printmenupic("Root/data/art/PrintMenu/oas1", 9999, 48, 9999, 112, "Root/data/art/PrintMenu/HL04", 9999, 37, 9999, 133, 1), 
                 new printmenupic("Root/data/art/PrintMenu/ocs1", 9999, 48, 9999, 112, "Root/data/art/PrintMenu/HL05", 9999, 37, 9999, 133, 1), 
                 new printmenupic("Root/data/art/PrintMenu/oms1", 9999, 48, 9999, 112, "Root/data/art/PrintMenu/HL06", 9999, 37, 9999, 133, 1) ];
-            var1 = 0;
-            while ((this.onuapics.__length - 1) >= var1) {
-                this.imagelist.__append(this.onuapics[var1]);
-                var1 = var1 + 1;
+            foreach (var onuapics : this.onuapics) {
+                this.imagelist.__append(onuapics);
             }
         }
-	    if ((globalclass.unlockdirector.unlocks.printgali) == 1) {
+        if ((globalclass.unlockdirector.unlocks.printgali) == 1) {
             this.galipics = [
                 new printmenupic("Root/data/art/PrintMenu/gps1", 38, 128, 102, 192, "Root/data/art/PrintMenu/HL07", 22, 117, 118, 213, 1), 
                 new printmenupic("Root/data/art/PrintMenu/gas1", 139, 129, 203, 193, "Root/data/art/PrintMenu/HL08", 122, 117, 218, 213, 1), 
                 new printmenupic("Root/data/art/PrintMenu/gcs1", 237, 129, 301, 193, "Root/data/art/PrintMenu/HL09", 221, 117, 317, 213, 1), 
                 new printmenupic("Root/data/art/PrintMenu/gms1", 338, 128, 402, 192, "Root/data/art/PrintMenu/HL10", 322, 117, 418, 213, 1) ];
-            var1 = 0;
-            while ((this.galipics.__length - 1) >= var1) {
-                this.imagelist.__append(this.galipics[var1]);
-                var1 = var1 + 1;
+            foreach (var galipics : this.galipics) {
+                this.imagelist.__append(galipics);
             }
-	    }
+        }
         else {
             this.galipics = [
                 new printmenupic("Root/data/art/PrintMenu/gps1", 9999, 128, 9999, 192, "Root/data/art/PrintMenu/HL07", 9999, 117, 9999, 213, 1), 
                 new printmenupic("Root/data/art/PrintMenu/gas1", 9999, 129, 9999, 193, "Root/data/art/PrintMenu/HL08", 9999, 117, 9999, 213, 1), 
                 new printmenupic("Root/data/art/PrintMenu/gcs1", 9999, 129, 9999, 193, "Root/data/art/PrintMenu/HL09", 9999, 117, 9999, 213, 1), 
                 new printmenupic("Root/data/art/PrintMenu/gms1", 9999, 128, 9999, 192, "Root/data/art/PrintMenu/HL10", 9999, 117, 9999, 213, 1) ];
-            var1 = 0;
-            while ((this.galipics.__length - 1) >= var1) {
-                this.imagelist.__append(this.galipics[var1]);
-                var1 = var1 + 1;
+            foreach (var galipics : this.galipics) {
+                this.imagelist.__append(galipics);
             }
         }
-	    if ((globalclass.unlockdirector.unlocks.printpoha) == 1) {
+        if ((globalclass.unlockdirector.unlocks.printpoha) == 1) {
             this.pohapics = [
                 new printmenupic("Root/data/art/PrintMenu/pps1", 439, 128, 503, 192, "Root/data/art/PrintMenu/HL11", 422, 117, 518, 213, 1), 
                 new printmenupic("Root/data/art/PrintMenu/pas1", 538, 128, 602, 192, "Root/data/art/PrintMenu/HL12", 522, 117, 618, 213, 1), 
                 new printmenupic("Root/data/art/PrintMenu/pcs1", 39, 208, 103, 272, "Root/data/art/PrintMenu/HL13", 22, 197, 118, 293, 1), 
                 new printmenupic("Root/data/art/PrintMenu/pms1", 139, 208, 203, 272, "Root/data/art/PrintMenu/HL14", 122, 197, 218, 293, 1) ];
-            var1 = 0;
-            while ((this.pohapics.__length - 1) >= var1) {
-                this.imagelist.__append(this.pohapics[var1]);
-                var1 = var1 + 1;
+            foreach (var pohapics : this.pohapics) {
+                this.imagelist.__append(pohapics);
             }
-	    }
+        }
         else {
             this.pohapics = [
                 new printmenupic("Root/data/art/PrintMenu/pps1", 9999, 128, 9999, 192, "Root/data/art/PrintMenu/HL11", 9999, 117, 9999, 213, 1), 
                 new printmenupic("Root/data/art/PrintMenu/pas1", 9999, 128, 9999, 192, "Root/data/art/PrintMenu/HL12", 9999, 117, 9999, 213, 1), 
                 new printmenupic("Root/data/art/PrintMenu/pcs1", 9999, 208, 9999, 272, "Root/data/art/PrintMenu/HL13", 9999, 197, 9999, 293, 1), 
                 new printmenupic("Root/data/art/PrintMenu/pms1", 9999, 208, 9999, 272, "Root/data/art/PrintMenu/HL14", 9999, 197, 9999, 293, 1) ];
-            var1 = 0;
-            while ((this.pohapics.__length - 1) >= var1) {
-                this.imagelist.__append(this.pohapics[var1]);
-                var1 = var1 + 1;
+            foreach (var pohapics : this.pohapics) {
+                this.imagelist.__append(pohapics);
             }
         }
-	    if ((globalclass.unlockdirector.unlocks.printkopa) == 1) {
+        if ((globalclass.unlockdirector.unlocks.printkopa) == 1) {
             this.kopapics = [
                 new printmenupic("Root/data/art/PrintMenu/kps1", 238, 208, 302, 272, "Root/data/art/PrintMenu/HL15", 221, 197, 317, 293, 1), 
                 new printmenupic("Root/data/art/PrintMenu/kas1", 338, 208, 402, 272, "Root/data/art/PrintMenu/HL16", 322, 197, 418, 293, 1), 
                 new printmenupic("Root/data/art/PrintMenu/kcs1", 438, 209, 502, 273, "Root/data/art/PrintMenu/HL17", 422, 197, 518, 293, 1), 
                 new printmenupic("Root/data/art/PrintMenu/kms1", 539, 209, 603, 273, "Root/data/art/PrintMenu/HL18", 522, 197, 618, 293, 1) ];
-            var1 = 0;
-            while ((this.kopapics.__length - 1) >= var1) {
-                this.imagelist.__append(this.kopapics[var1]);
-                var1 = var1 + 1;
+            foreach (var kopapics : this.kopapics) {
+                this.imagelist.__append(kopapics);
             }
-	    }
+        }
         else {
             this.kopapics = [
                 new printmenupic("Root/data/art/PrintMenu/kps1", 9999, 208, 9999, 272, "Root/data/art/PrintMenu/HL15", 9999, 197, 9999, 293, 1), 
                 new printmenupic("Root/data/art/PrintMenu/kas1", 9999, 208, 9999, 272, "Root/data/art/PrintMenu/HL16", 9999, 197, 9999, 293, 1), 
                 new printmenupic("Root/data/art/PrintMenu/kcs1", 9999, 209, 9999, 273, "Root/data/art/PrintMenu/HL17", 9999, 197, 9999, 293, 1), 
                 new printmenupic("Root/data/art/PrintMenu/kms1", 9999, 209, 9999, 273, "Root/data/art/PrintMenu/HL18", 9999, 197, 9999, 293, 1) ];
-            var1 = 0;
-            while ((this.kopapics.__length - 1) >= var1) {
-                this.imagelist.__append(this.kopapics[var1]);
-                var1 = var1 + 1;
+            foreach (var kopapics : this.kopapics) {
+                this.imagelist.__append(kopapics);
             }
         }
-	    if ((globalclass.unlockdirector.unlocks.printlewa) == 1) {
+        if ((globalclass.unlockdirector.unlocks.printlewa) == 1) {
             this.lewapics = [
                 new printmenupic("Root/data/art/PrintMenu/lps1", 38, 289, 102, 353, "Root/data/art/PrintMenu/HL19", 22, 277, 118, 373, 1), 
                 new printmenupic("Root/data/art/PrintMenu/las1", 139, 289, 203, 353, "Root/data/art/PrintMenu/HL20", 123, 277, 219, 373, 1), 
                 new printmenupic("Root/data/art/PrintMenu/lcs1", 237, 289, 301, 353, "Root/data/art/PrintMenu/HL21", 221, 277, 317, 373, 1), 
                 new printmenupic("Root/data/art/PrintMenu/lms1", 339, 289, 403, 353, "Root/data/art/PrintMenu/HL22", 322, 277, 418, 373, 1) ];
-            var1 = 0;
-            while ((this.lewapics.__length - 1) >= var1) {
-                this.imagelist.__append(this.lewapics[var1]);
-                var1 = var1 + 1;
+            foreach (var lewapics : this.lewapics) {
+                this.imagelist.__append(lewapics);
             }
-	    }
+        }
         else {
             this.lewapics = [
                 new printmenupic("Root/data/art/PrintMenu/lps1", 9999, 289, 9999, 353, "Root/data/art/PrintMenu/HL19", 9999, 277, 9999, 373, 1), 
                 new printmenupic("Root/data/art/PrintMenu/las1", 9999, 289, 9999, 353, "Root/data/art/PrintMenu/HL20", 9999, 277, 9999, 373, 1), 
                 new printmenupic("Root/data/art/PrintMenu/lcs1", 9999, 289, 9999, 353, "Root/data/art/PrintMenu/HL21", 9999, 277, 9999, 373, 1), 
                 new printmenupic("Root/data/art/PrintMenu/lms1", 9999, 289, 9999, 353, "Root/data/art/PrintMenu/HL22", 9999, 277, 9999, 373, 1) ];
-            var1 = 0;
-            while ((this.lewapics.__length - 1) >= var1) {
-                this.imagelist.__append(this.lewapics[var1]);
-                var1 = var1 + 1;
+            foreach (var lewapics : this.lewapics) {
+                this.imagelist.__append(lewapics);
             }
         }
-	    if ((globalclass.unlockdirector.unlocks.printtahu) == 1) {
+        if ((globalclass.unlockdirector.unlocks.printtahu) == 1) {
             this.tahupics = [
                 new printmenupic("Root/data/art/PrintMenu/tps1", 439, 289, 503, 353, "Root/data/art/PrintMenu/HL23", 422, 277, 518, 373, 1), 
                 new printmenupic("Root/data/art/PrintMenu/tas1", 539, 289, 603, 353, "Root/data/art/PrintMenu/HL24", 522, 277, 618, 373, 1), 
                 new printmenupic("Root/data/art/PrintMenu/tcs1", 39, 369, 103, 433, "Root/data/art/PrintMenu/HL25", 22, 358, 118, 454, 1), 
                 new printmenupic("Root/data/art/PrintMenu/tms1", 139, 369, 203, 433, "Root/data/art/PrintMenu/HL26", 122, 358, 218, 454, 1) ];
-            var1 = 0;
-            while ((this.tahupics.__length - 1) >= var1) {
-                this.imagelist.__append(this.tahupics[var1]);
-                var1 = var1 + 1;
+            foreach (var tahupics : this.tahupics) {
+                this.imagelist.__append(tahupics);
             }
-	    }
+        }
         else {
             this.tahupics = [
                 new printmenupic("Root/data/art/PrintMenu/tps1", 9999, 289, 9999, 353, "Root/data/art/PrintMenu/HL23", 9999, 277, 9999, 373, 1), 
                 new printmenupic("Root/data/art/PrintMenu/tas1", 9999, 289, 9999, 353, "Root/data/art/PrintMenu/HL24", 9999, 277, 9999, 373, 1), 
                 new printmenupic("Root/data/art/PrintMenu/tcs1", 9999, 369, 9999, 433, "Root/data/art/PrintMenu/HL25", 9999, 358, 9999, 454, 1), 
                 new printmenupic("Root/data/art/PrintMenu/tms1", 9999, 369, 9999, 433, "Root/data/art/PrintMenu/HL26", 9999, 358, 9999, 454, 1) ];
-            var1 = 0;
-            while ((this.tahupics.__length - 1) >= var1) {
-                this.imagelist.__append(this.tahupics[var1]);
-                var1 = var1 + 1;
+            foreach (var tahupics : this.tahupics) {
+                this.imagelist.__append(tahupics);
             }
         }
         if ((globalclass.unlockdirector.unlocks.beatkuta) == 1) {
             this.endgame = [
                 new printmenupic("Root/data/art/PrintMenu/INSTRUCT05", 238, 369, 302, 433, "Root/data/art/PrintMenu/HL27", 221, 358, 317, 454, 1), 
                 new printmenupic("Root/data/art/PrintMenu/INSTRUCT06", 339, 369, 403, 433, "Root/data/art/PrintMenu/HL28", 322, 358, 418, 454, 1) ];
-            var1 = 0;
-            while ((this.endgame.__length - 1) >= var1) {
-                this.imagelist.__append(this.endgame[var1]);
-                var1 = var1 + 1;
+            foreach (var endgame : this.endgame) {
+                this.imagelist.__append(endgame);
             }
         }
         else {
             this.endgame = [
                 new printmenupic("Root/data/art/PrintMenu/INSTRUCT05", 9999, 369, 9999, 433, "Root/data/art/PrintMenu/HL27", 9999, 358, 9999, 454, 1), 
                 new printmenupic("Root/data/art/PrintMenu/INSTRUCT06", 9999, 369, 9999, 433, "Root/data/art/PrintMenu/HL28", 9999, 358, 9999, 454, 1) ];
-            var1 = 0;
-            while ((this.endgame.__length - 1) >= var1) {
-                this.imagelist.__append(this.endgame[var1]);
-                var1 = var1 + 1;
+            foreach (var endgame : this.endgame) {
+                this.imagelist.__append(endgame);
             }
         }
         return null;

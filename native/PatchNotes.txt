@@ -289,6 +289,7 @@ Front End
 • Updated title screen logo 		            		                    ----		(Vahkiti)
 • Added missing clicking sounds to some menus	           	   	            ----		(ShadowDraikana)
 • Updated and changed click sounds across various menus	           	   	    ----		(ShadowDraikana)
+• Fixed multiple memory leaks caused by improper menu cleanup              	----		(ShadowDraikana)
 
 Level 1 - Onua
 • Fixed two tutorial totems in BECH having their text swapped				----		(ShadowDraikana)
