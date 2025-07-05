@@ -15,7 +15,6 @@ class shrn6_puzzle {
     }
     
     method initfull() {
-        var var1;
         var vakama;
         var portal_trigger;
         var door_text;
@@ -23,11 +22,9 @@ class shrn6_puzzle {
         this.doorarray = [ new lego_moveableobject("drs2"), 
             new lego_moveableobject("drs3"), 
             new lego_moveableobject("drs4") ];
-        var1 = 0;
-        while ((this.doorarray.__length - 1) >= var1) {
-            this.doorarray[var1].initfull();
-            this.doorarray[var1].show();
-            var1 = var1 + 1;
+        foreach (var doorarray : this.doorarray) {
+            doorarray.initfull();
+            doorarray.show();
         }
         this.doorarray[0].hide();
         if (globalclass.player.haselement()) {
@@ -86,12 +83,10 @@ class shrn6_puzzle {
             this.doorarray = null;
         }
         if (this.bossdoortext1 != null) {
-            this.bossdoortext1.remove();
             this.bossdoortext1.cleanupfull();
             this.bossdoortext1 = null;
         }
         if (this.bossdoortext2 != null) {
-            this.bossdoortext2.remove();
             this.bossdoortext2.cleanupfull();
             this.bossdoortext2 = null;
         }

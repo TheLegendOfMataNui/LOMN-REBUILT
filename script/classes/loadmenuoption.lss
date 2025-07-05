@@ -18,8 +18,6 @@ class loadmenuoption {
     }
     
     method cleanupfull() {
-        this.text.hide();
-        this.text.remove();
         this.text.cleanupfull();
         this.text = null;
         return null;

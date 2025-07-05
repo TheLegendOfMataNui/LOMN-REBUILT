@@ -62,14 +62,17 @@ class ss_basetext : base_drawobject {
     }
     
     method cleanupfull() {
+        if (this.onscreen) {
+            this.hide();
+        }
+        this.remove();
         this.font = null;
         this.text = null;
         return null;
     }
     
     method cleanupshort() {
-        this.font = null;
-        this.text = null;
+        this.cleanupfulll();
         return null;
     }
     

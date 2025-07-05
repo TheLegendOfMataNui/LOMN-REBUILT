@@ -66,14 +66,10 @@ class menuoption {
     
     method cleanupfull() {
         if (this.lefttext != null) {
-            this.lefttext.hide();
-            this.lefttext.remove();
             this.lefttext.cleanupfull();
             this.lefttext = null;
         }
         if (this.righttext != null) {
-            this.righttext.hide();
-            this.righttext.remove();
             this.righttext.cleanupfull();
             this.righttext = null;
         }

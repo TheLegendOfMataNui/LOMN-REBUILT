@@ -63,7 +63,6 @@ class gs_lego_cdtimer : base_object {
     
     method cleanupfull() {
         if (this.text != null) {
-            this.text.remove();
             this.text.cleanupfull();
             this.text = null;
         }

@@ -61,8 +61,6 @@ class gsprintmenu {
         this.parent = null;
         this.printer = null;
         if (this.printtext != null) {
-            this.printtext.hide();
-            this.printtext.remove();
             this.printtext.cleanupfull();
             this.printtext = null;
         }
@@ -195,8 +193,6 @@ class gsprintmenu {
         if (this.printlock) {
             if (scprinter::isdone(this.printer)) {
                 this.printlock = 0;
-                this.printtext.hide();
-                this.printtext.remove();
                 this.printtext.cleanupfull();
             }
         }

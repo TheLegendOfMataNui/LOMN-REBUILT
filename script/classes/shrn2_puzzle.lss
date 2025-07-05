@@ -46,10 +46,8 @@ class shrn2_puzzle {
             new lego_moveableobject("dor3"), 
             new lego_moveableobject("dor2"), 
             new lego_moveableobject("dor4") ];
-        var1 = 0;
-        while ((this.doors.__length - 1) >= var1) {
-            this.doors[var1].initfull();
-            var1 = var1 + 1;
+        foreach (var doors : this.doors) {
+            doors.initfull();
         }
         this.waterfall1 = new lego_moveableobject("swf1");
         this.waterfall1.initfull();
@@ -164,12 +162,10 @@ class shrn2_puzzle {
             this.waterfall3 = null;
         }
         if (this.bossdoortext1 != null) {
-            this.bossdoortext1.remove();
             this.bossdoortext1.cleanupfull();
             this.bossdoortext1 = null;
         }
         if (this.bossdoortext2 != null) {
-            this.bossdoortext2.remove();
             this.bossdoortext2.cleanupfull();
             this.bossdoortext2 = null;
         }

@@ -73,10 +73,9 @@ class lego_pickup {
             this.desctext.initfull();
             this.deltatimer = 0.0;
             this.spinspeed = 10;
-            var1 = 0;
-            while ((this.howtotextarray.__length - 1) >= var1) {
-                this.howtotextarray[var1].initfull();
-                var1 = var1 + 1;
+            foreach (var howtotextarray : this.howtotextarray) {
+                howtotextarray.initfull();
+                howtotextarray.add();
             }
             gclightdirector::setpickuplighting(this.obj.id);
             this.condition = 0;
@@ -99,7 +98,6 @@ class lego_pickup {
             this.obj = null;
         }
         if (this.desctext != null) {
-            this.desctext.hide();
             this.desctext.cleanupfull();
             this.desctext = null;
         }
@@ -107,13 +105,13 @@ class lego_pickup {
         if (this.howtotextarray != null) {
             var1 = 0;
             while ((this.howtotextarray.__length - 1) >= var1) {
-                this.howtotextarray[var1].hide();
                 this.howtotextarray[var1].cleanupfull();
                 this.howtotextarray[var1] = null;
                 var1 = var1 + 1;
             }
             this.howtotextarray = null;
         }
+        debug::print("4a");
         this.scriptid = null;
         this.putype = null;
         this.water_pickup = null;
@@ -188,10 +186,8 @@ class lego_pickup {
                     gclightdirector::killpickuplighting(this.obj.id);
                     this.obj.hide();
                     this.desctext.hide();
-                    var1 = 0;
-                    while ((this.howtotextarray.__length - 1) >= var1) {
-                        this.howtotextarray[var1].hide();
-                        var1 = var1 + 1;
+                    foreach (var howtotextarray : this.howtotextarray) {
+                        howtotextarray.hide();
                     }
                 }
                 // reenable player input now that the pickup collection is finished
@@ -224,10 +220,8 @@ class lego_pickup {
             this.obj.hide();
             if (this.texttimer >= 5) {
                 this.desctext.hide();
-                var1 = 0;
-                while ((this.howtotextarray.__length - 1) >= var1) {
-                    this.howtotextarray[var1].hide();
-                    var1 = var1 + 1;
+                foreach (var howtotextarray : this.howtotextarray) {
+                    howtotextarray.hide();
                 }
                 this.water_pickup = 0;
             }
@@ -253,11 +247,8 @@ class lego_pickup {
             }
             this.desctext.add();
             this.desctext.show();
-            var1 = 0;
-            while ((this.howtotextarray.__length - 1) >= var1) {
-                this.howtotextarray[var1].add();
-                this.howtotextarray[var1].show();
-                var1 = var1 + 1;
+            foreach (var howtotextarray : this.howtotextarray) {
+                howtotextarray.show();
             }
         }
         return null;

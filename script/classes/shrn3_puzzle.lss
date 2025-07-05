@@ -76,12 +76,10 @@ class shrn3_puzzle {
             this.gly3door = null;
         }
         if (this.bossdoortext1 != null) {
-            this.bossdoortext1.remove();
             this.bossdoortext1.cleanupfull();
             this.bossdoortext1 = null;
         }
         if (this.bossdoortext2 != null) {
-            this.bossdoortext2.remove();
             this.bossdoortext2.cleanupfull();
             this.bossdoortext2 = null;
         }

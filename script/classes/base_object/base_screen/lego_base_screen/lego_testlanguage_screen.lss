@@ -11,18 +11,15 @@ class lego_testlanguage_screen : lego_base_screen {
     }
     
     method initfull() {
-        var var1;
         this.items = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "BionicleFont", screenx * 0.05, screeny * 0.05, 0, 1.25, 0, 4, 0, 1), 
             new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", "BionicleFontshad", screenx * 0.05, (screeny * 0.05) + 30, 0, 1.25, 0, 4, 0, 1), 
             new gs_legotext("Root/Data/Art/Fonts/tech_font_01", "TECH FONT", screenx * 0.05, (screeny * 0.05) + 60, 0, 1.0, 0, 4, 0, 1),
             new gs_legotext("Root/Data/Art/Fonts/tech_font_01_hilight", "TECH FONT HILIGHTED", screenx * 0.05, (screeny * 0.05) + 90, 0, 1.0, 0, 4, 0, 1),
             new gs_legotext("Root/Data/Art/Fonts/BionicleFontMat", "MATORAN", screenx * 0.05, (screeny * 0.05) + 120, 0, 1.25, 0, 4, 0, 1) ];
-        var1 = 0;
-        while ((this.items.__length - 1) >= var1) {
-            this.items[var1].initfull();
-            this.items[var1].add();
-            this.items[var1].show();
-            var1 = var1 + 1;
+        foreach (var items : this.items) {
+            items.initfull();
+            items.add();
+            items.show();
         }
         this.stringtable = new gs_lego_stringtable("Strings");
         this.examplestring = null;
@@ -37,7 +34,6 @@ class lego_testlanguage_screen : lego_base_screen {
         if (this.items != null) {
             var1 = 0;
             while ((this.items.__length - 1) >= var1) {
-                this.items[var1].remove();
                 this.items[var1].cleanupfull();
                 this.items[var1] = null;
                 var1 = var1 + 1;
@@ -48,7 +44,6 @@ class lego_testlanguage_screen : lego_base_screen {
         if (this.examplestring != null) {
             var1 = 0;
             while ((this.examplestring.__length - 1) >= var1) {
-                this.examplestring[var1].remove();
                 this.examplestring[var1].cleanupfull();
                 this.examplestring[var1] = null;
                 var1 = var1 + 1;
@@ -118,7 +113,6 @@ class lego_testlanguage_screen : lego_base_screen {
         if (this.examplestring != null) {
             strings = 0;
             while ((this.examplestring.__length - 1) >= strings) {
-                this.examplestring[strings].remove();
                 this.examplestring[strings].cleanupfull();
                 this.examplestring[strings] = null;
                 strings = strings + 1;
@@ -172,14 +166,12 @@ class lego_testlanguage_screen : lego_base_screen {
                 new gs_lego_languagetext(font, 15, this.stringtable, x_pos, y_pos, 0, scaling, 256, 2, 0),
                 new gs_lego_languagetext(font, 16, this.stringtable, x_pos, y_pos, 0, scaling, 256, 2, 0),
                 new gs_lego_languagetext(font, 17, this.stringtable, x_pos, y_pos, 0, scaling, 256, 2, 0) ];
-            strings = 0;
-            while ((this.examplestring.__length - 1) >= strings) {
-                this.examplestring[strings].initfull();
-                this.examplestring[strings].add();
-                this.examplestring[strings].show();
+            foreach (var examplestring : this.examplestring) {
+                examplestring.initfull();
+                examplestring.add();
+                examplestring.show();
                 y_pos = y_pos + 15;
-                this.examplestring[strings].setpos(x_pos, y_pos, 0);
-                strings = strings + 1;
+                examplestring.setpos(x_pos, y_pos, 0);
             }
         }
         return null;

@@ -78,11 +78,11 @@ class hudammo : base_objectarray {
         var var1;
         var var2;
         if (this.items != null) {
+            this.items[0].hide();
+            this.items[0].remove();
             var1 = this.items.__length - 1;
             var2 = 0;
             while (var1 >= var2) {
-                this.items[var1 - var2].hide();
-                this.items[var1 - var2].remove();
                 this.items[var1 - var2].cleanupfull();
                 this.items[var1 - var2] = null;
                 var2 = var2 + 1;
@@ -127,10 +127,8 @@ class hudammo : base_objectarray {
     method hide() {
         var var1;
         if (this.items != null) {
-            var1 = 0;
-            while ((this.items.__length - 1) >= var1) {
-                this.items[var1].hide();
-                var1 = var1 + 1;
+            foreach (var items : this.items) {
+                items.hide();
             }
         }
         return null;

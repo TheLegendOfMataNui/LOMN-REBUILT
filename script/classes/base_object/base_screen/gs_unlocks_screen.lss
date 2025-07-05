@@ -192,49 +192,42 @@ class gs_unlocks_screen : base_screen {
         this.completion_unlock_array = null;
         if (this.title_text_array != null) {
             foreach (var title_text_array : this.title_text_array) {
-                title_text_array.hide();
                 title_text_array.cleanupfull();
             }
             this.title_text_array = null;
         }
         if (this.character_strings != null) {
             foreach (var character_strings : this.character_strings) {
-                character_strings.hide();
                 character_strings.cleanupfull();
             }
             this.character_strings = null;
         }
         if (this.char_status_array != null) {
             foreach (var char_status_array : this.char_status_array) {
-                char_status_array.hide();
                 char_status_array.cleanupfull();
             }
             this.char_status_array = null;
         }
         if (this.glyph_strings != null) {
             foreach (var glyph_strings : this.glyph_strings) {
-                glyph_strings.hide();
                 glyph_strings.cleanupfull();
             }
             this.glyph_strings = null;
         }
         if (this.glyph_status_array != null) {
             foreach (var glyph_status_array : this.glyph_status_array) {
-                glyph_status_array.hide();
                 glyph_status_array.cleanupfull();
             }
             this.glyph_status_array = null;
         }
         if (this.completion_strings != null) {
             foreach (var completion_strings : this.completion_strings) {
-                completion_strings.hide();
                 completion_strings.cleanupfull();
             }
             this.completion_strings = null;
         }
         if (this.completion_status_array != null) {
             foreach (var completion_status_array : this.completion_status_array) {
-                completion_status_array.hide();
                 completion_status_array.cleanupfull();
             }
             this.completion_status_array = null;

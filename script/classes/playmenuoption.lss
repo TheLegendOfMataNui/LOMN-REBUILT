@@ -95,14 +95,10 @@ class playmenuoption {
     
     method cleanupfull() {
         if (this.playtext != null) {
-            this.playtext.hide();
-            this.playtext.remove();
             this.playtext.cleanupfull();
             this.playtext = null;
         }
         if (this.comptext != null) {
-            this.comptext.hide();
-            this.comptext.remove();
             this.comptext.cleanupfull();
             this.comptext = null;
         }

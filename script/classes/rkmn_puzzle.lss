@@ -92,31 +92,25 @@ class rkmn_puzzle {
         this.resetmboulders1.initfull();
         this.resetmboulders2.initfull();
         this.resetmboulders3.initfull();
-        var2 = 0;
-        while ((this.miniboulders1.__length - 1) >= var2) {
-            this.miniboulders1[var2].init(0.1, 0, 0, 0, 0, 0.8, "lbld", "Root/data/levels/lev3/rkmn", 60, -1, -1, -1, 1, 1, 1, 1024);
-            this.miniboulders1[var2].setresponse(4, 4, 4);
-            this.miniboulders1[var2].setposition(0.0, 0.0, 0.0);
-            this.miniboulders1[var2].ignorecollisionswith(1937010290);
-            var2 = var2 + 1;
+        foreach (var miniboulders1 : this.miniboulders1) {
+            miniboulders1.init(0.1, 0, 0, 0, 0, 0.8, "lbld", "Root/data/levels/lev3/rkmn", 60, -1, -1, -1, 1, 1, 1, 1024);
+            miniboulders1.setresponse(4, 4, 4);
+            miniboulders1.setposition(0.0, 0.0, 0.0);
+            miniboulders1.ignorecollisionswith(1937010290);
         }
         this.miniboulders1[0].setresponse(3, 3, 3);
-        var2 = 0;
-        while ((this.miniboulders2.__length - 1) >= var2) {
-            this.miniboulders2[var2].init(0.1, 0, 0, 0, 0, 0.8, "lbld", "Root/data/levels/lev3/rkmn", 60, -1, -1, -1, 1, 1, 1, 1024);
-            this.miniboulders2[var2].setresponse(4, 4, 4);
-            this.miniboulders2[var2].setposition(0.0, 0.0, 0.0);
-            this.miniboulders2[var2].ignorecollisionswith(1937010290);
-            var2 = var2 + 1;
+        foreach (var miniboulders2 : this.miniboulders2) {
+            miniboulders2.init(0.1, 0, 0, 0, 0, 0.8, "lbld", "Root/data/levels/lev3/rkmn", 60, -1, -1, -1, 1, 1, 1, 1024);
+            miniboulders2.setresponse(4, 4, 4);
+            miniboulders2.setposition(0.0, 0.0, 0.0);
+            miniboulders2.ignorecollisionswith(1937010290);
         }
         this.miniboulders2[0].setresponse(3, 3, 3);
-        var2 = 0;
-        while ((this.miniboulders3.__length - 1) >= var2) {
-            this.miniboulders3[var2].init(0.1, 0, 0, 0, 0, 0.8, "lbld", "Root/data/levels/lev3/rkmn", 60, -1, -1, -1, 1, 1, 1, 1024);
-            this.miniboulders3[var2].setresponse(4, 4, 4);
-            this.miniboulders3[var2].setposition(0.0, 0.0, 0.0);
-            this.miniboulders3[var2].ignorecollisionswith(1937010290);
-            var2 = var2 + 1;
+        foreach (var miniboulders3 : this.miniboulders3) {
+            miniboulders3.init(0.1, 0, 0, 0, 0, 0.8, "lbld", "Root/data/levels/lev3/rkmn", 60, -1, -1, -1, 1, 1, 1, 1024);
+            miniboulders3.setresponse(4, 4, 4);
+            miniboulders3.setposition(0.0, 0.0, 0.0);
+            miniboulders3.ignorecollisionswith(1937010290);
         }
         this.miniboulders3[0].setresponse(3, 3, 3);
         var2 = 0;
@@ -165,8 +159,6 @@ class rkmn_puzzle {
     }
     
     method cleanupstrings() {
-        this.titletext1.remove();
-        this.titletext2.remove();
         this.titletext1.cleanupfull();
         this.titletext2.cleanupfull();
         this.titletext1 = null;
@@ -180,10 +172,8 @@ class rkmn_puzzle {
         var var3;
         var var4;
         if (this.platprocess) {
-            var1 = 0;
-            while ((this.platarray.__length - 1) >= var1) {
-                this.platarray[var1].onevent(param1);
-                var1 = var1 + 1;
+            foreach (var platarray : this.platarray) {
+                platarray.onevent(param1);
             }
         }
         if (param1.eventid == 19) {
@@ -244,10 +234,8 @@ class rkmn_puzzle {
             }
             else if (this.rocker.curstate == 3) {
                 gcrockboss::setdisplaymorphmodel(this.rocker.rocky, 4);
-                var1 = 0;
-                while ((this.platarray.__length - 1) >= var1) {
-                    this.platarray[var1].drop();
-                    var1 = var1 + 1;
+                foreach (var platarray : this.platarray) {
+                    platarray.drop();
                 }
                 this.explode(this.rocker.rocky, 1);
                 this.rocktimer = 2;
@@ -372,7 +360,6 @@ class rkmn_puzzle {
     }
     
     method process(param1) {
-        var var1;
         if (this.rocktimer != null) {
             this.rocktimer = this.rocktimer + param1.deltatime;
             if (this.state == 6) {
@@ -393,10 +380,8 @@ class rkmn_puzzle {
                         gccharacter::settransparency(this.turaga.handle, 0.0);
                         this.turaga.fadein(1.5);
                         this.turaga.disableai();
-                        var1 = 0;
-                        while ((this.platarray.__length - 1) >= var1) {
-                            this.platarray[var1].hide();
-                            var1 = var1 + 1;
+                        foreach (var platarray : this.platarray) {
+                            platarray.hide();
                         }
                         this.platprocess = 0;
                         this.ending = 1;
@@ -415,10 +400,8 @@ class rkmn_puzzle {
             }
             this.oldstate = this.state;
             if (this.platprocess) {
-                var1 = 0;
-                while ((this.platarray.__length - 1) >= var1) {
-                    this.platarray[var1].process(param1);
-                    var1 = var1 + 1;
+                foreach (var platarray : this.platarray) {
+                    platarray.process(param1);
                 }
             }
         }
@@ -430,22 +413,15 @@ class rkmn_puzzle {
     }
     
     method reset() {
-        var var1;
         this.setupstrings();
-        var1 = 0;
-        while ((this.miniboulders1.__length - 1) >= var1) {
-            this.miniboulders1[var1].setposition(0.0, 0.0, 0.0);
-            var1 = var1 + 1;
+        foreach (var miniboulders1 : this.miniboulders1) {
+            miniboulders1.setposition(0.0, 0.0, 0.0);
         }
-        var1 = 0;
-        while ((this.miniboulders2.__length - 1) >= var1) {
-            this.miniboulders2[var1].setposition(0.0, 0.0, 0.0);
-            var1 = var1 + 1;
+        foreach (var miniboulders2 : this.miniboulders2) {
+            miniboulders2.setposition(0.0, 0.0, 0.0);
         }
-        var1 = 0;
-        while ((this.miniboulders3.__length - 1) >= var1) {
-            this.miniboulders3[var1].setposition(0.0, 0.0, 0.0);
-            var1 = var1 + 1;
+        foreach (var miniboulders3 : this.miniboulders3) {
+            miniboulders3.setposition(0.0, 0.0, 0.0);
         }
         this.currentmboulder = 1;
         this.state = 4;
@@ -465,26 +441,17 @@ class rkmn_puzzle {
     }
     
     method show() {
-        var var1;
-        var1 = 0;
-        while ((this.miniboulders1.__length - 1) >= var1) {
-            this.miniboulders1[var1].show();
-            var1 = var1 + 1;
+        foreach (var miniboulders1 : this.miniboulders1) {
+            miniboulders1.show();
         }
-        var1 = 0;
-        while ((this.miniboulders2.__length - 1) >= var1) {
-            this.miniboulders2[var1].show();
-            var1 = var1 + 1;
+        foreach (var miniboulders2 : this.miniboulders2) {
+            miniboulders2.show();
         }
-        var1 = 0;
-        while ((this.miniboulders3.__length - 1) >= var1) {
-            this.miniboulders3[var1].show();
-            var1 = var1 + 1;
+        foreach (var miniboulders3 : this.miniboulders3) {
+            miniboulders3.show();
         }
-        var1 = 0;
-        while ((this.platarray.__length - 1) >= var1) {
-            this.platarray[var1].show();
-            var1 = var1 + 1;
+        foreach (var platarray : this.platarray) {
+            platarray.show();
         }
         return null;
     }
@@ -584,8 +551,7 @@ class rkmn_puzzle {
             var1 = 752.0;
             var2 = 0.5;
             var3 = 0 - 429.51;
-            var4 = 0;
-            while ((this.miniboulders1.__length - 1) >= var4) {
+            foreach (var miniboulders1 : this.miniboulders1) {
                 var5 = globalclass.randnum.getrandomfloat(3.0, 5.0);
                 var6 = globalclass.randnum.getrandomfloat(0 - 40.0, 40.0);
                 var7 = globalclass.randnum.getrandomfloat(10.0, 20.0);
@@ -593,11 +559,10 @@ class rkmn_puzzle {
                 var9 = globalclass.randnum.getrandomfloat(var1, var1 + 10.0);
                 var10 = globalclass.randnum.getrandomfloat(var2, var2 + 10.0);
                 var11 = globalclass.randnum.getrandomfloat(var3, var3 + 10.0);
-                this.miniboulders1[var4].setobjscale(var5);
-                this.miniboulders1[var4].setposition(var9, var10, var11);
-                this.miniboulders1[var4].setmoveableflags(1, 1, 0, 1);
-                this.miniboulders1[var4].setvelocity(var6, var7, var8);
-                var4 = var4 + 1;
+                miniboulders1.setobjscale(var5);
+                miniboulders1.setposition(var9, var10, var11);
+                miniboulders1.setmoveableflags(1, 1, 0, 1);
+                miniboulders1.setvelocity(var6, var7, var8);
             }
             gcmodeldirector::hide(1937010290, 0);
             this.resetmboulders1.reset(0);

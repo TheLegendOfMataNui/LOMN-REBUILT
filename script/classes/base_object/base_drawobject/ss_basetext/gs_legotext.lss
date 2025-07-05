@@ -54,23 +54,25 @@ class gs_legotext : ss_basetext {
         return null;
     }
     
+    method initshort() {
+        this.initfull();
+        return null;
+    }
+    
     method cleanupfull() {
+        if (this.onscreen) {
+            this.hide();
+        }
+        debug::print("gs_legotext cleanup firing 1");
+        this.remove();
+        debug::print("gs_legotext cleanup firing 2");
         this.font = null;
         this.text = null;
         return null;
     }
     
-    method initshort() {
-        if (this.newfont == 1) {
-            this.font = sctilefont::create(this.fontname);
-        }
-        else {
-            this.font = globalclass.getgamefont(this.fontname);
-        }
-        this.text = sctextobject::create(this.x1, this.y1, this.z, this.font, this.string);
-        sctextobject::setscale(this.text, this.scale, this.scale);
-        sctextobject::setjustification(this.text, this.horizontal | this.verticle);
-        sctextobject::enablejustification(this.text, 1);
+    method cleanupshort() {
+        this.cleanupfulll();
         return null;
     }
     

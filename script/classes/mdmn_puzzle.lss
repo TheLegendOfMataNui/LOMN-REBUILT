@@ -121,8 +121,6 @@ class mdmn_puzzle {
     }
     
     method cleanupstrings() {
-        this.titletext1.remove();
-        this.titletext2.remove();
         this.titletext1.cleanupfull();
         this.titletext2.cleanupfull();
         this.titletext1 = null;
