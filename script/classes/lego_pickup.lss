@@ -71,6 +71,7 @@ class lego_pickup {
             this.processlistindex = globalclass.addtoprocesslist(this);
             this.rotation = 0;
             this.desctext.initfull();
+            this.desctext.add();
             this.deltatimer = 0.0;
             this.spinspeed = 10;
             foreach (var howtotextarray : this.howtotextarray) {
@@ -111,7 +112,6 @@ class lego_pickup {
             }
             this.howtotextarray = null;
         }
-        debug::print("4a");
         this.scriptid = null;
         this.putype = null;
         this.water_pickup = null;
@@ -245,7 +245,6 @@ class lego_pickup {
                 // underwater
                 this.water_pickup = 1;
             }
-            this.desctext.add();
             this.desctext.show();
             foreach (var howtotextarray : this.howtotextarray) {
                 howtotextarray.show();

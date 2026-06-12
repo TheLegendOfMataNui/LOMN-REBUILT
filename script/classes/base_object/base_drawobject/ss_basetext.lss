@@ -82,6 +82,8 @@ class ss_basetext : base_drawobject {
     
     method add() {
         this.ident = gchuddirector::addtextobject(this.text);
+        debug::print("Adding text to HUD director with identifier of:");
+        debug::print(this.ident);
         return null;
     }
     
@@ -98,6 +100,13 @@ class ss_basetext : base_drawobject {
     }
     
     method remove() {
+        debug::print("Removing text with identifier of:");
+        if (this.ident != null) {
+            debug::print(__tostring(this.ident));
+        }
+        else {
+            debug::print("IDENT RETURNED NULL, RECHECK CODE YOU MONKEY");
+        }
         gchuddirector::remove(this.ident);
         return null;
     }

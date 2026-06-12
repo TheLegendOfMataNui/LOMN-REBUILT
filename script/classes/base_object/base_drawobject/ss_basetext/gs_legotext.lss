@@ -63,9 +63,7 @@ class gs_legotext : ss_basetext {
         if (this.onscreen) {
             this.hide();
         }
-        debug::print("gs_legotext cleanup firing 1");
         this.remove();
-        debug::print("gs_legotext cleanup firing 2");
         this.font = null;
         this.text = null;
         return null;

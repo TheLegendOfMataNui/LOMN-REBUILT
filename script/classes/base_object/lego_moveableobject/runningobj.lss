@@ -151,7 +151,7 @@ class runningobj : lego_moveableobject {
             if ((var2.__length - 1) > 0) {
                 var3 = 1;
                 while ((var2.__length - 1) >= var3) {
-                    if (!(var2[var3] == null)) {
+                    if (var2[var3] != null) {
                         var4 = new scriptevent(1000, [ var2[var3] ]);
                         var4.send();
                     }
@@ -203,7 +203,7 @@ class runningobj : lego_moveableobject {
         var var18;
         var var19;
         var var20;
-        if (!(param1 == null)) {
+        if (param1 != null) {
             var1 = new slosi_fileio(param1);
             var2 = var1.fileexist();
             if (var2) {
@@ -213,7 +213,7 @@ class runningobj : lego_moveableobject {
                 var5 = var1.read();
                 var5 = new slosi_string(var5);
                 var6 = var5.findword(" ");
-                while (!(var1.iseof() == 1)) {
+                while (var1.iseof() != 1) {
                     var7 = [  ];
                     var8 = null;
                     var9 = null;
@@ -232,7 +232,7 @@ class runningobj : lego_moveableobject {
                         var16 = var5.gettruncateleft(var15);
                     }
                     var17 = gcscripttools::stringtofloat(var5.string);
-                    if (!(var15 == -1)) {
+                    if (var15 != -1) {
                         var5.truncateright(var5.getlength() - (var15 + 1));
                         var18 = var5.findword(" ");
                         if (var18 == -1) {
@@ -241,7 +241,7 @@ class runningobj : lego_moveableobject {
                         else {
                             var8 = var5.gettruncateleft(var18);
                         }
-                        if (!(var18 == -1)) {
+                        if (var18 != -1) {
                             var5.truncateright(var5.getlength() - (var18 + 1));
                             var19 = var5.findword(" ");
                             if (var19 == -1) {

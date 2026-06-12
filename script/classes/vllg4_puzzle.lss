@@ -320,7 +320,6 @@ class vllg4_puzzle {
     
     method cleanupfull() {
         if (this.coindoortext != null) {
-            this.coindoortext.remove();
             this.coindoortext.cleanupfull();
             this.coindoortext = null;
         }
