@@ -282,6 +282,7 @@ General changes and fixes
 • Reduced debug menu text size and moved the menu down slightly				----		(ShadowDraikana)
 • Fixed issue that would sometimes break respawns in areas with slides		----		(ShadowDraikana)
 • Fixed infinite air meter exploit with the KauKau                  		----		(ShadowDraikana)
+• Fixed memory allocation issues resulting in infamous print glyph crash    ----		(OndrikB, ShadowDraikana)
 
 Front End
 • Fixed brief HUD pop-in when first loading in  	           	    	    ----		(ShadowDraikana)
