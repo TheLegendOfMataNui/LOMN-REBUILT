@@ -6,17 +6,6 @@ class theaterscreen {
     property optarray;
     property backoption;
     property active;
-    property extratext;
-    property minidx;
-    property maxidx;
-    property showidx;
-    property x;
-    property y;
-    property curidx;
-    property activemenu;
-    property backmenu;
-    property menuactive;
-    property curscreen;
     property legend;
     property intro;
     property kini;
@@ -34,12 +23,6 @@ class theaterscreen {
     }
     
     method initfull() {
-        this.minidx = 0;
-        this.showidx = 10;
-        this.curidx = 0;
-        this.activemenu = [  ];
-        this.backmenu = [  ];
-        this.menuactive = 0;
         this.curoption = -1;
         this.optarray = [  ];
         this.intro = new menuoption(gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 80), "", this.optarray.__length);
@@ -97,6 +80,25 @@ class theaterscreen {
             }
             this.optarray = null;
         }
+        this.intro.cleanupfull();
+        this.intro = null;
+        this.legend.cleanupfull();
+        this.legend = null;
+        this.kini.cleanupfull();
+        this.kini = null;
+        this.kuta.cleanupfull();
+        this.kuta = null;
+        this.ending.cleanupfull();
+        this.ending = null;
+        this.credits.cleanupfull();
+        this.credits = null;
+        this.behind.cleanupfull();
+        this.behind = null;
+        this.trailer.cleanupfull();
+        this.trailer = null;
+        this.animations.cleanupfull();
+        this.animations = null;
+        this.backoption.cleanupfull();
         this.backoption = null;
         return null;
     }
@@ -122,10 +124,6 @@ class theaterscreen {
                 this.checkmousepos();
             }
         }
-        return null;
-    }
-
-    method process(param1) {
         return null;
     }
     
@@ -210,7 +208,6 @@ class theaterscreen {
         this.active = 0;
         this.cleanupshort();
         this.parent.initfull();
-        //this.parent.active = 1;
         gcstaticsoundsptrarray::playtablesound(1073);
         return null;
     }

@@ -84,16 +84,14 @@ class ss_shoefittersidebar {
     method cleanupfull() {
         this.definingargs = 0;
         this.background.hide();
-        if (this.title.onscreen) {        
-            this.title.hide();
-            this.title.remove();
-        }
         if (this.flagtypearray.items[0].onscreen) {
             this.flagtypearray.hide();
             this.flagtypearray.remove();
         }
         this.background.cleanupfull();
-        this.title.cleanupfull();
+        if (this.title.text != null) {
+            this.title.cleanupfull();
+        }
         this.flagtypearray.cleanupfull();
         this.menu.cleanupfull();
         this.keyboardcapture.ss_shoefitterkeyboardcleanupfull();
@@ -109,8 +107,6 @@ class ss_shoefittersidebar {
         this.menu.process(param1);
         if (this.saving) {
             if (this.showtime > 0.2) {
-                this.savetext.hide();
-                this.savetext.remove();
                 this.savetext.cleanupfull();
                 this.saving = 0;
             }

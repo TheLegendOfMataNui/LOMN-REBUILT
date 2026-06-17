@@ -29,8 +29,8 @@ class ss_shoefittermarkerclass : ss_basesprite {
     }
     
     method markercleanupfull() {
-        this.hide();
-        this.remove();
+        //this.hide();
+        //this.remove();
         this.cleanupfull();
         return null;
     }

@@ -96,23 +96,23 @@ class gs_legotext : ss_basetext {
         return null;
     }
     
+    method initshort() {
+        this.initfull();
+        return null;
+    }
+    
     method cleanupfull() {
+        if (this.onscreen) {
+            this.hide();
+        }
+        this.remove();
         this.font = null;
         this.text = null;
         return null;
     }
     
-    method initshort() {
-        if (this.newfont == 1) {
-            this.font = sctilefont::create(this.fontname);
-        }
-        else {
-            this.font = globalclass.getgamefont(this.fontname);
-        }
-        this.text = sctextobject::create(this.x1, this.y1, this.z, this.font, this.string);
-        sctextobject::setscale(this.text, this.x_scale, this.y_scale);
-        sctextobject::setjustification(this.text, this.horizontal | this.verticle);
-        sctextobject::enablejustification(this.text, 1);
+    method cleanupshort() {
+        this.cleanupfulll();
         return null;
     }
     

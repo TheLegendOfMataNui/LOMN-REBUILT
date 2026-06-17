@@ -1,0 +1,4 @@
+function setupunlocksscreen() {
+    screenlist.addscreen(new gs_unlocks_screen(), 44);
+    return null;
+}

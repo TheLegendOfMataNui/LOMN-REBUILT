@@ -23,8 +23,6 @@ class gsglossary {
         var var4;
         var var5;
         var var6;
-        var var7;
-        var var8;
         this.active = 1;
         this.background = new ss_basesprite("Root/data/art/Glossary/Glossary_Background", 0, 0, 0, 640, 480);
         this.background.initfull();
@@ -169,12 +167,10 @@ class gsglossary {
         this.lastscreen = 30;
         this.desc = [ new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "", 200, var3 + 10, 0, 1.0, 0, 4, 0, 1), 
             new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "", 200, var4 + 10, 0, 1.0 , 0, 4, 0, 1) ];
-        var8 = 0;
-        while ((this.desc.__length - 1) >= var8) {
-            this.desc[var8].initfull();
-            this.desc[var8].add();
-            this.desc[var8].show();
-            var8 = var8 + 1;
+        foreach (var desc : this.desc) {
+            desc.initfull();
+            desc.add();
+            desc.show();
         }
         this.showcur();
         return null;
@@ -206,8 +202,6 @@ class gsglossary {
         if (this.desc != null) {
             var1 = 0;
             while ((this.desc.__length - 1) >= var1) {
-                this.desc[var1].hide();
-                this.desc[var1].remove();
                 this.desc[var1].cleanupfull();
                 this.desc[var1] = null;
                 var1 = var1 + 1;
@@ -299,7 +293,7 @@ class gsglossary {
             this.hidecur();
             this.curscreen = this.curscreen + 1;
             this.showcur();
-            gcstaticsoundsptrarray::playtablesound(1074);
+            //gcstaticsoundsptrarray::playtablesound(1074);
         }
         return null;
     }
@@ -309,7 +303,7 @@ class gsglossary {
             this.hidecur();
             this.curscreen = this.curscreen - 1;
             this.showcur();
-            gcstaticsoundsptrarray::playtablesound(1073);
+            //gcstaticsoundsptrarray::playtablesound(1073);
         }
         else {
             this.back();

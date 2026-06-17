@@ -46,46 +46,30 @@ class ss_shoefitterselecteddisplay {
     }
     
     method cleanupfull() {
-        if (this.animationname.onscreen) {
-            this.animationname.hide();
-            this.animationname.remove();
+        if (this.animationname.text != null) {
+            this.animationname.cleanupfull();
         }
-        if (this.animationnumber.onscreen) {
-            this.animationnumber.hide();
-            this.animationnumber.remove();
+        if (this.animationnumber.text != null) {
+            this.animationnumber.cleanupfull();
         }
-        if (this.selectedlabel.onscreen) {
-            this.selectedlabel.hide();
-            this.selectedlabel.remove();
+        if (this.selectedlabel.text != null) {
+            this.selectedlabel.cleanupfull();
         }
-        if (this.selecteditem.onscreen) {
-            this.selecteditem.hide();
-            this.selecteditem.remove();
+        if (this.selecteditem.text != null) {
+            this.selecteditem.cleanupfull();
         }
-        if (this.startlabel.onscreen) {
-            this.startlabel.hide();
-            this.startlabel.remove();
+        if (this.startlabel.text != null) {
+            this.startlabel.cleanupfull();
         }
-        if (this.endlabel.onscreen) {
-            this.endlabel.hide();
-            this.endlabel.remove();
+        if (this.endlabel.text != null) {
+            this.endlabel.cleanupfull();
         }
-        if (this.startnumber.onscreen) {
-            this.startnumber.hide();
-            this.startnumber.remove();
+        if (this.startnumber.text != null) {
+            this.startnumber.cleanupfull();
         }
-        if (this.endnumber.onscreen) {
-            this.endnumber.hide();
-            this.endnumber.remove();
+        if (this.endnumber.text != null) {
+            this.endnumber.cleanupfull();
         }
-        this.animationname.cleanupfull();
-        this.animationnumber.cleanupfull();
-        this.selectedlabel.cleanupfull();
-        this.selecteditem.cleanupfull();
-        this.startlabel.cleanupfull();
-        this.endlabel.cleanupfull();
-        this.startnumber.cleanupfull();
-        this.endnumber.cleanupfull();
         return null;
     }
     

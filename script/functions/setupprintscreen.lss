@@ -1,6 +1,0 @@
-function setupprintscreen() {
-    var var1;
-    var1 = new gs_lego_printscreen();
-    screenlist.addscreen(var1, 44);
-    return null;
-}

@@ -15,12 +15,12 @@ class ss_shoefitterkeyboardclass : gs_legotext {
     }
     
     method ss_shoefitterkeyboardcleanupfull() {
-        if (this.onscreen) {
-            this.setstring("");
-            this.hide();
-            this.remove();
+        if (this.text != null) {
+            if (this.onscreen) {
+                this.setstring("");
+            }
+            this.cleanupfull();
         }
-        this.cleanupfull();
         return null;
     }
     

@@ -19,7 +19,7 @@ class lego_elementcontroller {
     method cleanupfull() {
         var var1;
         var var2;
-        if (!(this.elements == null)) {
+        if (this.elements != null) {
             var1 = this.elements.__length - 1;
             var2 = 0;
             while (var1 >= var2) {
@@ -40,7 +40,7 @@ class lego_elementcontroller {
     
     method cleanupshort() {
         var var1;
-        if (!(this.elements == null)) {
+        if (this.elements != null) {
             var1 = 0;
             while ((this.elements.__length - 1) >= var1) {
                 this.elements[var1].setselectable(0);
@@ -93,7 +93,7 @@ class lego_elementcontroller {
     }
     
     method getdrainrate() {
-        if (!(this.currentelement == null)) {
+        if (this.currentelement != null) {
             return this.elements[this.currentidx].powerdrainrate;
         }
         else {
@@ -119,7 +119,7 @@ class lego_elementcontroller {
         var var1;
         var var2;
         var1 = 0;
-        if (!(param1 == null) && !(this.elements == null)) {
+        if ((param1 != null) && (this.elements != null)) {
             var2 = 0;
             while ((this.elements.__length - 1) >= var2) {
                 if ((this.elements[var2].elementname == param1) && (this.elements[var2].selectable == 1)) {
@@ -133,7 +133,7 @@ class lego_elementcontroller {
     
     method setselectable(param1, param2) {
         var var1;
-        if (!(this.elements == null)) {
+        if (this.elements != null) {
             if (param2 == null) {
                 param2 = 1;
             }
@@ -154,7 +154,7 @@ class lego_elementcontroller {
     method changeelement(param1) {
         var var1;
         globalclass.hud.element.touch();
-        if (!(this.elements == null)) {
+        if (this.elements != null) {
             var1 = 0;
             while ((this.elements.__length - 1) >= var1) {
                 if (this.elements[var1].elementname == param1) {
@@ -183,11 +183,11 @@ class lego_elementcontroller {
     method nextelement(param1) {
         var var1;
         var var2;
-        if (!(this.elements == null)) {
+        if (this.elements != null) {
             if (param1 == null) {
                 var1 = 1;
             }
-            if (!(this.currentidx == null)) {
+            if (this.currentidx != null) {
                 var2 = this.currentidx;
                 do {
                     if (param1 == 1) {
@@ -202,14 +202,14 @@ class lego_elementcontroller {
                             var2 = this.elements.__length - 1;
                         }
                     }
-                } while (!!(this.changeelement(this.elements[var2].elementname) == 0))
+                } while (!this.changeelement(this.elements[var2].elementname) != 0)
             }
         }
         return null;
     }
     
     method activate() {
-        if (!(this.elements == null)) {
+        if (this.elements != null) {
             this.elements[this.currentidx].activate();
             globalclass.hud.element.touch();
         }
@@ -217,7 +217,7 @@ class lego_elementcontroller {
     }
     
     method deactivate() {
-        if (!(this.elements == null)) {
+        if (this.elements != null) {
             if ((this.elements.__length - 1) >= 2) {
                 this.elements[2].deactivate();
             }

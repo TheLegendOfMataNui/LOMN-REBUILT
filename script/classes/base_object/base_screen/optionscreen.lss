@@ -46,13 +46,13 @@ class optionscreen : base_screen {
         var1 = 0;
         while ((this.menustrings.__length - 1) >= var1) {
             this.menustrings[var1].initfull();
-            sctilefont::setcolor(this.menustrings[var1].font, 255, 255, 255, 255);
+            this.menustrings[var1].setcolor(255, 255, 255, 255);
             this.menustrings[var1].add();
             this.menustrings[var1].show();
             var1 = var1 + 1;
         }
         this.activeidx = 0;
-        sctilefont::setcolor(this.menustrings[this.activeidx].font, 255, 255, 0, 255);
+        this.menustrings[this.activeidx].setcolor(255, 255, 0, 255);
         return null;
     }
     
@@ -106,21 +106,21 @@ class optionscreen : base_screen {
         if (param1.event == 2) {
             if (param1.button == 38) {
                 gcstaticsoundsptrarray::playtablesound(1072);
-                sctilefont::setcolor(this.menustrings[this.activeidx].font, 255, 255, 255, 255);
+                this.menustrings[this.activeidx].setcolor(255, 255, 255, 255);
                 this.activeidx = this.activeidx - 1;
                 if (this.activeidx < 0) {
                     this.activeidx = this.menustrings.__length - 1;
                 }
-                sctilefont::setcolor(this.menustrings[this.activeidx].font, 255, 255, 0, 255);
+                this.menustrings[this.activeidx].setcolor(255, 255, 0, 255);
             }
             else if (param1.button == 40) {
                 gcstaticsoundsptrarray::playtablesound(1072);
-                sctilefont::setcolor(this.menustrings[this.activeidx].font, 255, 255, 255, 255);
+                this.menustrings[this.activeidx].setcolor(255, 255, 255, 255);
                 this.activeidx = this.activeidx + 1;
                 if (this.activeidx > (this.menustrings.__length - 1)) {
                     this.activeidx = 0;
                 }
-                sctilefont::setcolor(this.menustrings[this.activeidx].font, 255, 255, 0, 255);
+                this.menustrings[this.activeidx].setcolor(255, 255, 0, 255);
             }
             else if (param1.button == 37) {
                 if (this.activeidx == 0) {

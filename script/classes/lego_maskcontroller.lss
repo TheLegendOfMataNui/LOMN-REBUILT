@@ -309,7 +309,7 @@ class lego_maskcontroller {
                     }
                 }
                 var3 = var3 + 1;
-            } while (!!((this.changemask(this.masks[var2].maskname) == 0) && (var3 < 20)))
+            } while (!(this.changemask(this.masks[var2].maskname) != 0) && (var3 < 20))
         }
         return null;
     }

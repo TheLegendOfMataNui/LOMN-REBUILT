@@ -56,6 +56,7 @@ class unlock_director {
     }
 
     method save() {
+        debug::print("[Unlocks] Saving to unlocks...");
         this.file.saveosiobject(this.unlocks);
     }
 }

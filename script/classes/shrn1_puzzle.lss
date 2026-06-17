@@ -34,11 +34,9 @@ class shrn1_puzzle {
         globalclass.bgmusic.play(1);
         this.mdoors = [ new l1shrn_door("sdr3"), 
             new l1shrn_door("sdr4") ];
-        var1 = 0;
-        while ((this.mdoors.__length - 1) >= var1) {
-            this.mdoors[var1].initfull();
-            this.mdoors[var1].show();
-            var1 = var1 + 1;
+        foreach (var mdoors : this.mdoors) {
+            mdoors.initfull();
+            mdoors.show();
         }
         if (bettersaver::getbooleanvalue(72)) {
             this.mdoors[1].openclose(1.0, 3.0);
@@ -53,12 +51,10 @@ class shrn1_puzzle {
                 new lego_moveableobject("dp05", this.parent.name), 
                 new lego_moveableobject("dp06", this.parent.name), 
                 new lego_moveableobject("dp07", this.parent.name) ];
-            var1 = 0;
-            while ((this.crackparts.__length - 1) >= var1) {
-                this.crackparts[var1].initfull();
-                this.crackparts[var1].setresponse(4, 4, 4);
-                this.crackparts[var1].hide();
-                var1 = var1 + 1;
+            foreach (var crackparts : this.crackparts) {
+                crackparts.initfull();
+                crackparts.setresponse(4, 4, 4);
+                crackparts.hide();
             }
             this.cracktimer = null;
             this.crackdefaults = null;
@@ -132,7 +128,6 @@ class shrn1_puzzle {
         var var1;
         var var2;
         if (this.bossdoortext != null) {
-            this.bossdoortext.remove();
             this.bossdoortext.cleanupfull();
             this.bossdoortext = null;
         }
@@ -265,13 +260,10 @@ class shrn1_puzzle {
     }
     
     method onevent(param1) {
-        var var1;
         var portal_trigger;
         if (this.mdoors != null) {
-            var1 = 0;
-            while ((this.mdoors.__length - 1) >= var1) {
-                this.mdoors[var1].onevent(param1);
-                var1 = var1 + 1;
+            foreach (var mdoors : this.mdoors) {
+                mdoors.onevent(param1);
             }
         }
         if (param1.eventid == 41) {
@@ -283,20 +275,16 @@ class shrn1_puzzle {
         }
         else if (param1.eventid == 17) {
             if (param1.args[0] == scslosifoundation::stringtoidentifier("dp00")) {
-                var1 = 0;
-                while ((this.crackparts.__length - 1) >= var1) {
-                    this.crackparts[var1].fadeout(2.0);
-                    this.crackparts[var1].setbounceeventrepoert(0);
-                    var1 = var1 + 1;
+                foreach (var crackparts : this.crackparts) {
+                    crackparts.fadeout(2.0);
+                    crackparts.setbounceeventrepoert(0);
                 }
             }
         }
         else if (param1.eventid == 35) {
             if ((param1.args[0] == scslosifoundation::stringtoidentifier("dp00")) && (param1.args[1] == 0)) {
-                var1 = 0;
-                while ((this.crackparts.__length - 1) >= var1) {
-                    this.crackparts[var1].hide();
-                    var1 = var1 + 1;
+                foreach (var crackparts : this.crackparts) {
+                    crackparts.hide();
                 }
             }
             if (param1.args[0] == scslosifoundation::stringtoidentifier("mmdr")) {

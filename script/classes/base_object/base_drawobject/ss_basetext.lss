@@ -81,14 +81,17 @@ class ss_basetext : base_drawobject {
     }
     
     method cleanupfull() {
+        if (this.onscreen) {
+            this.hide();
+        }
+        this.remove();
         this.font = null;
         this.text = null;
         return null;
     }
     
     method cleanupshort() {
-        this.font = null;
-        this.text = null;
+        this.cleanupfulll();
         return null;
     }
     
@@ -98,6 +101,8 @@ class ss_basetext : base_drawobject {
     
     method add() {
         this.ident = gchuddirector::addtextobject(this.text);
+        debug::print("Adding text to HUD director with identifier of:");
+        debug::print(this.ident);
         return null;
     }
     
@@ -114,6 +119,13 @@ class ss_basetext : base_drawobject {
     }
     
     method remove() {
+        debug::print("Removing text with identifier of:");
+        if (this.ident != null) {
+            debug::print(__tostring(this.ident));
+        }
+        else {
+            debug::print("IDENT RETURNED NULL, RECHECK CODE YOU MONKEY");
+        }
         gchuddirector::remove(this.ident);
         return null;
     }
@@ -196,6 +208,11 @@ class ss_basetext : base_drawobject {
     
     method settransparency(param1) {
         sctextobject::settransparency(this.text, param1);
+        return null;
+    }
+    
+    method setcolor(red, green, blue, alpha) {
+        sctilefont::setcolor(this.font, red, green, blue, alpha);
         return null;
     }
 }

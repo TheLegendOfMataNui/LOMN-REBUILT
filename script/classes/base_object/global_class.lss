@@ -245,7 +245,6 @@ class global_class : base_object {
         if (this.preloadfonts != null) {
             var var1 = 0;
             while ((this.preloadfonts.__length - 1) >= var1) {
-                this.preloadfonts[var1].remove();
                 this.preloadfonts[var1].cleanupfull();
                 this.preloadfonts[var1] = null;
                 var1 = var1 + 1;

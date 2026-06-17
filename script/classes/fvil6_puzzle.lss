@@ -14,8 +14,6 @@ class fvil6_puzzle {
     }
     
     method initfull() {
-        var var1;
-        var door_text;
         if (gcsaver::finditem(scslosifoundation::stringtoidentifier("levr")) == 0) {
             this.leverpickup = new lego_pickup("levr", 0, 5, "item", 5, 1);
             this.leverpickup.initfull();
@@ -38,14 +36,12 @@ class fvil6_puzzle {
             new lego_moveableobject("hot2"), 
             new lego_moveableobject("hot3"), 
             new lego_moveableobject("hot4") ];
-        var1 = 0;
-        while ((this.hookarray.__length - 1) >= var1) {
-            this.hookarray[var1].initfull();
-            this.hookarray[var1].setmytargetingflags(1);
-            this.hookarray[var1].setresponse(1, 1, 1);
-            this.hookarray[var1].settweakable();
-            var1 = var1 + 1;
-        }
+        foreach (var hookarray : this.hookarray) {
+            hookarray.initfull();
+            hookarray.setmytargetingflags(1);
+            hookarray.setresponse(1, 1, 1);
+            hookarray.settweakable();
+       }
         this.coindoor = new lego_moveableobject("door");
         this.coindoor.initfull();
         if (bettersaver::getbooleanvalue(57) == 0) {
@@ -86,12 +82,10 @@ class fvil6_puzzle {
         }
         globalclass.player.setgrapplinghookdistance(45);
         if (this.coindoortext1 != null) {
-            this.coindoortext1.remove();
             this.coindoortext1.cleanupfull();
             this.coindoortext1 = null;
         }
         if (this.coindoortext2 != null) {
-            this.coindoortext2.remove();
             this.coindoortext2.cleanupfull();
             this.coindoortext2 = null;
         }

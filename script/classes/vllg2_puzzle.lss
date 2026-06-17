@@ -377,12 +377,10 @@ class vllg2_puzzle {
         this.upgradefruit_shown = null;
         this.upgradefruit2_shown = null;
         if (this.coindoortext1 != null) {
-            this.coindoortext1.remove();
             this.coindoortext1.cleanupfull();
             this.coindoortext1 = null;
         }
         if (this.coindoortext2 != null) {
-            this.coindoortext2.remove();
             this.coindoortext2.cleanupfull();
             this.coindoortext2 = null;
         }
