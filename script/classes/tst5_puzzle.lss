@@ -92,21 +92,34 @@ class tst5_puzzle {
     }
 
     method windfly() {     
-        var xtarget = gclegocamera::getforwardx(gcviewport::getcamera(gcgame::getmainview()));
-        var ytarget = gclegocamera::getforwardy(gcviewport::getcamera(gcgame::getmainview()));       
-        var ztarget = gclegocamera::getforwardz(gcviewport::getcamera(gcgame::getmainview()));  
-
-        gccharacter::setvelocity(gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("cnt1")), (90 * xtarget), (90 * ytarget), (90 * ztarget));
+        //Get the active camera reference
+        var cam = gcviewport::getcamera(gcgame::getmainview());
         
-        //Comment out the below code if you want to test proper riding:
+        //Retrieve the raw forward vector components
+        var xtarget = gclegocamera::getforwardx(cam);
+        var ytarget = gclegocamera::getforwardy(cam);       
+        var ztarget = gclegocamera::getforwardz(cam);  
+
+        //Normalize the vector to prevent velocity explosion on the Y-axis
+        var mag_sq = (xtarget * xtarget) + (ytarget * ytarget) + (ztarget * ztarget);
+        var true_length = scslosimath::sqrt(mag_sq);
+        
+        var flight_speed = 90.0;
+        var final_x = (xtarget / true_length) * flight_speed;
+        var final_y = (ytarget / true_length) * flight_speed;
+        var final_z = (ztarget / true_length) * flight_speed;
+
+        //Apply the normalized, constant velocity to Lewa ("cnt1")
+        gccharacter::setvelocity(gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("cnt1")), final_x, final_y, final_z);
+        
+        //Update Nui Rama position and orientation to track the player
         var lewax = gccharacter::getpositionx(gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("cnt1")));
         var leway = gccharacter::getpositiony(gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("cnt1")));
         var lewaz = gccharacter::getpositionz(gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("cnt1")));
         var lewadir = gccharacter::getorientation(gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("cnt1")));
        
-
         if ((gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("crma"))) != null) {
-            gccharacter::setposition(this.buzzyboicontrol, (lewax), (leway +6), lewaz);
+            gccharacter::setposition(this.buzzyboicontrol, lewax, (leway + 6), lewaz);
             gccharacter::setorientation(this.buzzyboicontrol, lewadir);
         }
 
