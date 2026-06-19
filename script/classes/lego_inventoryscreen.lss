@@ -156,15 +156,11 @@ class lego_inventoryscreen {
         this.tokens.hide();
         this.tokens.remove();
         this.tokens.cleanupfull();
-        this.tokentext.hide();
-        this.tokentext.remove();
         this.tokentext.cleanupfull();    
         //Hide Ammo
         this.ammo.hide();
         this.ammo.remove();
         this.ammo.cleanupfull();
-        this.ammotext.hide();
-        this.ammotext.remove();
         this.ammotext.cleanupfull();
         if (globalclass.pause.ispaused == 1) {
             globalclass.pause.show();
