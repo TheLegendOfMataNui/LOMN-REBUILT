@@ -299,6 +299,7 @@ Level 1 - Onua
 • Adjusted platform collision in L1A7 to prevent no-Huna completion 		----		(ShadowDraikana)
 • Adjusted platform fall time in L1A7 and streamlined audio feedback 		----		(ShadowDraikana)
 • Fixed Onua falling very slightly post-Nobua beach cutscene        		----		(ShadowDraikana)
+• Adjusted Vuravura-Nui mudball aim towards player head/center mass         ----		(OndrikB)
 
 Level 2 - Gali
 • Fixed a doorway in VLLG pointing to the wrong room (Nobody saw anything)	----		(ShadowDraikana)
