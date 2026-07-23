@@ -42,7 +42,7 @@ class rockman {
     method cleanupfull() {
         var var1;
         debug::print("starting cleanup for rock boi");
-        if (!(this.rocks == null)) {
+        if (this.rocks != null) {
             var1 = 0;
             while ((this.rocks.__length - 1) >= var1) {
                 this.rocks[var1].cleanupfull();
@@ -56,7 +56,7 @@ class rockman {
         debug::print("current rock cleanup");
         this.areaid = null;
         debug::print("areaid cleaned");
-        if (!(this.rocky == null)) {
+        if (this.rocky != null) {
             gcmodeldirector::remove(1937010290, 0);
             this.rocky = null;
         }

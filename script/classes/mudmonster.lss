@@ -41,34 +41,28 @@ class mudmonster {
     }
     
     method init() {
-        var var1;
         this.projoffsetx = 11;
         this.projoffsety = 12;
         this.projoffsetz = 10;
         this.resetmboulders.initfull();
-        var1 = 0;
-        while ((this.miniboulders.__length - 1) >= var1) {
-            this.miniboulders[var1].init(0.1, 0, 0, 0, 0, 0.8, "bld0", "Root/data/levels/lev1/mdmn", 60);
-            this.miniboulders[var1].setresponse(4, 4, 4);
-            this.miniboulders[var1].setposition(0.0, 0.0, 0.0);
-            this.miniboulders[var1].ignorecollisionswith(1836409945);
-            this.miniboulders[var1].show();
-            this.miniboulders[var1].setbounceeventrepoert(1);
-            var1 = var1 + 1;
-        }
+        foreach (var miniboulders : this.miniboulders) {
+            miniboulders.init(0.1, 0, 0, 0, 0, 0.8, "bld0", "Root/data/levels/lev1/mdmn", 60);
+            miniboulders.setresponse(4, 4, 4);
+            miniboulders.setposition(0.0, 0.0, 0.0);
+            miniboulders.ignorecollisionswith(1836409945);
+            miniboulders.show();
+            miniboulders.setbounceeventrepoert(1);
+        }        
         return null;
     }
     
     method initshort() {
-        var var1;
         this.mudstate = 6;
         this.curmudball = 0;
         this.resetmboulders.reset();
-        var1 = 0;
-        while ((this.miniboulders.__length - 1) >= var1) {
-            this.miniboulders[var1].setposition(0.0, 0.0, 0.0);
-            var1 = var1 + 1;
-        }
+        foreach (var miniboulders : this.miniboulders) {
+            miniboulders.setposition(0.0, 0.0, 0.0);
+        }     
         gcmudboss::setup(this.mudman, 995, 0, 212, -90, 40);
         this.boulderuse = 1;
         return null;
@@ -176,7 +170,6 @@ class mudmonster {
         var var1;
         var var2;
         var var3;
-        var var4;
         var var5;
         var var6;
         var var7;
@@ -187,8 +180,7 @@ class mudmonster {
         var1 = gcmudboss::getmudballx(this.mudman, param1.handle);
         var2 = gcmudboss::getmudbally(this.mudman, param1.handle);
         var3 = gcmudboss::getmudballz(this.mudman, param1.handle);
-        var4 = 0;
-        while ((this.miniboulders.__length - 1) >= var4) {
+        foreach (var miniboulders : this.miniboulders) {
             var5 = globalclass.randnum.getrandomfloat(0.05, 0.3);
             var6 = globalclass.randnum.getrandomfloat(0 - 5.0, 5.0);
             var7 = globalclass.randnum.getrandomfloat(0.0, 5.0);
@@ -196,12 +188,11 @@ class mudmonster {
             var9 = globalclass.randnum.getrandomfloat(var1, var1 + 1.0);
             var10 = globalclass.randnum.getrandomfloat(var2, var2 + 1.0);
             var11 = globalclass.randnum.getrandomfloat(var3, var3 + 1.0);
-            this.miniboulders[var4].setobjscale(var5);
-            this.miniboulders[var4].setposition(var9, var10, var11);
-            this.miniboulders[var4].setalpha(0.9);
-            this.miniboulders[var4].setmoveableflags(1, 0, 0, 0);
-            this.miniboulders[var4].setvelocity(var6, var7, var8);
-            var4 = var4 + 1;
+            miniboulders.setobjscale(var5);
+            miniboulders.setposition(var9, var10, var11);
+            miniboulders.setalpha(0.9);
+            miniboulders.setmoveableflags(1, 0, 0, 0);
+            miniboulders.setvelocity(var6, var7, var8);
             gcstaticsoundsptrarray::playtablesound(1080);
         }
         this.resetmboulders.reset(0);
