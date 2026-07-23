@@ -109,7 +109,7 @@ class tst5_puzzle {
         var final_y = (ytarget / true_length) * flight_speed;
         var final_z = (ztarget / true_length) * flight_speed;
 
-        //Apply the normalized, constant velocity to Lewa ("cnt1")
+        //Apply the normalized, constant velocity to Lewa 
         gccharacter::setvelocity(gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("cnt1")), final_x, final_y, final_z);
         
         //Update Nui Rama position and orientation to track the player

@@ -17,16 +17,16 @@ class mudmonster {
         this.ppuzzle = param1;
         this.mudman = gcmudboss::createmudboss("mudm", 1836409945);
         this.boneindex = gcmudboss::getboneindex(this.mudman, 2063160759);
-        this.mudballs = [ new sprite_projectile("mbb0", "bld0", "Root/data/levels/lev1/mud0", 45, 1, 100, 0, 1), 
-            new sprite_projectile("mbb1", "bld0", "Root/data/levels/lev1/mud0", 45, 1, 100, 0, 1), 
-            new sprite_projectile("mbb2", "bld0", "Root/data/levels/lev1/mud0", 45, 1, 100, 0, 1), 
-            new sprite_projectile("mbb3", "bld0", "Root/data/levels/lev1/mud0", 45, 1, 100, 0, 1), 
-            new sprite_projectile("mbb4", "bld0", "Root/data/levels/lev1/mud0", 45, 1, 100, 0, 1), 
-            new sprite_projectile("mbb5", "bld0", "Root/data/levels/lev1/mud0", 45, 1, 100, 0, 1), 
-            new sprite_projectile("mbb6", "bld0", "Root/data/levels/lev1/mud0", 45, 1, 100, 0, 1), 
-            new sprite_projectile("mbb7", "bld0", "Root/data/levels/lev1/mud0", 45, 1, 100, 0, 1), 
-            new sprite_projectile("mbb8", "bld0", "Root/data/levels/lev1/mud0", 45, 1, 100, 0, 1), 
-            new sprite_projectile("mbb9", "bld0", "Root/data/levels/lev1/mud0", 45, 1, 100, 0, 1) ];
+        this.mudballs = [ new sprite_projectile("mbb0", "bld0", "Root/data/levels/lev1/mudm", 45, 1, 100, 0, 1), 
+            new sprite_projectile("mbb1", "bld0", "Root/data/levels/lev1/mudm", 45, 1, 100, 0, 1), 
+            new sprite_projectile("mbb2", "bld0", "Root/data/levels/lev1/mudm", 45, 1, 100, 0, 1), 
+            new sprite_projectile("mbb3", "bld0", "Root/data/levels/lev1/mudm", 45, 1, 100, 0, 1), 
+            new sprite_projectile("mbb4", "bld0", "Root/data/levels/lev1/mudm", 45, 1, 100, 0, 1), 
+            new sprite_projectile("mbb5", "bld0", "Root/data/levels/lev1/mudm", 45, 1, 100, 0, 1), 
+            new sprite_projectile("mbb6", "bld0", "Root/data/levels/lev1/mudm", 45, 1, 100, 0, 1), 
+            new sprite_projectile("mbb7", "bld0", "Root/data/levels/lev1/mudm", 45, 1, 100, 0, 1), 
+            new sprite_projectile("mbb8", "bld0", "Root/data/levels/lev1/mudm", 45, 1, 100, 0, 1), 
+            new sprite_projectile("mbb9", "bld0", "Root/data/levels/lev1/mudm", 45, 1, 100, 0, 1) ];
         this.miniboulders = [ new lego_projectileobject("smb1", this.ppuzzle.parent.name), 
             new lego_projectileobject("smb2", this.ppuzzle.parent.name), 
             new lego_projectileobject("smb3", this.ppuzzle.parent.name), 
@@ -48,7 +48,7 @@ class mudmonster {
         this.resetmboulders.initfull();
         var1 = 0;
         while ((this.miniboulders.__length - 1) >= var1) {
-            this.miniboulders[var1].init(0.1, 0, 0, 0, 0, 0.8, "bld0", "Root/data/levels/lev1/mud0", 60);
+            this.miniboulders[var1].init(0.1, 0, 0, 0, 0, 0.8, "bld0", "Root/data/levels/lev1/mudm", 60);
             this.miniboulders[var1].setresponse(4, 4, 4);
             this.miniboulders[var1].setposition(0.0, 0.0, 0.0);
             this.miniboulders[var1].ignorecollisionswith(1836409945);
@@ -77,7 +77,7 @@ class mudmonster {
     method cleanupfull() {
         var var1;
         debug::print("Calling cleanup full for the mudmonster");
-        if (!(this.miniboulders == null)) {
+        if (this.miniboulders != null) {
             var1 = 0;
             while ((this.miniboulders.__length - 1) >= var1) {
                 this.miniboulders[var1].cleanupfull();
@@ -87,7 +87,7 @@ class mudmonster {
             this.miniboulders = null;
         }
         debug::print("Cleaning up miniboulders");
-        if (!(this.mudballs == null)) {
+        if (this.mudballs != null) {
             var1 = 0;
             while ((this.mudballs.__length - 1) >= var1) {
                 this.mudballs[var1].cleanupfull();
@@ -97,7 +97,7 @@ class mudmonster {
             this.mudballs = null;
         }
         debug::print("Cleaning up mudballs");
-        if (!(this.mudman == null)) {
+        if (this.mudman != null) {
             gcmodeldirector::remove(1836409945, 0);
             this.mudman = null;
         }
@@ -105,7 +105,7 @@ class mudmonster {
         this.curmudball = null;
         this.mudstate = null;
         this.boulderuse = null;
-        if (!(this.resetmboulders == null)) {
+        if (this.resetmboulders != null) {
             this.resetmboulders.cleanupfull();
             this.resetmboulders = null;
         }
