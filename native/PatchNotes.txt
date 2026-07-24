@@ -300,6 +300,7 @@ Level 1 - Onua
 • Adjusted platform fall time in L1A7 and streamlined audio feedback 		----		(ShadowDraikana)
 • Fixed Onua falling very slightly post-Nobua beach cutscene        		----		(ShadowDraikana)
 • Adjusted Vuravura-Nui mudball aim towards player head/center mass         ----		(OndrikB)
+• QOL: Dying to Vuravura-Nui no longer force-replays the boss intro         ----		(ShadowDraikana)
 
 Level 2 - Gali
 • Fixed a doorway in VLLG pointing to the wrong room (Nobody saw anything)	----		(ShadowDraikana)
