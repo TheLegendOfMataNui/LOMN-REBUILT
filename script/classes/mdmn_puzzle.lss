@@ -244,6 +244,7 @@ class mdmn_puzzle {
         }
         else if (param1.eventid == 43) {
             if (gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("mudY"), 0) != null) {
+                gccharacter::switchmask(gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("mudY"), 0), 1061109567);
                 this.mudmonster.mudstate = 10;
                 this.mudtimer = 0;
                 var2 = gcmudboss::getpositionx(this.mudmonster.mudman);
@@ -258,9 +259,8 @@ class mdmn_puzzle {
             }
         }
         else if (param1.eventid == 27) {
-            if (this.level_end == 0) {
+            if ((this.level_end == 0) && (this.mudmonster.mudstate != 10)) {
                 this.resetarea();
-                debug::print("RESET MUDMAN");
             }
         }
         else if (param1.eventid == 35) {
