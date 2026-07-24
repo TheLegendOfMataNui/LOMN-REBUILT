@@ -2,7 +2,6 @@ class mdmn_puzzle {
     property parent;
     property mudmonster;
     property mudtimer;
-    property mudpos;
     property mudhits;
     property attacking;
     property reacting;
@@ -14,6 +13,7 @@ class mdmn_puzzle {
     property stone;
     property waterfall;
     property level_end;
+    property mudmanreset;
     
     method mdmn_puzzle(param1) {
         this.parent = param1;
@@ -38,7 +38,11 @@ class mdmn_puzzle {
         this.stone = new lego_pickup("ston", 0, 4, "item", 11, 0);
         this.stone.initfull();
         this.stone.obj.setpos(0, 0, 0);
-        this.initshort();
+        this.mudtimer = 0;
+        this.mudhits = 0;
+        this.attacking = 0;
+        this.reacting = 0;
+        this.setupstrings();
         this.waterfall = new lego_moveableobject("mwf0", "mdmn");
         this.waterfall.initfull();
         if (bettersaver::getbooleanvalue(79) == 0) {
@@ -50,20 +54,10 @@ class mdmn_puzzle {
             this.mudmonster.mudstate = 10;
         }
         this.level_end = 0;
+        this.mudmanreset = 0;
         return null;
     }
-    
-    method initshort() {
-        this.mudmonster.initshort();
-        this.setupstrings();
-        this.mudpos = 1;
-        this.mudhits = 0;
-        this.mudtimer = 0;
-        this.attacking = 0;
-        this.reacting = 0;
-        return null;
-    }
-    
+
     method exit() {
         this.parent = null;
         return null;
@@ -76,7 +70,6 @@ class mdmn_puzzle {
             this.mudmonster = null;
         }
         this.mudtimer = null;
-        this.mudpos = null;
         this.mudhits = null;
         this.attacking = null;
         this.reacting = null;
@@ -93,6 +86,7 @@ class mdmn_puzzle {
             this.waterfall = null;
         }
         this.level_end = null;
+        this.mudmanreset = null;
         return null;
     }
     
@@ -135,6 +129,7 @@ class mdmn_puzzle {
         var var4;
         var var5;
         this.mudtimer = this.mudtimer + param1.deltatime;
+        //If mudstate returns 6, start timer and begin intro
         if (this.mudmonster.mudstate == 6) {
             if (this.mudtimer > 3) {
                 globalclass.bgmusic.play(1);
@@ -154,7 +149,9 @@ class mdmn_puzzle {
                 this.mudtimer = 0;
                 this.mudmonster.mudstate = 11;
                 gcmudboss::setdoprocess(this.mudmonster.mudman, 1);
-                this.cleanupstrings();
+                if (this.mudmanreset == 0) {
+                    this.cleanupstrings();
+                }
                 debug::print("SET CAM NORMAL");
             }
         }
@@ -284,8 +281,8 @@ class mdmn_puzzle {
     }
     
     method resetarea() {
-        this.initshort();
-        gcmudboss::reset(this.mudmonster.mudman, 995, 0, 212, -90);
+        this.mudmonster.reset();
+        this.mudmanreset = 1;
         return null;
     }
     

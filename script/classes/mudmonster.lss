@@ -15,8 +15,13 @@ class mudmonster {
     
     method mudmonster(param1) {
         this.ppuzzle = param1;
+        return null;
+    }
+    
+    method init() {
         this.mudman = gcmudboss::createmudboss("mudm", 1836409945);
         this.boneindex = gcmudboss::getboneindex(this.mudman, 2063160759);
+        gcmudboss::setup(this.mudman, 995, 0, 212, -90, 40);
         this.mudballs = [ new sprite_projectile("mbb0", "bld0", "Root/data/levels/lev1/mdmn", 45, 1, 100, 0, 1), 
             new sprite_projectile("mbb1", "bld0", "Root/data/levels/lev1/mdmn", 45, 1, 100, 0, 1), 
             new sprite_projectile("mbb2", "bld0", "Root/data/levels/lev1/mdmn", 45, 1, 100, 0, 1), 
@@ -36,14 +41,6 @@ class mudmonster {
             new lego_projectileobject("smb7", this.ppuzzle.parent.name), 
             new lego_projectileobject("smb8", this.ppuzzle.parent.name) ];
         this.resetmboulders = new lego_timer("mbt9", 5.1, 0);
-        this.shakeonce = 1;
-        return null;
-    }
-    
-    method init() {
-        this.projoffsetx = 11;
-        this.projoffsety = 12;
-        this.projoffsetz = 10;
         this.resetmboulders.initfull();
         foreach (var miniboulders : this.miniboulders) {
             miniboulders.init(0.1, 0, 0, 0, 0, 0.8, "bld0", "Root/data/levels/lev1/mdmn", 60);
@@ -53,17 +50,28 @@ class mudmonster {
             miniboulders.show();
             miniboulders.setbounceeventrepoert(1);
         }        
+        this.shakeonce = 1;
+        this.projoffsetx = 11;
+        this.projoffsety = 12;
+        this.projoffsetz = 10;
+        this.mudstate = 6;
+        this.curmudball = 0;
+        this.boulderuse = 1;
         return null;
     }
     
-    method initshort() {
-        this.mudstate = 6;
+    method reset() {
+        debug::print("Calling reset");
+        gcmudboss::reset(this.mudman, 995, 0, 212, -90);
+        gcmudboss::morph(this.mudman, 3, 2.0);
+        gccharacter::setsplitanimation(gcmodeldirector::getcharacter(1836409945), 1831874864, -1);
+        gcmodeldirector::show(1836409945, 1836409945);
+        this.mudstate = 5;
         this.curmudball = 0;
         this.resetmboulders.reset();
         foreach (var miniboulders : this.miniboulders) {
             miniboulders.setposition(0.0, 0.0, 0.0);
         }     
-        gcmudboss::setup(this.mudman, 995, 0, 212, -90, 40);
         this.boulderuse = 1;
         return null;
     }

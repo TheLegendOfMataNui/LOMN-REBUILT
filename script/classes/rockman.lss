@@ -34,11 +34,6 @@ class rockman {
         return null;
     }
     
-    method initshort() {
-        this.initfull();
-        return null;
-    }
-    
     method cleanupfull() {
         var var1;
         debug::print("starting cleanup for rock boi");
