@@ -130,8 +130,8 @@ class playmenuoption {
     }
     
     method check(cursor_x, cursor_y) {        
-        //cursor_x = cursor_x * screenratio;
-        //cursor_y = cursor_y * screenyratio;
+        cursor_x = cursor_x * screenratio;
+        cursor_y = cursor_y * screenyratio;
         if ((cursor_x > this.playtext.x1) && (cursor_x < (this.comptext.x1 + (10 * screenratio))) && (cursor_y > this.playtext.y1) && (cursor_y < (this.playtext.y1 + (16 * screenyratio)))) {
             if (this.lit == 0) {
                 this.playtext.setcolor(255, 255, 0, 255);

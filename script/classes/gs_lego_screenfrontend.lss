@@ -855,15 +855,13 @@ class gs_lego_screenfrontend {
     }
     
     method addyaw() {
-        var var1;
+        var rotate_eval = scslosimath::abs(this.rotateval);
         if (this.rotatedir == 1) {
-            var1 = scslosimath::abs(this.rotateval);
-            globalclass.level.cam.addyaw(0.5 * ((75 - var1) / 75));
+            globalclass.level.cam.addyaw(0.5 * ((75 - rotate_eval) / 75));
             this.rotateval = this.rotateval + 0.5;
         }
         else {
-            var1 = scslosimath::abs(this.rotateval);
-            globalclass.level.cam.addyaw(0 - (0.5 * ((75 - var1) / 75)));
+            globalclass.level.cam.addyaw(0 - (0.5 * ((75 - rotate_eval) / 75)));
             this.rotateval = this.rotateval - 0.5;
         }
         if (this.rotateval > 75) {
@@ -1136,8 +1134,7 @@ class gs_lego_screenfrontend {
         if (this.menuactive == 1) {
             if ((this.curscreen == -1) || (this.curscreen == 0) || (this.curscreen == 6) || (this.curscreen == 3)) {
                 var1 = param1[param2];
-                //if ((this.mousex > (this.activemenu[param2].x1 / screenratio)) && (this.mousex < ((this.activemenu[param2].x1 / screenratio) + (this.activemenu[param2].getwidth() / screenratio) + 11))) {
-                if ((this.mousex > (this.activemenu[param2].x1 / screenyratio)) && (this.mousex < ((this.activemenu[param2].x1 / screenyratio) + (this.activemenu[param2].getwidth() / screenyratio) + 11))) {
+                if ((this.mousex > (this.activemenu[param2].x1 / screenratio)) && (this.mousex < ((this.activemenu[param2].x1 / screenratio) + (this.activemenu[param2].getwidth() / screenratio) + 11))) {
                     if ((this.mousey > (this.activemenu[param2].y1 / screenyratio) - 6) && (this.mousey < ((this.activemenu[param2].y1 / screenyratio) + (24)))) {
                         if (((this.activemenu.__length - 1) + 1) > param2) {
                             if (this.activemenu[param2].getactive() == 0) {

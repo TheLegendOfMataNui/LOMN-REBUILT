@@ -46,10 +46,10 @@ class spiderfight_class {
         else {
             this.showintro = 1;
             bosstext = gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 0);
-            this.desctext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", bosstext, screenx * 0.5, screeny - 130, 0, 1, 256, 0, 0);
+            this.desctext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", bosstext, 320, 350, 0, 1, 256, 0, 0);
             this.desctext.initfull();
             bosstext = gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 1);
-            this.howtotext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", bosstext, screenx * 0.5, (screeny - 100) + 20, 0, 1, 256, 0, 0);
+            this.howtotext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", bosstext, 320, 380 + 20, 0, 1, 256, 0, 0);
             this.howtotext.initfull();
         }
         if (bettersaver::getbooleanvalue(74)) {

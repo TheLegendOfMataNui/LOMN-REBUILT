@@ -42,12 +42,13 @@ class mdmn_puzzle {
         this.mudhits = 0;
         this.attacking = 0;
         this.reacting = 0;
-        this.setupstrings();
         this.waterfall = new lego_moveableobject("mwf0", "mdmn");
         this.waterfall.initfull();
         if (bettersaver::getbooleanvalue(79) == 0) {
             this.waterfall.show();
             this.waterfall.setalpha(0.7);
+            this.titletext1 = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", gcareadirector::getscriptstring(1651471219, 3, 0), 320, 400, 0, 2.0, 256, 0, 0);
+            this.titletext2 = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", gcareadirector::getscriptstring(1651471219, 3, 1), 320, 420, 0, 2.0, 256, 0, 0);
         }
         else {
             this.waterfall.hide();
@@ -87,20 +88,6 @@ class mdmn_puzzle {
         }
         this.level_end = null;
         this.mudmanreset = null;
-        return null;
-    }
-    
-    method setupstrings() {
-        var var1;
-        var var2;
-        var var3;
-        var var4;
-        var1 = gcareadirector::getscriptstring(1651471219, 3, 0);
-        var2 = gcareadirector::getscriptstring(1651471219, 3, 1);
-        var3 = (screeny - 100) + 20;
-        var4 = (screeny - 100) + 40;
-        this.titletext1 = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", var1, screenx * 0.5, var3, 0, 2.0, 256, 0, 0);
-        this.titletext2 = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", var2, screenx * 0.5, var4, 0, 2.0, 256, 0, 0);
         return null;
     }
     

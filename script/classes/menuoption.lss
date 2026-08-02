@@ -130,8 +130,8 @@ class menuoption {
     }
     
     method check(cursor_x, cursor_y) {        
-        //cursor_x = cursor_x * screenratio;
-        //cursor_y = cursor_y * screenyratio;
+        cursor_x = cursor_x * screenratio;
+        cursor_y = cursor_y * screenyratio;
         if ((this.type == 0) || (this.type == null)) {
             if (this.lefttext != null) {
                 if ((cursor_x > this.lefttext.x1) && (cursor_x < (this.lefttext.x1 + (this.lefttext.getwidth() + (10 * screenratio)))) && (cursor_y > (this.lefttext.y1 - 2)) && (cursor_y < (this.lefttext.y1 + (20 * screenyratio)))) {

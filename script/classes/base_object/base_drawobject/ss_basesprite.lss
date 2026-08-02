@@ -2,9 +2,82 @@ class ss_basesprite : base_drawobject {
     property filename;
     property sprite;
     property handle;
+    property rawScaleFactor;
+    property roundedScaleFactor;
+    property xAdjustment;
+    property yAdjustment;
+    property leftBool;
+    property rightBool;
+    property topBool;
+    property bottomBool;
+
     
     method ss_basesprite(file_path, leftSide, topSide, z_depth, rightSide, bottomSide, useStaticCoord, alpha) {
         this.filename = file_path;
+        debug::print("INITIAL COORDS");
+                    debug::print(leftSide);
+                    debug::print(rightSide);
+                    debug::print(topSide);
+                    debug::print(bottomSide);
+        //Check screen ratios to determine if screen is 4:3, wider than tall, or taller than wide
+        //
+        //If ratio is equal to 1.333333, can use screenx OR screeny to calc rawScaleFactor
+        //Close enough to equal, we take the absolute of the division here and subtract the expected value from it to compare with
+        if (scslosimath::abs((screenx / screeny) - 1.333333) < 0.0001) {
+            this.rawScaleFactor = screenratio;
+        }
+        //If ratio is less than 1.333333, is taller than wide, use screeny to calc rawScaleFactor
+        else if ((screenx / screeny) < 1.333333) {
+            this.rawScaleFactor = screenyratio;
+        }
+        //If ratio is greater than 1.333333, is wider than tall, use screenx to calc rawScaleFactor
+        else if ((screenx / screeny) > 1.333333) {
+            this.rawScaleFactor = screenratio;
+        }
+        //If the scaleFactor returns a value less than 1, we set it to 1 for safety
+        if (this.rawScaleFactor < 1) {
+            this.rawScaleFactor = 1;
+        }
+
+        //Making sure we have a roundedScaleFactor which is the rawScaleFactor as a rounded whole number
+        debug::print("SCALE FACTORS INCOMING!!!!!!");
+        __tostring(this.rawScaleFactor);
+        debug::print((this.rawScaleFactor));
+        this.roundedScaleFactor = scslosimath::round(this.rawScaleFactor);
+        __tostring(this.roundedScaleFactor);
+        debug::print((this.roundedsScaleFactor));
+
+        //Calculate the x and y adjustments respectively using the screen x and screen y and subtracting their respective default resolutions
+        this.xAdjustment = (screenx - 640);
+        this.yAdjustment = (screeny - 480);
+
+        //Set up bool properties
+        this.leftBool = 0;
+        this.rightBool = 0;
+        this.topBool = 0;
+        this.bottomBool = 0;
+
+        //x1 : 0- 30, x2: 610 - 640, y1 : 0 - 30, y2: 450 - 480
+        //Left aligned check
+        if (leftSide <= 30) {
+            this.leftBool = 1;
+        }
+        //Right aligned check
+        if (rightSide >= 610) {
+            this.rightBool = 1;
+        }
+        //Top aligned check
+        if (topSide <= 30) {
+            this.topBool = 1;
+        }
+        //Bottom aligned check
+        if (bottomSide >= 450) {
+            this.bottomBool = 1;
+        }
+
+        //store the sum of the bools
+        var overlapCheck = (this.leftBool + this.rightBool + this.topBool + this.bottomBool);
+
         //Ensuring this is a bool 0 or 1
         if (useStaticCoord != null) {
             if (useStaticCoord >= 1) {
@@ -14,12 +87,149 @@ class ss_basesprite : base_drawobject {
         else {
             useStaticCoord = 0;
         }
+
+        //
+        if (overlapCheck == 0) {
+            debug::print("overlapCheck fired: 0");
+            if (useStaticCoord == 0) {
+                //
+                this.x2 = this.x2 * this.rawScaleFactor;
+                this.y2 = this.y2 * this.rawScaleFactor;
+
+                this.x1 = this.x1 * this.rawScaleFactor;
+                this.x2 = this.x2 * this.rawScaleFactor;
+                this.y2 = this.y2 * this.rawScaleFactor;
+                this.y2 = this.y2 * this.rawScaleFactor;
+                debug::print("NO STATIC COORDS");
+               
+            }
+            //useStaticCoord returned 1, multiply coordinates by appropriate screenratios
+            else {
+                if (this.rawScaleFactor == screenratio) {
+                    debug::print("STATIC OBJECTS SCALING FIRING: WIDE");
+                    debug::print(screenratio);
+                    debug::print(leftSide);
+                    this.x1 = leftSide * screenratio;
+                    debug::print(this.x1);
+                    debug::print(rightSide);
+                    this.x2 = rightSide * screenratio;
+                    debug::print(this.x2);
+                    debug::print(topSide);
+                    this.y1 = topSide * screenratio;
+                    debug::print(this.y1);
+                    debug::print(bottomSide);
+                    this.y2 = bottomSide * screenratio;
+                    debug::print(this.y2);
+                }
+                else if (this.rawScaleFactor == screenyratio) {
+                    debug::print("STATIC OBJECTS SCALING FIRING: TALL");
+                    this.x1 = leftSide * screenyratio;
+                    this.x2 = rightSide * screenyratio;
+                    this.y1 = topSide * screenyratio;
+                    this.y2 = bottomSide * screenyratio;
+
+                }
+            }
+        }
+        else if (overlapCheck == 1) {
+            debug::print("overlapCheck fired: 1");
+            if (this.leftBool == 1) {
+                //Perform alignment
+                this.x1 = leftSide; 
+                this.x2 = rightSide; 
+                this.y1 = topSide + this.yAdjustment;
+                this.y2 = bottomSide + this.yAdjustment;
+
+                //Scale coordinates
+                this.x2 = this.x2 * this.rawScaleFactor;
+                this.y1 = this.y1 * this.rawScaleFactor;
+            }
+            else if (this.rightBool == 1) {
+                //Perform alignment
+                this.x1 = leftSide + this.xAdjustment; 
+                this.x2 = rightSide + this.xAdjustment; 
+                this.y1 = topSide + this.yAdjustment;
+                this.y2 = bottomSide + this.yAdjustment;
+
+                //Scale coordinates
+                this.x1 = this.x1 * this.rawScaleFactor;
+                this.y1 = this.y1 * this.rawScaleFactor;
+
+            }
+            else if (this.topBool == 1) {
+                //Perform alignment
+                this.x1 = leftSide + this.xAdjustment; 
+                this.x2 = rightSide + this.xAdjustment; 
+                this.y1 = topSide + this.yAdjustment;
+                this.y2 = bottomSide + this.yAdjustment;
+
+                //Scale coordinates
+                this.x1 = this.x1 / (this.rawScaleFactor / 2);
+                this.x2 = this.x2 * (this.rawScaleFactor * 2);
+                this.y1 = this.y1 / this.rawScaleFactor;
+ 
+            }
+            else if (this.bottomBool == 1) {
+                //Perform alignment
+                this.x1 = leftSide + this.xAdjustment; 
+                this.x2 = rightSide + this.xAdjustment; 
+                this.y1 = topSide;
+                this.y2 = bottomSide;
+
+                //Scale coordinates
+                this.x1 = this.x1 / (this.rawScaleFactor / 2);
+                this.x2 = this.x2 * (this.rawScaleFactor * 2);
+                this.y2 = this.y2 * this.rawScaleFactor;
+            }
+        }
+        else if (overlapCheck == 2) {
+            debug::print("overlapCheck fired: 2");
+            if ((this.leftBool == 1) && (this.topBool == 1)) {
+                //Perform alignment
+                this.x1 = leftSide; 
+                this.x2 = rightSide; 
+                this.y1 = topSide + this.yAdjustment;
+                this.y2 = bottomSide + this.yAdjustment;
+            }
+            else if ((this.rightBool == 1) && (this.topBool == 1)) {
+                //Perform alignment
+                this.x1 = leftSide + this.xAdjustment; 
+                this.x2 = rightSide + this.xAdjustment; 
+                this.y1 = topSide + this.yAdjustment;
+                this.y2 = bottomSide + this.yAdjustment;
+            }
+            else if ((this.leftBool == 1) && (this.bottomBool == 1)) {
+                //Perform alignment
+                this.x1 = leftSide; 
+                this.x2 = rightSide; 
+                this.y1 = topSide;
+                this.y2 = bottomSide;
+            }
+            else if ((this.rightBool == 1) && (this.bottomBool == 1)) {
+                //Perform alignment
+                this.x1 = leftSide + this.xAdjustment; 
+                this.x2 = rightSide + this.xAdjustment; 
+                this.y1 = topSide;
+                this.y2 = bottomSide;
+            }
+
+        }
+        else if (overlapCheck == 3) {
+            debug::print("overlapCheck returned 3 for some reason, please check your sprite");
+        }
+        else if (overlapCheck == 4) {
+            debug::print("overlapCheck fired: 4");
+
+        }
+
+
+
         if (leftSide != null) {
             if (useStaticCoord == 0) {
-                this.x1 = leftSide * screenratio;
+                this.x1 = leftSide; //* screenratio;
             }
             else {
-                this.x1 = leftSide;
+                //this.x1 = leftSide;
             }
         }
         else {
@@ -27,27 +237,21 @@ class ss_basesprite : base_drawobject {
         }
         if (topSide != null) {
             if (useStaticCoord == 0) {
-                this.y1 = (topSide * screenyratio);
+                this.y1 = topSide; //* screenyratio);
             }
             else {
-                this.y1 = topSide;
+                //this.y1 = topSide;
             }
         }
         else {
             this.y1 = 0;
         }
-        if (z_depth != null) {
-            this.z = z_depth;
-        }
-        else {
-            this.z = 0;
-        }
         if (rightSide != null) {
             if (useStaticCoord == 0) {
-                this.x2 = this.xOffset2(rightSide);
+                this.x2 = rightSide; //* screenratio;
             }
             else {
-                this.x2 = rightSide;
+                //this.x2 = rightSide;
             }
         }
         else {
@@ -55,14 +259,22 @@ class ss_basesprite : base_drawobject {
         }
         if (bottomSide != null) {
             if (useStaticCoord == 0) {
-                this.y2 = (bottomSide * screenyratio);
+                this.y2 = bottomSide; //* screenyratio);
             }
             else {
-                this.y2 = bottomSide;
+                //this.y2 = bottomSide;
             }
         }
         else {
             this.y2 = 0;
+        }
+
+        //This doesn't even technically function because Saffire forgot z-depth in native
+        if (z_depth != null) {
+            this.z = z_depth;
+        }
+        else {
+            this.z = 0;
         }
         if (alpha != null) {
             this.transval = alpha;
@@ -73,26 +285,16 @@ class ss_basesprite : base_drawobject {
         return null;
     }
     
-    method xOffset(baseOffset) {
-        if (((screenx / screeny) > 1.4) && (baseOffset != 0) ) {
-            var altOffset = (baseOffset + ((screenx - 640) * (screenyratio / 10)));
-            return altOffset;
-        }
-        else {
-            var altOffset = (baseOffset * screenratio);
-            return altOffset;
-        }
-    }
-    method xOffset2(baseOffset) {
-        if (((screenx / screeny) > 1.4) && (baseOffset != 0) ) {
-            var altOffset = (baseOffset + ((screenx - 640) * (screenratio / 100)));
-            return altOffset;
-        }
-        else {
-            var altOffset = (baseOffset * screenratio);
-            return altOffset;
-        }
-    }
+    //method OffsetMath(baseOffset) {
+    //    if (((screenx / screeny) > 1.4) && (baseOffset != 0) ) {
+    //        var altOffset = (baseOffset + ((screenx - 640) * (screenyratio / 10)));
+    //        return altOffset;
+    //    }
+    //    else {
+    //        var altOffset = (baseOffset * screenratio);
+    //        return altOffset;
+    //    }
+    //}
 
     method initfull() {
         this.sprite = gcbigsprite::loadhudsprite(this.x1, this.y1, this.x2, this.y2, this.filename, 0);
@@ -111,6 +313,14 @@ class ss_basesprite : base_drawobject {
         }
         this.sprite = null;
         this.handle = null;
+        this.rawScaleFactor = null;
+        this.roundedScaleFactor = null;
+        this.xAdjustment = null;
+        this.yAdjustment = null;
+        this.leftBool = null;
+        this.rightBool = null;
+        this.topBool = null;
+        this.bottomBool = null;
         return null;
     }
     

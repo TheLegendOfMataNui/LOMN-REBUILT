@@ -29,8 +29,8 @@ class loadmenuoption {
     }
     
     method check(cursor_x, cursor_y) {
-        //cursor_x = cursor_x * screenratio;
-        //cursor_y = cursor_y * screenyratio;
+        cursor_x = cursor_x * screenratio;
+        cursor_y = cursor_y * screenyratio;
         if (this.selectable == 1) {
             if ((cursor_x > (this.text.x1 - (this.text.getwidth() / 2))) && (cursor_x < (this.text.x1 + ((this.text.getwidth() / 2) + (10 * screenratio)))) && (cursor_y > (this.text.y1)) && (cursor_y < (this.text.y1 + (16 * screenyratio)))) {
                 if (this.lit == 0) {

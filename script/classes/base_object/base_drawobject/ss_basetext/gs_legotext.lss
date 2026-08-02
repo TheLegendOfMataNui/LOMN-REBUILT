@@ -54,14 +54,14 @@ class gs_legotext : ss_basetext {
             this.z = 0;
         }
         if (scale != null) {
-            //if ((useStaticCoord == 0) || (useStaticCoord == null)) {
-                this.x_scale = scale * screenyratio;
+            if ((useStaticCoord == 0) || (useStaticCoord == null)) {
+                this.x_scale = scale * screenratio;
                 this.y_scale = scale * screenyratio;
-            //}
-            //else {
-            //    this.x_scale = scale;
-            //    this.y_scale = scale;
-            //}
+            }
+            else {
+                this.x_scale = scale;
+                this.y_scale = scale;
+            }
         }
         else {
             this.x_scale = 1;
