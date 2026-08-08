@@ -402,9 +402,6 @@ class player {
                     gcnolightdirector::hide(var1, var3);
                     gccollisionphysicsgroup::togglepickuponoff(var1, 0);
                     this.addair(this.maxair);
-
-                    //old method for restoring air
-                    //this.actor.replenishair();
                 }
                 if (scslosistringfuncs::find(var2, "am")) {
                     

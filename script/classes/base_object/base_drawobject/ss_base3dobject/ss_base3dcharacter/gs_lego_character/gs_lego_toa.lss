@@ -47,6 +47,7 @@ class gs_lego_toa : gs_lego_character {
         this.toahandle = gcmodeldirector::gettoa();
         this.contid = scslosifoundation::stringtoidentifier("cnt1");
         this.handle = gcmodeldirector::getcharacter(this.contid, this.areaid);
+        this.gepetto = gccharacter::getgepetto(this.handle);
         this.ishookenabled = 0;
         if (this.charname == "onua") {
             globalclass.unlockdirector.unlocks.played_onua = true;
