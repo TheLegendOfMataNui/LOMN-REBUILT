@@ -25,35 +25,35 @@ class hudthingy {
         this.movement = 0;
         this.onscreen = 1;
         this.partsarray = [  ];
-        this.headrotate = new ss_basesprite("Root/data/art/hud/turnhead0024", 10, 20, 0, 74, 84, 1);
+        this.headrotate = new ss_basesprite("Root/data/art/hud/turnhead0024", 10, 20, 0, 74, 84);
         debug::print("creating turnhead mask NOW, overlap bool should be 1?");
         this.partsarray.__append(this.headrotate);
-        this.glowyeyes = [ new ss_basesprite("Root/data/art/hud/greeneyesoff", 10, 20, 0, 74, 84, 1), 
+        this.glowyeyes = [ new ss_basesprite("Root/data/art/hud/greeneyesoff", 10, 20, 0, 74, 84), 
             new ss_basesprite("Root/data/art/hud/greeneyeson", 10, 20, 0, 74, 84, 1) ];
         this.partsarray.__append(this.glowyeyes);
-        this.lifebar = [ new ss_basesprite("Root/data/art/hud/16x16frntend__clr", 72, 36, 0, 88, 52, 1) ];
+        this.lifebar = [ new ss_basesprite("Root/data/art/hud/16x16frntend__clr", 72, 36, 0, 88, 52) ];
         var1 = __toint(3);
         var2 = 0;
         while ((var1 - 1) >= var2) {
-            var3 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 36, 0, 104 + (16 * var2), 52, 1);
+            var3 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 36, 0, 104 + (16 * var2), 52);
             this.lifebar.__append(var3);
             var2 = var2 + 1;
         }
         var4 = this.lifebar.__length - 1;
         debug::print(this.lifebar[var4].x1);
         debug::print("lifebar x1 above");
-        this.lifebar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.lifebar[var4].x1 + 15, this.lifebar[var4].y1, 0, this.lifebar[var4].x2 + 15, this.lifebar[var4].y2, 1));
+        this.lifebar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.lifebar[var4].x1 + 15, this.lifebar[var4].y1, 0, this.lifebar[var4].x2 + 15, this.lifebar[var4].y2));
         this.partsarray.__append(this.lifebar);
         this.airbar = [ new ss_basesprite("Root/data/art/hud/16x16frntend__clr", 72, 50, 0, 88, 66) ];
         var1 = __toint(3);
         var2 = 0;
         while ((var1 - 1) >= var2) {
-            var3 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 50, 0, 104 + (16 * var2), 66, 1);
+            var3 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 50, 0, 104 + (16 * var2), 66);
             this.airbar.__append(var3);
             var2 = var2 + 1;
         }
         var4 = this.airbar.__length - 1;
-        this.airbar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.airbar[var4].x1 + 15, this.airbar[var4].y1, 0, this.airbar[var4].x2 + 15, this.airbar[var4].y2, 1));
+        this.airbar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.airbar[var4].x1 + 15, this.airbar[var4].y1, 0, this.airbar[var4].x2 + 15, this.airbar[var4].y2));
         this.partsarray.__append(this.airbar);
         this.energybar = [ new ss_basesprite("Root/data/art/hud/16x16frntend__clr", 72, 64, 0, 88, 80) ];
         var1 = __toint(3);
@@ -64,7 +64,7 @@ class hudthingy {
             var2 = var2 + 1;
         }
         var4 = this.energybar.__length - 1;
-        this.energybar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.energybar[var4].x1 + 15, this.energybar[var4].y1, 0, this.energybar[var4].x2 + 15, this.energybar[var4].y2, 1));
+        this.energybar.__append(new ss_basesprite("Root/data/art/hud/16x16end__clr", this.energybar[var4].x1 + 15, this.energybar[var4].y1, 0, this.energybar[var4].x2 + 15, this.energybar[var4].y2));
         this.partsarray.__append(this.energybar);
         this.redlites = [  ];
         var4 = this.lifebar.__length - 1;

@@ -53,6 +53,7 @@ class hudammo : base_objectarray {
         else if (globalclass.player.actorid == "when") {
             var4 = "Root/data/art/hud/elemrotate/hpybllonua";
         }
+        debug::print("AMMO UI GENERATING:");
         this.base_objectarray([ new gs_lego_animatesprite(var4, 0, 12, 1, 460, 396, 0, 460 + 64, 396 + 64), 
             new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "X", (460 + 64) + 5, 396 + 32, 0, 1.2, 0, 4, 0), 
             new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "0", ((460 + 64) + 5) + 32, 396 + 32, 0, 1.7, 0, 4, 0) ]);
