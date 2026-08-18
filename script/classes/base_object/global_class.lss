@@ -189,6 +189,8 @@ class global_class : base_object {
         this.randnum = null;
         this.language = null;
         if (this.debugstring != null) {
+            //this is the dumbest hack i think ive done in a while
+            this.debugstring.add();
             this.debugstring.cleanupfull();
             this.debugstring = null;
         }
@@ -397,6 +399,7 @@ class global_class : base_object {
             if (param1.args[0] == scslosifoundation::stringtoidentifier("zzzz")) {
                 this.debugstring.scalefont(1.0);
                 this.debugstring.hide();
+                this.debugstring.remove();
                 this.hittoggletimer = 1;
             }
         }
@@ -467,35 +470,37 @@ class global_class : base_object {
         return null;
     }
     
-    method scriptmessage(param1, param2) {
-        var var1;
-        var var2;
-        var var3;
+    method scriptmessage(text_string, timer_length_arg) {
+        var timer_length;
+        var x_offset_calc;
         if (this.hittoggletimer) {
-            if (param2 == null) {
-                var1 = 5;
+            if (timer_length_arg == null) {
+                timer_length = 5;
             }
             else {
-                var1 = param2;
+                timer_length = timer_length_arg;
             }
-            var2 = new slosi_string(param1);
-            var3 = var2.getlength();
-            var3 = (var3 * 16) / 2;
-            this.debugstring.setstring(param1);
-            this.debugstring.setpos(320 - var3, 60, 0);
+            var string = new slosi_string(text_string);
+            x_offset_calc = string.getlength();
+            x_offset_calc = (x_offset_calc * 16) / 2;
+            this.debugstring.setstring(text_string);
+            this.debugstring.setpos(320 - x_offset_calc, 60, 0);
             this.debugstring.add();
             this.debugstring.show();
-            this.debugtimer.setduration(var1, 1);
+            this.debugtimer.setduration(timer_length, 1);
             this.debugtimer.reset(0);
             this.debugtimer.start();
             this.hittoggletimer = 0;
         }
         else {
-            var2 = new slosi_string(param1);
-            var3 = var2.getlength();
-            var3 = (var3 * 16) / 2;
-            this.debugstring.setstring(param1);
-            this.debugstring.setpos(320 - var3, 60, 0);
+            this.debugstring.hide();
+            this.debugstring.remove();
+            var string = new slosi_string(text_string);
+            x_offset_calc = string.getlength();
+            x_offset_calc = (x_offset_calc * 16) / 2;
+            this.debugstring.setstring(text_string);
+            this.debugstring.setpos(320 - x_offset_calc, 60, 0);
+            this.debugstring.add();
             this.debugstring.show();
         }
         return null;
