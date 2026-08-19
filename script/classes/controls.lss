@@ -1,0 +1,166 @@
+class controls {
+    property parent;
+    property curoption;
+    property mousex;
+    property mousey;
+    property optarray;
+    property backoption;
+    property active;
+    property keyboard_mouselook;
+    property keyboard_numpad;
+    property curscreen;
+    
+    method controls(param1) {
+        this.parent = param1;
+        this.active = 0;
+        return null;
+    }
+
+    method setupoutsidescreens() {
+        return null;
+    }
+    
+    method initfull() {
+        this.curoption = -1;
+        this.optarray = [  ];
+        this.keyboard_mouselook = new menuoption(gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 89), "", this.optarray.__length);
+        this.keyboard_mouselook.initfull();
+        this.optarray.__append(this.keyboard_mouselook);
+        this.keyboard_numpad = new menuoption(gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 90), "", this.optarray.__length);
+        this.keyboard_numpad.initfull();
+        this.optarray.__append(this.keyboard_numpad);
+        this.backoption = new menuoption(gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 3), "", this.optarray.__length);
+        this.backoption.initfull();
+        this.optarray.__append(this.backoption);
+        this.active = 1;
+        this.setupoutsidescreens();
+
+        //force refresh the cursor to ensure returning from submenus here doesnt re-render text on top
+        this.parent.refresh_cursor();
+        return null;
+    }
+    
+    method cleanupfull() {
+        if (this.optarray != null) {
+            this.cleanupshort();
+        }
+        this.curscreen = null;
+        return null;
+    }
+    
+    method cleanupshort() {
+        var var1;
+        var var2;
+        this.active = 0;
+        if (this.optarray != null) {
+            var1 = this.optarray.__length - 1;
+            var2 = 0;
+            while (var1 >= var2) {
+                this.optarray[var1 - var2].cleanupfull();
+                this.optarray[var1 - var2] = null;
+                var2 = var2 + 1;
+            }
+            this.optarray = null;
+        }
+        this.keyboard_mouselook.cleanupfull();
+        this.keyboard_mouselook = null;
+        this.keyboard_numpad.cleanupfull();
+        this.keyboard_numpad = null;
+        this.backoption.cleanupfull();
+        this.backoption = null;
+        return null;
+    }
+    
+    method input(param1) {
+        if (this.active) {
+            if (this.curoption == 2) {
+				debug::print("[][][] back");
+
+            }
+            if (param1.event == 2) {
+                if ((param1.button == 27) || (param1.button == 8)) {
+
+                }
+            }
+        }
+        return null;
+    }
+    
+    method onevent(param1) {
+        if (this.active) {
+            if (param1.eventid == 25) {
+                debug::print("[][][] mouse button released : " + __tostring(param1.args[0]));
+                this.mousebuttonreleased(param1.args[0]);
+            }
+            else if (param1.eventid == 26) {
+                this.mousex = param1.args[0];
+                this.mousey = param1.args[1];
+                this.checkmousepos();
+            }
+        }
+        return null;
+    }
+
+    method process(param1) {
+        return null;
+    }
+
+    method exit() {
+        this.parent = null;
+        return null;
+    }
+    
+    method checkmousepos() {
+        var var1;
+        var var2;
+        var1 = -1;
+        var2 = 0;
+        while ((this.optarray.__length - 1) >= var2) {
+            if (this.optarray[var2].check(this.mousex, this.mousey) == 1) {
+                var1 = var2;
+            }
+            var2 = var2 + 1;
+        }
+        this.curoption = var1;
+        return null;
+    }
+    
+    method mousebuttonreleased(param1) {
+        if (param1 == 1) {
+            if (this.curoption == -1) {
+            
+            }
+            else if (this.curoption == 0) {
+                gckeymapper::setkeyoption(gcgame::getkeymapper(), 1);
+                this.back();
+            }
+            else if (this.curoption == 1) {
+                gckeymapper::setkeyoption(gcgame::getkeymapper(), 2);
+                this.back();
+            }
+            else if (this.curoption == 2) {
+                this.back();
+            }
+        }
+        else if (param1 == 2) {
+            this.back();
+        }
+        this.curoption;
+        return null;
+    }
+
+    method gotodifferentscreen(screen_id) {
+        this.curscreen = screen_id;
+
+        //force refresh the cursor so text doesnt render on top of it
+        this.parent.refresh_cursor();
+        return null;
+    }
+    
+    method back() {
+        this.cleanupfull();
+        this.parent.back();
+        gcstaticsoundsptrarray::playtablesound(1073);
+        return null;
+    }
+}
