@@ -1,8 +1,5 @@
-class soundoptions {
-    property parent;
+class soundoptions : gs_lego_screenfrontend {
     property curoption;
-    property mousex;
-    property mousey;
     property optarray;
     property musicvolumeoption;
     property musicvolumevalue;

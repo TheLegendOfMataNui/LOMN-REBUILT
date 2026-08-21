@@ -1,4 +1,4 @@
-class menuoption {
+class menuoption : gs_lego_screenfrontend{
     property lefttext;
     property righttext;
     property lit;

@@ -1,11 +1,8 @@
-class gsplaygame {
-    property parent;
+class gsplaygame : gs_lego_screenfrontend {
     property active;
     property playerarray;
     property backopt;
     property nextlevelname;
-    property mousex;
-    property mousey;
     property curoption;
     property lockplayer;
     property loadoptions;

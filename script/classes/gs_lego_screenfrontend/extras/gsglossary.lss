@@ -1,10 +1,7 @@
-class gsglossary {
-    property parent;
-    property active;
+class gsglossary : extras {
     property background;
     property images;
     property desc;
-    property curscreen;
     property lastscreen;
     property prevopt;
     property nextopt;

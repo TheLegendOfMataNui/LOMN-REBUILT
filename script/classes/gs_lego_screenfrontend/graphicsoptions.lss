@@ -1,8 +1,5 @@
-class graphicsoptions {
-    property parent;
+class graphicsoptions : gs_lego_screenfrontend {
     property curoption;
-    property mousex;
-    property mousey;
     property optarray;
     property fogoption;
     property fogvalue;

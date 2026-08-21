@@ -419,10 +419,10 @@ class gs_lego_screenfrontend {
             this.extras.exit();
             this.extras = null;
         }
-        if (this.controls_options != null) {
-            this.controls_options.cleanupfull();
-            this.controls_options.exit();
-            this.controls_options = null;
+        if (this.options_controls != null) {
+            this.options_controls.cleanupfull();
+            this.options_controls.exit();
+            this.options_controls = null;
         }
         this.curscreen = 10;
         this.screentimer = 0;

@@ -1,7 +1,5 @@
-class gsprintmenu {
-    property parent;
+class gsprintmenu : extras {
     property printer;
-    property active;
     property background1;
     property backopt1;
     property defaultpics;
