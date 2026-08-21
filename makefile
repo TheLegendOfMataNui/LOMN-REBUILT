@@ -1,4 +1,3 @@
-# SHELL = cmd
 DLTOOL = python tools\pydl.py
 BLKTOOL = python tools\blkfile.py
 COMPRESSION = decompressed # can also set to compressed
@@ -17,6 +16,12 @@ ifeq ($(OS),Windows_NT)
 	windows=1
 else
 	windows=0
+endif
+
+ifeq ($(windows),1)
+	SHELL = cmd
+else
+	SHELL = /bin/SHELL
 endif
 
 default: build
