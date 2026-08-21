@@ -1,4 +1,4 @@
-class playmenuoption {
+class playmenuoption : gs_lego_screenfrontend {
     property playnum;
     property playtext;
     property levimage;

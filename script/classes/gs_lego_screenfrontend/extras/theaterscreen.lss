@@ -1,11 +1,4 @@
-class theaterscreen {
-    property parent;
-    property curoption;
-    property mousex;
-    property mousey;
-    property optarray;
-    property backoption;
-    property active;
+class theaterscreen : extras {
     property legend;
     property intro;
     property kini;

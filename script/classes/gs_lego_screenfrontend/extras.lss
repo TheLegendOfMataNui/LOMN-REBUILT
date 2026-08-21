@@ -1,8 +1,5 @@
-class extras {
-    property parent;
+class extras : gs_lego_screenfrontend {
     property curoption;
-    property mousex;
-    property mousey;
     property optarray;
     property backoption;
     property active;
@@ -12,7 +9,6 @@ class extras {
     property print;
     property glossary;
     property theater;
-    property curscreen;
     
     method extras(param1) {
         this.parent = param1;
