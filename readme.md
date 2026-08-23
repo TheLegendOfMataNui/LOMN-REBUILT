@@ -7,7 +7,7 @@ Prerequisites
 -------------
 
 To build LOMN, you need:
- - [Python 2 (Not 3!)](https://www.python.org/downloads/) on your `PATH` for packaging the blockfiles
+ - [Python 3+](https://www.python.org/downloads/) on your `PATH` for packaging the blockfiles
 
 Building
 --------
