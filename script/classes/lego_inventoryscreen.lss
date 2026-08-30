@@ -456,7 +456,7 @@ class lego_inventoryscreen {
         var noblemasks = 0;
         if (globalclass.player.actorid == "nbua") {
             this.tokensprite = "Root/data/art/pickups/token/token";
-            this.ammosprite = "Root/data/art/hud/elemrotate/hpybllonua";
+            this.ammosprite = "Root/data/art/hud/elemrotate/hppybllonua";
             this.tokenframes = 11;
         }
         else {
@@ -464,27 +464,27 @@ class lego_inventoryscreen {
         }
         if (globalclass.player.actorid == "onua") {
             this.tokensprite = "Root/data/art/pickups/onuatoken/onua_token";
-            this.ammosprite = "Root/data/art/hud/elemrotate/hpybllonua";
+            this.ammosprite = "Root/data/art/hud/elemrotate/hppybllonua";
         }
         else if (globalclass.player.actorid == "gali") {
             this.tokensprite = "Root/data/art/pickups/galitoken/gali_token";
-            this.ammosprite = "Root/data/art/hud/elemrotate/hpybllgali";
+            this.ammosprite = "Root/data/art/hud/elemrotate/hppybllgali";
         }
         else if (globalclass.player.actorid == "poha") {
             this.tokensprite = "Root/data/art/pickups/pohatoken/poha_token";
-            this.ammosprite = "Root/data/art/hud/elemrotate/hpybllpohatu";
+            this.ammosprite = "Root/data/art/hud/elemrotate/hppybllpohatu";
         }
         else if (globalclass.player.actorid == "kopa") {
             this.tokensprite = "Root/data/art/pickups/kopatoken/kopa_token";
-            this.ammosprite = "Root/data/art/hud/elemrotate/hpybllkopaka";
+            this.ammosprite = "Root/data/art/hud/elemrotate/hppybllkopaka";
         }
         else if (globalclass.player.actorid == "lewa") {
             this.tokensprite = "Root/data/art/pickups/lewatoken/lewa_token";
-            this.ammosprite = "Root/data/art/hud/elemrotate/hpyblllewa";
+            this.ammosprite = "Root/data/art/hud/elemrotate/hppyblllewa";
         }
         else if (globalclass.player.actorid == "tahu") {
             this.tokensprite = "Root/data/art/pickups/tahutoken/tahu_token";
-            this.ammosprite = "Root/data/art/hud/elemrotate/hpyblltahu";
+            this.ammosprite = "Root/data/art/hud/elemrotate/hppyblltahu";
         }
         else if (globalclass.player.actorid == "akam") {
             this.tokensprite = "Root/data/art/pickups/pohatoken/poha_token";
@@ -496,11 +496,11 @@ class lego_inventoryscreen {
         }		
         else if (globalclass.player.actorid == "viki") {
             this.tokensprite = "Root/data/art/pickups/onuatoken/onua_token";
-            this.ammosprite = "Root/data/art/hud/elemrotate/hpybllonua";
+            this.ammosprite = "Root/data/art/hud/elemrotate/hppybllonua";
         }
         else if (globalclass.player.actorid == "when") {
             this.tokensprite = "Root/data/art/pickups/onuatoken/onua_token";
-            this.ammosprite = "Root/data/art/hud/elemrotate/hpybllonua";
+            this.ammosprite = "Root/data/art/hud/elemrotate/hppybllonua";
         }
         return null;
     }

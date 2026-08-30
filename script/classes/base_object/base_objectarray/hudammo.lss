@@ -22,22 +22,22 @@ class hudammo : base_objectarray {
         var1 = screenx - 180;
         var2 = screeny - 84;
         if (globalclass.player.actorid == "onua") {
-            var4 = "Root/data/art/hud/elemrotate/hpybllonua";
+            var4 = "Root/data/art/hud/elemrotate/hppybllonua";
         }
         else if (globalclass.player.actorid == "gali") {
-            var4 = "Root/data/art/hud/elemrotate/hpybllgali";
+            var4 = "Root/data/art/hud/elemrotate/hppybllgali";
         }
         else if (globalclass.player.actorid == "poha") {
-            var4 = "Root/data/art/hud/elemrotate/hpybllpohatu";
+            var4 = "Root/data/art/hud/elemrotate/hppybllpohatu";
         }
         else if (globalclass.player.actorid == "kopa") {
-            var4 = "Root/data/art/hud/elemrotate/hpybllkopaka";
+            var4 = "Root/data/art/hud/elemrotate/hppybllkopaka";
         }
         else if (globalclass.player.actorid == "lewa") {
-            var4 = "Root/data/art/hud/elemrotate/hpyblllewa";
+            var4 = "Root/data/art/hud/elemrotate/hppyblllewa";
         }
         else if (globalclass.player.actorid == "tahu") {
-            var4 = "Root/data/art/hud/elemrotate/hpyblltahu";
+            var4 = "Root/data/art/hud/elemrotate/hppyblltahu";
         }
         else if (globalclass.player.actorid == "akam") {
             var4 = "Root/data/art/hud/elemrotate/atom";
@@ -46,13 +46,13 @@ class hudammo : base_objectarray {
             var4 = "Root/data/art/hud/elemrotate/atom";
         }		
         else if (globalclass.player.actorid == "nbua") {
-            var4 = "Root/data/art/hud/elemrotate/hpybllonua";
+            var4 = "Root/data/art/hud/elemrotate/hppybllonua";
         }
         else if (globalclass.player.actorid == "viki") {
-            var4 = "Root/data/art/hud/elemrotate/hpybllonua";
+            var4 = "Root/data/art/hud/elemrotate/hppybllonua";
         }
         else if (globalclass.player.actorid == "when") {
-            var4 = "Root/data/art/hud/elemrotate/hpybllonua";
+            var4 = "Root/data/art/hud/elemrotate/hppybllonua";
         }
         this.base_objectarray([ new gs_lego_animatesprite(var4, 0, 12, 1, var1, var2, 0, var1 + 64, var2 + 64), 
             new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "X", (var1 + 64) + 5, var2 + 32, 0, 1.2, 0, 4, 0), 
