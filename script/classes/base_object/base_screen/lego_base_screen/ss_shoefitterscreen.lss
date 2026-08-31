@@ -43,7 +43,7 @@ class ss_shoefitterscreen : lego_base_screen {
     }
     
     method cleanupfull() {
-        if (gcareadirector::getcurrentarea() != scslosifoundation::stringtoidentifier("????")) {
+        if (gcareadirector::getcurrentarea() == scslosifoundation::stringtoidentifier("sbec")) {
             gcareadirector::removearea(scslosifoundation::stringtoidentifier("sbec"));
         }
         this.background.cleanupfull();
