@@ -283,6 +283,7 @@ General changes and fixes
 • Fixed issue that would sometimes break respawns in areas with slides		----		(ShadowDraikana)
 • Fixed infinite air meter exploit with the KauKau                  		----		(ShadowDraikana)
 • Fixed memory allocation issues resulting in infamous print glyph crash    ----		(OndrikB, ShadowDraikana)
+• Updated ammo pickups to reflect HUD changes    							----		(OndrikB, ShadowDraikana)
 
 Front End
 • Fixed brief HUD pop-in when first loading in  	           	    	    ----		(ShadowDraikana)
