@@ -23,6 +23,7 @@ class pohatuclass : gs_lego_toa {
         this.inputhandle = null;
         this.open_eye_sprite_filename = "Root/data/art/hud/redorangeeyeson";
         this.closed_eye_sprite_filename = "Root/data/art/hud/redorangeeyesoff";
+        GcToa::SetElementSprites(3);
         return null;
     }
 
