@@ -23,6 +23,7 @@ class nobuaclass : gs_lego_toa {
         this.inputhandle = null;
         this.open_eye_sprite_filename = "Root/data/art/hud/blueeyeson";
         this.closed_eye_sprite_filename = "Root/data/art/hud/blueeyesoff";
+        GcToa::SetElementSprites(8);
         return null;
     }
 

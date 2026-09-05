@@ -21,8 +21,8 @@ class hudtokens : base_objectarray {
         this.cidx = 2;
         var1 = screenx - 184;
         if (globalclass.player.actorid == "nbua") {
-            var2 = "Root/data/art/pickups/token/token";
-            var3 = 11;
+            var2 = "Root/data/art/pickups/nobuatoken/nobua_token";
+            var3 = 12;
         }
         else {
             var3 = 29;
