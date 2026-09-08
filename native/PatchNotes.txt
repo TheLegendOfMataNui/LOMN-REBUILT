@@ -284,6 +284,8 @@ General changes and fixes
 • Fixed infinite air meter exploit with the KauKau                  		----		(ShadowDraikana)
 • Fixed memory allocation issues resulting in infamous print glyph crash    ----		(OndrikB, ShadowDraikana)
 • Updated ammo pickups to reflect HUD changes    							----		(OndrikB, ShadowDraikana)
+• Updated token pickups to use their sprites instead of overlayed RGB    	----		(ShadowDraikana, OndrikB)
+• Fixed an issue with an exe patch causing invincible or random dying hives ----		(ShadowDraikana)
 
 Front End
 • Fixed brief HUD pop-in when first loading in  	           	    	    ----		(ShadowDraikana)
