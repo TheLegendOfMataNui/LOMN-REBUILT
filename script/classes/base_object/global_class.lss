@@ -161,10 +161,8 @@ class global_class : base_object {
             this.enemy.cleanupfull();
             this.enemy = null;
         }
-        if (this.tweak != null) {
-            this.tweak.cleanupfull();
-            this.tweak = null;
-        }
+        //Because we are forced to run the tweak.cleanupfull during the global cleanupshort, we set tweak to null only when exiting the game
+        this.tweak = null;
         if (this.pause != null) {
             this.pause.cleanupfull();
             this.pause = null;
@@ -243,6 +241,7 @@ class global_class : base_object {
         this.hud.initfull();
         this.player.initfull();
         this.enemy.initfull();
+        this.tweak.initfull();
         this.shortinit = 0;
         if (this.preloadfonts != null) {
             var var1 = 0;
@@ -264,6 +263,8 @@ class global_class : base_object {
         }
         this.player.cleanupfull();
         this.enemy.cleanupfull();
+        this.tweak.cleanupfull();
+        this.cheats.hidecheatmenu();
         this.hud.cleanupfull();
         this.hittoggletimer = 0;
         this.whatsnext = 0;
@@ -446,6 +447,7 @@ class global_class : base_object {
                 }
                 else {
                     debug::print("[][][] back to menu screen");
+                    screenlist.cleanupshort();
                     screenlist.backward(1);
                 }
             }

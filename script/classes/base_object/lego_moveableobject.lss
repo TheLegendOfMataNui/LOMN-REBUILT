@@ -11,6 +11,7 @@ class lego_moveableobject : base_object {
     property collide;
     property collidetimer;
     property madeonthefly;
+    property tweakable_set;
     
     method lego_moveableobject(obj_id, area_id, param3) {
         var var1;
@@ -65,11 +66,16 @@ class lego_moveableobject : base_object {
         this.setdefault(scslosifoundation::stringtoidentifier("NDef"));
         this.setresponse(3, 3, 3);
         this.setcollisionflags();
+        this.tweakable_set = 0;
         return null;
     }
     
     method cleanupfull() {
         gcmoveableobj::killanimtexture(this.handle);
+        if (this.tweakable_set == 1) {
+            globalclass.tweak.remove_tweakable();
+        }
+        this.tweakable_set = null;
         this.name = null;
         this.handle = null;
         if (this.madeonthefly) {
@@ -343,6 +349,7 @@ class lego_moveableobject : base_object {
     }
     
     method settweakable() {
+        this.tweakable_set = 1;
         globalclass.tweak.add_moveableobj_tweakable(this);
         return null;
     }

@@ -240,7 +240,9 @@ class player {
                 }
             }
             else if (param1.button == 45) {
-                this.tweaktoggle();
+                if (globalclass.cheats.visible == 0) {
+                    globalclass.tweak.toggleon();
+                }
             }
         }
         if (this.whichmaskonface() == 11) {
@@ -926,11 +928,6 @@ class player {
             this.addmask("fake", 8);
         }
         this.actor.gotopos(this.enterstartid, this.enterlookid);
-        return null;
-    }
-    
-    method tweaktoggle() {
-        globalclass.tweak.toggleon();
         return null;
     }
     

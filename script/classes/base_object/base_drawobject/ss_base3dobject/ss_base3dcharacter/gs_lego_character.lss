@@ -4,6 +4,7 @@ class gs_lego_character : ss_base3dcharacter {
     property myname;
     property id;
     property charspline;
+    property tweakable_set;
     
     method gs_lego_character(assigned_id, char_id, area_id, orientation, x_pos, y_pos, z_pos, input_state) {
         this.ss_base3dcharacter(assigned_id, char_id, orientation, x_pos, y_pos, z_pos, input_state);
@@ -33,6 +34,7 @@ class gs_lego_character : ss_base3dcharacter {
             this.gepetto = gccharacter::getgepetto(this.handle);
             this.numanimations = this.getnumanimations();
         }
+        this.tweakable_set = 0;
         return null;
     }
     
@@ -91,6 +93,10 @@ class gs_lego_character : ss_base3dcharacter {
     }
     
     method remove() {
+        if (this.tweakable_set == 1) {
+            globalclass.tweak.remove_tweakable();
+        }
+        this.tweakable_set = null;
         gcmodeldirector::remove(this.contid, this.areaid);
         return null;
     }
@@ -180,6 +186,7 @@ class gs_lego_character : ss_base3dcharacter {
     }
     
     method settweakable() {
+        this.tweakable_set = 1;
         globalclass.tweak.add_characterobj_tweakable(this);
         return null;
     }
