@@ -122,6 +122,13 @@ class ss_basesprite : base_drawobject {
 
                 }
             }
+            if ((this.leftBool == 1) || (this.rightBool == 1) || (this.topBool == 1) || (this.bottomBool == 1)) {
+                //If any of these get triggered, reset the coordinates to original
+                this.x1 = leftSide;
+                this.x2 = rightSide;
+                this.y1 = topSide;
+                this.y2 = bottomSide;
+            }
         }
         else if (overlapCheck == 1) {
             debug::print("overlapCheck fired: 1");
