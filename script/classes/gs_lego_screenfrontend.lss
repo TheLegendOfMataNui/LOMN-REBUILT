@@ -514,6 +514,9 @@ class gs_lego_screenfrontend {
         if (this.cameramode == 0) {
             this.addyaw();
         }
+        if (this.curscreen == 11) {
+            this.extras.process(param1);
+        }
         return null;
     }
     
