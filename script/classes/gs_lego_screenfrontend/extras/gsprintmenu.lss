@@ -606,87 +606,87 @@ class gsprintmenu : extras {
         }
         if (this.idx == 1) {
             filename = "fg";
-            description = "";
+            description = "Toa Mata team poster";
         }
         else if (this.idx == 2) {
             filename = "fi";
-            description = "";
+            description = "Island of Mata Nui poster";
         }
         else if (this.idx == 3) {
             filename = "op";
-            description = "";
+            description = "Onua and Whenua poster";
         }
         else if (this.idx == 4) {
             filename = "oa";
-            description = "";
+            description = "Onua action set poster ";
         }
         else if (this.idx == 5) {
             filename = "oc.jpg";
-            description = "";
+            description = "Fikou-Nui concept art";
         }
         else if (this.idx == 6) {
             filename = "om.jpg";
-            description = "";
+            description = "Mud monster concept art";
         }
         else if (this.idx == 7) {
             filename = "gp";
-            description = "";
+            description = "Gali and Nokama poster";
         }
         else if (this.idx == 8) {
             filename = "ga";
-            description = "";
+            description = "Gali action set poster";
         }
         else if (this.idx == 9) {
             filename = "gc.jpg";
-            description = "";
+            description = "Gali waterfall leap concept art";
         }
         else if (this.idx == 10) {
             filename = "gm.jpg";
-            description = "";
+            description = "Water monster concept art";
         }
         else if (this.idx == 11) {
             filename = "pp";
-            description = "";
+            description = "Pohatu and Onewa poster";
         }
         else if (this.idx == 12) {
             filename = "pa";
-            description = "";
+            description = "Onua meets Pohatu poster";
         }
         else if (this.idx == 13) {
             filename = "pc.jpg";
-            description = "";
+            description = "Pohatu tossed from Kane-Ra concept art";
         }
         else if (this.idx == 14) {
             filename = "pm.jpg";
-            description = "";
+            description = "Rock monster concept art";
         }
         else if (this.idx == 15) {
             filename = "kp";
-            description = "";
+            description = "Kopaka and Nuju poster";
         }
         else if (this.idx == 16) {
             filename = "ka";
-            description = "";
+            description = "Kopaka action set poster";
         }
         else if (this.idx == 17) {
             filename = "kc.jpg";
-            description = "";
+            description = "Kopaka Akaku puzzle concept art";
         }
         else if (this.idx == 18) {
             filename = "km.jpg";
-            description = "";
+            description = "Ice monster concept art";
         }
         else if (this.idx == 19) {
             filename = "lp";
-            description = "";
+            description = "Lewa and Matau poster";
         }
         else if (this.idx == 20) {
             filename = "la";
-            description = "";
+            description = "Lewa action set poster";
         }
         else if (this.idx == 21) {
             filename = "lc.jpg";
-            description = "";
+            description = "Lewa carried by Nui-Rama concept art";
         }
         else if (this.idx == 22) {
             filename = "lm.jpg";
@@ -694,19 +694,19 @@ class gsprintmenu : extras {
         }
         else if (this.idx == 23) {
             filename = "tp";
-            description = "desc";
+            description = "Tahu and Vakama poster";
         }
         else if (this.idx == 24) {
             filename = "ta";
-            description = "desc";
+            description = "Tahu action set poster";
         }
         else if (this.idx == 25) {
             filename = "tc.jpg";
-            description = "desc";
+            description = "Tahu lava board boulder chase concept art";
         }
         else if (this.idx == 26) {
             filename = "tm.jpg";
-            description = "desc";
+            description = "Tahu level concept art";
         }
         else if (this.idx == 27) {
             filename = "tp.jpg";
