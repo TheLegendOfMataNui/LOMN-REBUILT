@@ -53,7 +53,7 @@ class bmtn2_puzzle {
             this.upgradefruit3 = new lego_pickup("fru1", 0, 6);
             this.upgradefruit3.initfull();
         }
-        this.sunflare = new Ls_SunFlare(-534.0, 853.0, 1083.0, -534.0, 853, 1083);
+        this.sunflare = new Ls_SunFlare(-534.0, 853.0, 1083.0);
         this.sunflare.initfull();
         return null;
     }

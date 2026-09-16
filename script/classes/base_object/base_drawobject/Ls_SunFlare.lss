@@ -3,16 +3,16 @@ class Ls_SunFlare : base_drawobject {
 	property z2;
     property aborted_setup;
 
-    //Initialize the SunFlare class, 6 FLOAT arguments, names should be self explanatory
-	method Ls_SunFlare (sun_1_x, sun_1_y, sun_1_z, sun_2_x, sun_2_y, sun_2_z) {
+    //Initialize the SunFlare class, 3 FLOAT arguments, names should be self explanatory
+	method Ls_SunFlare (sun_1_x, sun_1_y, sun_1_z) {
         this.x1 = sun_1_x;
         this.y1 = sun_1_y;
         this.z = sun_1_z;
-        this.x2 = sun_2_x;
-        this.y2 = sun_2_y;
-        this.z2 = sun_2_z;
+        this.x2 = (-1.0 ^ 0.5);
+        this.y2 = (-1.0 ^ 0.5);
+        this.z2 = (-1.0 ^ 0.5);
         //#SorryNotSorry, idea is we prevent the game from being kill if someone forgets args
-        if ((this.x1 == null) || (this.y1 == null) || (this.z == null) || (this.x2 == null) || (this.y2 == null) || (this.z2 == null)) {
+        if ((this.x1 == null) || (this.y1 == null) || (this.z == null)) {
             gcscripttools::scriptmessagebox("Ls_SunFlare returned a null coordinate during initialization, aborting setup");
             this.aborted_setup = true;
         }
@@ -28,22 +28,21 @@ class Ls_SunFlare : base_drawobject {
             if (gcareadirector::getcurrentarea() != scslosifoundation::stringtoidentifier("bech")) {
                 GcArea::CreateSunFlare();
             }
-            GcArea::PositionSunFlare(this.x1, this.y1, this.z, (this.x2 - 240.441), (this.y2 - 186.058), (this.z2 - 392.8109));
+            GcArea::PositionSunFlare(this.x1, this.y1, this.z, this.x2 , this.y2, this.z2);
         }
         return null;
     }
 
-    //Self explanatory method, does what it sounds like
-    method changeposition(sun_1_x, sun_1_y, sun_1_z, sun_2_x, sun_2_y, sun_2_z) {
-        GcArea::PositionSunFlare(sun_1_x, sun_1_y, sun_1_z, (sun_2_x - 240.441), (sun_2_y - 186.058), (sun_2_z - 392.8109));
+    //Self explanatory method, does what it sounds like 
+    method changeposition(sun_1_x, sun_1_y, sun_1_z) {
+        GcArea::PositionSunFlare(sun_1_x, sun_1_y, sun_1_z, this.x2, this.y2, this.z);
         return null;
     }
 
     //DO NOT run this in BECH areas, GcArea destructor handles it since its creating it in those areas
     method cleanupfull() {
         if ((gcareadirector::getcurrentarea() != scslosifoundation::stringtoidentifier("bech")) && (this.aborted_setup == false)) {
-            debug::print("did we do the dew");
-            //We have to manually grab the sprites loaded into the NoLightDirector by LensFlareHandler and then yeet each one manually
+            //We have to manually grab the sprites loaded into the NoLightDirector by LensFlareHandler and then yeet each one
             gcnolightdirector::remove(scslosifoundation::stringtoidentifier("l000"), gcareadirector::getcurrentarea());
             gcnolightdirector::remove(scslosifoundation::stringtoidentifier("l001"), gcareadirector::getcurrentarea());
             gcnolightdirector::remove(scslosifoundation::stringtoidentifier("l002"), gcareadirector::getcurrentarea());
