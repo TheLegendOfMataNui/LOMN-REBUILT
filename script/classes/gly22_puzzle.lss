@@ -109,4 +109,9 @@ class gly22_puzzle {
         }
         return null;
     }
+
+    method exit() {
+        this.parent = null;
+        return null;
+    }    
 }

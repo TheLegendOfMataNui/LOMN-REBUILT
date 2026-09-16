@@ -8,7 +8,6 @@ class gs_lego_tweakers : base_objectarray {
     property yoff;
     property curidx;
     property visible;
-    property toview;
     property screen;
     property stepamount;
     property tweakobjects;
@@ -19,6 +18,10 @@ class gs_lego_tweakers : base_objectarray {
     property wate;
     
     method gs_lego_tweakers() {
+        return null;
+    }
+    
+    method initfull() {
         this.minidx = -1;
         this.maxidx = -1;
         this.showidx = 9;
@@ -29,7 +32,6 @@ class gs_lego_tweakers : base_objectarray {
         this.curidx = 0;
         this.visible = 0;
         this.tweakobjects = [  ];
-        this.toview = 0;
         this.screen = 0;
         this.actionlistarray = [ "step: ", 
             "X: ", 
@@ -46,13 +48,10 @@ class gs_lego_tweakers : base_objectarray {
         return null;
     }
     
-    method initfull() {
-        return null;
-    }
-    
     method cleanupfull() {
         var var1;
         var var2;
+        this.hide();
         this.minidx = null;
         this.maxidx = null;
         this.showidx = null;
@@ -62,7 +61,6 @@ class gs_lego_tweakers : base_objectarray {
         this.yoff = null;
         this.curidx = null;
         this.visible = null;
-        this.toview = null;
         this.screen = null;
         this.objindex = null;
         this.stepamount = null;
@@ -112,6 +110,11 @@ class gs_lego_tweakers : base_objectarray {
         return null;
     }
     
+    method remove_tweakable() {
+        this.tweakobjects.__removeat((this.tweakobjects.__length - 1));        
+        return null;
+    }
+
     method show() {
         return null;
     }
@@ -123,15 +126,17 @@ class gs_lego_tweakers : base_objectarray {
     }
     
     method hidemainlist() {
-        var var1;
-        if (this.minidx > -1) {
-            this.activemenu[this.curidx].setinactive();
-            var1 = 0;
-            while (this.showidx >= var1) {
-                if ((this.minidx + var1) <= (this.activemenu.__length - 1)) {
-                    this.activemenu[this.minidx + var1].hide();
+        if (this.activemenu.__length > 0) {
+            var var1;
+            if (this.minidx > -1) {
+                this.activemenu[this.curidx].setinactive();
+                var1 = 0;
+                while (this.showidx >= var1) {
+                    if ((this.minidx + var1) <= (this.activemenu.__length - 1)) {
+                        this.activemenu[this.minidx + var1].hide();
+                    }
+                    var1 = var1 + 1;
                 }
-                var1 = var1 + 1;
             }
         }
         this.visible = 0;
@@ -139,11 +144,13 @@ class gs_lego_tweakers : base_objectarray {
     }
     
     method hidesecondlist() {
-        var var1;
-        var1 = 0;
-        while ((this.activemenu.__length - 1) >= var1) {
-            this.activemenu[var1].hide();
-            var1 = var1 + 1;
+        if (this.activemenu.__length > 0) {
+            var var1;
+            var1 = 0;
+            while ((this.activemenu.__length - 1) >= var1) {
+                this.activemenu[var1].hide();
+                var1 = var1 + 1;
+            }
         }
         return null;
     }
@@ -196,7 +203,6 @@ class gs_lego_tweakers : base_objectarray {
                 }
             }
             this.visible = 1;
-            this.toview = 1;
         }
         return null;
     }
@@ -229,7 +235,6 @@ class gs_lego_tweakers : base_objectarray {
                 var1 = var1 + 1;
             }
             this.visible = 1;
-            this.toview = 1;
         }
         return null;
     }
@@ -373,9 +378,6 @@ class gs_lego_tweakers : base_objectarray {
     method process(param1) {
         var var1;
         if (this.visible == 1) {
-            if (this.toview == 0) {
-                
-            }
             if (this.screen == 1) {
                 var1 = this.tweakobjects[this.objindex];
                 this.activemenu[0].setstring("step: " + __tostring(this.stepamount));
@@ -391,6 +393,12 @@ class gs_lego_tweakers : base_objectarray {
     }
     
     method onevent(param1) {
+        if (param1.eventid == 20) {
+            if (this.visible == 1) {
+                this.hide();
+                this.showmainlist();
+            }
+        }
         return null;
     }
     

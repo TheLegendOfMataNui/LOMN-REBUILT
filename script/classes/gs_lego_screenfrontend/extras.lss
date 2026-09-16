@@ -142,7 +142,6 @@ class extras : gs_lego_screenfrontend {
     method process(param1) {
         if (this.curscreen == 5) {
             this.print.process(param1);
-            debug::print("[][][] print process");
         }
         return null;
     }

@@ -6,6 +6,7 @@ class bmtn2_puzzle {
     property amaya;
     property kapura;
     property gatestone;
+    property sunflare;
     
     method bmtn2_puzzle(param1) {
         this.parent = param1;
@@ -52,12 +53,14 @@ class bmtn2_puzzle {
             this.upgradefruit3 = new lego_pickup("fru1", 0, 6);
             this.upgradefruit3.initfull();
         }
-
-        
+        this.sunflare = new Ls_SunFlare(-534.0, 853.0, 1083.0, -534.0, 853, 1083);
+        this.sunflare.initfull();
         return null;
     }
     
     method cleanupfull() {
+        this.sunflare.cleanupfull();
+        this.sunflare = null;
         if (this.upgradefruit3 != null) {
             this.upgradefruit3.cleanupfull();
             this.upgradefruit3 = null;

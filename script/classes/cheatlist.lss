@@ -427,11 +427,13 @@ class cheatlist {
     method hidecheatmenu() {
         var var1;
         globalclass.hud.showframerate(0);
-        this.activemenu[this.curidx].setinactive();
-        var1 = 0;
-        while (this.showidx >= var1) {
-            this.activemenu[this.minidx + var1].hide();
-            var1 = var1 + 1;
+        if (this.activemenu.__length > 0) {
+            this.activemenu[this.curidx].setinactive();
+            var1 = 0;
+            while (this.showidx >= var1) {
+                this.activemenu[this.minidx + var1].hide();
+                var1 = var1 + 1;
+            }
         }
         this.visible = 0;
         return null;

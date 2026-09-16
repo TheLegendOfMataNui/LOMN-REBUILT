@@ -23,6 +23,7 @@ class galiclass : gs_lego_toa {
         this.inputhandle = null;
         this.open_eye_sprite_filename = "Root/data/art/hud/yelloweyeson";
         this.closed_eye_sprite_filename = "Root/data/art/hud/yelloweyesoff";
+        GcToa::SetElementSprites(2);
         return null;
     }
     

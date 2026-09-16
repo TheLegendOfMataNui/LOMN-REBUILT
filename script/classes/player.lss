@@ -240,7 +240,9 @@ class player {
                 }
             }
             else if (param1.button == 45) {
-                this.tweaktoggle();
+                if (globalclass.cheats.visible == 0) {
+                    globalclass.tweak.toggleon();
+                }
             }
         }
         if (this.whichmaskonface() == 11) {
@@ -929,11 +931,6 @@ class player {
         return null;
     }
     
-    method tweaktoggle() {
-        globalclass.tweak.toggleon();
-        return null;
-    }
-    
     method drainpower(param1) {
         this.energydraintimer = this.energydraintimer + param1.deltatime;
         if (this.energy <= 0) {
@@ -1290,7 +1287,7 @@ class player {
                 gccharacter::addpart(toa, "cnt1/hstf", 1);
                 this.equiptype = 1;
                 this.equippedcombat = 1;
-                GcToa::SetElementSprites(2);
+                GcToa::SetElementSprites(10);
                 debug::print("Equipped Voriki For Combat");
             }
         }
@@ -1324,7 +1321,7 @@ class player {
                 gccharacter::addpart(toa, "cnt1/bstf", 3);
                 this.equiptype = 2;
                 this.equippedpeace = 1;
-                GcToa::SetElementSprites(2);
+                GcToa::SetElementSprites(10);
                 debug::print("Equipped Voriki For Peace");
             }
         }        
