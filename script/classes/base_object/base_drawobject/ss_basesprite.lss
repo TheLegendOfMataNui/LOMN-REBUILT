@@ -10,8 +10,7 @@ class ss_basesprite : base_drawobject {
     property topBool;
     property bottomBool;
 
-    
-    method ss_basesprite(file_path, leftSide, topSide, z_depth, rightSide, bottomSide, useStaticCoord, alpha) {
+    method ss_basesprite(file_path, leftSide, topSide, z_depth, rightSide, bottomSide, alignmentSlot, alpha) {
         this.filename = file_path;
         debug::print("INITIAL COORDS");
         debug::print(leftSide);
@@ -19,290 +18,68 @@ class ss_basesprite : base_drawobject {
         debug::print(topSide);
         debug::print(bottomSide);
         debug::print("END INITIAL COORDS");
-        //Check screen ratios to determine if screen is 4:3, wider than tall, or taller than wide
-        //
-        //If ratio is equal to 1.333333, can use screenx OR screeny to calc rawScaleFactor
-        //Close enough to equal, we take the absolute of the division here and subtract the expected value from it to compare with
-        if (scslosimath::abs((screenx / screeny) - 1.333333) < 0.0001) {
-            this.rawScaleFactor = screenratio;
+        //Check screen ratios to determine which one we can use
+        var ratio_width = screenx / 640.0;
+        var ratio_height = screeny / 480.0;
+        if (ratio_width < ratio_height) {
+            this.rawScaleFactor = ratio_width;
         }
-        //If ratio is less than 1.333333, is taller than wide, use screeny to calc rawScaleFactor
-        else if ((screenx / screeny) < 1.333333) {
-            this.rawScaleFactor = screenyratio;
-        }
-        //If ratio is greater than 1.333333, is wider than tall, use screenx to calc rawScaleFactor
-        else if ((screenx / screeny) > 1.333333) {
-            this.rawScaleFactor = screenratio;
+        else {
+            this.rawScaleFactor = ratio_height;
         }
         //If the scaleFactor returns a value less than 1, we set it to 1 for safety
         if (this.rawScaleFactor < 1) {
             this.rawScaleFactor = 1;
         }
 
-        //Calculate the x and y adjustments respectively using the screen x and screen y and subtracting their respective default resolutions
-        this.xAdjustment = (screenx - 640);
-        this.yAdjustment = (screeny - 480);
+        // Calculate new scaled widths and heights - creates a virtual 4:3 space
+        var rescaled_width = 640.0 * this.rawScaleFactor;
+        var rescaled_height = 480.0 * this.rawScaleFactor;
 
-        //Set up bool properties
-        this.leftBool = 0;
-        this.rightBool = 0;
-        this.topBool = 0;
-        this.bottomBool = 0;
+        // Set up adjustments according to the alignment slots
+        // laid out as follows:
+        // 0 1 2
+        // 3 4 5
+        // 6 7 8
+        // TODO: add sentinel values for "don't scale" and "stretch"
+        // TODO: update all callers
+        if (alignmentSlot != null) {
+            // Scale the coordinates
+            this.y1 = topSide * this.rawScaleFactor;
+            this.y2 = bottomSide * this.rawScaleFactor;
+            this.x1 = leftSide * this.rawScaleFactor;
+            this.x2 = rightSide * this.rawScaleFactor;
+            this.xAdjustment = 0.0;
+            this.yAdjustment = 0.0;
 
-        //x1 : 0- 30, x2: 610 - 640, y1 : 0 - 30, y2: 450 - 480
-        //Left aligned check
-        if (leftSide <= 30) {
-            this.leftBool = 1;
+            if ((alignmentSlot == 1) || (alignmentSlot == 4) || (alignmentSlot == 7)) {
+                // X must be moved so the CENTER currently rescaled_width / 2.0 becomes OUR center, so screenx / 2.0
+                this.xAdjustment = ((screenx / 2.0) - (rescaled_width / 2.0));
+            }
+            else if ((alignmentSlot == 2) || (alignmentSlot == 5) || (alignmentSlot == 8)) {
+                // X must be moved so the CORNER (currently rescaled_width) becomes OUR corner (screenx)
+                this.xAdjustment = screenx - rescaled_width;
+            }
+            if ((alignmentSlot == 3) || (alignmentSlot == 4) || (alignmentSlot == 5)) {
+                // Y must be moved so the CENTER (currently rescaled_height) becomes OUR center (screeny)
+                this.yAdjustment = ((screeny / 2.0) - (rescaled_height / 2.0));
+            }
+            else if ((alignmentSlot == 6) || (alignmentSlot == 7) || (alignmentSlot == 8)) {
+                // Y must be moved so the CORNER (currently rescaled_height) becomes OUR corner (screeny)
+                this.yAdjustment = screeny - rescaled_height;
+            }
+            this.x1 = this.x1 + this.xAdjustment;
+            this.x2 = this.x2 + this.xAdjustment;
+            this.y1 = this.y1 + this.yAdjustment;
+            this.y2 = this.y2 + this.yAdjustment;
+            debug::print("begin new coords");
+            debug::print(this.x1);
+            debug::print(this.x2);
+            debug::print(this.y1);
+            debug::print(this.y2);
+            debug::print("end new coords");
         }
-        //Right aligned check
-        if (rightSide >= 610) {
-            this.rightBool = 1;
-        }
-        //Top aligned check
-        if (topSide <= 30) {
-            this.topBool = 1;
-        }
-        //Bottom aligned check
-        if (bottomSide >= 450) {
-            this.bottomBool = 1;
-        }
-
-        //store the sum of the bools
-        var overlapCheck = (this.leftBool + this.rightBool + this.topBool + this.bottomBool);
-
-        //Ensuring this is a bool 0 or 1
-        if (useStaticCoord != null) {
-            if (useStaticCoord >= 1) {
-                useStaticCoord = 1;
-            }
-        }
-        else {
-            useStaticCoord = 0;
-        }
-
-        //
-        if (overlapCheck == 0) {
-            debug::print("overlapCheck fired: 0");
-            if (useStaticCoord == 0) {
-                //
-                this.x2 = rightSide * this.rawScaleFactor;
-                this.y2 = bottomSide * this.rawScaleFactor;
-
-                this.x1 = leftSide * this.rawScaleFactor;
-                this.x2 = rightSide * this.rawScaleFactor;
-                this.y1 = topSide * this.rawScaleFactor;
-                this.y2 = bottomSide * this.rawScaleFactor;
-                debug::print("NO STATIC COORDS");
-               
-            }
-            //useStaticCoord returned 1, multiply coordinates by appropriate screenratios
-            else {
-                if (this.rawScaleFactor == screenratio) {
-                    debug::print("STATIC OBJECTS SCALING FIRING: WIDE");
-                    debug::print(screenratio);
-                    debug::print(leftSide);
-                    this.x1 = leftSide * screenratio;
-                    debug::print(this.x1);
-                    debug::print(rightSide);
-                    this.x2 = rightSide * screenratio;
-                    debug::print(this.x2);
-                    debug::print(topSide);
-                    this.y1 = topSide * screenratio;
-                    debug::print(this.y1);
-                    debug::print(bottomSide);
-                    this.y2 = bottomSide * screenratio;
-                    debug::print(this.y2);
-                }
-                else if (this.rawScaleFactor == screenyratio) {
-                    debug::print("STATIC OBJECTS SCALING FIRING: TALL");
-                    this.x1 = leftSide * screenyratio;
-                    this.x2 = rightSide * screenyratio;
-                    this.y1 = topSide * screenyratio;
-                    this.y2 = bottomSide * screenyratio;
-
-                }
-            }
-            if ((this.leftBool == 1) || (this.rightBool == 1) || (this.topBool == 1) || (this.bottomBool == 1)) {
-                //If any of these get triggered, reset the coordinates to original
-                this.x1 = leftSide;
-                this.x2 = rightSide;
-                this.y1 = topSide;
-                this.y2 = bottomSide;
-            }
-        }
-        else if (overlapCheck == 1) {
-            debug::print("overlapCheck fired: 1");
-            if (this.leftBool == 1) {
-                //Scale coordinates
-                this.x2 = rightSide * this.rawScaleFactor;
-                this.y1 = topSide * this.rawScaleFactor;
-
-                //Perform alignment
-                this.x1 = leftSide; 
-                //this.x2 = rightSide; 
-                this.y1 = this.y1 + this.yAdjustment;
-                this.y2 = bottomSide + this.yAdjustment;
-
-                debug::print("START LEFT 1 ALTERED COORDINATES");
-                debug::print(this.x1);
-                debug::print(this.x2);
-                debug::print(this.y1);
-                debug::print(this.y2);
-                debug::print("END LEFT 1 ALTERED COORDINATES");
-            }
-            else if (this.rightBool == 1) {
-                //Scale coordinates
-                this.x1 = leftSide * this.rawScaleFactor;
-                this.y1 = topSide * this.rawScaleFactor;
-
-                //Perform alignment
-                this.x1 = this.x1 + this.xAdjustment; 
-                this.x2 = rightSide + this.xAdjustment; 
-                this.y1 = this.y1 + this.yAdjustment;
-                this.y2 = bottomSide + this.yAdjustment;
-
-                debug::print("START RIGHT 1 ALTERED COORDINATES");
-                debug::print(this.x1);
-                debug::print(this.x2);
-                debug::print(this.y1);
-                debug::print(this.y2);
-                debug::print("END RIGHT 1 ALTERED COORDINATES");
-            }
-            else if (this.topBool == 1) {
-                //Scale coordinates
-                this.x1 = leftSide / (this.rawScaleFactor / 2);
-                this.x2 = rightSide * (this.rawScaleFactor * 2);
-                this.y2 = bottomSide * this.rawScaleFactor;
-
-                //Perform alignment
-                this.x1 = this.x1 + this.xAdjustment; 
-                this.x2 = this.x2 + this.xAdjustment; 
-                this.y1 = topSide;
-                //this.y2 = bottomSide;
-
-                debug::print("START BOTTOM 1 ALTERED COORDINATES");
-                debug::print(this.x1);
-                debug::print(this.x2);
-                debug::print(this.y1);
-                debug::print(this.y2);
-                debug::print("END BOTTOM 1 ALTERED COORDINATES");
- 
-            }
-            else if (this.bottomBool == 1) {
-                //Scale coordinates
-                this.x1 = leftSide / (this.rawScaleFactor / 2);
-                this.x2 = rightSide * (this.rawScaleFactor * 2);
-                this.y1 = topSide / this.rawScaleFactor;
- 
-                //Perform alignment
-                this.x1 = this.x1 + this.xAdjustment; 
-                this.x2 = this.x2 + this.xAdjustment; 
-                this.y1 = this.y1 + this.yAdjustment;
-                this.y2 = bottomSide + this.yAdjustment;
-
-                debug::print("START TOP 1 ALTERED COORDINATES");
-                debug::print(this.x1);
-                debug::print(this.x2);
-                debug::print(this.y1);
-                debug::print(this.y2);
-                debug::print("END TOP 1 ALTERED COORDINATES");
-            }
-            debug::print(__tostring(this.rawScaleFactor));
-            debug::print("RAW SCALE FACTORS PRINTED ON CHECK 1 !!!!!!");
-       }
-        else if (overlapCheck == 2) {
-            debug::print("overlapCheck fired: 2");
-            if ((this.leftBool == 1) && (this.topBool == 1)) {
-                //Scale coordinates
-                this.x2 = rightSide * this.rawScaleFactor;
-                this.y2 = bottomSide * this.rawScaleFactor;                
-
-                //Perform alignment
-                this.x1 = leftSide; 
-                //this.x2 = rightSide; 
-                this.y1 = topSide;
-                //this.y2 = bottomSide; 
-
-                debug::print("START TOP LEFT 2 ALTERED COORDINATES");
-                debug::print("X1 = " + __tostring(this.x1));
-                debug::print(this.x2);
-                debug::print(this.y1);
-                debug::print(this.y2);
-                debug::print("END TOP LEFT 2 ALTERED COORDINATES");
-            }
-            else if ((this.rightBool == 1) && (this.topBool == 1)) {
-                //Scale coordinates
-                this.x1 = leftSide / this.rawScaleFactor;
-                this.y2 = bottomSide * this.rawScaleFactor;
-
-                //Perform alignment
-                this.x1 = this.x1 + this.xAdjustment; 
-                this.x2 = rightSide + this.xAdjustment; 
-                this.y1 = topSide;
-                //this.y2 = bottomSide;
-
-                debug::print("START TOP RIGHT 2 ALTERED COORDINATES");
-                debug::print(this.x1);
-                debug::print(this.x2);
-                debug::print(this.y1);
-                debug::print(this.y2);
-                debug::print("END TOP RIGHT 2 ALTERED COORDINATES");
-            }
-            else if ((this.leftBool == 1) && (this.bottomBool == 1)) {
-                //Scale coordinates
-                this.x2 = rightSide * this.rawScaleFactor;
-                this.y1 = topSide / this.rawScaleFactor;
-
-                //Perform alignment
-                this.x1 = leftSide; 
-                //this.x2 = rightSide; 
-                this.y1 = this.y1 + this.yAdjustment;
-                this.y2 = bottomSide + this.yAdjustment;
-
-                debug::print("START BOTTOM LEFT 2 ALTERED COORDINATES");
-                debug::print(this.x1);
-                debug::print(this.x2);
-                debug::print(this.y1);
-                debug::print(this.y2);
-                debug::print("END BOTTOM LEFT 2 ALTERED COORDINATES");
-            }
-            else if ((this.rightBool == 1) && (this.bottomBool == 1)) {
-                //Scale coordinates
-                this.x1 = leftSide / this.rawScaleFactor;
-                this.y1 = topSide / this.rawScaleFactor;
-
-                //Perform alignment
-                this.x1 = this.x1 + this.xAdjustment; 
-                this.x2 = rightSide + this.xAdjustment; 
-                this.y1 = this.y1 + this.yAdjustment;
-                this.y2 = bottomSide + this.yAdjustment;
-
-                debug::print("START BOTTOM RIGHT 2 ALTERED COORDINATES");
-                debug::print(this.x1);
-                debug::print(this.x2);
-                debug::print(this.y1);
-                debug::print(this.y2);
-                debug::print("END BOTTOM RIGHT 2 ALTERED COORDINATES");
-            }
-            debug::print(__tostring(this.rawScaleFactor));
-            debug::print("RAW SCALE FACTORS PRINTED CHECK 2 !!!!!!");
-        }
-        else if (overlapCheck == 3) {
-            debug::print("overlapCheck returned 3 for some reason, please check your sprite");
-        }
-        else if (overlapCheck == 4) {
-            debug::print("overlapCheck fired: 4");
-            this.x1 = leftSide;
-            this.y1 = topSide; 
-            this.x2 = rightSide; 
-            this.y2 = bottomSide;
-            //debug::print("START 4 ALTERED COORDINATES");
-            //debug::print(this.x1);
-            //debug::print(this.x2);
-            //debug::print(this.y1);
-            //debug::print(this.y2);
-            //debug::print("END 4 ALTERED COORDINATES");
-        }
+        
         //This doesn't even technically function because Saffire forgot z-depth in native
         if (z_depth != null) {
             this.z = z_depth;
@@ -390,6 +167,7 @@ class ss_basesprite : base_drawobject {
     }
     
     method setpos(leftSide, topSide, rightSide, bottomSide) {
+        // TODO also add alignment slot?
         if (leftSide != null) {
             this.x1 = leftSide * screenratio;
         }
@@ -408,12 +186,12 @@ class ss_basesprite : base_drawobject {
     
     method changepos(x_offset, y_offset) {
         if (x_offset != null) {
-            this.x1 = this.x1 + (x_offset * screenratio);
-            this.x2 = this.x2 + (x_offset * screenratio);
+            this.x1 = this.x1 + (x_offset * this.rawScaleFactor);
+            this.x2 = this.x2 + (x_offset * this.rawScaleFactor);
         }
         if (y_offset != null) {
-            this.y1 = this.y1 + (y_offset * screenyratio);
-            this.y2 = this.y2 + (y_offset * screenyratio);
+            this.y1 = this.y1 + (y_offset * this.rawScaleFactor);
+            this.y2 = this.y2 + (y_offset * this.rawScaleFactor);
         }
         gcbigsprite::sethudposition(this.sprite, this.x1, this.y1, this.x2, this.y2);
         return null;

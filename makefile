@@ -21,7 +21,7 @@ endif
 ifeq ($(windows),1)
 	SHELL = cmd
 else
-	SHELL = /bin/SHELL
+	SHELL = /bin/sh
 endif
 
 default: build
