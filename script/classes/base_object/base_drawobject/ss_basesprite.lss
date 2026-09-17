@@ -5,10 +5,6 @@ class ss_basesprite : base_drawobject {
     property rawScaleFactor;
     property xAdjustment;
     property yAdjustment;
-    property leftBool;
-    property rightBool;
-    property topBool;
-    property bottomBool;
 
     method ss_basesprite(file_path, leftSide, topSide, z_depth, rightSide, bottomSide, alignmentSlot, alpha) {
         this.filename = file_path;
@@ -96,17 +92,6 @@ class ss_basesprite : base_drawobject {
         return null;
     }
     
-    //method OffsetMath(baseOffset) {
-    //    if (((screenx / screeny) > 1.4) && (baseOffset != 0) ) {
-    //        var altOffset = (baseOffset + ((screenx - 640) * (screenyratio / 10)));
-    //        return altOffset;
-    //    }
-    //    else {
-    //        var altOffset = (baseOffset * screenratio);
-    //        return altOffset;
-    //    }
-    //}
-
     method initfull() {
         this.sprite = gcbigsprite::loadhudsprite(this.x1, this.y1, this.x2, this.y2, this.filename, 0);
         gcbigsprite::setzdepth(this.sprite, this.z);
@@ -127,10 +112,6 @@ class ss_basesprite : base_drawobject {
         this.rawScaleFactor = null;
         this.xAdjustment = null;
         this.yAdjustment = null;
-        this.leftBool = null;
-        this.rightBool = null;
-        this.topBool = null;
-        this.bottomBool = null;
         return null;
     }
     
@@ -166,7 +147,7 @@ class ss_basesprite : base_drawobject {
         return null;
     }
     
-    method setpos(leftSide, topSide, rightSide, bottomSide) {
+    method setpos(leftSide, topSide, rightSide, bottomSide, alignmentSlot) {
         // TODO also add alignment slot?
         if (leftSide != null) {
             this.x1 = leftSide * screenratio;

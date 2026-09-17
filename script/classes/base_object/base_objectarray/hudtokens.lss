@@ -59,7 +59,7 @@ class hudtokens : base_objectarray {
         }
         debug::print("TOKENS UI GENERATING:");
         this.base_objectarray([ 
-            new gs_lego_animatesprite(var2, 0, var3, 1, 456, 20, 0, 456 + 64, 84), 
+            new gs_lego_animatesprite(var2, 0, var3, 1, 456, 20, 0, 456 + 64, 84, 2), 
             new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "X", (456 + 64) + 5, 52, 0, 1.2, 0, 4, 0), 
             new gs_legotext("Root/Data/Art/Fonts/BionicleFont", "0", ((456 + 64) + 5) + 32, 52, 0, 1.7, 0, 4, 0) ]);
         this.items[0].initfull();

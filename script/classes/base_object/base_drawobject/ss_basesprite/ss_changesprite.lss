@@ -3,8 +3,9 @@ class ss_changesprite : ss_basesprite {
     property last;
     property spritearray;
     property currentsprite;
+    property alignmentSlot;
     
-    method ss_changesprite(file_path, first_frame, last_frame, leftSide, topSide, z_depth, rightSide, bottomSide) {
+    method ss_changesprite(file_path, first_frame, last_frame, leftSide, topSide, z_depth, rightSide, bottomSide, alignmentSlot) {
         this.filename = file_path;
         this.first = first_frame;
         this.last = last_frame;
@@ -38,6 +39,12 @@ class ss_changesprite : ss_basesprite {
         else {
             this.y2 = 0;
         }
+        if (alignmentSlot != null) {
+            this.alignmentSlot = alignmentSlot;
+        }
+        else {
+            gcscripttools::scriptmessagebox("alignmentSlot returned null, please update your ss_changesprite call");
+        }
         return null;
     }
     
@@ -61,7 +68,7 @@ class ss_changesprite : ss_basesprite {
             if ((var1 >= 1000) && (var1 < 10000)) {
                 var2 = (this.filename + __tostring(var1)) + ".tga";
             }
-            sprite = new ss_basesprite(var2, this.x1, this.y1, this.z, this.x2, this.y2);
+            sprite = new ss_basesprite(var2, this.x1, this.y1, this.z, this.x2, this.y2, this.alignmentSlot);
             sprite.initfull();
             this.spritearray.__append(sprite);
             var1 = var1 + 1;
@@ -82,6 +89,7 @@ class ss_changesprite : ss_basesprite {
     method cleanupfull() {
         this.spritearray = null;
         this.currentsprite = null;
+        this.alignmentSlot = null;
         return null;
     }
     

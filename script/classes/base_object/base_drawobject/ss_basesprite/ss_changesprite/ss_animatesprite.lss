@@ -3,29 +3,19 @@ class ss_animatesprite : ss_changesprite {
     property animatingonflag;
     property framecount;
     
-    method ss_animatesprite(filepath, first_frame, last_frame, frames_animating, leftSide, topSide, z_depth, rightSide, bottomSide) {
+    method ss_animatesprite(filepath, first_frame, last_frame, frames_animating, leftSide, topSide, z_depth, rightSide, bottomSide, alignmentSlot) {
         this.filename = filepath;
         this.first = first_frame;
         this.last = last_frame;
         this.framesanimating = frames_animating;
         if (leftSide != null) {
-            //if (useStaticCoord == 0) {
-                this.x1 = (leftSide * screenratio);
-            //}
-            //else {
-            //    this.x1 = leftSide;
-            //}
+            this.x1 = leftSide;
         }
         else {
             this.x1 = 0;
         }
         if (topSide != null) {
-            //if (useStaticCoord == 0) {
-                this.y1 = (topSide * screenyratio);
-            //}
-            //else {
-            //    this.y1 = topSide;
-            //}
+            this.y1 = topSide;
         }
         else {
             this.y1 = 0;
@@ -37,26 +27,22 @@ class ss_animatesprite : ss_changesprite {
             this.z = 0;
         }
         if (rightSide != null) {
-            //if (useStaticCoord == 0) {
-                this.x2 = (rightSide * screenratio);
-            //}
-            //else {
-            //    this.x2 = rightSide;
-            //}
+            this.x2 = rightSide;
         }
         else {
             this.x2 = 0;
         }
         if (bottomSide != null) {
-            //if (useStaticCoord == 0) {
-                this.y2 = (bottomSide * screenyratio);
-            //}
-            //else {
-            //    this.y2 = bottomSide;
-            //}
+            this.y2 = bottomSide;
         }
         else {
             this.y2 = 0;
+        }
+        if (alignmentSlot != null) {
+            this.alignmentSlot = alignmentSlot;
+        }
+        else {
+            gcscripttools::scriptmessagebox("alignmentSlot returned null, please update your gs_lego_animatesprite call");
         }
         return null;
     }
@@ -80,7 +66,7 @@ class ss_animatesprite : ss_changesprite {
             if ((var1 >= 1000) && (var1 < 10000)) {
                 var2 = (this.filename + __tostring(var1)) + ".tga";
             }
-            sprite = new ss_basesprite(var2, this.x1, this.y1, this.z, this.x2, this.y2, 1);
+            sprite = new ss_basesprite(var2, this.x1, this.y1, this.z, this.x2, this.y2, this.alignmentSlot);
             sprite.initfull();
             this.spritearray.__append(sprite);
             var1 = var1 + 1;

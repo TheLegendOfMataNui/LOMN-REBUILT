@@ -108,7 +108,7 @@ class lego_inventoryscreen {
         this.setsprite();
         //Show Tokens
         this.tokencount = __tostring(globalclass.hud.tokens.tcount);
-        this.tokens = new gs_lego_animatesprite(this.tokensprite, 0, this.tokenframes, 1, 10, 380, 0, 10 + 32, 380 + 32);
+        this.tokens = new gs_lego_animatesprite(this.tokensprite, 0, this.tokenframes, 1, 10, 380, 0, 10 + 32, 380 + 32, 6);
         this.tokentext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", " -  " + this.tokencount, 10 + 32 + 5, 380 + 16, 0, 1.2, 0, 4, 0);
         this.tokens.initfull();
         this.tokens.add();
@@ -119,7 +119,7 @@ class lego_inventoryscreen {
         this.tokentext.show();          
         //Show Ammo
         this.ammocount = __tostring(globalclass.hud.ammo.count);
-        this.ammo = new gs_lego_animatesprite(this.ammosprite, 0, 23, 1, 10, 380 + 26, 0, 10 + 32, 380 + 58);
+        this.ammo = new gs_lego_animatesprite(this.ammosprite, 0, 23, 1, 10, 380 + 26, 0, 10 + 32, 380 + 58, 6);
         this.ammotext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", " -  " + this.ammocount, 10 + 32 + 5, 380 + 42, 0, 1.2, 0, 4, 0);
         this.ammo.initfull();
         this.ammo.add();

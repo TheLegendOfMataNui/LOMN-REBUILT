@@ -59,7 +59,7 @@ class pausescreen {
                 new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad_bev", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 23), 320, 216, 5, 2.0, 256, 4, 0, 1), 
                 new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad_bev", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 88), 320, 216 + 30, 5, 2.0, 256, 4, 0, 1),
                 new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad_bev", gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 41), 320, 216 + 60, 5, 2.0, 256, 4, 0, 1) ];            
-                this.menubox = new ss_basesprite("Root/Data/Art/Menubox", 180, 130, 0, 460, 330, 1);            
+                this.menubox = new ss_basesprite("Root/Data/Art/Menubox", 180, 130, 0, 460, 330, 4);            
             this.menubox.initfull();
             this.menubox.add();
             this.menubox.show();
