@@ -16,67 +16,67 @@ class mask {
     method add() {
         gctoa::addmask(globalclass.player.actor.toahandle, this.maskid, "john pruden");
         if (this.maskname == 7) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask8", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask8", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 3;
         }
         else if (this.maskname == 0) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask1", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask1", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 5;
         }
         else if (this.maskname == 8) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask9", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask9", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 3;
         }
         else if (this.maskname == 9) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask10", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask10", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 3;
         }
         else if (this.maskname == 1) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask2", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask2", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 0.8;
         }
         else if (this.maskname == 10) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask11", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask11", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 3;
         }
         else if (this.maskname == 2) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask3", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask3", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 5;
         }
         else if (this.maskname == 11) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask12", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask12", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 3;
         }
         else if (this.maskname == 3) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask4", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask4", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 1;
         }
         else if (this.maskname == 4) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask5", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask5", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 1;
         }
         else if (this.maskname == 12) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask13", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask13", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 3;
         }
         else if (this.maskname == 5) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask6", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask6", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 3;
         }
         else if (this.maskname == 1011) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask7", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask7", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 3;
         }
         else if (this.maskname == 666) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 0;
         }
         else if (this.maskname == 13) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask7", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask7", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 2;	
 		}
         else if (this.maskname == 14) {
-            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask5", 0, 23, 1, 0, 0, 0, 0, 0));
+            globalclass.hud.mask.addmask(new gs_lego_animatesprite("Root/data/art/hud/mask rotate/mask5", 0, 23, 1, 0, 0, 0, 0, 0, 6));
             this.powerdrainrate = 2;
 		}
         return null;

@@ -170,87 +170,87 @@ class element {
         var1 = 1;
         if (this.elementname == 1) {
             if (scslosifoundation::stringtoidentifier(globalclass.player.actor.charname) == scslosifoundation::stringtoidentifier("onua")) {
-                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllonua", 0, 23, var1, 0, 0, 0, 0, 0));
+                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllonua", 0, 23, var1, 0, 0, 0, 0, 0, 8));
             }
             else if (scslosifoundation::stringtoidentifier(globalclass.player.actor.charname) == scslosifoundation::stringtoidentifier("gali")) {
-                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllgali", 0, 23, var1, 0, 0, 0, 0, 0));
+                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllgali", 0, 23, var1, 0, 0, 0, 0, 0, 8));
             }
             else if (scslosifoundation::stringtoidentifier(globalclass.player.actor.charname) == scslosifoundation::stringtoidentifier("poha")) {
-                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllpohatu", 0, 23, var1, 0, 0, 0, 0, 0));
+                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllpohatu", 0, 23, var1, 0, 0, 0, 0, 0, 8));
             }
             else if (scslosifoundation::stringtoidentifier(globalclass.player.actor.charname) == scslosifoundation::stringtoidentifier("kopa")) {
-                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllkopaka", 0, 23, var1, 0, 0, 0, 0, 0));
+                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllkopaka", 0, 23, var1, 0, 0, 0, 0, 0, 8));
             }
             else if (scslosifoundation::stringtoidentifier(globalclass.player.actor.charname) == scslosifoundation::stringtoidentifier("lewa")) {
-                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppyblllewa", 0, 23, var1, 0, 0, 0, 0, 0));
+                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppyblllewa", 0, 23, var1, 0, 0, 0, 0, 0, 8));
             }
             else if (scslosifoundation::stringtoidentifier(globalclass.player.actor.charname) == scslosifoundation::stringtoidentifier("tahu")) {
-                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppyblltahu", 0, 23, var1, 0, 0, 0, 0, 0));
+                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppyblltahu", 0, 23, var1, 0, 0, 0, 0, 0, 8));
             }
             else if (scslosifoundation::stringtoidentifier(globalclass.player.actor.charname) == scslosifoundation::stringtoidentifier("akam")) {
-                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppyblltahu", 0, 23, var1, 0, 0, 0, 0, 0));
+                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppyblltahu", 0, 23, var1, 0, 0, 0, 0, 0, 8));
             }
             else if (scslosifoundation::stringtoidentifier(globalclass.player.actor.charname) == scslosifoundation::stringtoidentifier("wair")) {
-                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllgali", 0, 23, var1, 0, 0, 0, 0, 0));
+                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllgali", 0, 23, var1, 0, 0, 0, 0, 0, 8));
             }
             else if (scslosifoundation::stringtoidentifier(globalclass.player.actor.charname) == scslosifoundation::stringtoidentifier("viki")) {
-                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllonua", 0, 23, var1, 0, 0, 0, 0, 0));
+                globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllonua", 0, 23, var1, 0, 0, 0, 0, 0, 8));
             }
             scslosifoundation::stringtoidentifier(globalclass.player.actor.charname);
         }
         else if (this.elementname == 2) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllonua", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllonua", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 3) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/shldonua", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/shldonua", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 4) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/erthqk", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/erthqk", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 5) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllgali", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllgali", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 6) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/shldgali", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/shldgali", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 7) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/typhoon", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/typhoon", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 8) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllpohatu", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllpohatu", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 9) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/shldpohatu", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/shldpohatu", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 10) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/stonerain", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/stonerain", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 11) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllkopaka", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppybllkopaka", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 12) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/shldkopaka", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/shldkopaka", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 13) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hailstorm", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hailstorm", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 14) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppyblllewa", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppyblllewa", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 15) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/shldonua", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/shldonua", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 16) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/windlewa", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/windlewa", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 17) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppyblltahu", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/hppyblltahu", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 18) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/shldtahu", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/shldtahu", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         else if (this.elementname == 19) {
-            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/brimstone", 0, 23, var1, 0, 0, 0, 0, 0));
+            globalclass.hud.element.addelement(new gs_lego_animatesprite("Root/data/art/hud/elemrotate/brimstone", 0, 23, var1, 0, 0, 0, 0, 0, 8));
         }
         return null;
     }
