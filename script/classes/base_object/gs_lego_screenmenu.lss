@@ -13,7 +13,7 @@ class gs_lego_screenmenu : base_object {
     
     method gs_lego_screenmenu(param1) {
         this.items = param1;
-        this.bgart = new ss_basesprite("Root/Data/Art/MenuArt/LUKE", 0, 0, 3, 640, 480);
+        this.bgart = new ss_basesprite("Root/Data/Art/MenuArt/LUKE", 0, 0, 3, 640, 480, 4);
         return null;
     }
     

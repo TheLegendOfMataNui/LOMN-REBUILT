@@ -30,16 +30,16 @@ class gsprintmenu : extras {
         var var1;
         this.active = 1;
         this.subon = 0;
-        this.background1 = new ss_basesprite("Root/data/art/PrintMenu/BACKGROUND01", 0, 0, 0, 640, 480);
+        this.background1 = new ss_basesprite("Root/data/art/PrintMenu/BACKGROUND01", 0, 0, 0, 640, 480, 4);
         this.background1.initfull();
         this.background1.add();
         this.background1.show();
-        this.backopt1 = new printmenuhighlight("Root/data/art/PrintMenu/HL_ARROW01", 531, 353, 627, 481);
+        this.backopt1 = new printmenuhighlight("Root/data/art/PrintMenu/HL_ARROW01", 531, 353, 627, 481, 8);
         this.backopt1.initfull();
         this.imagelist = [   ];
         this.defaultpics = [ 
-            new printmenupic("Root/data/art/PrintMenu/fgs1", 38, 48, 102, 112, "Root/data/art/PrintMenu/HL01", 22, 37, 118, 133, 1), 
-            new printmenupic("Root/data/art/PrintMenu/fis1", 139, 49, 203, 113, "Root/data/art/PrintMenu/HL02", 122, 37, 218, 133, 1) ];
+            new printmenupic("Root/data/art/PrintMenu/fgs1", 38, 48, 102, 112, 0, "Root/data/art/PrintMenu/HL01", 22, 37, 118, 133, 1, 0), 
+            new printmenupic("Root/data/art/PrintMenu/fis1", 139, 49, 203, 113, 0, "Root/data/art/PrintMenu/HL02", 122, 37, 218, 133, 1, 0) ];
 
         foreach (var defaultpics : this.defaultpics) {
             this.imagelist.__append(defaultpics);
@@ -335,11 +335,11 @@ class gsprintmenu : extras {
         debug::print("Switching to print...");
         this.subon = 1;
         this.hide();
-        this.background2 = new ss_basesprite("Root/data/art/PrintMenu/BACKGROUND02", 0, 0, 0, 640, 480);
+        this.background2 = new ss_basesprite("Root/data/art/PrintMenu/BACKGROUND02", 0, 0, 0, 640, 480, 4);
         this.background2.initfull();
         this.background2.add();
         this.background2.show();
-        this.backopt2 = new printmenuhighlight("Root/data/art/PrintMenu/HL_ARROW02", 547, 358, 643, 486);
+        this.backopt2 = new printmenuhighlight("Root/data/art/PrintMenu/HL_ARROW02", 547, 358, 643, 486, 8);
         this.backopt2.initfull();
         this.idx = selected_artwork_id + 1;
         if (this.idx == 1) {

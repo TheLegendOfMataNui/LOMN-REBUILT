@@ -73,7 +73,7 @@ class playmenuoption : gs_lego_screenfrontend {
         }
         this.halfheight = __toint(25 * screenratio);
         if (this.level > 0) {
-            this.levsprite = new ss_basesprite(var6, 275, var1 - 25, 0, 325, var1 + 25);
+            this.levsprite = new ss_basesprite(var6, 275, var1 - 25, 0, 325, var1 + 25, 4);
         }
         return null;
     }

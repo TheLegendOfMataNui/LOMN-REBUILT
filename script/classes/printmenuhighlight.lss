@@ -2,8 +2,8 @@ class printmenuhighlight {
     property image;
     property lit;
     
-    method printmenuhighlight(filename, x1, y1, x2, y2) {
-        this.image = new ss_basesprite(filename, x1, y1, 0, x2, y2);
+    method printmenuhighlight(filename, x1, y1, x2, y2, alignmentSlot) {
+        this.image = new ss_basesprite(filename, x1, y1, 0, x2, y2, alignmentSlot);
         this.lit = 0;
         return null;
     }

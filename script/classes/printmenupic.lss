@@ -3,11 +3,11 @@ class printmenupic {
     property highlight;
     property selectable;
     
-    method printmenupic(icon_filename, icon_x1, icon_y1, icon_x2, icon_y2, highlight_filename, highlight_x1, highlight_y1, highlight_x2, highlight_y2, is_selectable_bool) {
+    method printmenupic(icon_filename, icon_x1, icon_y1, icon_x2, icon_y2, alignmentSlot1, highlight_filename, highlight_x1, highlight_y1, highlight_x2, highlight_y2, is_selectable_bool, alignmentSlot2) {
         this.selectable = is_selectable_bool;
         if (this.selectable) {
-            this.image = new ss_basesprite(icon_filename, icon_x1, icon_y1, 0, icon_x2, icon_y2);
-            this.highlight = new printmenuhighlight(highlight_filename, highlight_x1, highlight_y1, highlight_x2, highlight_y2);
+            this.image = new ss_basesprite(icon_filename, icon_x1, icon_y1, 0, icon_x2, icon_y2, alignmentSlot1);
+            this.highlight = new printmenuhighlight(highlight_filename, highlight_x1, highlight_y1, highlight_x2, highlight_y2, alignmentSlot2);
         }
         return null;
     }

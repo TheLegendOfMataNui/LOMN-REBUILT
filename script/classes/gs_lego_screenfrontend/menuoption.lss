@@ -47,7 +47,7 @@ class menuoption : gs_lego_screenfrontend{
             this.righttext.add();
             this.righttext.show();
             gceditorslider::setactive(this.slider, 1);
-            this.sliderbg = new ss_basesprite("Root/data/art/slider/lego_slider_bg", 320, (50.0 + (this.offset * 40.0)) - (32 * 0.5) + 2, 0, (320) + 192, (50.0 + (this.offset * 40.0)) + (32 * 0.5) + 2);
+            this.sliderbg = new ss_basesprite("Root/data/art/slider/lego_slider_bg", 320, (50.0 + (this.offset * 40.0)) - (32 * 0.5) + 2, 0, (320) + 192, (50.0 + (this.offset * 40.0)) + (32 * 0.5) + 2, 1);
             this.sliderbg.initfull();
             this.sliderbg.add();
             this.sliderbg.show();
