@@ -15,7 +15,6 @@ class global_class : base_object {
     property inventoryscreen;
     property helpscreen;
     property cheats;
-    property render;
     property level;
     property randnum;
     property bgmusic;
@@ -64,7 +63,6 @@ class global_class : base_object {
         this.pause = new pausescreen();
         this.inventoryscreen = new lego_inventoryscreen();
         this.helpscreen = new lego_helpscreen();
-        this.render = new renderobjects();
         this.level = null;
         this.randnum = new slosi_random(0);
         this.debugtimer = new lego_timer("zzzz", 5.0, 0);
@@ -103,8 +101,6 @@ class global_class : base_object {
         this.helpscreen.initfull();
         this.inputlist.__append(this.helpscreen);
         this.processlist.__append(this.helpscreen);
-        this.render.initfull();
-        this.inputlist.__append(this.render);
         this.cheats.initfull();
         this.inputlist.__append(this.cheats);
         this.processlist.__append(this.cheats);
@@ -174,10 +170,6 @@ class global_class : base_object {
         if (this.helpscreen != null) {
             this.helpscreen.cleanupfull();
             this.helpscreen = null;
-        }
-        if (this.render != null) {
-            this.render.cleanupfull();
-            this.render = null;
         }
         if (this.cheats != null) {
             this.cheats.cleanupfull();

@@ -28,10 +28,6 @@ class gs_lego_level : lego_base_screen {
     }
     
     method lego_level_initfull() {
-        var var1;
-        var var2;
-        var var3;
-        var var4;
         debug::print("[][][] lego_level_initfull");
         this.areasetactive_pause_counter = 0;
         globalclass.setcurrentlevel(this);
@@ -43,8 +39,7 @@ class gs_lego_level : lego_base_screen {
         }
         gcareadirector::setcurrentlevel(this.name);
         if (globalclass.saverloaded) {
-            var1 = gcsaver::getarea();
-            this.startingarea = scslosifoundation::identifiertostring(var1);
+            this.startingarea = scslosifoundation::identifiertostring(gcsaver::getarea());
         }
         else if (this.argarray != null) {
             this.startingarea = this.argarray[0];
@@ -71,22 +66,15 @@ class gs_lego_level : lego_base_screen {
             else {
                 globalclass.player.actor.gotopos(scslosifoundation::stringtoidentifier("str0"), scslosifoundation::stringtoidentifier("lok0"));
             }
-            var2 = this.cam.getaimode();
-            if (var2 != 9) {
+            if (this.cam.getaimode() != 9) {
                 this.cam.setaimode(11);
             }
         }
         this.cam.settweakable();
         if (globalclass.saverloaded) {
-            var3 = gcsaver::gettokencount();
-            if (var3 != null) {
-                globalclass.player.settokens(var3);
+            if (gcsaver::gettokencount() != null) {
+                globalclass.player.settokens(gcsaver::gettokencount());
             }
-        }
-        var4 = 0;
-        while ((this.areas.__length - 1) >= var4) {
-            globalclass.render.addareatorender(this.areas[var4].id);
-            var4 = var4 + 1;
         }
         if (globalclass.saverloaded) {
             globalclass.player.initfromsaver();
