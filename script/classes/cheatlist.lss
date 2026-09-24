@@ -71,6 +71,7 @@ class cheatlist {
             "Tokens", 
             "Ammo" ];
         this.visualdebugnames = [ "Wireframe", 
+            //"Octree", 
             "Collision Boxes", 
             "Trigger Boxes", 
             "Trigger Planes", 
@@ -811,6 +812,10 @@ class cheatlist {
                 if (this.curidx == 0) {
                     lsdebugger::setwireframe(0);
                 }
+                //else if (this.curidx == 1) {
+                //    TODO: look into hooking this properly to fix some stuff with it
+                //    gcarea::renderoctree(gcareadirector::getmainarea(), 0);
+                //}
                 else if (this.curidx == 1) {
                     lsdebugger::setcollisionboxes(0);
                 }
@@ -831,6 +836,9 @@ class cheatlist {
                 if (this.curidx == 0) {
                     lsdebugger::setwireframe(1);
                 }
+                //else if (this.curidx == 1) {
+                //    gcarea::renderoctree(gcareadirector::getmainarea(), 1);
+                //}
                 else if (this.curidx == 1) {
                     lsdebugger::setcollisionboxes(1);
                 }
