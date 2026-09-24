@@ -579,7 +579,7 @@ class hudthingy {
         if (var1 > var2) {
             while (var1 > var2) {
                 var3 = this.lifebar.__length - 1;
-                var4 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", this.lifebar[var3].x1 + 1, this.lifebar[var3].y1, 0, this.lifebar[var3].x2 + 1, this.lifebar[var3].y2, 0);
+                var4 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 36, 0, 104 + (16 * var2), 52, 0);
                 var4.initfull();
                 var4.enablealphachannel(1);
                 var4.add();
@@ -616,7 +616,7 @@ class hudthingy {
             while (var1 > var2) {
                 debug::print("[][][] add max energy");
                 var3 = this.energybar.__length - 1;
-                var4 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", this.energybar[var3].x1 + 1, this.energybar[var3].y1, 0, this.energybar[var3].x2 + 1, this.energybar[var3].y2, 0);
+                var4 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 64, 0, 104 + (16 * var2), 80, 0);
                 var4.initfull();
                 var4.enablealphachannel(1);
                 var4.add();
@@ -653,7 +653,7 @@ class hudthingy {
         if (var1 > var2) {
             while (var1 > var2) {
                 var3 = this.airbar.__length - 1;
-                var4 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", this.airbar[var3].x1 + 1, this.airbar[var3].y1, 0, this.airbar[var3].x2 + 1, this.airbar[var3].y2, 0);
+                var4 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 50, 0, 104 + (16 * var2), 66, 0);
                 var4.initfull();
                 var4.enablealphachannel(1);
                 var4.add();
