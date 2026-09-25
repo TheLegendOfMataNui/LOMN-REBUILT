@@ -76,6 +76,30 @@ class ss_basesprite : base_drawobject {
             debug::print("end new coords");
         }
         
+        if (leftSide != null) {
+            this.x1 = leftSide * screenratio;
+        }
+        else {
+            this.x1 = 0;
+        }
+        if (topSide != null) {
+            this.y1 = topSide * screenyratio;
+        }
+        else {        
+            this.y1 = 0;
+        }
+        if (rightSide != null) {
+            this.x2 = rightSide * screenratio;
+        }
+        else {
+            this.x2 = 0;
+        }
+        if (bottomSide != null) {
+            this.y2 = bottomSide * screenyratio;
+        }
+        else {
+            this.y2 = 0;
+        }        
         //This doesn't even technically function because Saffire forgot z-depth in native
         if (z_depth != null) {
             this.z = z_depth;
@@ -94,6 +118,7 @@ class ss_basesprite : base_drawobject {
     
     method initfull() {
         this.sprite = gcbigsprite::loadhudsprite(this.x1, this.y1, this.x2, this.y2, this.filename, 0);
+        gcbigsprite::sethudposition(this.sprite, this.x1, this.y1, this.x2, this.y2);
         gcbigsprite::setzdepth(this.sprite, this.z);
         return null;
     }
