@@ -313,21 +313,21 @@ class hudthingy {
     }
     
     method process(param1) {
-        if ((this.movement < 0) && (this.airbar[0].x1 >= -86)) {
+        if ((this.movement < 0) && (this.airbar[0].x1 >= (-86 * screenratio))) {
             this.changepos(-10);
-            if (this.airbar[0].x1 <= -86) {
+            if (this.airbar[0].x1 <= (-86 * screenratio)) {
                 this.movement = 0;
             }
         }              
-        if ((this.movement == -2) && (this.airbar[0].x1 >= -86)) {
+        if ((this.movement == -2) && (this.airbar[0].x1 >= (-86 * screenratio))) {
             this.changepos(-50);
-            if (this.airbar[0].x1 <= -86) {
+            if (this.airbar[0].x1 <= (-86 * screenratio)) {
                 this.movement = 0;
             }
         }            
-        if ((this.movement > 0) && (this.airbar[0].x1 <= 66)) {
+        if ((this.movement > 0) && (this.airbar[0].x1 <= (66 * screenratio))) {
             this.changepos(10);
-            if (this.airbar[0].x1 >= 66) {
+            if (this.airbar[0].x1 >= (66 * screenratio)) {
                 this.movement = 0;
             }
         }            

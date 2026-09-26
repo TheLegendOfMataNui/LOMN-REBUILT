@@ -8,94 +8,26 @@ class ss_basesprite : base_drawobject {
 
     method ss_basesprite(file_path, leftSide, topSide, z_depth, rightSide, bottomSide, alignmentSlot, alpha) {
         this.filename = file_path;
-        debug::print("INITIAL COORDS");
-        debug::print(leftSide);
-        debug::print(rightSide);
-        debug::print(topSide);
-        debug::print(bottomSide);
-        debug::print("END INITIAL COORDS");
-        //Check screen ratios to determine which one we can use
-        var ratio_width = screenx / 640.0;
-        var ratio_height = screeny / 480.0;
-        if (ratio_width < ratio_height) {
-            this.rawScaleFactor = ratio_width;
-        }
-        else {
-            this.rawScaleFactor = ratio_height;
-        }
-        //If the scaleFactor returns a value less than 1, we set it to 1 for safety
-        if (this.rawScaleFactor < 1) {
-            this.rawScaleFactor = 1;
-        }
-
-        // Calculate new scaled widths and heights - creates a virtual 4:3 space
-        var rescaled_width = 640.0 * this.rawScaleFactor;
-        var rescaled_height = 480.0 * this.rawScaleFactor;
-
-        // Set up adjustments according to the alignment slots
-        // laid out as follows:
-        // 0 1 2
-        // 3 4 5
-        // 6 7 8
-        // TODO: add sentinel values for "don't scale" and "stretch"
-        // TODO: update all callers
-        if (alignmentSlot != null) {
-            // Scale the coordinates
-            this.y1 = topSide * this.rawScaleFactor;
-            this.y2 = bottomSide * this.rawScaleFactor;
-            this.x1 = leftSide * this.rawScaleFactor;
-            this.x2 = rightSide * this.rawScaleFactor;
-            this.xAdjustment = 0.0;
-            this.yAdjustment = 0.0;
-
-            if ((alignmentSlot == 1) || (alignmentSlot == 4) || (alignmentSlot == 7)) {
-                // X must be moved so the CENTER currently rescaled_width / 2.0 becomes OUR center, so screenx / 2.0
-                this.xAdjustment = ((screenx / 2.0) - (rescaled_width / 2.0));
-            }
-            else if ((alignmentSlot == 2) || (alignmentSlot == 5) || (alignmentSlot == 8)) {
-                // X must be moved so the CORNER (currently rescaled_width) becomes OUR corner (screenx)
-                this.xAdjustment = screenx - rescaled_width;
-            }
-            if ((alignmentSlot == 3) || (alignmentSlot == 4) || (alignmentSlot == 5)) {
-                // Y must be moved so the CENTER (currently rescaled_height) becomes OUR center (screeny)
-                this.yAdjustment = ((screeny / 2.0) - (rescaled_height / 2.0));
-            }
-            else if ((alignmentSlot == 6) || (alignmentSlot == 7) || (alignmentSlot == 8)) {
-                // Y must be moved so the CORNER (currently rescaled_height) becomes OUR corner (screeny)
-                this.yAdjustment = screeny - rescaled_height;
-            }
-            this.x1 = this.x1 + this.xAdjustment;
-            this.x2 = this.x2 + this.xAdjustment;
-            this.y1 = this.y1 + this.yAdjustment;
-            this.y2 = this.y2 + this.yAdjustment;
-            debug::print("begin new coords");
-            debug::print(this.x1);
-            debug::print(this.x2);
-            debug::print(this.y1);
-            debug::print(this.y2);
-            debug::print("end new coords");
-        }
-        
         if (leftSide != null) {
-            this.x1 = leftSide * screenratio;
+            this.x1 = leftSide;
         }
         else {
             this.x1 = 0;
         }
         if (topSide != null) {
-            this.y1 = topSide * screenyratio;
+            this.y1 = topSide;
         }
         else {        
             this.y1 = 0;
         }
         if (rightSide != null) {
-            this.x2 = rightSide * screenratio;
+            this.x2 = rightSide;
         }
         else {
             this.x2 = 0;
         }
         if (bottomSide != null) {
-            this.y2 = bottomSide * screenyratio;
+            this.y2 = bottomSide;
         }
         else {
             this.y2 = 0;
@@ -118,8 +50,8 @@ class ss_basesprite : base_drawobject {
     
     method initfull() {
         this.sprite = gcbigsprite::loadhudsprite(this.x1, this.y1, this.x2, this.y2, this.filename, 0);
-        gcbigsprite::sethudposition(this.sprite, this.x1, this.y1, this.x2, this.y2);
         gcbigsprite::setzdepth(this.sprite, this.z);
+        this.setpos(this.x1, this.y1, this.x2, this.y2);
         return null;
     }
     
@@ -172,8 +104,7 @@ class ss_basesprite : base_drawobject {
         return null;
     }
     
-    method setpos(leftSide, topSide, rightSide, bottomSide, alignmentSlot) {
-        // TODO also add alignment slot?
+    method setpos(leftSide, topSide, rightSide, bottomSide) {
         if (leftSide != null) {
             this.x1 = leftSide * screenratio;
         }
@@ -192,12 +123,12 @@ class ss_basesprite : base_drawobject {
     
     method changepos(x_offset, y_offset) {
         if (x_offset != null) {
-            this.x1 = this.x1 + (x_offset * this.rawScaleFactor);
-            this.x2 = this.x2 + (x_offset * this.rawScaleFactor);
+            this.x1 = this.x1 + (x_offset * screenratio);
+            this.x2 = this.x2 + (x_offset * screenratio);
         }
         if (y_offset != null) {
-            this.y1 = this.y1 + (y_offset * this.rawScaleFactor);
-            this.y2 = this.y2 + (y_offset * this.rawScaleFactor);
+            this.y1 = this.y1 + (y_offset * screenyratio);
+            this.y2 = this.y2 + (y_offset * screenyratio);
         }
         gcbigsprite::sethudposition(this.sprite, this.x1, this.y1, this.x2, this.y2);
         return null;
