@@ -18,7 +18,6 @@ class hudthingy {
     method initfull() {
         var var1;
         var var2;
-        var var3;
         var var4;
         var var6;
         var var7;       
@@ -34,8 +33,7 @@ class hudthingy {
         var1 = __toint(3);
         var2 = 0;
         while ((var1 - 1) >= var2) {
-            var3 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 36, 0, 104 + (16 * var2), 52);
-            this.lifebar.__append(var3);
+            this.lifebar.__append(new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 36, 0, 104 + (16 * var2), 52));
             var2 = var2 + 1;
         }
         var4 = this.lifebar.__length - 1;
@@ -45,8 +43,7 @@ class hudthingy {
         var1 = __toint(3);
         var2 = 0;
         while ((var1 - 1) >= var2) {
-            var3 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 50, 0, 104 + (16 * var2), 66);
-            this.airbar.__append(var3);
+            this.airbar.__append(new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 50, 0, 104 + (16 * var2), 66));
             var2 = var2 + 1;
         }
         var4 = this.airbar.__length - 1;
@@ -56,8 +53,7 @@ class hudthingy {
         var1 = __toint(3);
         var2 = 0;
         while ((var1 - 1) >= var2) {
-            var3 = new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 64, 0, 104 + (16 * var2), 80);
-            this.energybar.__append(var3);
+            this.energybar.__append(new ss_basesprite("Root/data/art/hud/16x16circle__clr", 87 + (16 * var2), 64, 0, 104 + (16 * var2), 80));
             var2 = var2 + 1;
         }
         var4 = this.energybar.__length - 1;
