@@ -10,6 +10,12 @@ class ss_basetext : base_drawobject {
     property y_scale;
     property padadjustment;
     property scale;
+    property faderate;
+    property fadetimeleft;
+    property incrementor;
+    property decrementor;
+    property blnshow;
+    property blnhide;
     
     method ss_basetext(font_name, string, x_pos, y_pos, z_depth, scale, horizontal_alignment, vertical_alignment, padding) {
         this.fontname = font_name;
@@ -191,19 +197,94 @@ class ss_basetext : base_drawobject {
     }
     
     method setkerning(param1) {
-        var var1;
-        var1 = param1;
-        sctilefont::setkerning(this.font, var1);
+        sctilefont::setkerning(this.font, param1);
         return null;
     }
     
     method settransparency(param1) {
+        debug::print(param1);
         sctextobject::settransparency(this.text, param1);
         return null;
     }
     
     method setcolor(red, green, blue, alpha) {
         sctilefont::setcolor(this.font, red, green, blue, alpha);
+        return null;
+    }
+
+    method process(param1) {
+        if (this.blnshow) {
+            this.fadetimeleft = this.fadetimeleft - param1.deltatime;
+            if (this.fadetimeleft <= 0) {
+                this.fadetimeleft = 0;
+            }
+            this.setincrementvalue();
+        }
+        if (this.blnhide) {
+            this.fadetimeleft = this.fadetimeleft - param1.deltatime;
+            if (this.fadetimeleft <= 0) {
+                this.fadetimeleft = 0;
+            }
+            this.setdecrementvalue();
+        }
+        return null;
+    }
+
+    method setincrementvalue() {
+        this.incrementor = 255 - (255 * (this.fadetimeleft / this.faderate));
+        this.settransparency(this.incrementor);
+        if (this.incrementor == 255) {
+            this.incrementor = 0;
+            this.blnshow = 0;
+        }
+        return null;
+    }
+    
+    method setdecrementvalue() {
+        this.decrementor = 255 * (this.fadetimeleft / this.faderate);
+        this.settransparency(this.decrementor);
+        if (this.decrementor == 0) {
+            this.hide();
+            this.blnhide = 0;
+        }
+        return null;
+    }
+
+    method setfaderate(fadeRate) {
+        this.faderate = fadeRate;
+        return null;
+    }
+
+    method fadein(fadeinRate) {
+        this.show();
+        //this.enabletransparency(1);
+        this.blnshow = 1;
+        this.blnhide = 0;
+        if (fadeinRate == null) {
+            //If no argument passed, set this to a default of 1.0
+            this.faderate = 1.0;
+        }
+        else {
+            this.faderate = fadeinRate;
+        }
+        this.fadetimeleft = this.faderate;
+        return null;
+    }
+    
+    method fadeout(fadeoutRate) {
+        this.decrementor = 255;
+        this.show();
+        //this.enabletransparency(1);
+        this.blnhide = 1;
+        this.blnshow = 0;
+        if (fadeoutRate == null) {
+            //If no argument passed, set this to a default of 1.0
+            this.faderate = 1.0;
+        }
+        else {
+            this.faderate = fadeoutRate;
+        }
+        this.fadetimeleft = this.faderate;
         return null;
     }
 }
