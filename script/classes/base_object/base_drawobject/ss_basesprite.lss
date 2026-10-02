@@ -168,8 +168,8 @@ class ss_basesprite : base_drawobject {
         return null;
     }
     
-    method settransparency(int) {
-        this.transval = int;
+    method settransparency(float) {
+        this.transval = floatt;
         gcbigsprite::settransparency(this.sprite, this.transval);
         return null;
     }
