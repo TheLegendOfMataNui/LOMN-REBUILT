@@ -2,9 +2,12 @@ class ss_basesprite : base_drawobject {
     property filename;
     property sprite;
     property handle;
-    property rawScaleFactor;
-    property xAdjustment;
-    property yAdjustment;
+    property faderate;
+    property fadetimeleft;
+    property incrementor;
+    property decrementor;
+    property blnshow;
+    property blnhide;
 
     method ss_basesprite(file_path, leftSide, topSide, z_depth, rightSide, bottomSide, alignmentSlot, alpha) {
         this.filename = file_path;
@@ -32,7 +35,7 @@ class ss_basesprite : base_drawobject {
         else {
             this.y2 = 0;
         }        
-        //This doesn't even technically function because Saffire forgot z-depth in native
+        //This doesn't even technically function because Saffire forgor z-depth in native
         if (z_depth != null) {
             this.z = z_depth;
         }
@@ -66,9 +69,6 @@ class ss_basesprite : base_drawobject {
         }
         this.sprite = null;
         this.handle = null;
-        this.rawScaleFactor = null;
-        this.xAdjustment = null;
-        this.yAdjustment = null;
         return null;
     }
     
@@ -160,12 +160,9 @@ class ss_basesprite : base_drawobject {
     }
     
     method enabletransparency(bool) {
-        var var1;
-        if (bool != null) {
-            var1 = bool;
-        }
-        else {
-            var1 = 1;
+        //defaults to true if no arg passed
+        if (bool == null) {
+            bool = 1;
         }
         gcbigsprite::enabletransparency(this.sprite, bool);
         return null;
@@ -177,14 +174,11 @@ class ss_basesprite : base_drawobject {
         return null;
     }
     
+    //Seems the game has the alpha channel enabled by default?
     method enablealphachannel(bool) {
-        //default is true
-        var var1;
-        if (bool != null) {
-            var1 = bool;
-        }
-        else {
-            var1 = 1;
+        //defaults to true if no arg passed
+        if (bool == null) {
+            bool = 1;
         }
         gcbigsprite::enablealphachannel(this.sprite, bool);
         return null;
@@ -192,6 +186,82 @@ class ss_basesprite : base_drawobject {
     
     method setcolor(red, green, blue, alpha) {
         gcbigsprite::setcolor(this.sprite, red, green, blue, alpha);
+        return null;
+    }
+
+    method process(param1) {
+        if (this.blnshow) {
+            this.fadetimeleft = this.fadetimeleft - param1.deltatime;
+            if (this.fadetimeleft <= 0) {
+                this.fadetimeleft = 0;
+            }
+            this.setincrementvalue();
+        }
+        if (this.blnhide) {
+            this.fadetimeleft = this.fadetimeleft - param1.deltatime;
+            if (this.fadetimeleft <= 0) {
+                this.fadetimeleft = 0;
+            }
+            this.setdecrementvalue();
+        }
+        return null;
+    }
+
+    method setincrementvalue() {
+        this.incrementor = 255 - (255 * (this.fadetimeleft / this.faderate));
+        this.settransparency(this.incrementor);
+        if (this.incrementor == 255) {
+            this.incrementor = 0;
+            this.blnshow = 0;
+        }
+        return null;
+    }
+    
+    method setdecrementvalue() {
+        this.decrementor = 255 * (this.fadetimeleft / this.faderate);
+        this.settransparency(this.decrementor);
+        if (this.decrementor == 0) {
+            this.hide();
+            this.blnhide = 0;
+        }
+        return null;
+    }
+
+    method setfaderate(fadeRate) {
+        this.faderate = fadeRate;
+        return null;
+    }
+
+    method fadein(fadeinRate) {
+        this.show();
+        this.enabletransparency(1);
+        this.blnshow = 1;
+        this.blnhide = 0;
+        if (fadeinRate == null) {
+            //If no argument passed, set this to a default of 1.0
+            this.faderate = 1.0;
+        }
+        else {
+            this.faderate = fadeinRate;
+        }
+        this.fadetimeleft = this.faderate;
+        return null;
+    }
+    
+    method fadeout(fadeoutRate) {
+        this.decrementor = 255;
+        this.show();
+        this.enabletransparency(1);
+        this.blnhide = 1;
+        this.blnshow = 0;
+        if (fadeoutRate == null) {
+            //If no argument passed, set this to a default of 1.0
+            this.faderate = 1.0;
+        }
+        else {
+            this.faderate = fadeoutRate;
+        }
+        this.fadetimeleft = this.faderate;
         return null;
     }
 }
