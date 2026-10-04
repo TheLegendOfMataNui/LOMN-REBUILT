@@ -11,6 +11,7 @@ class hud_class {
     property added;
     property cdtimer;
     property cutscene_warp;
+    property boss_meter;
     
     method hud_class() {
         this.hidden = 0;
@@ -46,6 +47,7 @@ class hud_class {
         this.screenfader.initfull();
         this.hide();
         this.cutscene_warp = 0;
+        this.boss_meter = new hud_Ls_BossMeter();
         return null;
     }
     
@@ -75,6 +77,10 @@ class hud_class {
         if (this.debuginfo != null) {
             this.debuginfo.cleanupfull();
             this.debuginfo = null;
+        }
+        if (this.boss_meter != null) {
+            this.boss_meter.cleanupfull();
+            this.boss_meter = null;
         }
         if (this.itemsarray != null) {
             var1 = this.itemsarray.__length - 1;
@@ -155,6 +161,7 @@ class hud_class {
     }
     
     method onevent(param1) {
+        this.boss_meter.onevent(param1);
         if (this.added == 1) {
             this.thingy.onevent(param1);
             if (param1.eventid == 32) {
@@ -189,6 +196,9 @@ class hud_class {
             }
             if (this.showdebuginfo == 1) {
                 this.debuginfo.process(param1);
+            }
+            if (this.boss_meter.partsarray != null) {
+                this.boss_meter.process(param1);
             }
             if (this.hidden == 0) {
                 var1 = 0;
