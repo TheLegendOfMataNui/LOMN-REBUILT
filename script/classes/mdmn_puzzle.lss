@@ -47,8 +47,12 @@ class mdmn_puzzle {
         if (bettersaver::getbooleanvalue(79) == 0) {
             this.waterfall.show();
             this.waterfall.setalpha(0.7);
-            this.titletext1 = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", gcareadirector::getscriptstring(1651471219, 3, 0), 320, 400, 0, 2.0, 256, 0, 0);
-            this.titletext2 = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", gcareadirector::getscriptstring(1651471219, 3, 1), 320, 420, 0, 2.0, 256, 0, 0);
+            this.titletext1 = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", gcareadirector::getscriptstring(1651471219, 3, 0), 320, 410, 0, 1.5, 256, 4, 0);
+            this.titletext2 = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", gcareadirector::getscriptstring(1651471219, 3, 1), 320, 430, 0, 1, 256, 4, 0);
+            this.titletext1.initfull();
+            this.titletext2.initfull();
+            this.titletext1.add();
+            this.titletext2.add();
         }
         else {
             this.waterfall.hide();
@@ -88,24 +92,17 @@ class mdmn_puzzle {
         }
         this.level_end = null;
         this.mudmanreset = null;
-        return null;
-    }
-    
-    method showstrings() {
-        this.titletext1.initfull();
-        this.titletext2.initfull();
-        this.titletext1.add();
-        this.titletext2.add();
-        this.titletext1.show();
-        this.titletext2.show();
+        this.cleanupstrings();
         return null;
     }
     
     method cleanupstrings() {
-        this.titletext1.cleanupfull();
-        this.titletext2.cleanupfull();
-        this.titletext1 = null;
-        this.titletext2 = null;
+        if (this.titletext1 != null) {
+            this.titletext1.cleanupfull();
+            this.titletext2.cleanupfull();
+            this.titletext1 = null;
+            this.titletext2 = null;
+        }
         return null;
     }
     
@@ -136,14 +133,17 @@ class mdmn_puzzle {
                 this.mudtimer = 0;
                 this.mudmonster.mudstate = 11;
                 gcmudboss::setdoprocess(this.mudmonster.mudman, 1);
-                if (this.mudmanreset == 0) {
-                    this.cleanupstrings();
-                }
+                //if (this.mudmanreset == 0) {
+                //}
                 debug::print("SET CAM NORMAL");
             }
         }
         else if (this.mudmonster.mudstate == 10) {
             
+        }
+        if (this.titletext1 != null) {
+            this.titletext1.process(param1);
+            this.titletext2.process(param1);
         }
         return null;
     }
@@ -190,6 +190,7 @@ class mdmn_puzzle {
             this.parent.level.cam.setaimode(0);
             if (this.mudmonster.mudstate == 10) {
                 gcmudboss::setsplitanimation(this.mudmonster.mudman, 1831874611, -1);
+                gcstaticsoundsptrarray::playtablesound(482);
                 debug::print("MUD DIE ANIM");
             }
             else {
@@ -197,7 +198,9 @@ class mdmn_puzzle {
                 gcmudboss::morph(this.mudmonster.mudman, 3, 2.0);
                 gcmodeldirector::show(1836409945, 1836409945);
                 this.mudtimer = 0;
-                this.showstrings();
+                this.titletext1.fadein();
+                this.titletext2.fadein();
+                globalclass.hud.boss_meter.slidebossmeter(1);
                 gcstaticsoundsptrarray::playtablesound(480);
                 debug::print("MUD ABSOLUTELY ERECT");
             }
@@ -231,7 +234,9 @@ class mdmn_puzzle {
         }
         else if (param1.eventid == 43) {
             if (gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("mudY"), 0) != null) {
-                gccharacter::switchmask(gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("mudY"), 0), 1061109567);
+                this.titletext1.fadeout(2);
+                this.titletext2.fadeout(2);
+                globalclass.hud.boss_meter.slidebossmeter(2);
                 this.mudmonster.mudstate = 10;
                 this.mudtimer = 0;
                 var2 = gcmudboss::getpositionx(this.mudmonster.mudman);
@@ -241,13 +246,14 @@ class mdmn_puzzle {
                 var6 = gcmudboss::getcamposy(this.mudmonster.mudman);
                 var7 = gcmudboss::getcamposz(this.mudmonster.mudman);
                 this.parent.level.cam.interpolate(var5, var6 + 10, var7, var2, var3 + 10, var4, 3);
-                gcstaticsoundsptrarray::playtablesound(482);
                 debug::print("MUD DIE");
             }
         }
         else if (param1.eventid == 27) {
             if ((this.level_end == 0) && (this.mudmonster.mudstate != 10)) {
                 this.resetarea();
+                this.titletext1.fadein();
+                this.titletext2.fadein();
             }
         }
         else if (param1.eventid == 35) {
@@ -263,6 +269,18 @@ class mdmn_puzzle {
         }
         else if (param1.eventid == 39) {
             debug::print("DO?");
+        }
+        else if (param1.eventid == 46) {
+            if ((this.level_end == 0) && (this.mudmonster.mudstate != 10)) {
+                this.titletext1.fadeout(0.5);
+                this.titletext2.fadeout(0.5);
+            }
+        }
+        else if (param1.eventid == 1101) {
+            if (param1.args[0] == 0) {
+                debug::print("Switching mask to remove target!");
+                gccharacter::switchmask(gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("mudY"), 0), 1061109567);
+            }
         }
         return null;
     }
