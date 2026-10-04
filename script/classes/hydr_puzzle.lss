@@ -45,11 +45,11 @@ class hydr_puzzle {
         gchive::setcreaturetype(var5, scslosifoundation::stringtoidentifier("crb1"));
         gchive::setspawnrate(var5, 240);
         var3 = gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 0);
-        this.desctext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontHi", var3, screenx * 0.5, screeny - 130, 0, 1, 256, 0, 0);
+        this.desctext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", var3, 320, 410, 0, 1.5, 256, 4, 0);
         this.desctext.initfull();
         var4 = (screeny - 100) + 20;
         var3 = gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 1);
-        this.howtotext = new gs_legotext("Root/Data/Art/Fonts/BionicleFont", var3, screenx * 0.5, var4, 0, 1, 256, 0, 0);
+        this.howtotext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", var3, 320, 430, 0, 1, 256, 4, 0);
         this.howtotext.initfull();
         this.showintro = 0;
         this.playintro();
@@ -63,11 +63,11 @@ class hydr_puzzle {
         this.parent.level.cam.setspline(0, 10.0, 1, 0);
         this.parent.level.cam.setaimode(2);
         this.parent.level.cam.settargetpos(77, 10, 10);
-        this.parent.level.cam.scaletocutscene();
+        //this.parent.level.cam.scaletocutscene();
         this.desctext.add();
-        this.desctext.show();
+        this.desctext.fadein();
         this.howtotext.add();
-        this.howtotext.show();
+        this.howtotext.fadein();
         globalclass.hud.hide();
         GcHydraBoss::Idle(10);
         return null;
@@ -106,6 +106,10 @@ class hydr_puzzle {
     }
     
     method process(param1) {
+        if (this.desctext != null) {
+            this.desctext.process(param1);
+            this.howtotext.process(param1);
+        }
         return null;
     }
     
@@ -114,6 +118,8 @@ class hydr_puzzle {
     }
     
     method resetplayer() {
+        this.desctext.fadein();
+        this.howtotext.fadein();
         gchydraboss::reset(this.hydr);
         GcHydraBoss::Idle(3);
         return null;
@@ -130,6 +136,9 @@ class hydr_puzzle {
         }
         else if (param1.eventid == 43) {
             if (this.isdead == 0) {
+                this.desctext.fadeout(0.5);
+                this.howtotext.fadeout(0.5);
+                globalclass.hud.boss_meter.slidebossmeter(2);
                 this.isdead = 1;
             }
         }
@@ -138,6 +147,10 @@ class hydr_puzzle {
         }
         else if (param1.eventid == 27) {
             this.resetplayer();
+        }
+        else if (param1.eventid == 46) {
+            this.desctext.fadeout(0.5);
+            this.howtotext.fadeout(0.5);
         }
         else if (param1.eventid == 39) {
             this.hasstone = 1;
@@ -153,8 +166,7 @@ class hydr_puzzle {
             this.parent.level.cam.setaimode(11);
             this.parent.level.cam.resetviewport();
             globalclass.hud.show();
-            this.desctext.hide();
-            this.howtotext.hide();
+            globalclass.hud.boss_meter.slidebossmeter(1);
             GcHydraBoss::Idle(3);
         }
         return null;

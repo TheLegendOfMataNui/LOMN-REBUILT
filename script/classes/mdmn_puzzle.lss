@@ -278,7 +278,6 @@ class mdmn_puzzle {
         }
         else if (param1.eventid == 1101) {
             if (param1.args[0] == 0) {
-                debug::print("Switching mask to remove target!");
                 gccharacter::switchmask(gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("mudY"), 0), 1061109567);
             }
         }
