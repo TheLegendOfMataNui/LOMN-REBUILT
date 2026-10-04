@@ -304,6 +304,7 @@ Level 1 - Onua
 • Fixed Onua falling very slightly post-Nobua beach cutscene        		----		(ShadowDraikana)
 • Adjusted Vuravura-Nui mudball aim towards player head/center mass         ----		(OndrikB)
 • QOL: Dying to Vuravura-Nui no longer force-replays the boss intro         ----		(ShadowDraikana)
+• Fixed Vuravura-Nui weakpoint model not vanishing when damaged             ----		(ShadowDraikana)
 
 Level 2 - Gali
 • Fixed a doorway in VLLG pointing to the wrong room (Nobody saw anything)	----		(ShadowDraikana)
