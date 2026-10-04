@@ -13,7 +13,6 @@ class lego_level_frontend : gs_lego_level {
     method initfull() {
         globalclass.bgmusic.stop();
         if (this.playedonce == 0) {
-            gchuddirector::playcinematic("Root/Data/cinematics/New_LOGO8015.bik", 1);
             gchuddirector::playcinematic("Root/Data/cinematics/New_Saffirelogo.bik", 1);
             gchuddirector::playcinematic("Root/Data/cinematics/BIONICLEFMV3.bik", 1);
             this.playedonce = 1;
