@@ -201,9 +201,8 @@ class ss_basetext : base_drawobject {
         return null;
     }
     
-    method settransparency(param1) {
-        debug::print(param1);
-        sctextobject::settransparency(this.text, param1);
+    method settransparency(int) {
+        sctextobject::settransparency(this.text, int);
         return null;
     }
     
