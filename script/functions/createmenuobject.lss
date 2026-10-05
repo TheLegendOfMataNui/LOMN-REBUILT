@@ -21,7 +21,7 @@ function createmenuobject() {
         gcareadirector::getscriptfluffstring(scslosifoundation::stringtoidentifier("fend"), 1, 26), 
         23, 
         null, 
-        "Front end", 
+        "Front End", 
         21, 
         null, 
         "Level-1 Onua", 
