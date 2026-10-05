@@ -407,15 +407,11 @@ class gs_legocamera : ss_basecamera {
     }
     
     method scaletocutscene() {
-        var var1;
-        var var2;
-        var var3;
-        var var4;
-        var1 = gcgame::getresolutionwidth();
-        var2 = scslosimath::round(var1 / 1.85);
-        var3 = gcgame::getresolutionheight();
-        var4 = scslosimath::round(var3 - var2);
-        this.scaleviewport(0, 0, var1, var3 - var4, 0.5);
+        var width = gcgame::getresolutionwidth();
+        var width_division = scslosimath::round(width / 1.6375);
+        var height = gcgame::getresolutionheight();
+        var height_math = scslosimath::round(height - width_division);
+        this.scaleviewport(0, 0, width, height - height_math, 0.5);
         return null;
     }
     
