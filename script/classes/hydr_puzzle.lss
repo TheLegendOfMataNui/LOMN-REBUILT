@@ -15,11 +15,6 @@ class hydr_puzzle {
     }
     
     method initfull() {
-        var var1;
-        var var2;
-        var var3;
-        var var4;
-        var var5;
         gcareadirector::setfog(-9143565, 0 - 1000.0, 0 - 2400.0, 0.01);
         gclightdirector::setcavelighting(0);
         gcareadirector::setnearestmax(20);
@@ -32,24 +27,21 @@ class hydr_puzzle {
             gcareadirector::hide(scslosifoundation::stringtoidentifier("ston"), scslosifoundation::stringtoidentifier("hydr"));
         }
         this.hasstone = 0;
-        var3 = scslosifoundation::stringtoidentifier("hydr");
-        gcmodeldirector::addboss(var3);
-        gcmodeldirector::show(var3, var3);
+        var hydr_id = scslosifoundation::stringtoidentifier("hydr");
+        gcmodeldirector::addboss(hydr_id);
+        gcmodeldirector::show(hydr_id, hydr_id);
         this.hydr = gchydraboss::gethydraboss();
         this.isdead = 0;
         GcHydraBoss::Idle(3);
-        var4 = gcareadirector::gethive(scslosifoundation::stringtoidentifier("hv01"));
-        gchive::setcreaturetype(var4, scslosifoundation::stringtoidentifier("crb1"));
-        gchive::setspawnrate(var4, 240);
-        var5 = gcareadirector::gethive(scslosifoundation::stringtoidentifier("hv02"));
-        gchive::setcreaturetype(var5, scslosifoundation::stringtoidentifier("crb1"));
-        gchive::setspawnrate(var5, 240);
-        var3 = gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 0);
-        this.desctext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", var3, 320, 410, 0, 1.5, 256, 4, 0);
+        var hive1_handle = gcareadirector::gethive(scslosifoundation::stringtoidentifier("hv01"));
+        gchive::setcreaturetype(hive1_handle, scslosifoundation::stringtoidentifier("crb1"));
+        gchive::setspawnrate(hive1_handle, 240);
+        var hive2_handle = gcareadirector::gethive(scslosifoundation::stringtoidentifier("hv02"));
+        gchive::setcreaturetype(hive2_handle, scslosifoundation::stringtoidentifier("crb1"));
+        gchive::setspawnrate(hive2_handle, 240);
+        this.desctext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 0), 320, 410, 0, 1.5, 256, 4, 0);
         this.desctext.initfull();
-        var4 = (screeny - 100) + 20;
-        var3 = gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 1);
-        this.howtotext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", var3, 320, 430, 0, 1, 256, 4, 0);
+        this.howtotext = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 1), 320, 430, 0, 1, 256, 4, 0);
         this.howtotext.initfull();
         this.showintro = 0;
         this.playintro();
@@ -63,12 +55,13 @@ class hydr_puzzle {
         this.parent.level.cam.setspline(0, 10.0, 1, 0);
         this.parent.level.cam.setaimode(2);
         this.parent.level.cam.settargetpos(77, 10, 10);
-        //this.parent.level.cam.scaletocutscene();
+        this.parent.level.cam.scaletocutscene();
         this.desctext.add();
         this.desctext.fadein();
         this.howtotext.add();
         this.howtotext.fadein();
         globalclass.hud.hide();
+        //globalclass.hud.boss_meter.slidebossmeter(1);
         GcHydraBoss::Idle(10);
         return null;
     }
@@ -165,8 +158,8 @@ class hydr_puzzle {
         else if (param1.eventid == 6) {
             this.parent.level.cam.setaimode(11);
             this.parent.level.cam.resetviewport();
-            globalclass.hud.show();
             globalclass.hud.boss_meter.slidebossmeter(1);
+            globalclass.hud.show();
             GcHydraBoss::Idle(3);
         }
         return null;
