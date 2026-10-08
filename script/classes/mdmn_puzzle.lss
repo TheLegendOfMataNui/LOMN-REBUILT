@@ -7,7 +7,7 @@ class mdmn_puzzle {
     property reacting;
     property thrown;
     property elemental_boss_name;
-    property elemental_boss_type;
+    property elemental_boss_name2;
     property turaga;
     property mudmandead;
     property stone;
@@ -59,9 +59,9 @@ class mdmn_puzzle {
         this.elemental_boss_name = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", gcareadirector::getscriptstring(1651471219, 3, 0), 320, 410, 0, 1.5, 256, 4, 0);
         this.elemental_boss_name.initfull();
         this.elemental_boss_name.add();
-        this.elemental_boss_type = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", gcareadirector::getscriptstring(1651471219, 3, 1), 320, 430, 0, 1, 256, 4, 0);
-        this.elemental_boss_type.initfull();
-        this.elemental_boss_type.add();
+        this.elemental_boss_name2 = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", gcareadirector::getscriptstring(1651471219, 3, 1), 320, 430, 0, 1, 256, 4, 0);
+        this.elemental_boss_name2.initfull();
+        this.elemental_boss_name2.add();
         return null;
     }
 
@@ -90,8 +90,8 @@ class mdmn_puzzle {
         this.mudmanreset = null;
         this.elemental_boss_name.cleanupfull();
         this.elemental_boss_name = null;
-        this.elemental_boss_type.cleanupfull();
-        this.elemental_boss_type = null;
+        this.elemental_boss_name2.cleanupfull();
+        this.elemental_boss_name2 = null;
         return null;
     }
     
@@ -130,7 +130,7 @@ class mdmn_puzzle {
         }
         if (this.elemental_boss_name != null) {
             this.elemental_boss_name.process(param1);
-            this.elemental_boss_type.process(param1);
+            this.elemental_boss_name2.process(param1);
         }
         return null;
     }
@@ -186,7 +186,7 @@ class mdmn_puzzle {
                 gcmodeldirector::show(1836409945, 1836409945);
                 this.mudtimer = 0;
                 this.elemental_boss_name.fadein();
-                this.elemental_boss_type.fadein();
+                this.elemental_boss_name2.fadein();
                 globalclass.hud.boss_meter.slidebossmeter(1);
                 gcstaticsoundsptrarray::playtablesound(480);
                 debug::print("MUD ABSOLUTELY ERECT");
@@ -222,7 +222,7 @@ class mdmn_puzzle {
         else if (param1.eventid == 43) {
             if (gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("mudY"), 0) != null) {
                 this.elemental_boss_name.fadeout(2);
-                this.elemental_boss_type.fadeout(2);
+                this.elemental_boss_name2.fadeout(2);
                 globalclass.hud.boss_meter.slidebossmeter(2);
                 this.mudmonster.mudstate = 10;
                 this.mudtimer = 0;
@@ -240,7 +240,7 @@ class mdmn_puzzle {
             if ((this.level_end == 0) && (this.mudmonster.mudstate != 10)) {
                 this.resetarea();
                 this.elemental_boss_name.fadein();
-                this.elemental_boss_type.fadein();
+                this.elemental_boss_name2.fadein();
             }
         }
         else if (param1.eventid == 35) {
@@ -260,7 +260,7 @@ class mdmn_puzzle {
         else if (param1.eventid == 46) {
             if ((this.level_end == 0) && (this.mudmonster.mudstate != 10)) {
                 this.elemental_boss_name.fadeout(0.5);
-                this.elemental_boss_type.fadeout(0.5);
+                this.elemental_boss_name2.fadeout(0.5);
             }
         }
         else if (param1.eventid == 1101) {

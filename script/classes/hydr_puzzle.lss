@@ -5,7 +5,7 @@ class hydr_puzzle {
     property stone;
     property hasstone;
     property elemental_boss_name;
-    property elemental_boss_type;
+    property elemental_boss_name2;
     property showintro;
     property level_end;
     
@@ -42,9 +42,9 @@ class hydr_puzzle {
         this.elemental_boss_name = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 0), 320, 410, 0, 1.5, 256, 4, 0);
         this.elemental_boss_name.initfull();
         this.elemental_boss_name.add();
-        this.elemental_boss_type = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 1), 320, 430, 0, 1, 256, 4, 0);
-        this.elemental_boss_type.initfull();
-        this.elemental_boss_type.add();
+        this.elemental_boss_name2 = new gs_legotext("Root/Data/Art/Fonts/BionicleFontshad", gcareadirector::getscriptstring(scslosifoundation::stringtoidentifier("boss"), 2, 1), 320, 430, 0, 1, 256, 4, 0);
+        this.elemental_boss_name2.initfull();
+        this.elemental_boss_name2.add();
         this.showintro = 0;
         this.playintro();
         this.level_end = 0;
@@ -59,7 +59,7 @@ class hydr_puzzle {
         this.parent.level.cam.settargetpos(77, 10, 10);
         this.parent.level.cam.scaletocutscene();
         this.elemental_boss_name.fadein();
-        this.elemental_boss_type.fadein();
+        this.elemental_boss_name2.fadein();
         globalclass.hud.hide();
         //globalclass.hud.boss_meter.slidebossmeter(1);
         GcHydraBoss::Idle(10);
@@ -85,8 +85,8 @@ class hydr_puzzle {
         }
         this.elemental_boss_name.cleanupfull();
         this.elemental_boss_name = null;
-        this.elemental_boss_type.cleanupfull();
-        this.elemental_boss_type = null;
+        this.elemental_boss_name2.cleanupfull();
+        this.elemental_boss_name2 = null;
         this.isdead = null;
         this.hasstone = null;
         this.showintro = null;
@@ -97,7 +97,7 @@ class hydr_puzzle {
     method process(param1) {
         if (this.elemental_boss_name != null) {
             this.elemental_boss_name.process(param1);
-            this.elemental_boss_type.process(param1);
+            this.elemental_boss_name2.process(param1);
         }
         return null;
     }
@@ -108,7 +108,7 @@ class hydr_puzzle {
     
     method resetplayer() {
         this.elemental_boss_name.fadein();
-        this.elemental_boss_type.fadein();
+        this.elemental_boss_name2.fadein();
         gchydraboss::reset(this.hydr);
         GcHydraBoss::Idle(3);
         return null;
@@ -126,7 +126,7 @@ class hydr_puzzle {
         else if (param1.eventid == 43) {
             if (this.isdead == 0) {
                 this.elemental_boss_name.fadeout(0.5);
-                this.elemental_boss_type.fadeout(0.5);
+                this.elemental_boss_name2.fadeout(0.5);
                 globalclass.hud.boss_meter.slidebossmeter(2);
                 this.isdead = 1;
             }
@@ -139,7 +139,7 @@ class hydr_puzzle {
         }
         else if (param1.eventid == 46) {
             this.elemental_boss_name.fadeout(0.5);
-            this.elemental_boss_type.fadeout(0.5);
+            this.elemental_boss_name2.fadeout(0.5);
         }
         else if (param1.eventid == 39) {
             this.hasstone = 1;
