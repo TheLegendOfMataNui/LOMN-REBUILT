@@ -79,38 +79,30 @@ class mudmonster {
     method cleanupfull() {
         var var1;
         debug::print("Calling cleanup full for the mudmonster");
-        if (this.miniboulders != null) {
-            var1 = 0;
-            while ((this.miniboulders.__length - 1) >= var1) {
-                this.miniboulders[var1].cleanupfull();
-                this.miniboulders[var1] = null;
-                var1 = var1 + 1;
-            }
-            this.miniboulders = null;
+        var1 = 0;
+        while ((this.miniboulders.__length - 1) >= var1) {
+            this.miniboulders[var1].cleanupfull();
+            this.miniboulders[var1] = null;
+            var1 = var1 + 1;
         }
+        this.miniboulders = null;
         debug::print("Cleaning up miniboulders");
-        if (this.mudballs != null) {
-            var1 = 0;
-            while ((this.mudballs.__length - 1) >= var1) {
-                this.mudballs[var1].cleanupfull();
-                this.mudballs[var1] = null;
-                var1 = var1 + 1;
-            }
-            this.mudballs = null;
+        var1 = 0;
+        while ((this.mudballs.__length - 1) >= var1) {
+            this.mudballs[var1].cleanupfull();
+            this.mudballs[var1] = null;
+            var1 = var1 + 1;
         }
+        this.mudballs = null;
         debug::print("Cleaning up mudballs");
-        if (this.mudman != null) {
-            gcmodeldirector::remove(1836409945, 0);
-            this.mudman = null;
-        }
+        gcmodeldirector::remove(1836409945, 0);
+        this.mudman = null;
         debug::print("Cleaning up the mudman");
         this.curmudball = null;
         this.mudstate = null;
         this.boulderuse = null;
-        if (this.resetmboulders != null) {
-            this.resetmboulders.cleanupfull();
-            this.resetmboulders = null;
-        }
+        this.resetmboulders.cleanupfull();
+        this.resetmboulders = null;
         debug::print("Cleaning up resetBoulders");
         this.shakeonce = null;
         this.projoffsetx = null;
