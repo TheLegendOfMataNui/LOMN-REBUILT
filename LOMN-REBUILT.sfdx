@@ -1,3 +1,4 @@
+
 [Project]
-ExecutableName=LEGOBionicle.exe
 CompressOutput=True
+ExecutableName=LEGOBionicle.exe
