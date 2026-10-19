@@ -6,6 +6,8 @@ class hud_Ls_BossMeter {
     property onscreen;
     property star;
     property boss_starting_hp;
+    property boss_lifebar_startx1;
+    property boss_lifebar_startx2;
     
     method hud_Ls_BossMeter() {
         return null;
@@ -37,6 +39,8 @@ class hud_Ls_BossMeter {
             var2 = var2 + 1;
         }
         this.partsarray.__append(this.infected_lites);
+        this.boss_lifebar_startx1 = this.boss_lifebar[0].x1 - 1;
+        this.boss_lifebar_startx2 = this.boss_lifebar[0].x2;
         //actual abomination of a nested while loop what the fuck saffire
         var2 = 0;
         while ((this.partsarray.__length - 1) >= var2) {
@@ -205,7 +209,6 @@ class hud_Ls_BossMeter {
             this.changepos(2);
             if (this.boss_lifebar[0].y1 >= (496 * screenyratio)) {
                 this.movement = 0;
-                //this.update_boss_life(this.boss_starting_hp);
                 this.hide();
                 this.show();
             }
@@ -252,7 +255,6 @@ class hud_Ls_BossMeter {
             }
         }
         else if (param1.eventid == 27) {
-            debug::print("Sliding meter back on after respawn!");
             //this.slidebossmeter(1);
         }
         else if (param1.eventid == 46) {
@@ -303,8 +305,7 @@ class hud_Ls_BossMeter {
             debug::print(("[][][] Boss Life Incremented by: " + __tostring(health_int)));
             while (health_int > 0) {
                 var inf_lites_length = this.infected_lites.__length;
-                debug::print(("what the fuck is happening, the length is: " + __tostring(inf_lites_length)));
-                this.infected_lites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", (this.boss_lifebar[0].x1 - 1) + (15 * health_int), this.boss_lifebar[0].y1, 0, this.boss_lifebar[0].x2 + (15 * health_int), this.boss_lifebar[0].y2));
+                this.infected_lites.__append(new ss_basesprite("Root/data/art/hud/littleWhiteLight", this.boss_lifebar_startx1 + (15 * health_int), 452, 0, this.boss_lifebar_startx2 + (15 * health_int), 468));
                 this.infected_lites[inf_lites_length].initfull();
                 this.infected_lites[inf_lites_length].add();
                 this.infected_lites[inf_lites_length].show();
