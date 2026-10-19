@@ -60,7 +60,7 @@ class hydr_puzzle {
         this.parent.level.cam.scaletocutscene();
         this.elemental_boss_name.fadein();
         this.elemental_boss_name2.fadein();
-        globalclass.hud.hide();
+        //globalclass.hud.hide();
         //globalclass.hud.boss_meter.slidebossmeter(1);
         GcHydraBoss::Idle(10);
         return null;
@@ -77,8 +77,8 @@ class hydr_puzzle {
     
     method cleanupfull() {
         var hydr = scslosifoundation::stringtoidentifier("hydr");
-        this.hydr = null;
         gcmodeldirector::remove(hydr, hydr);
+        this.hydr = null;
         if (this.stone != null) {
             this.stone.cleanupfull();
             this.stone = null;

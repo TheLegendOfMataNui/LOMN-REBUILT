@@ -266,6 +266,8 @@ class mdmn_puzzle {
         else if (param1.eventid == 1101) {
             if (param1.args[0] == 0) {
                 gccharacter::switchmask(gcmodeldirector::getcharacter(scslosifoundation::stringtoidentifier("mudY"), 0), 1061109567);
+                //TODO: figure out if this can work after the hud scripting is done
+                //this.mudmonster.shrink();
             }
         }
         return null;
